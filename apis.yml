@@ -32,10 +32,10 @@ apis:
     humanURL: https://pipedream.com/docs/rest-api/
     baseURL: https://api.pipedream.com/v1
     tags:
-      - Workflows
+      - Automation
       - Event Sources
       - Subscriptions
-      - Automation
+      - Workflows
     properties:
       - type: Documentation
         url: https://pipedream.com/docs/rest-api/
@@ -53,10 +53,10 @@ apis:
     humanURL: https://pipedream.com/docs/connect
     baseURL: https://api.pipedream.com/v1/connect
     tags:
-      - Integrations
-      - Connect
-      - Managed Auth
       - AI Agents
+      - Connect
+      - Integrations
+      - Managed Auth
     properties:
       - type: Documentation
         url: https://pipedream.com/docs/connect/api-ref
