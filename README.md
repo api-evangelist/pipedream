@@ -16,7 +16,7 @@ Pipedream is a developer-centric integration platform allowing custom code and A
 ## Timestamps
 
 - **Created:** 2026-03-03 
-- **Modified:** 2026-03-03 
+- **Modified:** 2026-04-28 
 
 ## APIs
 
@@ -34,6 +34,7 @@ The Pipedream REST API allows developers to programmatically create and manage w
 
 - [Documentation](https://pipedream.com/docs/rest-api/)
 - [Authentication](https://pipedream.com/docs/rest-api/auth)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/master/openapi/pipedream-openapi.yml)
 
 ### Pipedream Connect API
 The Pipedream Connect API is the end-to-end developer toolkit for adding customer-facing integrations to applications and AI agents. It provides managed authentication for 3,000+ APIs, pre-built components and triggers, a Connect proxy for custom API requests, and usage tracking. Resources are scoped to projects and the API supports production and development environments.
@@ -50,6 +51,7 @@ The Pipedream Connect API is the end-to-end developer toolkit for adding custome
 - [Documentation](https://pipedream.com/docs/connect/api-ref)
 - [GettingStarted](https://pipedream.com/docs/connect/quickstart)
 - [SDKs](https://pipedream.com/docs/connect/api-reference/sdks)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/master/openapi/pipedream-openapi.yml)
 
 ## Common Properties
 

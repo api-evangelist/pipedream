@@ -1,0 +1,214 @@
+openapi: 3.0.3
+info:
+  title: Pipedream REST API
+  description: >-
+    The Pipedream REST API allows developers to programmatically create and
+    manage workflows, event sources, subscriptions, and user resources.
+    Authentication uses Bearer tokens (OAuth access tokens or user API keys).
+    List endpoints support cursor-based pagination via limit, after, and
+    before parameters.
+  version: v1
+  contact:
+    name: Pipedream
+    url: https://pipedream.com/docs/rest-api/
+servers:
+  - url: https://api.pipedream.com/v1
+    description: Production
+security:
+  - bearerAuth: []
+paths:
+  /users/me:
+    get:
+      summary: Get the authenticated user
+      operationId: getMe
+      tags: [Users]
+      responses:
+        '200':
+          description: Authenticated user returned.
+  /users/me/sources:
+    get:
+      summary: List event sources for the authenticated user
+      operationId: listSources
+      tags: [Event Sources]
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/After'
+        - $ref: '#/components/parameters/Before'
+      responses:
+        '200':
+          description: Page of event sources.
+    post:
+      summary: Create an event source
+      operationId: createSource
+      tags: [Event Sources]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Event source created.
+  /sources/{id}:
+    get:
+      summary: Get an event source
+      operationId: getSource
+      tags: [Event Sources]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Event source returned.
+    delete:
+      summary: Delete an event source
+      operationId: deleteSource
+      tags: [Event Sources]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '204':
+          description: Event source deleted.
+  /subscriptions:
+    get:
+      summary: List subscriptions
+      operationId: listSubscriptions
+      tags: [Subscriptions]
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: List of subscriptions.
+    post:
+      summary: Create a subscription
+      operationId: createSubscription
+      tags: [Subscriptions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Subscription created.
+  /subscriptions/{id}:
+    delete:
+      summary: Delete a subscription
+      operationId: deleteSubscription
+      tags: [Subscriptions]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '204':
+          description: Subscription deleted.
+  /workflows/{id}:
+    get:
+      summary: Get a workflow
+      operationId: getWorkflow
+      tags: [Workflows]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Workflow returned.
+  /connect/{project_id}/tokens:
+    post:
+      summary: Create a Connect token
+      description: >-
+        Create a short-lived Connect token that allows a customer to authorize
+        an integration. Requires the X-PD-Environment header.
+      operationId: createConnectToken
+      tags: [Connect]
+      parameters:
+        - in: path
+          name: project_id
+          required: true
+          schema: { type: string }
+        - in: header
+          name: X-PD-Environment
+          required: true
+          schema:
+            type: string
+            enum: [production, development]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [external_user_id]
+              properties:
+                external_user_id:
+                  type: string
+                  description: A stable identifier for your end-user.
+      responses:
+        '200':
+          description: Token created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  expires_at:
+                    type: string
+                    format: date-time
+  /connect/{project_id}/accounts:
+    get:
+      summary: List connected accounts for a project
+      operationId: listConnectAccounts
+      tags: [Connect]
+      parameters:
+        - in: path
+          name: project_id
+          required: true
+          schema: { type: string }
+        - in: header
+          name: X-PD-Environment
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Connected accounts returned.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth or User API Key
+  parameters:
+    Limit:
+      in: query
+      name: limit
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: Number of results per page.
+    After:
+      in: query
+      name: after
+      schema:
+        type: string
+      description: Cursor for the next page of results.
+    Before:
+      in: query
+      name: before
+      schema:
+        type: string
+      description: Cursor for the previous page of results.

@@ -17,7 +17,7 @@ tags:
   - ProCode_API_Composition
   - Workflows
 created: '2026-03-03'
-modified: '2026-03-03'
+modified: '2026-04-28'
 url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
@@ -41,6 +41,8 @@ apis:
         url: https://pipedream.com/docs/rest-api/
       - type: Authentication
         url: https://pipedream.com/docs/rest-api/auth
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/master/openapi/pipedream-openapi.yml
   - aid: pipedream:connect-api
     name: Pipedream Connect API
     description: >-
@@ -64,6 +66,8 @@ apis:
         url: https://pipedream.com/docs/connect/quickstart
       - type: SDKs
         url: https://pipedream.com/docs/connect/api-reference/sdks
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/master/openapi/pipedream-openapi.yml
 common:
   - type: Portal
     url: https://pipedream.com/
