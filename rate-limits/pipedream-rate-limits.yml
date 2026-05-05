@@ -1,0 +1,39 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Pipedream
+providerId: pipedream
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Workflow
+description: Pipedream API rate limits per workspace.
+sources:
+  - https://pipedream.com/pricing
+  - https://pipedream.com/docs/api/rest
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: Workflow execution per second
+    scope: workspace
+    metric: executions_per_second
+    limit: varies by plan
+  - name: REST API
+    scope: user
+    metric: requests_per_minute
+    limit: 60
+    timeFrame: minute
+  - name: HTTP source endpoint
+    scope: endpoint
+    metric: requests_per_second
+    limit: 100
+    timeFrame: second
+  - name: Event size
+    scope: request
+    metric: MB
+    limit: 5
+    timeFrame: request

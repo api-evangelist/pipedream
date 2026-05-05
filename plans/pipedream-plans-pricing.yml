@@ -1,0 +1,113 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Pipedream
+providerId: pipedream
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Workflow
+  - Integration
+  - iPaaS
+description: 'Pipedream credit-based plans: Free / Basic / Advanced / Business.'
+sources:
+  - https://pipedream.com/pricing
+plans:
+  - id: pipedream-free
+    name: Free
+    type: freemium
+    description: 100 credits/day.
+    entries:
+      - label: Credits/day
+        name: credits_day
+        type: quota
+        metric: credit
+        limit: 100
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 1 credit per 30 sec compute (256 MB)
+      - name: 30-day event history
+  - id: pipedream-basic
+    name: Basic
+    type: paid
+    description: $29/month; 2,000 credits/day.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '29.00'
+        userMultiplied: false
+      - label: Credits/day
+        name: credits_day
+        type: quota
+        metric: credit
+        limit: 2000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 30-day event history
+      - name: Email support
+      - name: Longer-duration workflows
+  - id: pipedream-advanced
+    name: Advanced
+    type: paid
+    description: $79/month; 10,000 credits/day.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '79.00'
+        userMultiplied: false
+      - label: Credits/day
+        name: credits_day
+        type: quota
+        metric: credit
+        limit: 10000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 1-year event history
+      - name: Priority support
+      - name: Custom domains for HTTP endpoints
+  - id: pipedream-business
+    name: Business
+    type: enterprise
+    description: Custom; unlimited credits.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Unlimited credits
+      - name: SSO/SAML
+      - name: Audit logging
+      - name: Dedicated support
+      - name: Custom SLAs
