@@ -1,0 +1,461 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pipedream REST API
+  description: The Pipedream REST API allows developers to programmatically create and manage workflows, event sources, subscriptions,
+    and user resources. Authentication uses Bearer tokens (OAuth access tokens or user API keys). List endpoints support cursor-based
+    pagination via limit, after, and before parameters.
+  tags:
+  - Pipedream
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: pipedream
+    baseUri: https://api.pipedream.com/v1
+    description: Pipedream REST API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{PIPEDREAM_TOKEN}}'
+    resources:
+    - name: users-me
+      path: /users/me
+      operations:
+      - name: getme
+        method: GET
+        description: Get the authenticated user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-me-sources
+      path: /users/me/sources
+      operations:
+      - name: listsources
+        method: GET
+        description: List event sources for the authenticated user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsource
+        method: POST
+        description: Create an event source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sources-id
+      path: /sources/{id}
+      operations:
+      - name: getsource
+        method: GET
+        description: Get an event source
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletesource
+        method: DELETE
+        description: Delete an event source
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions
+      path: /subscriptions
+      operations:
+      - name: listsubscriptions
+        method: GET
+        description: List subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsubscription
+        method: POST
+        description: Create a subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-id
+      path: /subscriptions/{id}
+      operations:
+      - name: deletesubscription
+        method: DELETE
+        description: Delete a subscription
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workflows-id
+      path: /workflows/{id}
+      operations:
+      - name: getworkflow
+        method: GET
+        description: Get a workflow
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: connect-project-id-tokens
+      path: /connect/{project_id}/tokens
+      operations:
+      - name: createconnecttoken
+        method: POST
+        description: Create a Connect token
+        inputParameters:
+        - name: project_id
+          in: path
+          type: string
+          required: true
+        - name: X-PD-Environment
+          in: header
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: connect-project-id-accounts
+      path: /connect/{project_id}/accounts
+      operations:
+      - name: listconnectaccounts
+        method: GET
+        description: List connected accounts for a project
+        inputParameters:
+        - name: project_id
+          in: path
+          type: string
+          required: true
+        - name: X-PD-Environment
+          in: header
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: pipedream-rest
+    description: REST adapter for Pipedream REST API.
+    resources:
+    - path: /users/me
+      name: getme
+      operations:
+      - method: GET
+        name: getme
+        description: Get the authenticated user
+        call: pipedream.getme
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/me/sources
+      name: listsources
+      operations:
+      - method: GET
+        name: listsources
+        description: List event sources for the authenticated user
+        call: pipedream.listsources
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/me/sources
+      name: createsource
+      operations:
+      - method: POST
+        name: createsource
+        description: Create an event source
+        call: pipedream.createsource
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /sources/{id}
+      name: getsource
+      operations:
+      - method: GET
+        name: getsource
+        description: Get an event source
+        call: pipedream.getsource
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /sources/{id}
+      name: deletesource
+      operations:
+      - method: DELETE
+        name: deletesource
+        description: Delete an event source
+        call: pipedream.deletesource
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions
+      name: listsubscriptions
+      operations:
+      - method: GET
+        name: listsubscriptions
+        description: List subscriptions
+        call: pipedream.listsubscriptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions
+      name: createsubscription
+      operations:
+      - method: POST
+        name: createsubscription
+        description: Create a subscription
+        call: pipedream.createsubscription
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions/{id}
+      name: deletesubscription
+      operations:
+      - method: DELETE
+        name: deletesubscription
+        description: Delete a subscription
+        call: pipedream.deletesubscription
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workflows/{id}
+      name: getworkflow
+      operations:
+      - method: GET
+        name: getworkflow
+        description: Get a workflow
+        call: pipedream.getworkflow
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /connect/{project_id}/tokens
+      name: createconnecttoken
+      operations:
+      - method: POST
+        name: createconnecttoken
+        description: Create a Connect token
+        call: pipedream.createconnecttoken
+        with:
+          project_id: rest.project_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /connect/{project_id}/accounts
+      name: listconnectaccounts
+      operations:
+      - method: GET
+        name: listconnectaccounts
+        description: List connected accounts for a project
+        call: pipedream.listconnectaccounts
+        with:
+          project_id: rest.project_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: pipedream-mcp
+    transport: http
+    description: MCP adapter for Pipedream REST API for AI agent use.
+    tools:
+    - name: getme
+      description: Get the authenticated user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream.getme
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsources
+      description: List event sources for the authenticated user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream.listsources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createsource
+      description: Create an event source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipedream.createsource
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getsource
+      description: Get an event source
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream.getsource
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletesource
+      description: Delete an event source
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pipedream.deletesource
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsubscriptions
+      description: List subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream.listsubscriptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createsubscription
+      description: Create a subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipedream.createsubscription
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletesubscription
+      description: Delete a subscription
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pipedream.deletesubscription
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getworkflow
+      description: Get a workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream.getworkflow
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createconnecttoken
+      description: Create a Connect token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipedream.createconnecttoken
+      with:
+        project_id: tools.project_id
+      inputParameters:
+      - name: project_id
+        type: string
+        description: project_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listconnectaccounts
+      description: List connected accounts for a project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream.listconnectaccounts
+      with:
+        project_id: tools.project_id
+      inputParameters:
+      - name: project_id
+        type: string
+        description: project_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    PIPEDREAM_TOKEN: PIPEDREAM_TOKEN
