@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://pipedream.com/blog/",
-      "feed_url": "https://pipedream.com/blog/rss/",
-      "saved": 10,
-      "title": "Pipedream - Blog"
+      "feed_url": "https://pipedream.com/blog/feed/",
+      "title": "Pipedream - Blog",
+      "saved": 0
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:33:48Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
