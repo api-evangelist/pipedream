@@ -82,11 +82,11 @@ common:
     url: https://pipedream.com/blog/
     name: Pipedream Blog
     description: 'null'
-  - type: Changelog
+  - type: ChangeLog
     url: https://pipedream.com/docs/changelog
     name: Product Changelog
     description: 'null'
-  - type: Status
+  - type: StatusPage
     url: https://status.pipedream.com/
     name: Pipedream Status
     description: 'null'
