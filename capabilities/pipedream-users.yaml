@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pipedream REST API — Users
+  description: 'Pipedream REST API — Users. 1 operations. Lead operation: Get the authenticated user. Self-contained Naftiko
+    capability covering one Pipedream business surface.'
+  tags:
+  - Pipedream
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PIPEDREAM_API_KEY: PIPEDREAM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipedream-users
+    baseUri: https://api.pipedream.com/v1
+    description: Pipedream REST API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: users-me
+      path: /users/me
+      operations:
+      - name: getme
+        method: GET
+        description: Get the authenticated user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PIPEDREAM_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipedream-users-rest
+    port: 8080
+    description: REST adapter for Pipedream REST API — Users. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/users/me
+      name: users-me
+      description: REST surface for users-me.
+      operations:
+      - method: GET
+        name: getme
+        description: Get the authenticated user
+        call: pipedream-users.getme
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipedream-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Pipedream REST API — Users. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-authenticated-user
+      description: Get the authenticated user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-users.getme
+      outputParameters:
+      - type: object
+        mapping: $.

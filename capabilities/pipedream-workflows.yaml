@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pipedream REST API — Workflows
+  description: 'Pipedream REST API — Workflows. 1 operations. Lead operation: Get a workflow. Self-contained Naftiko capability
+    covering one Pipedream business surface.'
+  tags:
+  - Pipedream
+  - Workflows
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PIPEDREAM_API_KEY: PIPEDREAM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipedream-workflows
+    baseUri: https://api.pipedream.com/v1
+    description: Pipedream REST API — Workflows business capability. Self-contained, no shared references.
+    resources:
+    - name: workflows-id
+      path: /workflows/{id}
+      operations:
+      - name: getworkflow
+        method: GET
+        description: Get a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.PIPEDREAM_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipedream-workflows-rest
+    port: 8080
+    description: REST adapter for Pipedream REST API — Workflows. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workflows/{id}
+      name: workflows-id
+      description: REST surface for workflows-id.
+      operations:
+      - method: GET
+        name: getworkflow
+        description: Get a workflow
+        call: pipedream-workflows.getworkflow
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipedream-workflows-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Pipedream REST API — Workflows. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-workflow
+      description: Get a workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-workflows.getworkflow
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
