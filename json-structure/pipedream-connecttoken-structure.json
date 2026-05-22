@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-structure.org/structure-v1.0.json",
+  "id": "pipedream-connecttoken",
+  "title": "Pipedream ConnectToken Structure",
+  "description": "Structural summary of Pipedream ConnectToken as exposed by the Pipedream API.",
+  "type": "string",
+  "properties": {},
+  "required": []
+}

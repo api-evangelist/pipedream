@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.pipedream.com/v1/apps?limit=10",
+    "headers": {
+      "Authorization": "Bearer pd_oauth_xxx"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "page_info": {
+        "total_count": 3000,
+        "count": 10,
+        "start_cursor": "a",
+        "end_cursor": "b"
+      },
+      "data": [
+        {
+          "id": "app_abc123",
+          "name_slug": "notion",
+          "name": "Notion",
+          "auth_type": "oauth",
+          "description": "Notion productivity API",
+          "img_src": "https://pipedream.com/s.v0/app_abc123/logo/orig"
+        }
+      ]
+    }
+  }
+}

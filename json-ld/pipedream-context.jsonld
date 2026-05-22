@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "pd": "https://pipedream.com/schema/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "Organization": "schema:Organization",
+    "SoftwareApplication": "schema:SoftwareApplication",
+
+    "Workflow": "pd:Workflow",
+    "EventSource": "pd:EventSource",
+    "Subscription": "pd:Subscription",
+    "App": "pd:App",
+    "AppCategory": "pd:AppCategory",
+    "Account": "pd:Account",
+    "Component": "pd:Component",
+    "Action": "pd:Action",
+    "Trigger": "pd:Trigger",
+    "DeployedTrigger": "pd:DeployedTrigger",
+    "Project": "pd:Project",
+    "Webhook": "pd:Webhook",
+    "Proxy": "pd:Proxy",
+    "ConnectToken": "pd:ConnectToken",
+    "OauthToken": "pd:OauthToken",
+    "ConnectUsage": "pd:ConnectUsage",
+    "McpServer": "pd:McpServer",
+    "McpTool": "pd:McpTool",
+
+    "id": "schema:identifier",
+    "externalUserId": "pd:externalUserId",
+    "projectId": "pd:projectId",
+    "environment": "pd:environment",
+    "appSlug": "pd:appSlug",
+    "authType": "pd:authType",
+    "configurableProps": "pd:configurableProps",
+    "configuredProps": "pd:configuredProps",
+    "active": "schema:isAccessibleForFree",
+    "createdAt": "schema:dateCreated",
+    "updatedAt": "schema:dateModified",
+    "credits": "pd:credits",
+    "concurrency": "pd:concurrency",
+    "rateLimit": "pd:rateLimit",
+
+    "transport": "pd:transport",
+    "toolList": "pd:toolList",
+    "toolCall": "pd:toolCall",
+
+    "Pipedream": {
+      "@id": "https://pipedream.com/",
+      "@type": "Organization"
+    }
+  }
+}

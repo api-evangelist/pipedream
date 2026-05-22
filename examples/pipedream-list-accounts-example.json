@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.pipedream.com/v1/connect/proj_abc/accounts?external_user_id=user_42&app=notion",
+    "headers": {
+      "Authorization": "Bearer pd_oauth_xxx",
+      "x-pd-environment": "production"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "apn_abc",
+          "name": "My Notion",
+          "external_id": "user_42",
+          "healthy": true,
+          "dead": false,
+          "app": {
+            "name_slug": "notion",
+            "name": "Notion"
+          },
+          "created_at": "2026-04-01T00:00:00Z"
+        }
+      ]
+    }
+  }
+}

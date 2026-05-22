@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.pipedream.com/v1/connect/proj_abc/proxy/aHR0cHM6Ly9hcGkubm90aW9uLmNvbS92MS9wYWdlcw==?external_user_id=user_42&account_id=apn_abc",
+    "headers": {
+      "Authorization": "Bearer pd_oauth_xxx",
+      "x-pd-environment": "production",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "parent": {
+        "page_id": "abc"
+      },
+      "properties": {
+        "title": [
+          {
+            "text": {
+              "content": "Hello"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "object": "page",
+      "id": "page_xyz"
+    }
+  }
+}

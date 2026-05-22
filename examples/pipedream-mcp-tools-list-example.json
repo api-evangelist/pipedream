@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://remote.mcp.pipedream.net/v3",
+    "headers": {
+      "Authorization": "Bearer pd_oauth_xxx",
+      "x-pd-project-id": "proj_abc",
+      "x-pd-environment": "production",
+      "x-pd-external-user-id": "user_42",
+      "x-pd-app-slug": "notion",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "tools/list",
+      "params": {}
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "tools": [
+          {
+            "name": "notion-create-page",
+            "description": "Create a page in Notion",
+            "inputSchema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

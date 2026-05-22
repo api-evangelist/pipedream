@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-structure.org/structure-v1.0.json",
+  "id": "pipedream-component",
+  "title": "Pipedream Component Structure",
+  "description": "Structural summary of Pipedream Component as exposed by the Pipedream API.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The key that uniquely identifies the component."
+    },
+    "name": {
+      "type": "string",
+      "description": "The human-readable name of the component, e.g. 'GitLab: List Commits'"
+    },
+    "version": {
+      "type": "string",
+      "description": "The latest version of the component, in SemVer format.",
+      "pattern": "^\\d+.\\d+.\\d+$"
+    },
+    "configurable_props": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ConfigurableProp"
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the component",
+      "nullable": true
+    },
+    "component_type": {
+      "type": "string",
+      "description": "The type of component (trigger or action)",
+      "nullable": true
+    },
+    "stash": {
+      "$ref": "#/components/schemas/ComponentStash"
+    },
+    "annotations": {
+      "$ref": "#/components/schemas/ToolAnnotations"
+    }
+  },
+  "required": [
+    "key",
+    "name",
+    "version",
+    "configurable_props"
+  ]
+}

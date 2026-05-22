@@ -3,9 +3,15 @@ name: Pipedream
 segments:
 - ProCode_API_Composition
 - Workflows
-description: Pipedream is a developer-centric integration platform allowing custom code and API connections embedded directly
-  into production workflows. Trusted by over one million developers, Pipedream provides 3,000+ integrations, pre-built actions,
-  and support for Node.js, Python, Golang, and Bash, enabling teams to connect APIs, AI, databases, and more.
+- Connect
+- MCP
+description: >-
+  Pipedream is a developer-centric integration platform providing three product lines:
+  Workflows (code-level event-driven automation in Node.js/Python/Go/Bash), Connect
+  (an embedded integration toolkit for adding customer-facing integrations and AI agents
+  to applications, with managed OAuth for 3,000+ APIs), and a hosted MCP server exposing
+  10,000+ tools over JSON-RPC for AI agents. Pipedream announced an acquisition agreement
+  with Workday on 2025-11-19.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -13,150 +19,326 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
 - ProCode_API_Composition
 - Workflows
+- Connect
+- MCP
+- Embedded Integrations
+- Managed Auth
+- AI Agents
 created: '2026-03-03'
-modified: '2026-05-19'
+modified: '2026-05-22'
 url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
 - aid: pipedream:rest-api
   name: Pipedream REST API
-  description: The Pipedream REST API allows developers to programmatically create and manage workflows, event sources, subscriptions,
-    and user resources. The API supports Bearer token authentication via OAuth access tokens or user API keys, pagination
-    with cursors, and filtering with include and exclude parameters.
+  description: >-
+    The Pipedream REST API at api.pipedream.com is the unified surface for both the
+    legacy workflow / source / subscription resources and the newer /v1/connect/* resources.
+    Authentication is via OAuth 2.0 client credentials or a short-lived Connect token.
+    List endpoints use cursor pagination (limit, after, before). The full OpenAPI 3.0.4
+    spec is published at pipedream.com/docs/pipedream_openapi_swagger.json (133 schemas,
+    61 operations as of 2026-05-22).
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
-  - Automation
-  - Event Sources
-  - Subscriptions
-  - Workflows
+  - Apps
+  - App Categories
+  - OAuth
+  - Connect
+  - Accounts
+  - Components
+  - Actions
+  - Triggers
+  - Deployed Triggers
+  - Webhooks
+  - Projects
+  - Proxy
+  - File Stash
+  - Tokens
+  - Usage
+  - Users
   properties:
   - type: Documentation
     url: https://pipedream.com/docs/rest-api/
   - type: Authentication
     url: https://pipedream.com/docs/rest-api/auth
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/master/openapi/pipedream-openapi.yml
+    url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/openapi/pipedream-openapi.yml
+  - type: OpenAPIUpstream
+    url: https://pipedream.com/docs/pipedream_openapi_swagger.json
+  - type: SpectralRules
+    url: rules/pipedream-rules.yml
   - type: NaftikoCapability
-    url: capabilities/pipedream-connect.yaml
+    url: capabilities/pipedream-apps.yaml
   - type: NaftikoCapability
-    url: capabilities/pipedream-event-sources.yaml
+    url: capabilities/pipedream-app-categories.yaml
   - type: NaftikoCapability
-    url: capabilities/pipedream-subscriptions.yaml
+    url: capabilities/pipedream-oauth.yaml
   - type: NaftikoCapability
-    url: capabilities/pipedream-users.yaml
+    url: capabilities/pipedream-connect-accounts.yaml
   - type: NaftikoCapability
-    url: capabilities/pipedream-workflows.yaml
-- aid: pipedream:connect-api
-  name: Pipedream Connect API
-  description: The Pipedream Connect API is the end-to-end developer toolkit for adding customer-facing integrations to applications
-    and AI agents. It provides managed authentication for 3,000+ APIs, pre-built components and triggers, a Connect proxy
-    for custom API requests, and usage tracking. Resources are scoped to projects and the API supports production and development
-    environments.
+    url: capabilities/pipedream-connect-components.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-actions.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-triggers.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-deployed-triggers.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-webhooks.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-projects.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-proxy.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-tokens.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-usage.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-users.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipedream-connect-file-stash.yaml
+  - type: JSONSchema
+    url: json-schema/pipedream-app-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-account-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-component-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-project-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-connecttoken-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-connectusage-schema.json
+  - type: JSONStructure
+    url: json-structure/pipedream-app-structure.json
+  - type: Example
+    url: examples/pipedream-list-apps-example.json
+  - type: Example
+    url: examples/pipedream-create-connect-token-example.json
+  - type: Example
+    url: examples/pipedream-list-accounts-example.json
+  - type: Example
+    url: examples/pipedream-run-action-example.json
+  - type: Example
+    url: examples/pipedream-deploy-trigger-example.json
+  - type: Example
+    url: examples/pipedream-oauth-token-example.json
+  - type: Example
+    url: examples/pipedream-proxy-request-example.json
+
+- aid: pipedream:connect
+  name: Pipedream Connect
+  description: >-
+    Pipedream Connect is the end-to-end developer toolkit for embedding customer-facing
+    integrations and AI-agent capabilities into applications. It provides managed OAuth
+    for 3,000+ APIs, pre-built components (actions and triggers), a Connect Proxy that
+    signs custom HTTP requests on behalf of end-users, a File Stash for working with user
+    file uploads, deployed-trigger webhooks, usage metering, and project-scoped resources
+    with development and production environments. Endpoints live under /v1/connect/* on
+    api.pipedream.com.
   humanURL: https://pipedream.com/docs/connect
   baseURL: https://api.pipedream.com/v1/connect
   tags:
-  - AI Agents
   - Connect
-  - Integrations
+  - Embedded Integrations
   - Managed Auth
+  - AI Agents
+  - Proxy
+  - Webhooks
   properties:
   - type: Documentation
-    url: https://pipedream.com/docs/connect/api-ref
+    url: https://pipedream.com/docs/connect
   - type: GettingStarted
     url: https://pipedream.com/docs/connect/quickstart
   - type: SDKs
     url: https://pipedream.com/docs/connect/api-reference/sdks
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/master/openapi/pipedream-openapi.yml
+    url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/openapi/pipedream-openapi.yml
+  - type: SDK
+    name: Pipedream TypeScript SDK
+    url: https://github.com/PipedreamHQ/pipedream-sdk-typescript
+  - type: SDK
+    name: Pipedream Python SDK
+    url: https://github.com/PipedreamHQ/pipedream-sdk-python
+  - type: SDK
+    name: Pipedream Java SDK
+    url: https://github.com/PipedreamHQ/pipedream-sdk-java
+  - type: SamplesRepo
+    name: Pipedream Connect Examples
+    url: https://github.com/PipedreamHQ/pipedream-connect-examples
+
+- aid: pipedream:mcp-server
+  name: Pipedream MCP Server
+  description: >-
+    Pipedream's hosted Model Context Protocol server at remote.mcp.pipedream.net exposes
+    10,000+ tools across 2,800+ integrated apps to AI agents over JSON-RPC. The server
+    supports both SSE and streamable HTTP transports dynamically based on the Accept
+    header, with no client-side configuration required. Authentication is OAuth 2.0
+    Bearer; per-session context (project, environment, external user, app slug) is
+    supplied via x-pd-* headers. Native integrations exist for OpenAI Responses API,
+    Anthropic Claude, Google Gemini, and Vercel AI SDK.
+  humanURL: https://pipedream.com/docs/connect/mcp/developers
+  baseURL: https://remote.mcp.pipedream.net/v3
+  tags:
+  - MCP
+  - AI Agents
+  - Tool Calling
+  - JSON-RPC
+  properties:
+  - type: Documentation
+    url: https://pipedream.com/docs/connect/mcp
+  - type: Documentation
+    name: MCP for Developers
+    url: https://pipedream.com/docs/connect/mcp/developers
+  - type: Documentation
+    name: MCP with OpenAI
+    url: https://pipedream.com/docs/connect/mcp/openai
+  - type: ServerDirectory
+    url: https://mcp.pipedream.com/
+  - type: ChatClient
+    url: https://chat.pipedream.com/
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/openapi/pipedream-mcp-openapi.yml
+  - type: SamplesRepo
+    name: mcp-chat
+    url: https://github.com/PipedreamHQ/mcp-chat
+  - type: NaftikoCapability
+    url: capabilities/pipedream-mcp.yaml
+  - type: Example
+    url: examples/pipedream-mcp-tools-list-example.json
+  - type: Example
+    url: examples/pipedream-mcp-tools-call-example.json
+
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/pipedreamhq
 - type: Portal
   url: https://pipedream.com/
   name: Pipedream Platform
-  description: 'null'
 - type: Documentation
   url: https://pipedream.com/docs
   name: Pipedream Documentation
-  description: 'null'
 - type: GettingStarted
   url: https://pipedream.com/docs/quickstart/
   name: Workflow Development Quickstart
-  description: 'null'
 - type: Authentication
   url: https://pipedream.com/docs/rest-api/auth
   name: API Authentication
-  description: 'null'
+- type: OpenAPI
+  url: https://pipedream.com/docs/pipedream_openapi_swagger.json
+  name: Pipedream OpenAPI Spec (upstream)
 - type: Blog
   url: https://pipedream.com/blog/
   name: Pipedream Blog
-  description: 'null'
 - type: ChangeLog
   url: https://pipedream.com/docs/changelog
   name: Product Changelog
-  description: 'null'
 - type: StatusPage
   url: https://status.pipedream.com/
   name: Pipedream Status
-  description: 'null'
+- type: StatusFeed
+  url: https://status.pipedream.com/history.atom
+  name: Pipedream Status Atom Feed
 - type: Support
   url: https://pipedream.com/support
   name: Pipedream Support
-  description: 'null'
 - type: Forum
   url: https://pipedream.com/community/
   name: Pipedream Community Forum
-  description: 'null'
 - type: Pricing
   url: https://pipedream.com/pricing/
   name: Pipedream Pricing
-  description: 'null'
 - type: SignUp
   url: https://pipedream.com/auth/signup
   name: Sign Up
-  description: 'null'
 - type: Login
   url: https://pipedream.com/auth/login
   name: Log In
-  description: 'null'
 - type: TermsOfService
   url: https://pipedream.com/terms
   name: Terms of Service
-  description: 'null'
 - type: PrivacyPolicy
   url: https://pipedream.com/privacy
   name: Privacy Statement
-  description: 'null'
 - type: Security
   url: https://pipedream.com/docs/privacy-and-security
   name: Privacy and Security
-  description: 'null'
+- type: LinkedIn
+  url: https://www.linkedin.com/company/pipedreamhq
+  name: Pipedream on LinkedIn
 - type: GitHubOrg
+  url: https://github.com/PipedreamHQ
+  name: Pipedream GitHub Org
+- type: SourceRepo
   url: https://github.com/PipedreamHQ/pipedream
-  name: Pipedream GitHub Repository
-  description: 'null'
+  name: Pipedream Components Monorepo (11,400+ stars)
+- type: SDK
+  url: https://github.com/PipedreamHQ/pipedream-sdk-typescript
+  name: '@pipedream/sdk (TypeScript)'
+- type: SDK
+  url: https://github.com/PipedreamHQ/pipedream-sdk-python
+  name: pipedream (Python)
+- type: SDK
+  url: https://github.com/PipedreamHQ/pipedream-sdk-java
+  name: pipedream-java
+- type: SDK
+  url: https://github.com/PipedreamHQ/pipedream-go
+  name: pipedream-go (community)
+- type: CLI
+  url: https://github.com/PipedreamHQ/homebrew-pd-cli
+  name: Pipedream CLI (Homebrew)
+- type: SamplesRepo
+  url: https://github.com/PipedreamHQ/pipedream-connect-examples
+  name: Connect Examples
+- type: SamplesRepo
+  url: https://github.com/PipedreamHQ/mcp-chat
+  name: MCP Chat (184+ stars)
+- type: Plans
+  url: plans/pipedream-plans-pricing.yml
+  name: API Commons Plans
+- type: RateLimits
+  url: rate-limits/pipedream-rate-limits.yml
+  name: API Commons Rate Limits
+- type: FinOps
+  url: finops/pipedream-finops.yml
+  name: FOCUS-aligned FinOps profile
+- type: JSONLDContext
+  url: json-ld/pipedream-context.jsonld
+  name: Pipedream JSON-LD context
+- type: Vocabulary
+  url: vocabulary/pipedream-vocabulary.yml
+  name: Pipedream Vocabulary
+- type: SpectralRules
+  url: rules/pipedream-rules.yml
+  name: Pipedream Spectral ruleset
+- type: AcquisitionAnnouncement
+  url: https://pipedream.com/blog/pipedream-to-be-acquired-by-workday/
+  name: Pipedream to be acquired by Workday (2025-11-19)
 - type: Features
   data:
   - 'Free: 100 credits/day (1 credit = 30 sec compute @ 256 MB)'
   - 'Basic $29/mo: 2,000 credits/day, 30-day event history'
   - 'Advanced $79/mo: 10,000 credits/day, 1-year history, custom domains'
   - 'Business custom: unlimited credits, SSO/SAML, audit logs'
-  - 2,500+ pre-built integrations
-  - Code-level workflow editor (Node.js, Python, Go)
-  - HTTP source endpoints (5 MB event size)
+  - 3,000+ integrated apps
+  - 10,000+ pre-built tools (exposed as MCP)
+  - Code-level workflow editor (Node.js, Python, Go, Bash)
+  - HTTP source endpoints (5 MB max event size)
   - Schedule (cron) sources
-  - Webhook destinations
-  - 'Connect: embeddable user-auth flow'
-  - OAuth 2.0 for 200+ services pre-handled
-  - 'REST API: 60 req/min/user'
+  - Webhook destinations with signing keys
+  - 'Connect: managed OAuth for 3,000+ APIs'
+  - 'Connect Proxy: signed custom HTTP requests on behalf of end-users'
+  - 'Connect File Stash: end-user file storage'
+  - 'MCP Server: hosted at remote.mcp.pipedream.net/v3 (SSE + streamable HTTP)'
+  - Native MCP support for OpenAI / Claude / Gemini / Vercel AI SDK
+  - 'REST API: 60 req/min/user limit'
   - 'HTTP source: 100 req/sec/endpoint'
-  - Workflow concurrency varies by plan
   - Step caching for memoization
-  - Open-source workflow components
+  - Open-source workflow components (MIT)
   sources:
   - https://pipedream.com/pricing
-  updated: '2026-05-04'
+  - https://pipedream.com/docs/connect/mcp
+  - https://pipedream.com/docs/changelog
+  updated: '2026-05-22'
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

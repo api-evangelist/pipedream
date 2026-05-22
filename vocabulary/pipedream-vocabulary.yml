@@ -1,0 +1,104 @@
+vocabulary: Pipedream
+version: '2026-05-22'
+source:
+  provider: Pipedream
+  url: https://pipedream.com/docs
+  openapi: https://pipedream.com/docs/pipedream_openapi_swagger.json
+description: >-
+  Normative vocabulary describing the resources, surfaces, and concepts exposed by Pipedream's
+  REST API, Connect product, and MCP server. Terms here are referenced from apis.yml,
+  capability definitions, JSON Schemas, and the JSON-LD context.
+
+domains:
+  - id: workflows
+    label: Workflows
+    description: Pipedream's original event-driven workflow product - HTTP/timer/email sources triggering Node.js, Python, Go, or Bash code steps.
+    terms:
+      - Workflow
+      - EventSource
+      - Subscription
+      - Step
+      - HttpSource
+      - TimerSource
+      - EmailSource
+      - WorkflowDeployment
+      - StepExport
+
+  - id: connect
+    label: Connect
+    description: Embedded integration toolkit for adding customer-facing integrations and AI agents to applications.
+    terms:
+      - Project
+      - ExternalUser
+      - Account
+      - ConnectToken
+      - ConnectLink
+      - App
+      - AppCategory
+      - Component
+      - Action
+      - Trigger
+      - DeployedTrigger
+      - ConfiguredProp
+      - ConfigurableProp
+      - Proxy
+      - FileStash
+      - Webhook
+      - WebhookSigningKey
+      - Environment
+      - ConnectUsage
+
+  - id: mcp
+    label: MCP
+    description: Pipedream's Model Context Protocol server - 2,800+ apps as MCP tools over JSON-RPC.
+    terms:
+      - McpServer
+      - McpSession
+      - McpTool
+      - ToolList
+      - ToolCall
+      - ToolAnnotations
+      - StreamableHttpTransport
+      - SseTransport
+      - AppSlug
+      - ProjectId
+      - ExternalUserId
+
+  - id: authentication
+    label: Authentication
+    description: How the platform authenticates developer-side and end-user-side requests.
+    terms:
+      - OAuthToken
+      - ClientCredentials
+      - BearerToken
+      - UserApiKey
+      - ManagedAuth
+      - OAuthClient
+      - RefreshToken
+
+  - id: billing
+    label: Billing
+    description: Credit-based metering, plans, and rate-limiting concepts.
+    terms:
+      - Credit
+      - CreditConsumption
+      - Plan
+      - Quota
+      - RateLimit
+      - UsageRecord
+      - PerWorkspaceLimit
+      - PerEndpointLimit
+
+tags:
+  - Automation
+  - Workflows
+  - Integration
+  - iPaaS
+  - EmbeddedIntegrations
+  - ManagedAuth
+  - AIAgents
+  - MCP
+  - APIComposition
+  - LowCode
+  - ProCode
+  - WebhookManagement

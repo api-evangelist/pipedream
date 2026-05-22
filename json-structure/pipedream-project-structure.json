@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/structure-v1.0.json",
+  "id": "pipedream-project",
+  "title": "Pipedream Project Structure",
+  "description": "Structural summary of Pipedream Project as exposed by the Pipedream API.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^proj_[0-9A-Za-z]+$",
+      "description": "Hash ID for the project"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the project"
+    },
+    "app_name": {
+      "type": "string",
+      "nullable": true,
+      "description": "App name shown to Connect users"
+    },
+    "support_email": {
+      "type": "string",
+      "format": "email",
+      "nullable": true,
+      "description": "Support email configured for the project"
+    },
+    "connect_require_key_auth_test": {
+      "type": "boolean",
+      "description": "Send a test request to the upstream API when adding Connect accounts for key-based apps"
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ]
+}

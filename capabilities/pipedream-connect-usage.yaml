@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pipedream API - Usage
+  description: Pipedream API - Usage. 1 operations. Self-contained Naftiko capability covering one Pipedream business surface.
+  tags:
+  - Pipedream
+  - Usage
+  created: '2026-05-22'
+  modified: '2026-05-22'
+binds:
+- namespace: env
+  keys:
+    PIPEDREAM_ACCESS_TOKEN: PIPEDREAM_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: pipedream-connect-usage
+    baseUri: https://api.pipedream.com
+    description: Pipedream API - Usage business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-connect-usage
+      path: /v1/connect/usage
+      operations:
+      - name: listusages
+        method: GET
+        description: List Usage Records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start_ts
+          in: query
+          type: integer
+          required: true
+        - name: end_ts
+          in: query
+          type: integer
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.PIPEDREAM_ACCESS_TOKEN}}'
+  exposes:
+  - type: rest
+    namespace: pipedream-connect-usage-rest
+    port: 8080
+    description: REST adapter for Pipedream API - Usage. One resource per consumed operation.
+    resources:
+    - path: /v1/connect/usage
+      name: v1-connect-usage
+      description: REST surface for v1-connect-usage.
+      operations:
+      - method: GET
+        name: listusages
+        description: List Usage Records
+        call: pipedream-connect-usage.listusages
+        with:
+          start_ts: rest.start_ts
+          end_ts: rest.end_ts
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipedream-connect-usage-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Pipedream API - Usage. One tool per consumed operation.
+    tools:
+    - name: listusages
+      description: List Usage Records
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-connect-usage.listusages
+      with:
+        start_ts: tools.start_ts
+        end_ts: tools.end_ts
+      outputParameters:
+      - type: object
+        mapping: $.

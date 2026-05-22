@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/structure-v1.0.json",
+  "id": "pipedream-connectusage",
+  "title": "Pipedream ConnectUsage Structure",
+  "description": "Structural summary of Pipedream ConnectUsage as exposed by the Pipedream API.",
+  "type": "object",
+  "properties": {
+    "credits_used": {
+      "type": "integer",
+      "description": "Total Connect credits used"
+    },
+    "action_run_credits_used": {
+      "type": "integer",
+      "description": "Credits used when running Connect actions",
+      "nullable": true
+    },
+    "proxy_credits_used": {
+      "type": "integer",
+      "description": "Credits used by Connect proxy requests",
+      "nullable": true
+    },
+    "source_emit_credits_used": {
+      "type": "integer",
+      "description": "Credits used by Connect source event emissions",
+      "nullable": true
+    },
+    "usage_start_ts": {
+      "type": "integer",
+      "description": "Usage window start timestamp (seconds)"
+    },
+    "usage_end_ts": {
+      "type": "integer",
+      "description": "Usage window end timestamp (seconds)"
+    }
+  },
+  "required": [
+    "credits_used",
+    "usage_start_ts",
+    "usage_end_ts"
+  ]
+}

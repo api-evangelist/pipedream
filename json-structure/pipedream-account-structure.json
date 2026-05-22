@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-structure.org/structure-v1.0.json",
+  "id": "pipedream-account",
+  "title": "Pipedream Account Structure",
+  "description": "Structural summary of Pipedream Account as exposed by the Pipedream API.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/AccountId"
+    },
+    "name": {
+      "type": "string",
+      "description": "The custom name of the account if set.",
+      "nullable": true
+    },
+    "external_id": {
+      "type": "string",
+      "description": "The external ID associated with the account."
+    },
+    "healthy": {
+      "type": "boolean",
+      "description": "Indicates if the account is healthy. Pipedream will periodically retry token refresh and test requests for unhealthy accounts"
+    },
+    "dead": {
+      "type": "boolean",
+      "nullable": true,
+      "description": "Indicates if the account is no longer active"
+    },
+    "app": {
+      "$ref": "#/components/schemas/App"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The date and time the account was created, an ISO 8601 formatted string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "The date and time the account was last updated, an ISO 8601 formatted string",
+      "format": "date-time"
+    },
+    "authorized_scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The OAuth scopes effectively granted to this account. Empty for non-OAuth apps."
+    },
+    "credentials": {
+      "type": "object",
+      "description": "The credentials associated with the account, if the `include_credentials` parameter was set to true in the request (only applicable for BYOA apps). In addition to the well-known OAuth fields listed below, this object may contain app-specific custom fields (e.g. `base_url`).",
+      "nullable": true,
+      "additionalProperties": true,
+      "properties": {
+        "oauth_client_id": {
+          "type": "string",
+          "description": "The OAuth client ID for the app, if applicable"
+        },
+        "oauth_access_token": {
+          "type": "string",
+          "description": "The OAuth access token"
+        },
+        "oauth_refresh_token": {
+          "type": "string",
+          "description": "The OAuth refresh token"
+        },
+        "oauth_uid": {
+          "type": "string",
+          "description": "The unique OAuth user identifier"
+        },
+        "oauth_signer_uri": {
+          "type": "string",
+          "description": "The OAuth signer URI, if the app uses a custom OAuth signer"
+        }
+      }
+    },
+    "expires_at": {
+      "type": "string",
+      "description": "The date and time the account's credentials expiration, an ISO 8601 formatted string",
+      "format": "date-time"
+    },
+    "error": {
+      "type": "string",
+      "description": "The error message if the account is unhealthy or dead, null otherwise",
+      "nullable": true
+    },
+    "last_refreshed_at": {
+      "type": "string",
+      "description": "The date and time the account was last refreshed, an ISO 8601 formatted string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "next_refresh_at": {
+      "type": "string",
+      "description": "The date and time the account will next be refreshed, an ISO 8601 formatted string",
+      "format": "date-time",
+      "nullable": true
+    }
+  },
+  "required": [
+    "id"
+  ]
+}

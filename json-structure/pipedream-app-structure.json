@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/structure-v1.0.json",
+  "id": "pipedream-app",
+  "title": "Pipedream App Structure",
+  "description": "Structural summary of Pipedream App as exposed by the Pipedream API.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ID of the app. Only applies for OAuth apps.",
+      "nullable": true
+    },
+    "name_slug": {
+      "type": "string",
+      "description": "The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)"
+    },
+    "name": {
+      "type": "string",
+      "description": "The human-readable name of the app"
+    },
+    "auth_type": {
+      "$ref": "#/components/schemas/AppAuthType"
+    },
+    "description": {
+      "type": "string",
+      "description": "A short description of the app",
+      "nullable": true
+    },
+    "img_src": {
+      "type": "string",
+      "description": "The URL to the app's logo"
+    },
+    "custom_fields_json": {
+      "type": "string",
+      "description": "A JSON string representing the custom fields for the app",
+      "nullable": true
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Categories associated with the app"
+    },
+    "featured_weight": {
+      "type": "number",
+      "description": "A rough directional ordering of app popularity, subject to changes by Pipedream"
+    }
+  },
+  "required": [
+    "name_slug",
+    "name",
+    "img_src",
+    "custom_fields_json",
+    "categories",
+    "featured_weight"
+  ]
+}

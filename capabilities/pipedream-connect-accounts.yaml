@@ -1,0 +1,310 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pipedream API - Accounts
+  description: Pipedream API - Accounts. 6 operations. Self-contained Naftiko capability covering one Pipedream business surface.
+  tags:
+  - Pipedream
+  - Accounts
+  created: '2026-05-22'
+  modified: '2026-05-22'
+binds:
+- namespace: env
+  keys:
+    PIPEDREAM_ACCESS_TOKEN: PIPEDREAM_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: pipedream-connect-accounts
+    baseUri: https://api.pipedream.com
+    description: Pipedream API - Accounts business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-connect-project-id-accounts
+      path: /v1/connect/{project_id}/accounts
+      operations:
+      - name: listaccounts
+        method: GET
+        description: List Accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: x-pd-environment
+          in: header
+          type: string
+          required: true
+        - name: after
+          in: query
+          type: string
+          required: false
+        - name: before
+          in: query
+          type: string
+          required: false
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        - name: app
+          in: query
+          type: string
+          required: false
+        - name: include_credentials
+          in: query
+          type: boolean
+          required: false
+      - name: createaccount
+        method: POST
+        description: Create Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: x-pd-environment
+          in: header
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-connect-project-id-accounts-account-id
+      path: /v1/connect/{project_id}/accounts/{account_id}
+      operations:
+      - name: retrieveaccount
+        method: GET
+        description: Retrieve Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: x-pd-environment
+          in: header
+          type: string
+          required: true
+        - name: include_credentials
+          in: query
+          type: boolean
+          required: false
+      - name: deleteaccount
+        method: DELETE
+        description: Delete Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: x-pd-environment
+          in: header
+          type: string
+          required: true
+    - name: v1-connect-project-id-apps-app-id-accounts
+      path: /v1/connect/{project_id}/apps/{app_id}/accounts
+      operations:
+      - name: deleteaccountbyapp
+        method: DELETE
+        description: Delete Accounts by App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: x-pd-environment
+          in: header
+          type: string
+          required: true
+    - name: v1-connect-project-id-users-external-user-id
+      path: /v1/connect/{project_id}/users/{external_user_id}
+      operations:
+      - name: deleteuserexternaluser
+        method: DELETE
+        description: Delete External User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: x-pd-environment
+          in: header
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.PIPEDREAM_ACCESS_TOKEN}}'
+  exposes:
+  - type: rest
+    namespace: pipedream-connect-accounts-rest
+    port: 8080
+    description: REST adapter for Pipedream API - Accounts. One resource per consumed operation.
+    resources:
+    - path: /v1/connect/{project_id}/accounts
+      name: v1-connect-project-id-accounts
+      description: REST surface for v1-connect-project-id-accounts.
+      operations:
+      - method: GET
+        name: listaccounts
+        description: List Accounts
+        call: pipedream-connect-accounts.listaccounts
+        with:
+          x-pd-environment: rest.x-pd-environment
+          after: rest.after
+          before: rest.before
+          limit: rest.limit
+          app: rest.app
+          include_credentials: rest.include_credentials
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaccount
+        description: Create Account
+        call: pipedream-connect-accounts.createaccount
+        with:
+          x-pd-environment: rest.x-pd-environment
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connect/{project_id}/accounts/{account_id}
+      name: v1-connect-project-id-accounts-account-id
+      description: REST surface for v1-connect-project-id-accounts-account-id.
+      operations:
+      - method: GET
+        name: retrieveaccount
+        description: Retrieve Account
+        call: pipedream-connect-accounts.retrieveaccount
+        with:
+          x-pd-environment: rest.x-pd-environment
+          include_credentials: rest.include_credentials
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteaccount
+        description: Delete Account
+        call: pipedream-connect-accounts.deleteaccount
+        with:
+          x-pd-environment: rest.x-pd-environment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connect/{project_id}/apps/{app_id}/accounts
+      name: v1-connect-project-id-apps-app-id-accounts
+      description: REST surface for v1-connect-project-id-apps-app-id-accounts.
+      operations:
+      - method: DELETE
+        name: deleteaccountbyapp
+        description: Delete Accounts by App
+        call: pipedream-connect-accounts.deleteaccountbyapp
+        with:
+          x-pd-environment: rest.x-pd-environment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connect/{project_id}/users/{external_user_id}
+      name: v1-connect-project-id-users-external-user-id
+      description: REST surface for v1-connect-project-id-users-external-user-id.
+      operations:
+      - method: DELETE
+        name: deleteuserexternaluser
+        description: Delete External User
+        call: pipedream-connect-accounts.deleteuserexternaluser
+        with:
+          x-pd-environment: rest.x-pd-environment
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipedream-connect-accounts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Pipedream API - Accounts. One tool per consumed operation.
+    tools:
+    - name: listaccounts
+      description: List Accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-connect-accounts.listaccounts
+      with:
+        x-pd-environment: tools.x-pd-environment
+        after: tools.after
+        before: tools.before
+        limit: tools.limit
+        app: tools.app
+        include_credentials: tools.include_credentials
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createaccount
+      description: Create Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipedream-connect-accounts.createaccount
+      with:
+        x-pd-environment: tools.x-pd-environment
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieveaccount
+      description: Retrieve Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-connect-accounts.retrieveaccount
+      with:
+        x-pd-environment: tools.x-pd-environment
+        include_credentials: tools.include_credentials
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteaccount
+      description: Delete Account
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pipedream-connect-accounts.deleteaccount
+      with:
+        x-pd-environment: tools.x-pd-environment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteaccountbyapp
+      description: Delete Accounts by App
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pipedream-connect-accounts.deleteaccountbyapp
+      with:
+        x-pd-environment: tools.x-pd-environment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteuserexternaluser
+      description: Delete External User
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pipedream-connect-accounts.deleteuserexternaluser
+      with:
+        x-pd-environment: tools.x-pd-environment
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,382 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pipedream API - Apps
+  description: Pipedream API - Apps. 6 operations. Self-contained Naftiko capability covering one Pipedream business surface.
+  tags:
+  - Pipedream
+  - Apps
+  created: '2026-05-22'
+  modified: '2026-05-22'
+binds:
+- namespace: env
+  keys:
+    PIPEDREAM_ACCESS_TOKEN: PIPEDREAM_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: pipedream-apps
+    baseUri: https://api.pipedream.com
+    description: Pipedream API - Apps business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-app-categories
+      path: /v1/app_categories
+      operations:
+      - name: listappcategoriesbase
+        method: GET
+        description: List App Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-app-categories-id
+      path: /v1/app_categories/{id}
+      operations:
+      - name: retrieveappcategorybase
+        method: GET
+        description: Retrieve App Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v1-apps
+      path: /v1/apps
+      operations:
+      - name: listappsbase
+        method: GET
+        description: List Apps
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: after
+          in: query
+          type: string
+          required: false
+        - name: before
+          in: query
+          type: string
+          required: false
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        - name: q
+          in: query
+          type: string
+          required: false
+        - name: sort_key
+          in: query
+          type: string
+          required: false
+        - name: sort_direction
+          in: query
+          type: string
+          required: false
+        - name: category_ids
+          in: query
+          type: array
+          required: false
+        - name: has_components
+          in: query
+          type: boolean
+          required: false
+        - name: has_actions
+          in: query
+          type: boolean
+          required: false
+        - name: has_triggers
+          in: query
+          type: boolean
+          required: false
+    - name: v1-connect-apps
+      path: /v1/connect/apps
+      operations:
+      - name: listapps
+        method: GET
+        description: List Apps
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: after
+          in: query
+          type: string
+          required: false
+        - name: before
+          in: query
+          type: string
+          required: false
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        - name: q
+          in: query
+          type: string
+          required: false
+        - name: sort_key
+          in: query
+          type: string
+          required: false
+        - name: sort_direction
+          in: query
+          type: string
+          required: false
+        - name: category_ids
+          in: query
+          type: array
+          required: false
+        - name: has_components
+          in: query
+          type: boolean
+          required: false
+        - name: has_actions
+          in: query
+          type: boolean
+          required: false
+        - name: has_triggers
+          in: query
+          type: boolean
+          required: false
+    - name: v1-apps-app-id
+      path: /v1/apps/{app_id}
+      operations:
+      - name: retrieveappbase
+        method: GET
+        description: Retrieve App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          required: true
+    - name: v1-connect-apps-app-id
+      path: /v1/connect/apps/{app_id}
+      operations:
+      - name: retrieveapp
+        method: GET
+        description: Retrieve App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.PIPEDREAM_ACCESS_TOKEN}}'
+  exposes:
+  - type: rest
+    namespace: pipedream-apps-rest
+    port: 8080
+    description: REST adapter for Pipedream API - Apps. One resource per consumed operation.
+    resources:
+    - path: /v1/app_categories
+      name: v1-app-categories
+      description: REST surface for v1-app-categories.
+      operations:
+      - method: GET
+        name: listappcategoriesbase
+        description: List App Categories
+        call: pipedream-apps.listappcategoriesbase
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/app_categories/{id}
+      name: v1-app-categories-id
+      description: REST surface for v1-app-categories-id.
+      operations:
+      - method: GET
+        name: retrieveappcategorybase
+        description: Retrieve App Category
+        call: pipedream-apps.retrieveappcategorybase
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apps
+      name: v1-apps
+      description: REST surface for v1-apps.
+      operations:
+      - method: GET
+        name: listappsbase
+        description: List Apps
+        call: pipedream-apps.listappsbase
+        with:
+          after: rest.after
+          before: rest.before
+          limit: rest.limit
+          q: rest.q
+          sort_key: rest.sort_key
+          sort_direction: rest.sort_direction
+          category_ids: rest.category_ids
+          has_components: rest.has_components
+          has_actions: rest.has_actions
+          has_triggers: rest.has_triggers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connect/apps
+      name: v1-connect-apps
+      description: REST surface for v1-connect-apps.
+      operations:
+      - method: GET
+        name: listapps
+        description: List Apps
+        call: pipedream-apps.listapps
+        with:
+          after: rest.after
+          before: rest.before
+          limit: rest.limit
+          q: rest.q
+          sort_key: rest.sort_key
+          sort_direction: rest.sort_direction
+          category_ids: rest.category_ids
+          has_components: rest.has_components
+          has_actions: rest.has_actions
+          has_triggers: rest.has_triggers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apps/{app_id}
+      name: v1-apps-app-id
+      description: REST surface for v1-apps-app-id.
+      operations:
+      - method: GET
+        name: retrieveappbase
+        description: Retrieve App
+        call: pipedream-apps.retrieveappbase
+        with:
+          app_id: rest.app_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connect/apps/{app_id}
+      name: v1-connect-apps-app-id
+      description: REST surface for v1-connect-apps-app-id.
+      operations:
+      - method: GET
+        name: retrieveapp
+        description: Retrieve App
+        call: pipedream-apps.retrieveapp
+        with:
+          app_id: rest.app_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipedream-apps-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Pipedream API - Apps. One tool per consumed operation.
+    tools:
+    - name: listappcategoriesbase
+      description: List App Categories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-apps.listappcategoriesbase
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieveappcategorybase
+      description: Retrieve App Category
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-apps.retrieveappcategorybase
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listappsbase
+      description: List Apps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-apps.listappsbase
+      with:
+        after: tools.after
+        before: tools.before
+        limit: tools.limit
+        q: tools.q
+        sort_key: tools.sort_key
+        sort_direction: tools.sort_direction
+        category_ids: tools.category_ids
+        has_components: tools.has_components
+        has_actions: tools.has_actions
+        has_triggers: tools.has_triggers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapps
+      description: List Apps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-apps.listapps
+      with:
+        after: tools.after
+        before: tools.before
+        limit: tools.limit
+        q: tools.q
+        sort_key: tools.sort_key
+        sort_direction: tools.sort_direction
+        category_ids: tools.category_ids
+        has_components: tools.has_components
+        has_actions: tools.has_actions
+        has_triggers: tools.has_triggers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieveappbase
+      description: Retrieve App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-apps.retrieveappbase
+      with:
+        app_id: tools.app_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieveapp
+      description: Retrieve App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipedream-apps.retrieveapp
+      with:
+        app_id: tools.app_id
+      outputParameters:
+      - type: object
+        mapping: $.

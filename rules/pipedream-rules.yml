@@ -1,0 +1,109 @@
+extends: spectral:oas
+documentationUrl: https://github.com/api-evangelist/pipedream
+rules:
+  # Pipedream API conventions enforced as Spectral rules
+
+  pipedream-info-title-required:
+    description: API title must reference Pipedream
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "Pipedream"
+
+  pipedream-server-host:
+    description: Production base URL must be api.pipedream.com or remote.mcp.pipedream.net
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "(api\\.pipedream\\.com|remote\\.mcp\\.pipedream\\.net)"
+
+  pipedream-bearer-auth:
+    description: Operations should require Bearer token authentication
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            ".*":
+              type: object
+              properties:
+                type: { enum: ["http", "oauth2"] }
+
+  pipedream-summary-title-case:
+    description: Operation summaries should be Title Case
+    severity: info
+    given: "$.paths[*][get,post,put,delete,patch].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  pipedream-operation-id-camelcase:
+    description: operationId should be camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  pipedream-connect-environment-header:
+    description: All /v1/connect/{project_id}/... operations require x-pd-environment / X-PD-Environment header
+    severity: warn
+    given: "$.paths[?(@property.match(/^\\/v1\\/connect\\/\\{project_id\\}/))][*].parameters[*]"
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "(?i)x-pd-environment"
+
+  pipedream-pagination-cursors:
+    description: List endpoints should use cursor pagination via limit/after/before
+    severity: info
+    given: "$.paths[*].get.parameters[*].name"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - limit
+          - after
+          - before
+          - external_user_id
+          - app
+          - oauth_app_id
+          - q
+          - id
+          - app_id
+          - project_id
+          - trigger_id
+          - component_id
+          - webhook_id
+          - account_id
+
+  pipedream-no-1x-status:
+    description: Avoid 1xx responses in REST surface
+    severity: warn
+    given: "$.paths[*][*].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          not:
+            patternProperties:
+              "^1[0-9][0-9]$": {}
+
+  pipedream-tag-required:
+    description: Every operation should declare a tag
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy

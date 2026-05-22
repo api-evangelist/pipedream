@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/structure-v1.0.json",
+  "id": "pipedream-appcategory",
+  "title": "Pipedream AppCategory Structure",
+  "description": "Structural summary of Pipedream AppCategory as exposed by the Pipedream API.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ID of the app category"
+    },
+    "name": {
+      "type": "string",
+      "description": "The human-readable name of the app category"
+    },
+    "description": {
+      "type": "string",
+      "description": "A short description of the app category",
+      "nullable": true
+    }
+  },
+  "required": []
+}

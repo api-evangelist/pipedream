@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.pipedream.com/v1/connect/proj_abc/tokens",
+    "headers": {
+      "Authorization": "Bearer pd_oauth_xxx",
+      "x-pd-environment": "production",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "external_user_id": "user_42",
+      "allowed_origins": [
+        "https://example.com"
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "token": "ctok_xxx",
+      "expires_at": "2026-05-23T00:00:00Z",
+      "connect_link_url": "https://pipedream.com/_static/connect.html?token=ctok_xxx"
+    }
+  }
+}

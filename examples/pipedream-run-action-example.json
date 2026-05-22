@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.pipedream.com/v1/connect/proj_abc/actions/run",
+    "headers": {
+      "Authorization": "Bearer pd_oauth_xxx",
+      "x-pd-environment": "production",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "gitlab-list-projects",
+      "external_user_id": "user_42",
+      "configured_props": {
+        "gitlab": {
+          "authProvisionId": "apn_xyz"
+        },
+        "page": 1
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "exports": {
+        "$summary": "Listed 10 projects"
+      },
+      "os": [
+        {
+          "k": "log",
+          "ts": 1747900800000,
+          "m": "page=1"
+        }
+      ],
+      "ret": [
+        {
+          "id": 1,
+          "name": "demo"
+        }
+      ]
+    }
+  }
+}
