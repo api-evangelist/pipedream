@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropIntegerArray",
+  "title": "ConfigurablePropIntegerArray",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop can accept an array of integers.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "integer[]"
+          ]
+        },
+        "min": {
+          "type": "integer",
+          "description": "The minimum value for integers in this array",
+          "nullable": true
+        },
+        "max": {
+          "type": "integer",
+          "description": "The maximum value for integers in this array",
+          "nullable": true
+        },
+        "default": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConfiguredPropValueInteger"
+          },
+          "description": "Default array of integers",
+          "nullable": true
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PropOption"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionNested"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionValue"
+              }
+            ]
+          },
+          "description": "Available options for the integer array",
+          "nullable": true
+        }
+      }
+    }
+  ]
+}

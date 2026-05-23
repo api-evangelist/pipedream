@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropAirtableBaseId",
+  "title": "ConfigurablePropAirtableBaseId",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to select an Airtable base.",
+      "required": [
+        "type",
+        "appProp"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "$.airtable.baseId"
+          ]
+        },
+        "appProp": {
+          "type": "string",
+          "description": "The name of the app prop that provides Airtable authentication"
+        }
+      }
+    }
+  ]
+}

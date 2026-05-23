@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RunActionOpts",
+  "title": "RunActionOpts",
+  "type": "object",
+  "description": "Request options for running an action",
+  "required": [
+    "id",
+    "external_user_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The action component ID"
+    },
+    "version": {
+      "type": "string",
+      "description": "Optional action component version (in SemVer format, for example '1.0.0'), defaults to latest",
+      "example": "1.2.3",
+      "nullable": true
+    },
+    "external_user_id": {
+      "type": "string",
+      "description": "The external user ID"
+    },
+    "configured_props": {
+      "$ref": "#/components/schemas/ConfiguredProps"
+    },
+    "dynamic_props_id": {
+      "type": "string",
+      "description": "The ID for dynamic props"
+    },
+    "stash_id": {
+      "$ref": "#/components/schemas/RunActionOptsStashId"
+    }
+  }
+}

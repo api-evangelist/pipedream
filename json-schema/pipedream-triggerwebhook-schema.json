@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TriggerWebhook",
+  "title": "TriggerWebhook",
+  "type": "object",
+  "description": "A trigger webhook object. `signing_key` is only returned for OAuth-authenticated requests.",
+  "required": [
+    "id",
+    "url",
+    "signing_key_set"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the webhook"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The webhook URL"
+    },
+    "signing_key": {
+      "type": "string",
+      "description": "The webhook signing key, returned only for OAuth-authenticated requests"
+    },
+    "signing_key_set": {
+      "type": "boolean",
+      "description": "Whether a signing key has been set for this webhook"
+    }
+  }
+}

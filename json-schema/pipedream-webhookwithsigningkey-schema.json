@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookWithSigningKey",
+  "title": "WebhookWithSigningKey",
+  "type": "object",
+  "description": "A webhook object including the signing key",
+  "required": [
+    "id",
+    "url",
+    "signing_key",
+    "signing_key_set",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the webhook"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The webhook URL"
+    },
+    "signing_key": {
+      "type": "string",
+      "description": "The webhook signing key"
+    },
+    "signing_key_set": {
+      "type": "boolean",
+      "description": "Whether a signing key has been set for this webhook"
+    },
+    "created_at": {
+      "type": "integer",
+      "description": "The time the webhook was created, in epoch seconds"
+    },
+    "updated_at": {
+      "type": "integer",
+      "description": "The time the webhook was last updated, in epoch seconds"
+    }
+  }
+}

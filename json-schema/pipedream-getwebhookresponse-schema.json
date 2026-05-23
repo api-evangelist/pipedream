@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetWebhookResponse",
+  "title": "GetWebhookResponse",
+  "type": "object",
+  "description": "Response received when retrieving a webhook",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Webhook"
+        }
+      ]
+    }
+  }
+}

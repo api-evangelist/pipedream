@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeployTriggerOpts",
+  "title": "DeployTriggerOpts",
+  "type": "object",
+  "description": "Request options for deploying a trigger",
+  "required": [
+    "id",
+    "external_user_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The trigger component ID"
+    },
+    "version": {
+      "type": "string",
+      "description": "Optional trigger component version (in SemVer format, for example '1.0.0'), defaults to latest",
+      "example": "1.2.3",
+      "nullable": true
+    },
+    "external_user_id": {
+      "type": "string",
+      "description": "The external user ID"
+    },
+    "configured_props": {
+      "$ref": "#/components/schemas/ConfiguredProps"
+    },
+    "dynamic_props_id": {
+      "type": "string",
+      "description": "The ID for dynamic props"
+    },
+    "workflow_id": {
+      "type": "string",
+      "pattern": "^p_[a-zA-Z0-9]+",
+      "description": "Optional ID of a workflow to receive trigger events"
+    },
+    "webhook_url": {
+      "type": "string",
+      "description": "Optional webhook URL to receive trigger events"
+    },
+    "emit_on_deploy": {
+      "type": "boolean",
+      "description": "Whether the trigger should emit events during the deploy hook execution. Defaults to true if not specified.",
+      "nullable": true
+    }
+  }
+}

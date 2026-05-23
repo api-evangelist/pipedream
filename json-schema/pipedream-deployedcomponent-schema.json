@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeployedComponent",
+  "title": "DeployedComponent",
+  "type": "object",
+  "description": "A deployed component instance",
+  "required": [
+    "id",
+    "created_at",
+    "updated_at",
+    "active",
+    "component_id",
+    "configurable_props",
+    "configured_props",
+    "name",
+    "name_slug",
+    "owner_id",
+    "type"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the deployed component",
+      "pattern": "^dc_[a-zA-Z0-9]+$"
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "The ID of the owner"
+    },
+    "component_id": {
+      "type": "string",
+      "description": "The ID of the component that was deployed"
+    },
+    "component_key": {
+      "type": "string",
+      "description": "The component key (name) that was deployed",
+      "nullable": true
+    },
+    "configurable_props": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ConfigurableProp"
+      },
+      "description": "The configurable properties of the component"
+    },
+    "configured_props": {
+      "$ref": "#/components/schemas/ConfiguredProps"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the deployed component is active"
+    },
+    "created_at": {
+      "type": "integer",
+      "description": "The timestamp when the component was deployed (epoch milliseconds)"
+    },
+    "updated_at": {
+      "type": "integer",
+      "description": "The timestamp when the component was last updated (epoch milliseconds)"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the deployed component"
+    },
+    "name_slug": {
+      "type": "string",
+      "description": "The name slug of the deployed component"
+    },
+    "callback_observations": {
+      "description": "Callback observations for the deployed component",
+      "nullable": true
+    },
+    "emit_on_deploy": {
+      "type": "boolean",
+      "description": "Whether the trigger emits events during the deploy hook execution. When false, the $emit function is disabled during deploy hook execution. Defaults to true.",
+      "nullable": false
+    },
+    "type": {
+      "type": "string",
+      "description": "The discriminator field",
+      "enum": [
+        "DeployedComponent"
+      ]
+    },
+    "webhook_signing_key": {
+      "type": "string",
+      "description": "The webhook signing key. Only returned for OAuth-authenticated requests when `webhook_url` is supplied.",
+      "nullable": true
+    }
+  }
+}

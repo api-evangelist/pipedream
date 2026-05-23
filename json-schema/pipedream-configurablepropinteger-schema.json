@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropInteger",
+  "title": "ConfigurablePropInteger",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop can accept an integer value.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "integer"
+          ]
+        },
+        "min": {
+          "type": "integer",
+          "description": "The minimum value for this integer prop.",
+          "nullable": true
+        },
+        "max": {
+          "type": "integer",
+          "description": "The maximum value for this integer prop.",
+          "nullable": true
+        },
+        "default": {
+          "$ref": "#/components/schemas/ConfiguredPropValueInteger"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PropOption"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionNested"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionValue"
+              }
+            ]
+          },
+          "description": "Available integer options",
+          "nullable": true
+        }
+      }
+    }
+  ]
+}

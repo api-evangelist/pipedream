@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropTimerOption",
+  "title": "ConfigurablePropTimerOption",
+  "nullable": true,
+  "description": "Timer configuration options",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/TimerInterval"
+    },
+    {
+      "$ref": "#/components/schemas/TimerCron"
+    }
+  ]
+}

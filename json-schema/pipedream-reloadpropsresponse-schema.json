@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReloadPropsResponse",
+  "title": "ReloadPropsResponse",
+  "type": "object",
+  "description": "Response from reloading component props",
+  "properties": {
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Observation"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Any errors that occurred during configuration"
+    },
+    "dynamicProps": {
+      "$ref": "#/components/schemas/DynamicProps"
+    }
+  }
+}

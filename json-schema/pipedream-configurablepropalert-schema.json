@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropAlert",
+  "title": "ConfigurablePropAlert",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to configure an alert component",
+      "required": [
+        "type",
+        "content"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "alert"
+          ]
+        },
+        "alertType": {
+          "$ref": "#/components/schemas/ConfigurablePropAlertType"
+        },
+        "content": {
+          "type": "string",
+          "description": "The content of the alert, which can include HTML or plain text."
+        }
+      }
+    }
+  ]
+}

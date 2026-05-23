@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurePropOpts",
+  "title": "ConfigurePropOpts",
+  "type": "object",
+  "description": "Request options for configuring a component's prop",
+  "required": [
+    "id",
+    "external_user_id",
+    "prop_name"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The component ID"
+    },
+    "version": {
+      "type": "string",
+      "description": "Optional component version (in SemVer format, for example '1.0.0'), defaults to latest",
+      "example": "1.2.3",
+      "nullable": true
+    },
+    "external_user_id": {
+      "type": "string",
+      "description": "The external user ID"
+    },
+    "prop_name": {
+      "type": "string",
+      "description": "The name of the prop to configure"
+    },
+    "blocking": {
+      "type": "boolean",
+      "description": "Whether this operation should block until completion"
+    },
+    "configured_props": {
+      "$ref": "#/components/schemas/ConfiguredProps"
+    },
+    "dynamic_props_id": {
+      "type": "string",
+      "description": "The ID for dynamic props"
+    },
+    "page": {
+      "type": "number",
+      "description": "Page number for paginated results"
+    },
+    "prev_context": {
+      "type": "object",
+      "description": "Previous context for pagination"
+    },
+    "query": {
+      "type": "string",
+      "description": "Search query for filtering options"
+    }
+  }
+}

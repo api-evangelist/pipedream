@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PropOption",
+  "title": "PropOption",
+  "type": "object",
+  "description": "A configuration option for a component's prop",
+  "required": [
+    "label",
+    "value"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "The human-readable label for the option"
+    },
+    "value": {
+      "$ref": "#/components/schemas/PropOptionValue"
+    }
+  }
+}

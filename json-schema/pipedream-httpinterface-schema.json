@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HttpInterface",
+  "title": "HttpInterface",
+  "type": "object",
+  "description": "An HTTP interface instance",
+  "required": [
+    "id",
+    "created_at",
+    "updated_at",
+    "custom_response",
+    "endpoint_url",
+    "key",
+    "type"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the HTTP interface",
+      "pattern": "^hi_[a-zA-Z0-9]+$"
+    },
+    "key": {
+      "type": "string"
+    },
+    "endpoint_url": {
+      "type": "string"
+    },
+    "custom_response": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "integer",
+      "description": "The timestamp when the HTTP interface was created (epoch milliseconds)"
+    },
+    "updated_at": {
+      "type": "integer",
+      "description": "The timestamp when the HTTP interface was last updated (epoch milliseconds)"
+    },
+    "type": {
+      "type": "string",
+      "description": "The discriminator field",
+      "enum": [
+        "HttpInterface"
+      ]
+    }
+  }
+}

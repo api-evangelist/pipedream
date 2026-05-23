@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectInfoResponseApp",
+  "title": "ProjectInfoResponseApp",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ID of the app. Only applies for OAuth apps.",
+      "nullable": true
+    },
+    "name_slug": {
+      "type": "string",
+      "description": "The name slug of the target app"
+    }
+  }
+}

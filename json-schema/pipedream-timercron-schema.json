@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimerCron",
+  "title": "TimerCron",
+  "type": "object",
+  "description": "Timer configuration using cron expression",
+  "required": [
+    "cron"
+  ],
+  "properties": {
+    "cron": {
+      "type": "string",
+      "description": "Cron expression for timer execution"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateTriggerWorkflowsOpts",
+  "title": "UpdateTriggerWorkflowsOpts",
+  "type": "object",
+  "description": "Request options for updating workflows that listen to trigger events",
+  "required": [
+    "workflow_ids"
+  ],
+  "properties": {
+    "workflow_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of workflow IDs to set"
+    }
+  }
+}

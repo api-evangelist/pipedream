@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfiguredPropValueApp",
+  "title": "ConfiguredPropValueApp",
+  "type": "object",
+  "required": [
+    "authProvisionId"
+  ],
+  "properties": {
+    "authProvisionId": {
+      "$ref": "#/components/schemas/AccountId"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListAppCategoriesResponse",
+  "title": "ListAppCategoriesResponse",
+  "type": "array",
+  "description": "Response received when listing app categories",
+  "items": {
+    "$ref": "#/components/schemas/AppCategory"
+  }
+}

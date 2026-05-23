@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfiguredPropValueSql",
+  "title": "ConfiguredPropValueSql",
+  "type": "object",
+  "required": [
+    "value",
+    "query",
+    "params",
+    "usePreparedStatements"
+  ],
+  "properties": {
+    "value": {
+      "type": "string",
+      "description": "The raw SQL query, as provided by the user"
+    },
+    "query": {
+      "type": "string",
+      "description": "The SQL query to execute"
+    },
+    "params": {
+      "type": "array",
+      "description": "The list of parameters for the prepared statement",
+      "items": {
+        "type": "string"
+      }
+    },
+    "usePreparedStatements": {
+      "type": "boolean",
+      "description": "Whether to use prepared statements for the query or not"
+    }
+  }
+}

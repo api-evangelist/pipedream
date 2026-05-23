@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfiguredPropValue",
+  "title": "ConfiguredPropValue",
+  "nullable": false,
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/ConfiguredPropValueAny"
+    },
+    {
+      "$ref": "#/components/schemas/ConfiguredPropValueApp"
+    },
+    {
+      "$ref": "#/components/schemas/ConfiguredPropValueBoolean"
+    },
+    {
+      "$ref": "#/components/schemas/ConfiguredPropValueInteger"
+    },
+    {
+      "$ref": "#/components/schemas/ConfiguredPropValueObject"
+    },
+    {
+      "$ref": "#/components/schemas/ConfiguredPropValueSql"
+    },
+    {
+      "$ref": "#/components/schemas/ConfiguredPropValueString"
+    },
+    {
+      "$ref": "#/components/schemas/ConfiguredPropValueStringArray"
+    }
+  ]
+}

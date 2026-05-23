@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ValidateTokenResponse",
+  "title": "ValidateTokenResponse",
+  "type": "object",
+  "description": "Response received when validating a connect token",
+  "required": [
+    "error",
+    "success"
+  ],
+  "properties": {
+    "app": {
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/App"
+        }
+      ]
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if validation failed",
+      "nullable": true
+    },
+    "error_redirect_uri": {
+      "type": "string",
+      "description": "URI to redirect to on error",
+      "nullable": true
+    },
+    "oauth_app_id": {
+      "type": "string",
+      "description": "OAuth app ID if applicable",
+      "nullable": true
+    },
+    "project_app_name": {
+      "type": "string",
+      "description": "Name of the project app",
+      "nullable": true
+    },
+    "project_environment": {
+      "type": "string",
+      "description": "Environment of the project",
+      "nullable": true
+    },
+    "project_id": {
+      "type": "string",
+      "description": "ID of the project",
+      "nullable": true
+    },
+    "project_support_email": {
+      "type": "string",
+      "description": "Support email for the project",
+      "nullable": true
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the token validation was successful"
+    },
+    "success_redirect_uri": {
+      "type": "string",
+      "description": "URI to redirect to on success",
+      "nullable": true
+    }
+  }
+}

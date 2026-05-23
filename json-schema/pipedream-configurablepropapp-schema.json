@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropApp",
+  "title": "ConfigurablePropApp",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to configure an account for a specific app",
+      "required": [
+        "type",
+        "app"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "app"
+          ]
+        },
+        "app": {
+          "type": "string",
+          "description": "The name slug of the app, e.g. 'github', 'slack', etc. This is used to identify the app for which the account is being configured."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateTriggerWebhooksOpts",
+  "title": "UpdateTriggerWebhooksOpts",
+  "type": "object",
+  "description": "Request options for updating webhooks that listen to trigger events",
+  "required": [
+    "webhook_urls"
+  ],
+  "properties": {
+    "webhook_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of webhook URLs to set"
+    }
+  }
+}

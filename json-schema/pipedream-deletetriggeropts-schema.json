@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeleteTriggerOpts",
+  "title": "DeleteTriggerOpts",
+  "type": "object",
+  "description": "Request options for deleting a deployed trigger",
+  "properties": {
+    "ignore_hook_errors": {
+      "type": "boolean",
+      "description": "Whether to ignore errors during deactivation hook"
+    }
+  }
+}

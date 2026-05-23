@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StartConnectOpts",
+  "title": "StartConnectOpts",
+  "type": "object",
+  "description": "Options for starting the connection process",
+  "properties": {
+    "iframe": {
+      "type": "string",
+      "description": "ID of the iframe element to use"
+    }
+  }
+}

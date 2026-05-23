@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropDir",
+  "title": "ConfigurablePropDir",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to indicate how a component may access File Stash",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "dir"
+          ]
+        },
+        "accessMode": {
+          "$ref": "#/components/schemas/ConfigurablePropDirAccessMode"
+        },
+        "sync": {
+          "type": "boolean",
+          "description": "If true, the component's /tmp directory is synchronized with File Stash"
+        }
+      }
+    }
+  ]
+}

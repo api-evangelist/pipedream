@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropSqlAuth",
+  "title": "ConfigurablePropSqlAuth",
+  "type": "object",
+  "properties": {
+    "app": {
+      "type": "string",
+      "description": "The app that provides SQL authentication"
+    }
+  },
+  "nullable": true
+}

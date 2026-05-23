@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetTriggerWorkflowsResponse",
+  "title": "GetTriggerWorkflowsResponse",
+  "type": "object",
+  "description": "Response received when retrieving trigger workflows",
+  "required": [
+    "workflow_ids"
+  ],
+  "properties": {
+    "workflow_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^p_[a-zA-Z0-9]+"
+      }
+    }
+  }
+}

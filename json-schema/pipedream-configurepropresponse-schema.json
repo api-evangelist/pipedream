@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurePropResponse",
+  "title": "ConfigurePropResponse",
+  "type": "object",
+  "description": "Response received after configuring a component's prop",
+  "properties": {
+    "options": {
+      "$ref": "#/components/schemas/ConfigurePropOptions"
+    },
+    "stringOptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available options for the configured prop",
+      "nullable": true
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Observation"
+      },
+      "nullable": true
+    },
+    "context": {
+      "type": "object",
+      "description": "New context after configuring the prop",
+      "nullable": true
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Any errors that occurred during configuration"
+    }
+  }
+}

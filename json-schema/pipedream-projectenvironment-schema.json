@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectEnvironment",
+  "title": "ProjectEnvironment",
+  "type": "string",
+  "description": "The environment in which the server client is running",
+  "enum": [
+    "development",
+    "production"
+  ]
+}

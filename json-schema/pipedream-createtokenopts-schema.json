@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateTokenOpts",
+  "title": "CreateTokenOpts",
+  "type": "object",
+  "description": "Request object for creating a connect token",
+  "required": [
+    "external_user_id",
+    "project_id"
+  ],
+  "properties": {
+    "allowed_origins": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of allowed origins for CORS"
+    },
+    "error_redirect_uri": {
+      "type": "string",
+      "description": "URI to redirect to on error"
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "Token TTL in seconds (max 14400 = 4 hours). Defaults to 4 hours if not specified."
+    },
+    "external_user_id": {
+      "type": "string",
+      "description": "Your end user ID, for whom you're creating the token"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Space-separated scopes to restrict token permissions. Defaults to 'connect:*' if not specified. See https://pipedream.com/docs/connect/api-reference/authentication#connect-token-scopes for more information."
+    },
+    "success_redirect_uri": {
+      "type": "string",
+      "description": "URI to redirect to on success"
+    },
+    "webhook_uri": {
+      "type": "string",
+      "description": "Webhook URI for notifications"
+    },
+    "allow_progressive_scopes": {
+      "type": "boolean",
+      "default": false,
+      "description": "When true, end users may authorize a subset of the app's OAuth scopes; only the app's functional scopes (needed for the post-OAuth test request) are enforced. Defaults to false."
+    }
+  }
+}

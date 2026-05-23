@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurableProp",
+  "title": "ConfigurableProp",
+  "description": "A configuration or input field for a component. This is a discriminated union based on the type field.",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropAlert"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropAny"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropApp"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBoolean"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropDataStore"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropDir"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropTimer"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropApphook"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropIntegerArray"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropHttp"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropHttpRequest"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropDb"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropSql"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropAirtableBaseId"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropAirtableTableId"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropAirtableViewId"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropAirtableFieldId"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropDiscordChannel"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropDiscordChannelArray"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropDiscord"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropInteger"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropObject"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropString"
+    },
+    {
+      "$ref": "#/components/schemas/ConfigurablePropStringArray"
+    }
+  ],
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "alert": "#/components/schemas/ConfigurablePropAlert",
+      "any": "#/components/schemas/ConfigurablePropAny",
+      "app": "#/components/schemas/ConfigurablePropApp",
+      "boolean": "#/components/schemas/ConfigurablePropBoolean",
+      "data_store": "#/components/schemas/ConfigurablePropDataStore",
+      "dir": "#/components/schemas/ConfigurablePropDir",
+      "$.interface.timer": "#/components/schemas/ConfigurablePropTimer",
+      "$.interface.apphook": "#/components/schemas/ConfigurablePropApphook",
+      "integer[]": "#/components/schemas/ConfigurablePropIntegerArray",
+      "$.interface.http": "#/components/schemas/ConfigurablePropHttp",
+      "http_request": "#/components/schemas/ConfigurablePropHttpRequest",
+      "$.service.db": "#/components/schemas/ConfigurablePropDb",
+      "sql": "#/components/schemas/ConfigurablePropSql",
+      "$.airtable.baseId": "#/components/schemas/ConfigurablePropAirtableBaseId",
+      "$.airtable.tableId": "#/components/schemas/ConfigurablePropAirtableTableId",
+      "$.airtable.viewId": "#/components/schemas/ConfigurablePropAirtableViewId",
+      "$.airtable.fieldId": "#/components/schemas/ConfigurablePropAirtableFieldId",
+      "$.discord.channel": "#/components/schemas/ConfigurablePropDiscordChannel",
+      "$.discord.channel[]": "#/components/schemas/ConfigurablePropDiscordChannelArray",
+      "integer": "#/components/schemas/ConfigurablePropInteger",
+      "object": "#/components/schemas/ConfigurablePropObject",
+      "string": "#/components/schemas/ConfigurablePropString",
+      "string[]": "#/components/schemas/ConfigurablePropStringArray"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Observation",
+  "title": "Observation",
+  "type": "object",
+  "description": "Any logs produced during the configuration of the prop",
+  "required": [
+    "k",
+    "ts"
+  ],
+  "properties": {
+    "err": {
+      "$ref": "#/components/schemas/ObservationError"
+    },
+    "k": {
+      "type": "string",
+      "description": "The source of the log (e.g. `console.log`)"
+    },
+    "msg": {
+      "type": "string",
+      "description": "The log message"
+    },
+    "ts": {
+      "type": "number",
+      "description": "The time at which the log was produced, as milliseconds since the epoch"
+    }
+  }
+}

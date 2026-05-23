@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropHttpRequest",
+  "title": "ConfigurablePropHttpRequest",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to configure an HTTP request with URL, method, headers, params, body, and authentication.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "http_request"
+          ]
+        },
+        "default": {
+          "$ref": "#/components/schemas/HttpRequestConfig"
+        }
+      }
+    }
+  ]
+}

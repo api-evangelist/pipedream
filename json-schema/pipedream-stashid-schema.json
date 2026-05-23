@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StashId",
+  "title": "StashId",
+  "type": "string",
+  "description": "The ID of the File Stash",
+  "nullable": true
+}

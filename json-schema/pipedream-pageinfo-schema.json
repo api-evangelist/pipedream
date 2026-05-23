@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PageInfo",
+  "title": "PageInfo",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Number of items returned",
+      "example": 10
+    },
+    "total_count": {
+      "type": "integer",
+      "description": "Total number of items",
+      "example": 120
+    },
+    "start_cursor": {
+      "type": "string",
+      "description": "Used to fetch the previous page of items",
+      "nullable": true
+    },
+    "end_cursor": {
+      "type": "string",
+      "description": "Used to fetch the next page of items",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HttpRequestBody",
+  "title": "HttpRequestBody",
+  "type": "object",
+  "description": "Body configuration for HTTP request",
+  "nullable": true,
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "fields",
+        "raw"
+      ],
+      "nullable": true
+    },
+    "contentType": {
+      "type": "string",
+      "nullable": true
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/HttpRequestField"
+      },
+      "nullable": true
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "fields",
+        "raw"
+      ],
+      "nullable": true
+    },
+    "raw": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

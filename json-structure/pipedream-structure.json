@@ -1,0 +1,1558 @@
+{
+  "provider": "Pipedream",
+  "providerId": "pipedream",
+  "kind": "json-structure",
+  "description": "Structural overview of the Pipedream API surface; extracted from openapi/.",
+  "schemaCount": 133,
+  "operationCount": 61,
+  "schemas": [
+    {
+      "name": "AccountId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Account",
+      "type": "object",
+      "propertyCount": 14,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "App",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name_slug",
+        "name",
+        "img_src",
+        "custom_fields_json",
+        "categories",
+        "featured_weight"
+      ]
+    },
+    {
+      "name": "AppAuthType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AppCategory",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ConnectUsage",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "credits_used",
+        "usage_start_ts",
+        "usage_end_ts"
+      ]
+    },
+    {
+      "name": "ConnectUsageResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "BackendClientOpts",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ClientOpts",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Component",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "key",
+        "name",
+        "version",
+        "configurable_props"
+      ]
+    },
+    {
+      "name": "ToolAnnotations",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ComponentStash",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ComponentType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TimerInterval",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "intervalSeconds"
+      ]
+    },
+    {
+      "name": "TimerCron",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "cron"
+      ]
+    },
+    {
+      "name": "ConfigurablePropBase",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "ConfigurablePropAlert",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropAlertType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropAny",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropApp",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropBoolean",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropTimer",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropTimerDefault",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropTimerOption",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropTimerStatic",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "HttpRequestField",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "HttpRequestAuth",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "HttpRequestBody",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "HttpRequestConfig",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropApphook",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropIntegerArray",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropHttp",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropDb",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropDataStore",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropDir",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropDirAccessMode",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropHttpRequest",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropSql",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropSqlAuth",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropAirtableBaseId",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropAirtableTableId",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropAirtableViewId",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropAirtableFieldId",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropDiscordChannel",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropDiscordChannelArray",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropDiscord",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropInteger",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropObject",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropStringFormat",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropString",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurablePropStringArray",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurableProp",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfiguredPropValueAny",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfiguredPropValueApp",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "authProvisionId"
+      ]
+    },
+    {
+      "name": "ConfiguredPropValueBoolean",
+      "type": "boolean",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfiguredPropValueInteger",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfiguredPropValueObject",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfiguredPropValueSql",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "value",
+        "query",
+        "params",
+        "usePreparedStatements"
+      ]
+    },
+    {
+      "name": "ConfiguredPropValueString",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfiguredPropValueStringArray",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfiguredProps",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurePropOptions",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConfigurePropOpts",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "id",
+        "external_user_id",
+        "prop_name"
+      ]
+    },
+    {
+      "name": "ConfigurePropResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ConfiguredPropValue",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConnectToken",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateAccountOpts",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "app_slug",
+        "cfmap_json",
+        "connect_token"
+      ]
+    },
+    {
+      "name": "CreateOAuthTokenOpts",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "grant_type",
+        "client_id",
+        "client_secret"
+      ]
+    },
+    {
+      "name": "CreateOAuthTokenResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "access_token",
+        "token_type",
+        "expires_in"
+      ]
+    },
+    {
+      "name": "CreateTokenOpts",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "external_user_id",
+        "project_id"
+      ]
+    },
+    {
+      "name": "CreateTokenResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "connect_link_url",
+        "expires_at",
+        "token"
+      ]
+    },
+    {
+      "name": "DeleteTriggerOpts",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DeployedComponent",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "active",
+        "component_id",
+        "configurable_props",
+        "configured_props",
+        "name",
+        "name_slug",
+        "owner_id",
+        "type"
+      ]
+    },
+    {
+      "name": "DeployTriggerOpts",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "external_user_id"
+      ]
+    },
+    {
+      "name": "DeployTriggerResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "DynamicProps",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "EmittedEvent",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "e",
+        "k",
+        "ts",
+        "id"
+      ]
+    },
+    {
+      "name": "Emitter",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EmitterType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "error"
+      ]
+    },
+    {
+      "name": "ExternalUser",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "external_id"
+      ]
+    },
+    {
+      "name": "GetUsersResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data",
+        "page_info"
+      ]
+    },
+    {
+      "name": "GetAccountsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data",
+        "page_info"
+      ]
+    },
+    {
+      "name": "GetAppResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "GetAppCategoryResponse",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAppsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data",
+        "page_info"
+      ]
+    },
+    {
+      "name": "GetComponentResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "GetComponentsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data",
+        "page_info"
+      ]
+    },
+    {
+      "name": "GetTriggerEventsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "GetTriggerResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "GetTriggerWebhooksResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "webhook_urls"
+      ]
+    },
+    {
+      "name": "GetTriggerWorkflowsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "workflow_ids"
+      ]
+    },
+    {
+      "name": "GetTriggersResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data",
+        "page_info"
+      ]
+    },
+    {
+      "name": "HttpInterface",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "custom_response",
+        "endpoint_url",
+        "key",
+        "type"
+      ]
+    },
+    {
+      "name": "ListAccountsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data",
+        "page_info"
+      ]
+    },
+    {
+      "name": "Project",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    {
+      "name": "CreateProjectOpts",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "UpdateProjectOpts",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "UpdateProjectLogoOpts",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "logo"
+      ]
+    },
+    {
+      "name": "ListProjectsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data",
+        "page_info"
+      ]
+    },
+    {
+      "name": "ListAppsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "data",
+        "page_info"
+      ]
+    },
+    {
+      "name": "ListAppCategoriesResponse",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Observation",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "k",
+        "ts"
+      ]
+    },
+    {
+      "name": "ObservationError",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "PageInfo",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ProjectEnvironment",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ProjectInfoResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "apps"
+      ]
+    },
+    {
+      "name": "ProjectInfoResponseApp",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PropOption",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "label",
+        "value"
+      ]
+    },
+    {
+      "name": "PropOptionNested",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "__lv"
+      ]
+    },
+    {
+      "name": "PropOptionValue",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ProxyResponse",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ProxyResponseBinary",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ReloadPropsOpts",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "external_user_id"
+      ]
+    },
+    {
+      "name": "ReloadPropsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "RunActionOpts",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "external_user_id"
+      ]
+    },
+    {
+      "name": "RunActionOptsStashId",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "RunActionResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "StartConnectOpts",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "StashId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TimerInterface",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "schedule_changed_at",
+        "timezone",
+        "type"
+      ]
+    },
+    {
+      "name": "UpdateTriggerOpts",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "UpdateTriggerWebhooksOpts",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "webhook_urls"
+      ]
+    },
+    {
+      "name": "UpdateTriggerWorkflowsOpts",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "workflow_ids"
+      ]
+    },
+    {
+      "name": "TriggerWebhook",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "url",
+        "signing_key_set"
+      ]
+    },
+    {
+      "name": "Webhook",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "url",
+        "signing_key_set",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "WebhookWithOptionalSigningKey",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "url",
+        "signing_key_set",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "WebhookWithSigningKey",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "url",
+        "signing_key",
+        "signing_key_set",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "GetWebhookResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "GetWebhookWithSigningKeyResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "SetWebhookResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "name": "SetWebhookOpts",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "name": "ValidateTokenResponse",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "error",
+        "success"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/v1/app_categories",
+      "operationId": "listAppCategoriesBase",
+      "summary": "List App Categories",
+      "tags": [
+        "Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/app_categories",
+      "operationId": "listAppCategories",
+      "summary": "List App Categories",
+      "tags": [
+        "App Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/app_categories/{id}",
+      "operationId": "retrieveAppCategoryBase",
+      "summary": "Retrieve App Category",
+      "tags": [
+        "Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/app_categories/{id}",
+      "operationId": "retrieveAppCategory",
+      "summary": "Retrieve App Category",
+      "tags": [
+        "App Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/apps",
+      "operationId": "listAppsBase",
+      "summary": "List Apps",
+      "tags": [
+        "Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/apps",
+      "operationId": "listApps",
+      "summary": "List Apps",
+      "tags": [
+        "Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/apps/{app_id}",
+      "operationId": "retrieveAppBase",
+      "summary": "Retrieve App",
+      "tags": [
+        "Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/apps/{app_id}",
+      "operationId": "retrieveApp",
+      "summary": "Retrieve App",
+      "tags": [
+        "Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/accounts",
+      "operationId": "listAccounts",
+      "summary": "List Accounts",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/accounts",
+      "operationId": "createAccount",
+      "summary": "Create Account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/accounts/{account_id}",
+      "operationId": "retrieveAccount",
+      "summary": "Retrieve Account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/connect/{project_id}/accounts/{account_id}",
+      "operationId": "deleteAccount",
+      "summary": "Delete Account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/connect/{project_id}/apps/{app_id}/accounts",
+      "operationId": "deleteAccountByApp",
+      "summary": "Delete Accounts by App",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/connect/{project_id}/users/{external_user_id}",
+      "operationId": "deleteUserExternalUser",
+      "summary": "Delete External User",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/components",
+      "operationId": "listComponents",
+      "summary": "List Components",
+      "tags": [
+        "Components"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/components/{component_id}",
+      "operationId": "retrieveComponent",
+      "summary": "Retrieve Component",
+      "tags": [
+        "Components"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/components/configure",
+      "operationId": "configureComponentProp",
+      "summary": "Configure Component Prop",
+      "tags": [
+        "Components"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/components/props",
+      "operationId": "reloadComponentProps",
+      "summary": "Reload Component Props",
+      "tags": [
+        "Components"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/actions",
+      "operationId": "listActions",
+      "summary": "List Actions",
+      "tags": [
+        "Actions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/actions/{component_id}",
+      "operationId": "retrieveAction",
+      "summary": "Retrieve Action",
+      "tags": [
+        "Actions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/actions/configure",
+      "operationId": "configureActionProp",
+      "summary": "Configure Action Prop",
+      "tags": [
+        "Actions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/actions/props",
+      "operationId": "reloadActionProps",
+      "summary": "Reload Action Props",
+      "tags": [
+        "Actions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/triggers",
+      "operationId": "listTriggers",
+      "summary": "List Triggers",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/triggers/{component_id}",
+      "operationId": "retrieveTrigger",
+      "summary": "Retrieve Trigger",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/triggers/configure",
+      "operationId": "configureTriggerProp",
+      "summary": "Configure Trigger Prop",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/triggers/props",
+      "operationId": "reloadTriggerProps",
+      "summary": "Reload Trigger Props",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/actions/run",
+      "operationId": "runAction",
+      "summary": "Run Action",
+      "tags": [
+        "Actions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/triggers/deploy",
+      "operationId": "deployTrigger",
+      "summary": "Deploy Trigger",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/deployed-triggers",
+      "operationId": "listDeployedTriggers",
+      "summary": "List Deployed Triggers",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}",
+      "operationId": "retrieveDeployedTrigger",
+      "summary": "Get Deployed Trigger",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}",
+      "operationId": "updateDeployedTrigger",
+      "summary": "Update Deployed Trigger",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}",
+      "operationId": "deleteDeployedTrigger",
+      "summary": "Delete Deployed Trigger",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}/events",
+      "operationId": "listDeployedTriggerEvents",
+      "summary": "List Trigger Events",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}/pipelines",
+      "operationId": "listDeployedTriggerWorkflows",
+      "summary": "List Trigger Workflows",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}/pipelines",
+      "operationId": "updateDeployedTriggerWorkflows",
+      "summary": "Update Trigger Workflows",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}/webhooks",
+      "operationId": "listDeployedTriggerWebhooks",
+      "summary": "List Trigger Webhooks",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}/webhooks",
+      "operationId": "updateDeployedTriggerWebhooks",
+      "summary": "Update Trigger Webhooks",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}/webhooks/{webhook_id}",
+      "operationId": "retrieveDeployedTriggerWebhook",
+      "summary": "Get Trigger Webhook",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/deployed-triggers/{trigger_id}/webhooks/{webhook_id}/regenerate_signing_key",
+      "operationId": "regenerateDeployedTriggerWebhookSigningKey",
+      "summary": "Regenerate Trigger Webhook Signing Key",
+      "tags": [
+        "Deployed Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/webhook",
+      "operationId": "retrieveProjectEnvironmentWebhook",
+      "summary": "Get Project Environment Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/connect/{project_id}/webhook",
+      "operationId": "updateProjectEnvironmentWebhook",
+      "summary": "Set Project Environment Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/connect/{project_id}/webhook",
+      "operationId": "deleteProjectEnvironmentWebhook",
+      "summary": "Delete Project Environment Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/webhook/regenerate_signing_key",
+      "operationId": "regenerateProjectEnvironmentWebhookSigningKey",
+      "summary": "Regenerate Webhook Signing Key",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/projects",
+      "operationId": "listProjects",
+      "summary": "List Projects",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/projects",
+      "operationId": "createProject",
+      "summary": "Create Project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/projects/{project_id}",
+      "operationId": "retrieveProject",
+      "summary": "Retrieve Project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/connect/projects/{project_id}",
+      "operationId": "deleteProject",
+      "summary": "Delete Project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/v1/connect/projects/{project_id}",
+      "operationId": "updateProject",
+      "summary": "Update Project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/projects/{project_id}/logo",
+      "operationId": "updateProjectLogo",
+      "summary": "Update Project Logo",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/projects/info",
+      "operationId": "retrieveProjectInfo",
+      "summary": "Get Project Info",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/file_stash/download",
+      "operationId": "downloadFileStashFile",
+      "summary": "Download File",
+      "tags": [
+        "File Stash"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/proxy/{url_64}",
+      "operationId": "retrieveProxy",
+      "summary": "Proxy GET Request",
+      "tags": [
+        "Proxy"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/proxy/{url_64}",
+      "operationId": "postProxy",
+      "summary": "Proxy POST Request",
+      "tags": [
+        "Proxy"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/connect/{project_id}/proxy/{url_64}",
+      "operationId": "putProxy",
+      "summary": "Proxy PUT Request",
+      "tags": [
+        "Proxy"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/connect/{project_id}/proxy/{url_64}",
+      "operationId": "deleteProxy",
+      "summary": "Proxy DELETE Request",
+      "tags": [
+        "Proxy"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/v1/connect/{project_id}/proxy/{url_64}",
+      "operationId": "patchProxy",
+      "summary": "Proxy PATCH Request",
+      "tags": [
+        "Proxy"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/{project_id}/tokens",
+      "operationId": "createToken",
+      "summary": "Create Connect Token",
+      "tags": [
+        "Tokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/tokens/{ctok}/validate",
+      "operationId": "validateToken",
+      "summary": "Validate Connect Token",
+      "tags": [
+        "Tokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/usage",
+      "operationId": "listUsages",
+      "summary": "List Usage Records",
+      "tags": [
+        "Usage"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/connect/{project_id}/users",
+      "operationId": "listUsers",
+      "summary": "List Users",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/oauth/token",
+      "operationId": "createOauthToken",
+      "summary": "Create OAuth Token",
+      "tags": [
+        "OAuth"
+      ]
+    }
+  ]
+}

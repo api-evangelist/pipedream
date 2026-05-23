@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropHttp",
+  "title": "ConfigurablePropHttp",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to configure an HTTP interface.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "$.interface.http"
+          ]
+        },
+        "customResponse": {
+          "type": "boolean",
+          "description": "Whether this HTTP interface allows custom responses",
+          "nullable": true
+        }
+      }
+    }
+  ]
+}

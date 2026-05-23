@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropApphook",
+  "title": "ConfigurablePropApphook",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to configure an app webhook interface.",
+      "required": [
+        "type",
+        "appProp"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "$.interface.apphook"
+          ]
+        },
+        "appProp": {
+          "type": "string",
+          "description": "The name of the app prop that this apphook depends on"
+        },
+        "eventNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of event names to listen for",
+          "nullable": true
+        },
+        "remote": {
+          "type": "boolean",
+          "description": "Whether this apphook is remote",
+          "nullable": true
+        },
+        "static": {
+          "type": "array",
+          "items": {},
+          "description": "Static configuration for the apphook",
+          "nullable": true
+        }
+      }
+    }
+  ]
+}

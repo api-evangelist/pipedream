@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropDiscordChannelArray",
+  "title": "ConfigurablePropDiscordChannelArray",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to select multiple Discord channels.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "$.discord.channel[]"
+          ]
+        },
+        "appProp": {
+          "type": "string",
+          "description": "The name of the app prop that provides Discord authentication"
+        }
+      }
+    }
+  ]
+}

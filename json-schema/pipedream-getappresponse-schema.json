@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAppResponse",
+  "title": "GetAppResponse",
+  "type": "object",
+  "description": "Response received when retrieving a single app",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/App"
+    }
+  }
+}

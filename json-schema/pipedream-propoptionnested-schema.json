@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PropOptionNested",
+  "title": "PropOptionNested",
+  "type": "object",
+  "description": "A configuration option for a component's prop (nested under `__lv`)",
+  "required": [
+    "__lv"
+  ],
+  "properties": {
+    "__lv": {
+      "$ref": "#/components/schemas/PropOption"
+    }
+  }
+}

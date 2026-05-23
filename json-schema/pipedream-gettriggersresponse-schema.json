@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetTriggersResponse",
+  "title": "GetTriggersResponse",
+  "type": "object",
+  "description": "Response received when listing deployed triggers",
+  "required": [
+    "data",
+    "page_info"
+  ],
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Emitter"
+      }
+    },
+    "page_info": {
+      "$ref": "#/components/schemas/PageInfo"
+    }
+  }
+}

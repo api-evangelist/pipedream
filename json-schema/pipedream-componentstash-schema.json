@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ComponentStash",
+  "title": "ComponentStash",
+  "type": "string",
+  "enum": [
+    "optional",
+    "required"
+  ],
+  "description": "Indicates if a File Stash ID is optional or required to run the component",
+  "nullable": true
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetTriggerWebhooksResponse",
+  "title": "GetTriggerWebhooksResponse",
+  "type": "object",
+  "description": "Response received when retrieving trigger webhooks",
+  "required": [
+    "webhook_urls"
+  ],
+  "properties": {
+    "webhook_urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "webhooks": {
+      "type": "array",
+      "description": "Webhook objects for the configured URLs. `signing_key` is only returned for OAuth-authenticated requests.",
+      "items": {
+        "$ref": "#/components/schemas/TriggerWebhook"
+      }
+    }
+  }
+}

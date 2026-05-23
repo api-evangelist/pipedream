@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeployTriggerResponse",
+  "title": "DeployTriggerResponse",
+  "type": "object",
+  "description": "Response received after deploying a trigger",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/Emitter"
+    }
+  }
+}

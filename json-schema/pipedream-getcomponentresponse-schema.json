@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetComponentResponse",
+  "title": "GetComponentResponse",
+  "type": "object",
+  "description": "Response received when retrieving a specific component",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/Component"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateTokenResponse",
+  "title": "CreateTokenResponse",
+  "type": "object",
+  "description": "Response received after creating a connect token",
+  "required": [
+    "connect_link_url",
+    "expires_at",
+    "token"
+  ],
+  "properties": {
+    "connect_link_url": {
+      "type": "string",
+      "description": "The Connect Link URL"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The expiration time of the token in ISO 8601 format"
+    },
+    "token": {
+      "$ref": "#/components/schemas/ConnectToken"
+    }
+  }
+}

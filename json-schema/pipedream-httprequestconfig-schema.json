@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HttpRequestConfig",
+  "title": "HttpRequestConfig",
+  "type": "object",
+  "description": "Configuration for an HTTP request prop",
+  "nullable": true,
+  "properties": {
+    "auth": {
+      "$ref": "#/components/schemas/HttpRequestAuth"
+    },
+    "body": {
+      "$ref": "#/components/schemas/HttpRequestBody"
+    },
+    "headers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/HttpRequestField"
+      },
+      "nullable": true
+    },
+    "params": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/HttpRequestField"
+      },
+      "nullable": true
+    },
+    "tab": {
+      "type": "string",
+      "nullable": true
+    },
+    "method": {
+      "type": "string",
+      "nullable": true
+    },
+    "url": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

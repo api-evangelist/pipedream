@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppAuthType",
+  "title": "AppAuthType",
+  "type": "string",
+  "enum": [
+    "keys",
+    "oauth",
+    "none"
+  ],
+  "description": "The authentication type used by the app",
+  "nullable": true
+}

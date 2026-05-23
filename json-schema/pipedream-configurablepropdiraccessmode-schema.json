@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropDirAccessMode",
+  "title": "ConfigurablePropDirAccessMode",
+  "type": "string",
+  "enum": [
+    "read",
+    "write",
+    "read-write"
+  ],
+  "x-fern-enum": {
+    "read-write": {
+      "name": "ReadWrite"
+    }
+  },
+  "description": "The mode in which the component may access File Stash"
+}

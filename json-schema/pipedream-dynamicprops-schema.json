@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicProps",
+  "title": "DynamicProps",
+  "type": "object",
+  "description": "Dynamic properties of a saved component",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the dynamic prop"
+    },
+    "configurableProps": {
+      "type": "array",
+      "description": "The updated configurable properties",
+      "items": {
+        "$ref": "#/components/schemas/ConfigurableProp"
+      }
+    }
+  }
+}

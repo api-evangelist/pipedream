@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Emitter",
+  "title": "Emitter",
+  "description": "A component/interface that emits events",
+  "anyOf": [
+    {
+      "$ref": "#/components/schemas/DeployedComponent"
+    },
+    {
+      "$ref": "#/components/schemas/HttpInterface"
+    },
+    {
+      "$ref": "#/components/schemas/TimerInterface"
+    }
+  ],
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "DeployedComponent": "#/components/schemas/DeployedComponent",
+      "HttpInterface": "#/components/schemas/HttpInterface",
+      "TimerInterface": "#/components/schemas/TimerInterface"
+    }
+  }
+}

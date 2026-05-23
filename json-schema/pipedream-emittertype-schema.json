@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmitterType",
+  "title": "EmitterType",
+  "type": "string",
+  "description": "The type of the event emitting interface",
+  "enum": [
+    "email",
+    "http",
+    "source",
+    "timer"
+  ]
+}

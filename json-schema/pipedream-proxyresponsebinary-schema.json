@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProxyResponseBinary",
+  "title": "ProxyResponseBinary",
+  "type": "string",
+  "format": "binary",
+  "description": "Binary response from the proxied API"
+}

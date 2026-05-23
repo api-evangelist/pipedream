@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListAppsResponse",
+  "title": "ListAppsResponse",
+  "type": "object",
+  "description": "Response received when listing apps",
+  "required": [
+    "data",
+    "page_info"
+  ],
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/App"
+      }
+    },
+    "page_info": {
+      "$ref": "#/components/schemas/PageInfo"
+    }
+  }
+}

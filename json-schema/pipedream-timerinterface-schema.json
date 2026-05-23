@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimerInterface",
+  "title": "TimerInterface",
+  "type": "object",
+  "description": "A timer interface instance",
+  "required": [
+    "id",
+    "created_at",
+    "updated_at",
+    "schedule_changed_at",
+    "timezone",
+    "type"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the timer interface",
+      "pattern": "^ti_[a-zA-Z0-9]+$"
+    },
+    "interval_seconds": {
+      "type": "number"
+    },
+    "cron": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "schedule_changed_at": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer",
+      "description": "The timestamp when the timer interface was created (epoch milliseconds)"
+    },
+    "updated_at": {
+      "type": "integer",
+      "description": "The timestamp when the timer interface was last updated (epoch milliseconds)"
+    },
+    "type": {
+      "type": "string",
+      "description": "The discriminator field",
+      "enum": [
+        "TimerInterface"
+      ]
+    }
+  }
+}

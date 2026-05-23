@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JsonRpcResponse",
+  "title": "JsonRpcResponse",
+  "type": "object",
+  "required": [
+    "jsonrpc"
+  ],
+  "properties": {
+    "jsonrpc": {
+      "type": "string",
+      "enum": [
+        "2.0"
+      ]
+    },
+    "id": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer"
+        }
+      ]
+    },
+    "result": {
+      "type": "object"
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {}
+      }
+    }
+  }
+}

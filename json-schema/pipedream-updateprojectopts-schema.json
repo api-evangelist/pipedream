@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateProjectOpts",
+  "title": "UpdateProjectOpts",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the project"
+    },
+    "app_name": {
+      "type": "string",
+      "description": "Display name for the Connect application"
+    },
+    "support_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Support email displayed to end users"
+    },
+    "connect_require_key_auth_test": {
+      "type": "boolean",
+      "description": "Send a test request to the upstream API when adding Connect accounts for key-based apps"
+    }
+  }
+}

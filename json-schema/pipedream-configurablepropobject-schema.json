@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropObject",
+  "title": "ConfigurablePropObject",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop can accept a set of key-value pairs.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "object"
+          ]
+        },
+        "default": {
+          "$ref": "#/components/schemas/ConfiguredPropValueObject"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PropOption"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionNested"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionValue"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

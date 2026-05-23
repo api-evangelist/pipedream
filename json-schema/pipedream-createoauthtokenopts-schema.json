@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateOAuthTokenOpts",
+  "title": "CreateOAuthTokenOpts",
+  "type": "object",
+  "description": "Request object for creating an OAuth token",
+  "required": [
+    "grant_type",
+    "client_id",
+    "client_secret"
+  ],
+  "properties": {
+    "grant_type": {
+      "type": "string",
+      "enum": [
+        "client_credentials"
+      ]
+    },
+    "client_id": {
+      "type": "string"
+    },
+    "client_secret": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Optional space-separated scopes for the access token. Defaults to `*`."
+    }
+  }
+}

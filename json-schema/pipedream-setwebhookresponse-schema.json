@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SetWebhookResponse",
+  "title": "SetWebhookResponse",
+  "type": "object",
+  "description": "Response received when creating or updating a webhook",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/WebhookWithOptionalSigningKey"
+    }
+  }
+}

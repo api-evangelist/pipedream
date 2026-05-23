@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetWebhookWithSigningKeyResponse",
+  "title": "GetWebhookWithSigningKeyResponse",
+  "type": "object",
+  "description": "Response received when retrieving a webhook with its signing key",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/WebhookWithSigningKey"
+    }
+  }
+}

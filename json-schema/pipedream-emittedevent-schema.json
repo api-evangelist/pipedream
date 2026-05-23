@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmittedEvent",
+  "title": "EmittedEvent",
+  "type": "object",
+  "description": "An event emitted by a trigger",
+  "required": [
+    "e",
+    "k",
+    "ts",
+    "id"
+  ],
+  "properties": {
+    "e": {
+      "type": "object",
+      "description": "The event's payload"
+    },
+    "k": {
+      "type": "string",
+      "description": "The event's type (set to 'emit' currently)"
+    },
+    "ts": {
+      "type": "integer",
+      "description": "The event's timestamp in epoch milliseconds"
+    },
+    "id": {
+      "type": "string",
+      "description": "The event's unique ID"
+    }
+  }
+}

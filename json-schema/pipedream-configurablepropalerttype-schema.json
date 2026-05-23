@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropAlertType",
+  "title": "ConfigurablePropAlertType",
+  "type": "string",
+  "enum": [
+    "info",
+    "neutral",
+    "warning",
+    "error"
+  ],
+  "description": "The severity level of the alert."
+}

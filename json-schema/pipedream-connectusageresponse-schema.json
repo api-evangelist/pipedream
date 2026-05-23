@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectUsageResponse",
+  "title": "ConnectUsageResponse",
+  "type": "object",
+  "description": "Connect usage records for a time window",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ConnectUsage"
+      }
+    }
+  }
+}

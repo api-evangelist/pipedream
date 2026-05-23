@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetTriggerEventsResponse",
+  "title": "GetTriggerEventsResponse",
+  "type": "object",
+  "description": "Response received when retrieving trigger events",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EmittedEvent"
+      }
+    }
+  }
+}

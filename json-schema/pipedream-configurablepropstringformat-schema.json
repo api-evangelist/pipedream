@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropStringFormat",
+  "title": "ConfigurablePropStringFormat",
+  "type": "string",
+  "enum": [
+    "file-ref"
+  ],
+  "x-fern-enum": {
+    "file-ref": {
+      "name": "FileRef"
+    }
+  },
+  "description": "The format of the string value. `file-ref` indicates a URL of a file or path to a file in the component's /tmp directory.",
+  "nullable": true
+}

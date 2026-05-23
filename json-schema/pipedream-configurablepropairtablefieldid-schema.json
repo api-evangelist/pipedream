@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropAirtableFieldId",
+  "title": "ConfigurablePropAirtableFieldId",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to select an Airtable field.",
+      "required": [
+        "type",
+        "tableIdProp"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "$.airtable.fieldId"
+          ]
+        },
+        "tableIdProp": {
+          "type": "string",
+          "description": "The name of the prop that provides the Airtable table ID"
+        }
+      }
+    }
+  ]
+}

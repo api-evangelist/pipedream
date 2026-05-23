@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClientOpts",
+  "title": "ClientOpts",
+  "type": "object",
+  "description": "Options for creating a server-side client",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "The client ID for authentication"
+    },
+    "client_secret": {
+      "type": "string",
+      "description": "The client secret for authentication"
+    },
+    "api_url": {
+      "type": "string",
+      "description": "The API URL to use (defaults to https://api.pipedream.com/)"
+    }
+  }
+}

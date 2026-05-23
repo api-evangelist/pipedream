@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropStringArray",
+  "title": "ConfigurablePropStringArray",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop can accept an array of strings.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "string[]"
+          ]
+        },
+        "secret": {
+          "type": "boolean",
+          "description": "If true, this prop is a secret and should not be displayed in plain text.",
+          "nullable": true
+        },
+        "format": {
+          "$ref": "#/components/schemas/ConfigurablePropStringFormat"
+        },
+        "default": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConfiguredPropValueString"
+          },
+          "description": "The default value for this prop",
+          "nullable": true
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PropOption"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionNested"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionValue"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

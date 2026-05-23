@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExternalUser",
+  "title": "ExternalUser",
+  "type": "object",
+  "required": [
+    "id",
+    "external_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The external user's Pipedream ID",
+      "example": "exu_abc123"
+    },
+    "external_id": {
+      "type": "string",
+      "description": "Your identifier for the external user"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

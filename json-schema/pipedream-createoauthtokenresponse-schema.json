@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateOAuthTokenResponse",
+  "title": "CreateOAuthTokenResponse",
+  "type": "object",
+  "description": "Response object for creating an OAuth token",
+  "required": [
+    "access_token",
+    "token_type",
+    "expires_in"
+  ],
+  "properties": {
+    "access_token": {
+      "type": "string"
+    },
+    "token_type": {
+      "type": "string"
+    },
+    "expires_in": {
+      "type": "integer"
+    }
+  }
+}

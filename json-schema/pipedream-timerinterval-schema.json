@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimerInterval",
+  "title": "TimerInterval",
+  "type": "object",
+  "description": "Timer configuration using interval in seconds",
+  "required": [
+    "intervalSeconds"
+  ],
+  "properties": {
+    "intervalSeconds": {
+      "type": "integer",
+      "description": "Interval in seconds for timer execution"
+    }
+  }
+}

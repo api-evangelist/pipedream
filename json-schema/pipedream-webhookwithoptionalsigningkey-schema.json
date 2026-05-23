@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookWithOptionalSigningKey",
+  "title": "WebhookWithOptionalSigningKey",
+  "type": "object",
+  "description": "A webhook object that may include the signing key. The signing key is returned when a webhook is created, but omitted when an existing webhook is updated.",
+  "required": [
+    "id",
+    "url",
+    "signing_key_set",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the webhook"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The webhook URL"
+    },
+    "signing_key": {
+      "type": "string",
+      "description": "The webhook signing key, when returned by the endpoint"
+    },
+    "signing_key_set": {
+      "type": "boolean",
+      "description": "Whether a signing key has been set for this webhook"
+    },
+    "created_at": {
+      "type": "integer",
+      "description": "The time the webhook was created, in epoch seconds"
+    },
+    "updated_at": {
+      "type": "integer",
+      "description": "The time the webhook was last updated, in epoch seconds"
+    }
+  }
+}

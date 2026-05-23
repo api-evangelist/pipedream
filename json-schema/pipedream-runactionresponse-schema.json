@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RunActionResponse",
+  "title": "RunActionResponse",
+  "type": "object",
+  "description": "The response received after running an action. See https://pipedream.com/docs/components/api#returning-data-from-steps for more details.",
+  "properties": {
+    "exports": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The key-value pairs resulting from calls to `$.export`"
+    },
+    "os": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Observation"
+      },
+      "description": "Any logs produced during the execution of the action"
+    },
+    "ret": {
+      "description": "The value returned by the action",
+      "nullable": true
+    },
+    "stash_id": {
+      "$ref": "#/components/schemas/StashId"
+    }
+  }
+}

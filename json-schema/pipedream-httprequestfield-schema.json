@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HttpRequestField",
+  "title": "HttpRequestField",
+  "type": "object",
+  "description": "A name-value field for HTTP request configuration",
+  "required": [
+    "name",
+    "value"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The field name"
+    },
+    "value": {
+      "type": "string",
+      "description": "The field value"
+    }
+  }
+}

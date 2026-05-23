@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigurablePropSql",
+  "title": "ConfigurablePropSql",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ConfigurablePropBase"
+    },
+    {
+      "type": "object",
+      "description": "This prop is used to configure SQL queries.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "sql"
+          ]
+        },
+        "auth": {
+          "$ref": "#/components/schemas/ConfigurablePropSqlAuth"
+        },
+        "default": {
+          "$ref": "#/components/schemas/ConfiguredPropValueSql"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PropOption"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionNested"
+              },
+              {
+                "$ref": "#/components/schemas/PropOptionValue"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

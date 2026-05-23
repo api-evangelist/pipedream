@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReloadPropsOpts",
+  "title": "ReloadPropsOpts",
+  "type": "object",
+  "description": "Request options for reloading a component's props when dealing with dynamic props",
+  "required": [
+    "id",
+    "external_user_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The component ID"
+    },
+    "version": {
+      "type": "string",
+      "description": "Optional component version (in SemVer format, for example '1.0.0'), defaults to latest",
+      "example": "1.2.3",
+      "nullable": true
+    },
+    "external_user_id": {
+      "type": "string",
+      "description": "The external user ID"
+    },
+    "blocking": {
+      "type": "boolean",
+      "description": "Whether this operation should block until completion"
+    },
+    "configured_props": {
+      "$ref": "#/components/schemas/ConfiguredProps"
+    },
+    "dynamic_props_id": {
+      "type": "string",
+      "description": "The ID for dynamic props"
+    }
+  }
+}

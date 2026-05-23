@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RunActionOptsStashId",
+  "title": "RunActionOptsStashId",
+  "anyOf": [
+    {
+      "$ref": "#/components/schemas/StashId"
+    },
+    {
+      "type": "string",
+      "enum": [
+        "NEW"
+      ]
+    },
+    {
+      "type": "boolean"
+    }
+  ],
+  "description": "The ID of the File Stash to use for syncing the action's /tmp directory, or either `true` or 'NEW' to create a new stash",
+  "nullable": true
+}

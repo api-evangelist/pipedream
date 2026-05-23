@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateProjectLogoOpts",
+  "title": "UpdateProjectLogoOpts",
+  "type": "object",
+  "description": "Payload to update a project's logo.",
+  "required": [
+    "logo"
+  ],
+  "properties": {
+    "logo": {
+      "type": "string",
+      "format": "byte",
+      "description": "Data URI containing the new Base64 encoded image",
+      "example": "data:image/png;base64,AAAAAA..."
+    }
+  }
+}

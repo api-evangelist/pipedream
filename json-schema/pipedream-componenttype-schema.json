@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ComponentType",
+  "title": "ComponentType",
+  "type": "string",
+  "enum": [
+    "trigger",
+    "action"
+  ],
+  "description": "The type of component (trigger or action)"
+}

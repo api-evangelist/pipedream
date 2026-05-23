@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PropOptionValue",
+  "title": "PropOptionValue",
+  "description": "The value of a prop option",
+  "oneOf": [
+    {
+      "type": "string"
+    },
+    {
+      "type": "integer"
+    },
+    {
+      "type": "boolean"
+    }
+  ],
+  "nullable": true
+}

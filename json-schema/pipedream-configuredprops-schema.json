@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfiguredProps",
+  "title": "ConfiguredProps",
+  "type": "object",
+  "description": "The configured properties of the component",
+  "additionalProperties": {
+    "$ref": "#/components/schemas/ConfiguredPropValue"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateTriggerOpts",
+  "title": "UpdateTriggerOpts",
+  "type": "object",
+  "description": "Request options for updating a trigger",
+  "properties": {
+    "active": {
+      "type": "boolean",
+      "description": "Whether the trigger should be active"
+    },
+    "configured_props": {
+      "$ref": "#/components/schemas/ConfiguredProps"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the trigger"
+    },
+    "emit_on_deploy": {
+      "type": "boolean",
+      "description": "Whether the trigger should emit events during deployment"
+    }
+  }
+}
