@@ -1,0 +1,125 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Connect Account Onboarding
+  summary: Mint a Connect token for an end user, connect their account, and confirm it landed.
+  description: >-
+    The canonical Pipedream Connect onboarding pattern. The workflow first
+    creates a short-lived Connect token scoped to a single external user, then
+    uses that token to connect a new account for the chosen app, and finally
+    lists the user's accounts to confirm the connection is present and healthy.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: connect-account-onboarding
+  summary: Create a Connect token, connect an account, and verify it for an external user.
+  description: >-
+    Generates a Connect token for the supplied external user, creates a
+    connected account for the target app using that token, and then lists the
+    user's accounts to verify the new account exists.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - environment
+    - externalUserId
+    - appSlug
+    - cfmapJson
+    properties:
+      projectId:
+        type: string
+        description: The project ID, which starts with proj_.
+      environment:
+        type: string
+        description: The Connect environment (development or production).
+      externalUserId:
+        type: string
+        description: Your end user identifier for whom the account is being connected.
+      appSlug:
+        type: string
+        description: The app slug for the account being connected (e.g. "slack").
+      cfmapJson:
+        type: string
+        description: JSON string containing the custom fields mapping for the account.
+      accountName:
+        type: string
+        description: Optional friendly name for the connected account.
+  steps:
+  - stepId: createConnectToken
+    description: >-
+      Generate a short-lived Connect token scoped to the external user that the
+      account creation step will authenticate with.
+    operationId: createToken
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    requestBody:
+      contentType: application/json
+      payload:
+        external_user_id: $inputs.externalUserId
+        project_id: $inputs.projectId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      connectToken: $response.body#/token
+      connectLinkUrl: $response.body#/connect_link_url
+      expiresAt: $response.body#/expires_at
+  - stepId: connectAccount
+    description: >-
+      Connect a new account for the external user against the target app using
+      the Connect token minted in the previous step.
+    operationId: createAccount
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    requestBody:
+      contentType: application/json
+      payload:
+        app_slug: $inputs.appSlug
+        cfmap_json: $inputs.cfmapJson
+        connect_token: $steps.createConnectToken.outputs.connectToken
+        name: $inputs.accountName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accountId: $response.body#/id
+      healthy: $response.body#/healthy
+  - stepId: verifyAccount
+    description: >-
+      List the external user's connected accounts to confirm the newly
+      connected account is present.
+    operationId: listAccounts
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    - name: app
+      in: query
+      value: $inputs.appSlug
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accounts: $response.body#/data
+      firstAccountId: $response.body#/data/0/id
+  outputs:
+    connectToken: $steps.createConnectToken.outputs.connectToken
+    accountId: $steps.connectAccount.outputs.accountId
+    accounts: $steps.verifyAccount.outputs.accounts

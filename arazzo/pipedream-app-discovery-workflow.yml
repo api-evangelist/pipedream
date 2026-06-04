@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream App Discovery
+  summary: Browse app categories, search apps in a category, and retrieve one app's metadata.
+  description: >-
+    A catalog-exploration flow over the Pipedream app registry. The workflow
+    lists the available app categories, searches for apps within a chosen
+    category that have components, and retrieves the full metadata for a single
+    selected app. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: app-discovery
+  summary: List categories, find apps with components, and retrieve one app.
+  description: >-
+    Lists app categories, searches apps in the chosen category that expose
+    components, and retrieves the metadata of the selected app.
+  inputs:
+    type: object
+    required:
+    - categoryId
+    - appId
+    properties:
+      categoryId:
+        type: string
+        description: The app category ID (appcat_...) to filter apps by.
+      appId:
+        type: string
+        description: The app ID or name slug to retrieve at the end.
+      query:
+        type: string
+        description: Optional search query to filter apps by name.
+  steps:
+  - stepId: listCategories
+    description: >-
+      List the available app categories so the caller can confirm the chosen
+      category ID.
+    operationId: listAppCategories
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      categories: $response.body
+  - stepId: searchAppsInCategory
+    description: >-
+      Search the registry for apps in the chosen category that have components
+      (actions or triggers).
+    operationId: listApps
+    parameters:
+    - name: category_ids
+      in: query
+      value:
+      - $inputs.categoryId
+    - name: q
+      in: query
+      value: $inputs.query
+    - name: has_components
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      apps: $response.body#/data
+      firstAppSlug: $response.body#/data/0/name_slug
+  - stepId: retrieveApp
+    description: >-
+      Retrieve the full metadata for the selected app by ID or name slug.
+    operationId: retrieveApp
+    parameters:
+    - name: app_id
+      in: path
+      value: $inputs.appId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      app: $response.body#/data
+  outputs:
+    categories: $steps.listCategories.outputs.categories
+    apps: $steps.searchAppsInCategory.outputs.apps
+    app: $steps.retrieveApp.outputs.app

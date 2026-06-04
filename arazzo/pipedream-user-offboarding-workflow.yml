@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Offboard an External User
+  summary: List a user's accounts and deployed triggers, then delete the user and all their resources.
+  description: >-
+    A full offboarding flow for an external user in Pipedream Connect. The
+    workflow surveys the user's connected accounts and deployed triggers so the
+    caller has a record of what will be removed, then deletes the external user
+    along with all their associated accounts and resources. The final step is
+    destructive and irreversible. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: user-offboarding
+  summary: Survey and then fully remove an external user and their resources.
+  description: >-
+    Lists the external user's accounts and deployed triggers for the record,
+    then deletes the user and all associated resources.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - environment
+    - externalUserId
+    properties:
+      projectId:
+        type: string
+        description: The project ID, which starts with proj_.
+      environment:
+        type: string
+        description: The Connect environment (development or production).
+      externalUserId:
+        type: string
+        description: The end user identifier being offboarded.
+  steps:
+  - stepId: listUserAccounts
+    description: >-
+      List the external user's connected accounts so the caller has a record of
+      the accounts that will be removed.
+    operationId: listAccounts
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accounts: $response.body#/data
+  - stepId: listUserTriggers
+    description: >-
+      List the external user's deployed triggers so the caller has a record of
+      the event sources that will be removed.
+    operationId: listDeployedTriggers
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deployedTriggers: $response.body#/data
+  - stepId: deleteUser
+    description: >-
+      Delete the external user along with all their associated accounts and
+      resources. This is destructive and cannot be undone.
+    operationId: deleteUserExternalUser
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: external_user_id
+      in: path
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      deleted: $statusCode
+  outputs:
+    accounts: $steps.listUserAccounts.outputs.accounts
+    deployedTriggers: $steps.listUserTriggers.outputs.deployedTriggers
+    deleted: $steps.deleteUser.outputs.deleted

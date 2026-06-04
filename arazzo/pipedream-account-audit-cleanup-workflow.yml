@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Audit and Clean Up Accounts by App
+  summary: List a user's accounts for an app, inspect one, and remove all accounts for that app.
+  description: >-
+    A maintenance flow for connected accounts in Pipedream Connect. The workflow
+    lists the external user's accounts for a given app, retrieves the details of
+    the first matched account to inspect its health, and then removes all
+    accounts for that app. The cleanup step is destructive and irreversible, so
+    it branches only when at least one account was found. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: account-audit-cleanup
+  summary: Inspect a user's accounts for an app and delete them all.
+  description: >-
+    Lists the external user's accounts for the app, inspects the first matched
+    account, and when at least one account exists deletes every account for the
+    app.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - environment
+    - externalUserId
+    - app
+    - appId
+    properties:
+      projectId:
+        type: string
+        description: The project ID, which starts with proj_.
+      environment:
+        type: string
+        description: The Connect environment (development or production).
+      externalUserId:
+        type: string
+        description: The end user identifier whose accounts are audited.
+      app:
+        type: string
+        description: The app slug or ID used to filter the listed accounts.
+      appId:
+        type: string
+        description: The app ID whose accounts are deleted in the cleanup step.
+  steps:
+  - stepId: listUserAccounts
+    description: >-
+      List the external user's connected accounts for the target app to learn
+      which accounts exist.
+    operationId: listAccounts
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    - name: app
+      in: query
+      value: $inputs.app
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accounts: $response.body#/data
+      firstAccountId: $response.body#/data/0/id
+    onSuccess:
+    - name: hasAccounts
+      type: goto
+      stepId: inspectAccount
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+  - stepId: inspectAccount
+    description: >-
+      Retrieve the details of the first matched account to inspect its health
+      before removing it.
+    operationId: retrieveAccount
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: account_id
+      in: path
+      value: $steps.listUserAccounts.outputs.firstAccountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      healthy: $response.body#/healthy
+      appName: $response.body#/app/name
+  - stepId: deleteAccountsByApp
+    description: >-
+      Remove all connected accounts for the app. This is destructive and cannot
+      be undone.
+    operationId: deleteAccountByApp
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: app_id
+      in: path
+      value: $inputs.appId
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      deleted: $statusCode
+  outputs:
+    accounts: $steps.listUserAccounts.outputs.accounts
+    deleted: $steps.deleteAccountsByApp.outputs.deleted

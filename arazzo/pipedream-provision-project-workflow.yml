@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Provision a Connect Project
+  summary: Create a Connect project, confirm it, and read its app configuration info.
+  description: >-
+    A bootstrap flow for a new Pipedream Connect project. The workflow creates a
+    project for the authenticated workspace, retrieves it to confirm its
+    settings, and reads the project info to surface the apps configured for it.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-project
+  summary: Create a Connect project and confirm its configuration.
+  description: >-
+    Creates a new project, retrieves it to confirm its settings, then reads its
+    project info to list the apps configured for it.
+  inputs:
+    type: object
+    required:
+    - environment
+    - name
+    properties:
+      environment:
+        type: string
+        description: The Connect environment (development or production) for the info read.
+      name:
+        type: string
+        description: The display name of the new project.
+      appName:
+        type: string
+        description: Optional display name for the Connect application shown to end users.
+      supportEmail:
+        type: string
+        description: Optional support email displayed to end users.
+  steps:
+  - stepId: createProject
+    description: >-
+      Create a new Connect project for the authenticated workspace with the
+      supplied name and optional Connect display settings.
+    operationId: createProject
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        app_name: $inputs.appName
+        support_email: $inputs.supportEmail
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      projectId: $response.body#/id
+      projectName: $response.body#/name
+  - stepId: retrieveProject
+    description: >-
+      Retrieve the newly created project to confirm its persisted settings.
+    operationId: retrieveProject
+    parameters:
+    - name: project_id
+      in: path
+      value: $steps.createProject.outputs.projectId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      project: $response.body
+  - stepId: getProjectInfo
+    description: >-
+      Read the project info to surface the apps configured for the new project.
+    operationId: retrieveProjectInfo
+    parameters:
+    - name: project_id
+      in: path
+      value: $steps.createProject.outputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      apps: $response.body#/apps
+  outputs:
+    projectId: $steps.createProject.outputs.projectId
+    project: $steps.retrieveProject.outputs.project
+    apps: $steps.getProjectInfo.outputs.apps

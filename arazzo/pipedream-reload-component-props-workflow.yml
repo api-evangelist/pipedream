@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Reload Dynamic Component Props
+  summary: Retrieve a component, then reload its dynamic props from the current configuration.
+  description: >-
+    The dynamic-props refresh pattern in Pipedream Connect. After a prop value
+    changes, a component's downstream props may need to be recomputed. The
+    workflow retrieves the component to confirm its props, then reloads the prop
+    definitions based on the currently configured props for the external user.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: reload-component-props
+  summary: Inspect a component and recompute its dynamic props from configured values.
+  description: >-
+    Retrieves the component, then reloads its dynamic prop definitions based on
+    the currently configured props for the external user.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - environment
+    - externalUserId
+    - componentId
+    - configuredProps
+    properties:
+      projectId:
+        type: string
+        description: The project ID, which starts with proj_.
+      environment:
+        type: string
+        description: The Connect environment (development or production).
+      externalUserId:
+        type: string
+        description: The end user identifier the props are reloaded for.
+      componentId:
+        type: string
+        description: The key of the component whose dynamic props are reloaded.
+      configuredProps:
+        type: object
+        description: The currently configured props that drive the dynamic prop computation.
+  steps:
+  - stepId: retrieveComponent
+    description: >-
+      Retrieve the component to confirm its configurable props before reloading
+      the dynamic ones.
+    operationId: retrieveComponent
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: component_id
+      in: path
+      value: $inputs.componentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      componentName: $response.body#/data/name
+      configurableProps: $response.body#/data/configurable_props
+  - stepId: reloadProps
+    description: >-
+      Reload the component's dynamic prop definitions based on the currently
+      configured props for the external user.
+    operationId: reloadComponentProps
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    requestBody:
+      contentType: application/json
+      payload:
+        id: $inputs.componentId
+        external_user_id: $inputs.externalUserId
+        configured_props: $inputs.configuredProps
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      dynamicProps: $response.body#/dynamicProps
+      observations: $response.body#/observations
+  outputs:
+    configurableProps: $steps.retrieveComponent.outputs.configurableProps
+    dynamicProps: $steps.reloadProps.outputs.dynamicProps

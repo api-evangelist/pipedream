@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Route Trigger Events to Webhooks
+  summary: Confirm a deployed trigger, set its webhook listeners, then read them back.
+  description: >-
+    A delivery-configuration flow for a Pipedream Connect event source. The
+    workflow retrieves a deployed trigger to confirm it exists, sets the list of
+    webhook URLs that should receive its events, and then reads the webhook
+    listeners back to confirm the change took effect. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: set-trigger-webhooks
+  summary: Set and verify the webhook listeners for a deployed trigger.
+  description: >-
+    Retrieves the deployed trigger, replaces its webhook URL listeners with the
+    supplied list, and reads the listeners back to verify.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - environment
+    - externalUserId
+    - triggerId
+    - webhookUrls
+    properties:
+      projectId:
+        type: string
+        description: The project ID, which starts with proj_.
+      environment:
+        type: string
+        description: The Connect environment (development or production).
+      externalUserId:
+        type: string
+        description: The end user identifier who owns the deployed trigger.
+      triggerId:
+        type: string
+        description: The deployed trigger ID to configure.
+      webhookUrls:
+        type: array
+        items:
+          type: string
+        description: The set of webhook URLs that should receive the trigger's events.
+  steps:
+  - stepId: retrieveDeployedTrigger
+    description: >-
+      Retrieve the deployed trigger by ID to confirm it exists before changing
+      its delivery configuration.
+    operationId: retrieveDeployedTrigger
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: trigger_id
+      in: path
+      value: $inputs.triggerId
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trigger: $response.body#/data
+  - stepId: setTriggerWebhooks
+    description: >-
+      Replace the trigger's webhook listeners with the supplied list of webhook
+      URLs.
+    operationId: updateDeployedTriggerWebhooks
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: trigger_id
+      in: path
+      value: $inputs.triggerId
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    requestBody:
+      contentType: application/json
+      payload:
+        webhook_urls: $inputs.webhookUrls
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      webhookUrls: $response.body#/webhook_urls
+  - stepId: verifyTriggerWebhooks
+    description: >-
+      Read the trigger's webhook listeners back to confirm the supplied URLs are
+      now configured.
+    operationId: listDeployedTriggerWebhooks
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: trigger_id
+      in: path
+      value: $inputs.triggerId
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      webhookUrls: $response.body#/webhook_urls
+  outputs:
+    appliedWebhookUrls: $steps.setTriggerWebhooks.outputs.webhookUrls
+    verifiedWebhookUrls: $steps.verifyTriggerWebhooks.outputs.webhookUrls

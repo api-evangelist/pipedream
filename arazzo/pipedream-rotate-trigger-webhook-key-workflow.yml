@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Rotate a Trigger Webhook Signing Key
+  summary: Retrieve a trigger webhook, then regenerate its signing key and confirm the new key.
+  description: >-
+    A secret-rotation flow for a webhook attached to a deployed Connect trigger.
+    The workflow retrieves the specific webhook to capture its current signing
+    key, regenerates the signing key, and reads the webhook back to confirm the
+    new key is in place. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rotate-trigger-webhook-key
+  summary: Regenerate and verify a deployed trigger webhook's signing key.
+  description: >-
+    Retrieves the trigger webhook, regenerates its signing key, and reads the
+    webhook back to confirm the rotation.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - environment
+    - externalUserId
+    - triggerId
+    - webhookId
+    properties:
+      projectId:
+        type: string
+        description: The project ID, which starts with proj_.
+      environment:
+        type: string
+        description: The Connect environment (development or production).
+      externalUserId:
+        type: string
+        description: The end user identifier who owns the deployed trigger.
+      triggerId:
+        type: string
+        description: The deployed trigger ID the webhook belongs to.
+      webhookId:
+        type: string
+        description: The webhook ID whose signing key is rotated.
+  steps:
+  - stepId: retrieveWebhook
+    description: >-
+      Retrieve the trigger webhook to capture its current signing key before
+      rotation.
+    operationId: retrieveDeployedTriggerWebhook
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: trigger_id
+      in: path
+      value: $inputs.triggerId
+    - name: webhook_id
+      in: path
+      value: $inputs.webhookId
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      previousWebhook: $response.body#/data
+  - stepId: regenerateSigningKey
+    description: >-
+      Regenerate the signing key for the webhook so prior keys can no longer
+      verify incoming events.
+    operationId: regenerateDeployedTriggerWebhookSigningKey
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: trigger_id
+      in: path
+      value: $inputs.triggerId
+    - name: webhook_id
+      in: path
+      value: $inputs.webhookId
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      regenerated: $statusCode
+  - stepId: verifyNewKey
+    description: >-
+      Read the webhook back to confirm a new signing key is in place after the
+      rotation.
+    operationId: retrieveDeployedTriggerWebhook
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: trigger_id
+      in: path
+      value: $inputs.triggerId
+    - name: webhook_id
+      in: path
+      value: $inputs.webhookId
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      newWebhook: $response.body#/data
+  outputs:
+    previousWebhook: $steps.retrieveWebhook.outputs.previousWebhook
+    newWebhook: $steps.verifyNewKey.outputs.newWebhook

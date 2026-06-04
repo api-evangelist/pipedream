@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Discover and Run an Action
+  summary: Find an action for an app, inspect its props, and run it for an external user.
+  description: >-
+    A discovery-to-execution flow for Pipedream Connect actions. The workflow
+    searches the component registry for actions belonging to a given app,
+    retrieves the chosen action's full configuration so its configurable props
+    are known, and then runs the action for the external user with the supplied
+    configured props. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: run-action-for-app
+  summary: List, inspect, and run a Connect action for an external user.
+  description: >-
+    Lists actions for the target app, retrieves the selected action component to
+    confirm its configurable props, and executes the action with the provided
+    configured props.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - environment
+    - externalUserId
+    - app
+    - componentId
+    properties:
+      projectId:
+        type: string
+        description: The project ID, which starts with proj_.
+      environment:
+        type: string
+        description: The Connect environment (development or production).
+      externalUserId:
+        type: string
+        description: Your end user identifier on whose behalf the action runs.
+      app:
+        type: string
+        description: The ID or name slug of the app to filter actions by.
+      componentId:
+        type: string
+        description: The key of the action component to run (e.g. "slack-send-message").
+      configuredProps:
+        type: object
+        description: The configured props payload required by the action.
+  steps:
+  - stepId: listAppActions
+    description: >-
+      Search the registry for actions belonging to the target app so the caller
+      can confirm the chosen action key exists.
+    operationId: listActions
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: app
+      in: query
+      value: $inputs.app
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      actions: $response.body#/data
+      firstActionKey: $response.body#/data/0/key
+  - stepId: retrieveAction
+    description: >-
+      Retrieve the selected action component to confirm its name and the
+      configurable props that must be supplied at run time.
+    operationId: retrieveAction
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: component_id
+      in: path
+      value: $inputs.componentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      actionName: $response.body#/data/name
+      configurableProps: $response.body#/data/configurable_props
+  - stepId: runAction
+    description: >-
+      Run the action for the external user with the supplied configured props
+      and capture its returned value and exports.
+    operationId: runAction
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    requestBody:
+      contentType: application/json
+      payload:
+        id: $inputs.componentId
+        external_user_id: $inputs.externalUserId
+        configured_props: $inputs.configuredProps
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ret: $response.body#/ret
+      exports: $response.body#/exports
+  outputs:
+    actions: $steps.listAppActions.outputs.actions
+    actionName: $steps.retrieveAction.outputs.actionName
+    ret: $steps.runAction.outputs.ret

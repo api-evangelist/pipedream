@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: Pipedream Inspect Deployed Trigger Events
+  summary: Retrieve a deployed trigger, then poll its most recent emitted events.
+  description: >-
+    A monitoring flow for a single Pipedream Connect event source. The workflow
+    retrieves a deployed trigger by ID to confirm it belongs to the external
+    user, then lists the most recent events the trigger has emitted so the
+    caller can inspect the payloads. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedreamApi
+  url: ../openapi/pipedream-openapi.yml
+  type: openapi
+workflows:
+- workflowId: trigger-events-poll
+  summary: Confirm a deployed trigger and read its recent emitted events.
+  description: >-
+    Retrieves the deployed trigger for the external user, then fetches the most
+    recent events it has emitted.
+  inputs:
+    type: object
+    required:
+    - projectId
+    - environment
+    - externalUserId
+    - triggerId
+    properties:
+      projectId:
+        type: string
+        description: The project ID, which starts with proj_.
+      environment:
+        type: string
+        description: The Connect environment (development or production).
+      externalUserId:
+        type: string
+        description: The end user identifier who owns the deployed trigger.
+      triggerId:
+        type: string
+        description: The deployed trigger ID to inspect.
+      eventCount:
+        type: integer
+        description: The number of recent events to retrieve (defaults to 20 server-side).
+  steps:
+  - stepId: retrieveDeployedTrigger
+    description: >-
+      Retrieve the deployed trigger by ID to confirm it exists for the external
+      user before reading its events.
+    operationId: retrieveDeployedTrigger
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: trigger_id
+      in: path
+      value: $inputs.triggerId
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trigger: $response.body#/data
+  - stepId: listTriggerEvents
+    description: >-
+      List the most recent events emitted by the deployed trigger so their
+      payloads can be inspected.
+    operationId: listDeployedTriggerEvents
+    parameters:
+    - name: project_id
+      in: path
+      value: $inputs.projectId
+    - name: x-pd-environment
+      in: header
+      value: $inputs.environment
+    - name: trigger_id
+      in: path
+      value: $inputs.triggerId
+    - name: external_user_id
+      in: query
+      value: $inputs.externalUserId
+    - name: n
+      in: query
+      value: $inputs.eventCount
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      events: $response.body#/data
+      latestEventId: $response.body#/data/0/id
+  outputs:
+    trigger: $steps.retrieveDeployedTrigger.outputs.trigger
+    events: $steps.listTriggerEvents.outputs.events
