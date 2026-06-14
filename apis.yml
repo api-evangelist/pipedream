@@ -5,13 +5,12 @@ segments:
 - Workflows
 - Connect
 - MCP
-description: >-
-  Pipedream is a developer-centric integration platform providing three product lines:
-  Workflows (code-level event-driven automation in Node.js/Python/Go/Bash), Connect
-  (an embedded integration toolkit for adding customer-facing integrations and AI agents
-  to applications, with managed OAuth for 3,000+ APIs), and a hosted MCP server exposing
-  10,000+ tools over JSON-RPC for AI agents. Pipedream announced an acquisition agreement
-  with Workday on 2025-11-19.
+description: 'Pipedream is a developer-centric integration platform providing three
+  product lines: Workflows (code-level event-driven automation in Node.js/Python/Go/Bash),
+  Connect (an embedded integration toolkit for adding customer-facing integrations
+  and AI agents to applications, with managed OAuth for 3,000+ APIs), and a hosted
+  MCP server exposing 10,000+ tools over JSON-RPC for AI agents. Pipedream announced
+  an acquisition agreement with Workday on 2025-11-19.'
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -31,13 +30,12 @@ specificationVersion: '0.19'
 apis:
 - aid: pipedream:rest-api
   name: Pipedream REST API
-  description: >-
-    The Pipedream REST API at api.pipedream.com is the unified surface for both the
-    legacy workflow / source / subscription resources and the newer /v1/connect/* resources.
-    Authentication is via OAuth 2.0 client credentials or a short-lived Connect token.
-    List endpoints use cursor pagination (limit, after, before). The full OpenAPI 3.0.4
-    spec is published at pipedream.com/docs/pipedream_openapi_swagger.json (133 schemas,
-    61 operations as of 2026-05-22).
+  description: The Pipedream REST API at api.pipedream.com is the unified surface
+    for both the legacy workflow / source / subscription resources and the newer /v1/connect/*
+    resources. Authentication is via OAuth 2.0 client credentials or a short-lived
+    Connect token. List endpoints use cursor pagination (limit, after, before). The
+    full OpenAPI 3.0.4 spec is published at pipedream.com/docs/pipedream_openapi_swagger.json
+    (133 schemas, 61 operations as of 2026-05-22).
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
@@ -68,36 +66,6 @@ apis:
     url: https://pipedream.com/docs/pipedream_openapi_swagger.json
   - type: SpectralRules
     url: rules/pipedream-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-apps.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-app-categories.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-oauth.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-accounts.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-components.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-actions.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-triggers.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-deployed-triggers.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-webhooks.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-projects.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-proxy.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-tokens.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-usage.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-users.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipedream-connect-file-stash.yaml
   - type: JSONSchema
     url: json-schema/pipedream-app-schema.json
   - type: JSONSchema
@@ -126,17 +94,17 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Example
     url: examples/pipedream-proxy-request-example.json
-
+  - url: graphql/pipedream-graphql.md
+    type: GraphQL
 - aid: pipedream:connect
   name: Pipedream Connect
-  description: >-
-    Pipedream Connect is the end-to-end developer toolkit for embedding customer-facing
-    integrations and AI-agent capabilities into applications. It provides managed OAuth
-    for 3,000+ APIs, pre-built components (actions and triggers), a Connect Proxy that
-    signs custom HTTP requests on behalf of end-users, a File Stash for working with user
-    file uploads, deployed-trigger webhooks, usage metering, and project-scoped resources
-    with development and production environments. Endpoints live under /v1/connect/* on
-    api.pipedream.com.
+  description: Pipedream Connect is the end-to-end developer toolkit for embedding
+    customer-facing integrations and AI-agent capabilities into applications. It provides
+    managed OAuth for 3,000+ APIs, pre-built components (actions and triggers), a
+    Connect Proxy that signs custom HTTP requests on behalf of end-users, a File Stash
+    for working with user file uploads, deployed-trigger webhooks, usage metering,
+    and project-scoped resources with development and production environments. Endpoints
+    live under /v1/connect/* on api.pipedream.com.
   humanURL: https://pipedream.com/docs/connect
   baseURL: https://api.pipedream.com/v1/connect
   tags:
@@ -167,17 +135,15 @@ apis:
   - type: SamplesRepo
     name: Pipedream Connect Examples
     url: https://github.com/PipedreamHQ/pipedream-connect-examples
-
 - aid: pipedream:mcp-server
   name: Pipedream MCP Server
-  description: >-
-    Pipedream's hosted Model Context Protocol server at remote.mcp.pipedream.net exposes
-    10,000+ tools across 2,800+ integrated apps to AI agents over JSON-RPC. The server
-    supports both SSE and streamable HTTP transports dynamically based on the Accept
-    header, with no client-side configuration required. Authentication is OAuth 2.0
-    Bearer; per-session context (project, environment, external user, app slug) is
-    supplied via x-pd-* headers. Native integrations exist for OpenAI Responses API,
-    Anthropic Claude, Google Gemini, and Vercel AI SDK.
+  description: Pipedream's hosted Model Context Protocol server at remote.mcp.pipedream.net
+    exposes 10,000+ tools across 2,800+ integrated apps to AI agents over JSON-RPC.
+    The server supports both SSE and streamable HTTP transports dynamically based
+    on the Accept header, with no client-side configuration required. Authentication
+    is OAuth 2.0 Bearer; per-session context (project, environment, external user,
+    app slug) is supplied via x-pd-* headers. Native integrations exist for OpenAI
+    Responses API, Anthropic Claude, Google Gemini, and Vercel AI SDK.
   humanURL: https://pipedream.com/docs/connect/mcp/developers
   baseURL: https://remote.mcp.pipedream.net/v3
   tags:
@@ -203,32 +169,33 @@ apis:
   - type: SamplesRepo
     name: mcp-chat
     url: https://github.com/PipedreamHQ/mcp-chat
-  - type: NaftikoCapability
-    url: capabilities/pipedream-mcp.yaml
   - type: Example
     url: examples/pipedream-mcp-tools-list-example.json
   - type: Example
     url: examples/pipedream-mcp-tools-call-example.json
-
 common:
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
   - url: arazzo/pipedream-account-audit-cleanup-workflow.yml
     name: Pipedream Audit and Clean Up Accounts by App
-    summary: List a user's accounts for an app, inspect one, and remove all accounts for that app.
+    summary: List a user's accounts for an app, inspect one, and remove all accounts
+      for that app.
   - url: arazzo/pipedream-app-discovery-workflow.yml
     name: Pipedream App Discovery
-    summary: Browse app categories, search apps in a category, and retrieve one app's metadata.
+    summary: Browse app categories, search apps in a category, and retrieve one app's
+      metadata.
   - url: arazzo/pipedream-configure-component-prop-workflow.yml
     name: Pipedream Configure a Component Prop
     summary: Retrieve a component, then fetch the remote options for one of its props.
   - url: arazzo/pipedream-connect-account-onboarding-workflow.yml
     name: Pipedream Connect Account Onboarding
-    summary: Mint a Connect token for an end user, connect their account, and confirm it landed.
+    summary: Mint a Connect token for an end user, connect their account, and confirm
+      it landed.
   - url: arazzo/pipedream-deploy-trigger-workflow.yml
     name: Pipedream Deploy a Trigger
-    summary: Find a trigger for an app, deploy it for an external user, and confirm deployment.
+    summary: Find a trigger for an app, deploy it for an external user, and confirm
+      deployment.
   - url: arazzo/pipedream-pause-deployed-trigger-workflow.yml
     name: Pipedream Pause a Deployed Trigger
     summary: Retrieve a deployed trigger, then deactivate it via an update.
@@ -237,22 +204,28 @@ common:
     summary: Set the project environment webhook URL, then read it back to confirm.
   - url: arazzo/pipedream-provision-project-workflow.yml
     name: Pipedream Provision a Connect Project
-    summary: Create a Connect project, confirm it, and read its app configuration info.
+    summary: Create a Connect project, confirm it, and read its app configuration
+      info.
   - url: arazzo/pipedream-reload-component-props-workflow.yml
     name: Pipedream Reload Dynamic Component Props
-    summary: Retrieve a component, then reload its dynamic props from the current configuration.
+    summary: Retrieve a component, then reload its dynamic props from the current
+      configuration.
   - url: arazzo/pipedream-rotate-trigger-webhook-key-workflow.yml
     name: Pipedream Rotate a Trigger Webhook Signing Key
-    summary: Retrieve a trigger webhook, then regenerate its signing key and confirm the new key.
+    summary: Retrieve a trigger webhook, then regenerate its signing key and confirm
+      the new key.
   - url: arazzo/pipedream-run-action-for-app-workflow.yml
     name: Pipedream Discover and Run an Action
-    summary: Find an action for an app, inspect its props, and run it for an external user.
+    summary: Find an action for an app, inspect its props, and run it for an external
+      user.
   - url: arazzo/pipedream-set-trigger-webhooks-workflow.yml
     name: Pipedream Route Trigger Events to Webhooks
-    summary: Confirm a deployed trigger, set its webhook listeners, then read them back.
+    summary: Confirm a deployed trigger, set its webhook listeners, then read them
+      back.
   - url: arazzo/pipedream-set-trigger-workflows-workflow.yml
     name: Pipedream Route Trigger Events to Workflows
-    summary: Confirm a deployed trigger, bind it to Pipedream workflows, then read them back.
+    summary: Confirm a deployed trigger, bind it to Pipedream workflows, then read
+      them back.
   - url: arazzo/pipedream-token-validation-workflow.yml
     name: Pipedream Connect Token Mint and Validate
     summary: Create a Connect token for a user and validate it against a target app.
@@ -261,13 +234,16 @@ common:
     summary: Retrieve a deployed trigger, then poll its most recent emitted events.
   - url: arazzo/pipedream-update-project-settings-workflow.yml
     name: Pipedream Update Connect Project Settings
-    summary: Read a project's current settings, apply updates, and confirm the new values.
+    summary: Read a project's current settings, apply updates, and confirm the new
+      values.
   - url: arazzo/pipedream-usage-and-users-report-workflow.yml
     name: Pipedream Connect Usage and Users Report
-    summary: List external users for a project, then pull Connect usage records for a window.
+    summary: List external users for a project, then pull Connect usage records for
+      a window.
   - url: arazzo/pipedream-user-offboarding-workflow.yml
     name: Pipedream Offboard an External User
-    summary: List a user's accounts and deployed triggers, then delete the user and all their resources.
+    summary: List a user's accounts and deployed triggers, then delete the user and
+      all their resources.
 - type: Portal
   url: https://pipedream.com/
   name: Pipedream Platform

@@ -1,0 +1,1268 @@
+# Pipedream GraphQL Schema
+# Conceptual schema derived from the Pipedream REST API, OpenAPI 3.0.4 spec,
+# and public component monorepo. Pipedream does not currently expose a public
+# GraphQL endpoint. Source: https://pipedream.com/docs/rest-api/
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+scalar URL
+scalar ID
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum ExecutionStatusEnum {
+  RUNNING
+  SUCCESS
+  ERROR
+  TIMEOUT
+  CANCELLED
+  QUEUED
+}
+
+enum AuthStrategyEnum {
+  OAUTH2
+  API_KEY
+  NONE
+}
+
+enum ComponentTypeEnum {
+  ACTION
+  TRIGGER
+  SOURCE
+}
+
+enum EnvironmentEnum {
+  DEVELOPMENT
+  PRODUCTION
+}
+
+enum StepTypeEnum {
+  TRIGGER
+  ACTION
+  CODE
+}
+
+enum LogLevelEnum {
+  DEBUG
+  INFO
+  WARN
+  ERROR
+}
+
+enum SubscriptionStatusEnum {
+  ACTIVE
+  PAUSED
+  DELETED
+}
+
+enum TriggerTypeEnum {
+  HTTP
+  CRON
+  APP_WEBHOOK
+  POLLING
+}
+
+enum PlanTierEnum {
+  FREE
+  BASIC
+  ADVANCED
+  BUSINESS
+}
+
+enum AuditEventTypeEnum {
+  WORKFLOW_CREATED
+  WORKFLOW_UPDATED
+  WORKFLOW_DELETED
+  TRIGGER_DEPLOYED
+  TRIGGER_PAUSED
+  TRIGGER_DELETED
+  ACCOUNT_CONNECTED
+  ACCOUNT_DISCONNECTED
+  TOKEN_MINTED
+  TOKEN_REVOKED
+  SECRET_CREATED
+  SECRET_DELETED
+  USER_DELETED
+  API_KEY_ROTATED
+}
+
+# ---------------------------------------------------------------------------
+# Pagination
+# ---------------------------------------------------------------------------
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+interface Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+# ---------------------------------------------------------------------------
+# User and Workspace
+# ---------------------------------------------------------------------------
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  workspace: Workspace
+  apiKeys: [ApiCredential!]!
+}
+
+type Workspace {
+  id: ID!
+  name: String!
+  orgname: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  members: [User!]!
+  projects: ProjectConnection!
+  secrets: [Secret!]!
+  usage: Usage
+  billing: Billing
+  team: Team
+  auditLogs(first: Int, after: String, from: DateTime, to: DateTime): AuditConnection!
+}
+
+type Team {
+  id: ID!
+  name: String!
+  workspace: Workspace!
+  members: [User!]!
+  createdAt: DateTime!
+}
+
+type ApiCredential {
+  id: ID!
+  name: String!
+  keyPreview: String!
+  scopes: [String!]!
+  createdAt: DateTime!
+  expiresAt: DateTime
+  user: User!
+}
+
+type Token {
+  id: ID!
+  token: String!
+  expiresAt: DateTime!
+  projectId: ID!
+  externalUserId: String!
+  appSlugs: [String!]
+  createdAt: DateTime!
+}
+
+type Key {
+  id: ID!
+  name: String!
+  value: String
+  environment: EnvironmentEnum!
+  projectId: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Secret {
+  id: ID!
+  name: String!
+  environment: EnvironmentEnum!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Apps and Auth
+# ---------------------------------------------------------------------------
+
+type App {
+  id: ID!
+  slug: String!
+  name: String!
+  description: String
+  logoUrl: URL
+  authStrategy: AuthStrategyEnum!
+  categories: [AppCategory!]!
+  components(type: ComponentTypeEnum, first: Int, after: String): ComponentConnection!
+  actions(first: Int, after: String): ComponentConnection!
+  triggers(first: Int, after: String): ComponentConnection!
+  oauthConfig: OAuth2
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type AppCategory {
+  id: ID!
+  name: String!
+  slug: String!
+  apps(first: Int, after: String): AppConnection!
+}
+
+type OAuth2 {
+  clientId: String!
+  scopes: [String!]!
+  authorizationUrl: URL!
+  tokenUrl: URL!
+  pkceSupported: Boolean!
+}
+
+type APIKey {
+  id: ID!
+  app: App!
+  name: String!
+  keyPreview: String!
+  createdAt: DateTime!
+}
+
+type Account {
+  id: ID!
+  name: String!
+  app: App!
+  authStrategy: AuthStrategyEnum!
+  externalId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  oauthToken: OAuthToken
+}
+
+type OAuthToken {
+  accessToken: String
+  refreshToken: String
+  expiresAt: DateTime
+  scopes: [String!]!
+  rawResponse: JSON
+}
+
+type AppAuth {
+  app: App!
+  accounts: [Account!]!
+  defaultAccount: Account
+}
+
+type AppConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [AppEdge!]!
+  nodes: [App!]!
+}
+
+type AppEdge {
+  cursor: String!
+  node: App!
+}
+
+# ---------------------------------------------------------------------------
+# Components and Registry
+# ---------------------------------------------------------------------------
+
+type Component {
+  id: ID!
+  key: String!
+  name: String!
+  version: String!
+  type: ComponentTypeEnum!
+  description: String
+  app: App
+  props: [ComponentProp!]!
+  latestVersion: ComponentVersion!
+  versions: [ComponentVersion!]!
+  registry: Registry
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ComponentVersion {
+  id: ID!
+  componentKey: String!
+  version: String!
+  publishedAt: DateTime!
+  changelog: String
+  props: [ComponentProp!]!
+  code: String
+}
+
+type ComponentProp {
+  name: String!
+  label: String!
+  type: String!
+  description: String
+  required: Boolean!
+  defaultValue: JSON
+  options: [PropOption!]
+  remoteOptions: Boolean!
+  reloadPropsOnChange: Boolean!
+}
+
+type PropOption {
+  label: String!
+  value: JSON!
+}
+
+type Registry {
+  totalComponents: Int!
+  totalActions: Int!
+  totalTriggers: Int!
+  totalApps: Int!
+  lastSyncedAt: DateTime!
+}
+
+type DeployedComponent {
+  id: ID!
+  component: Component!
+  projectId: ID!
+  environment: EnvironmentEnum!
+  externalUserId: String
+  status: SubscriptionStatusEnum!
+  config: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ComponentConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [ComponentEdge!]!
+  nodes: [Component!]!
+}
+
+type ComponentEdge {
+  cursor: String!
+  node: Component!
+}
+
+# ---------------------------------------------------------------------------
+# Workflows and Steps
+# ---------------------------------------------------------------------------
+
+type Workflow {
+  id: ID!
+  name: String!
+  description: String
+  active: Boolean!
+  trigger: Trigger!
+  steps: [Step!]!
+  executions(first: Int, after: String, from: DateTime, to: DateTime): ExecutionConnection!
+  lastExecution: Execution
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  owner: User!
+  workspace: Workspace!
+}
+
+type Step {
+  id: ID!
+  name: String!
+  type: StepTypeEnum!
+  namespace: String!
+  component: Component
+  code: String
+  props: JSON
+  position: Int!
+  workflow: Workflow!
+}
+
+type Trigger {
+  id: ID!
+  type: TriggerTypeEnum!
+  component: Component
+  httpEndpoint: Http
+  cron: Cron
+  appWebhook: AppAuth
+  props: JSON
+  workflow: Workflow!
+}
+
+type Action {
+  id: ID!
+  step: Step!
+  component: Component!
+  props: JSON
+  result: StepResult
+}
+
+type CodeStep {
+  id: ID!
+  step: Step!
+  language: String!
+  code: String!
+  result: StepResult
+}
+
+type StepResult {
+  exports: JSON
+  logs: [LogEntry!]!
+  error: StepError
+  durationMs: Int!
+}
+
+type StepError {
+  message: String!
+  stack: String
+  code: String
+}
+
+type UserWorkflow {
+  id: ID!
+  user: User!
+  workflow: Workflow!
+  role: String!
+  createdAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# HTTP and Scheduling
+# ---------------------------------------------------------------------------
+
+type Http {
+  id: ID!
+  endpointUrl: URL!
+  method: String
+  headers: JSON
+  maxEventSizeBytes: Int
+  signingSecret: String
+}
+
+type Cron {
+  id: ID!
+  expression: String!
+  timezone: String!
+  nextRunAt: DateTime
+  lastRunAt: DateTime
+}
+
+type Timer {
+  id: ID!
+  intervalSeconds: Int
+  cron: Cron
+  nextFireAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Sources and Events
+# ---------------------------------------------------------------------------
+
+type Source {
+  id: ID!
+  name: String!
+  component: Component!
+  active: Boolean!
+  deployedComponent: DeployedComponent!
+  events(first: Int, after: String): EventConnection!
+  eventHistory(first: Int, after: String, from: DateTime, to: DateTime): EventHistoryConnection!
+  subscriptions: [Subscription!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Destination {
+  id: ID!
+  name: String!
+  type: String!
+  config: JSON!
+  createdAt: DateTime!
+}
+
+type Stream {
+  id: ID!
+  name: String!
+  source: Source!
+  subscriptions: [Subscription!]!
+  createdAt: DateTime!
+}
+
+type EventStore {
+  id: ID!
+  source: Source!
+  retentionDays: Int!
+  eventCount: Int!
+  sizeBytes: Int!
+}
+
+type Event {
+  id: ID!
+  sourceId: ID!
+  ts: DateTime!
+  headers: JSON
+  bodyRaw: String
+  body: JSON
+  metadata: JSON
+}
+
+type EventHistory {
+  id: ID!
+  sourceId: ID!
+  events: [Event!]!
+  from: DateTime!
+  to: DateTime!
+  count: Int!
+}
+
+type LiveEvent {
+  id: ID!
+  source: Source!
+  event: Event!
+  receivedAt: DateTime!
+}
+
+type TestEvent {
+  id: ID!
+  source: Source!
+  event: Event!
+  createdAt: DateTime!
+}
+
+type Emit {
+  id: ID!
+  sourceId: ID!
+  event: Event!
+  emittedAt: DateTime!
+}
+
+type EventConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [EventEdge!]!
+  nodes: [Event!]!
+}
+
+type EventEdge {
+  cursor: String!
+  node: Event!
+}
+
+type EventHistoryConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [EventHistoryEdge!]!
+  nodes: [EventHistory!]!
+}
+
+type EventHistoryEdge {
+  cursor: String!
+  node: EventHistory!
+}
+
+# ---------------------------------------------------------------------------
+# Executions and Logs
+# ---------------------------------------------------------------------------
+
+type Execution {
+  id: ID!
+  workflow: Workflow!
+  status: ExecutionStatusEnum!
+  trigger: Event
+  steps: [StepExecution!]!
+  durationMs: Int
+  creditsUsed: Float
+  startedAt: DateTime!
+  finishedAt: DateTime
+  error: StepError
+}
+
+type ExecutionStatus {
+  executionId: ID!
+  status: ExecutionStatusEnum!
+  progress: Float
+  message: String
+  updatedAt: DateTime!
+}
+
+type StepExecution {
+  id: ID!
+  execution: Execution!
+  step: Step!
+  status: ExecutionStatusEnum!
+  durationMs: Int!
+  result: StepResult
+  startedAt: DateTime!
+  finishedAt: DateTime
+}
+
+type Log {
+  id: ID!
+  executionId: ID!
+  stepId: ID!
+  entries: [LogEntry!]!
+  createdAt: DateTime!
+}
+
+type LogEntry {
+  ts: DateTime!
+  level: LogLevelEnum!
+  message: String!
+  data: JSON
+}
+
+type ExecutionConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [ExecutionEdge!]!
+  nodes: [Execution!]!
+}
+
+type ExecutionEdge {
+  cursor: String!
+  node: Execution!
+}
+
+# ---------------------------------------------------------------------------
+# Webhooks and Subscriptions
+# ---------------------------------------------------------------------------
+
+type WebhookEndpoint {
+  id: ID!
+  url: URL!
+  signingSecret: String
+  description: String
+  active: Boolean!
+  deployedTrigger: DeployedTrigger
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Subscription {
+  id: ID!
+  source: Source!
+  listener: ID!
+  listenerType: String!
+  status: SubscriptionStatusEnum!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DeployedTrigger {
+  id: ID!
+  component: Component!
+  projectId: ID!
+  environment: EnvironmentEnum!
+  externalUserId: String
+  active: Boolean!
+  webhooks: [TriggerWebhook!]!
+  workflowBindings: [WorkflowBinding!]!
+  events(first: Int, after: String): EventConnection!
+  config: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type TriggerWebhook {
+  id: ID!
+  deployedTrigger: DeployedTrigger!
+  url: URL!
+  signingKey: String
+  active: Boolean!
+  createdAt: DateTime!
+}
+
+type WorkflowBinding {
+  id: ID!
+  deployedTrigger: DeployedTrigger!
+  workflowId: ID!
+  active: Boolean!
+  createdAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Connect
+# ---------------------------------------------------------------------------
+
+type ConnectToken {
+  id: ID!
+  token: String!
+  expiresAt: DateTime!
+  projectId: ID!
+  externalUserId: String!
+  appSlugs: [String!]
+  usageLimit: Int
+  usageCount: Int!
+  createdAt: DateTime!
+}
+
+type ExternalUser {
+  id: String!
+  projectId: ID!
+  accounts: [Account!]!
+  deployedTriggers: [DeployedTrigger!]!
+  tokens: [ConnectToken!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Project {
+  id: ID!
+  name: String!
+  workspace: Workspace!
+  environments: [Environment!]!
+  externalUsers(first: Int, after: String): ExternalUserConnection!
+  webhookUrl: URL
+  usage(from: DateTime, to: DateTime): ConnectUsage
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Environment {
+  id: ID!
+  name: String!
+  type: EnvironmentEnum!
+  project: Project!
+  secrets: [Key!]!
+  deployedTriggers: [DeployedTrigger!]!
+  createdAt: DateTime!
+}
+
+type ConnectProxy {
+  id: ID!
+  projectId: ID!
+  externalUserId: String!
+  accountId: ID!
+  method: String!
+  url: URL!
+  headers: JSON
+  body: JSON
+  response: JSON
+  statusCode: Int
+  executedAt: DateTime!
+}
+
+type FileStash {
+  id: ID!
+  projectId: ID!
+  externalUserId: String!
+  files: [StashedFile!]!
+  sizeBytes: Int!
+}
+
+type StashedFile {
+  id: ID!
+  name: String!
+  mimeType: String
+  sizeBytes: Int!
+  url: URL!
+  createdAt: DateTime!
+}
+
+type ConnectUsage {
+  projectId: ID!
+  environment: EnvironmentEnum
+  from: DateTime!
+  to: DateTime!
+  actionRuns: Int!
+  triggerDeployments: Int!
+  proxyRequests: Int!
+  creditsUsed: Float!
+  records: [UsageRecord!]!
+}
+
+type ExternalUserConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [ExternalUserEdge!]!
+  nodes: [ExternalUser!]!
+}
+
+type ExternalUserEdge {
+  cursor: String!
+  node: ExternalUser!
+}
+
+# ---------------------------------------------------------------------------
+# Usage and Billing
+# ---------------------------------------------------------------------------
+
+type Usage {
+  workspaceId: ID!
+  period: String!
+  creditsUsed: Float!
+  creditsLimit: Float
+  executions: Int!
+  activeWorkflows: Int!
+  activeSources: Int!
+  records: [UsageRecord!]!
+  updatedAt: DateTime!
+}
+
+type UsageRecord {
+  date: DateTime!
+  creditsUsed: Float!
+  executions: Int!
+  actionRuns: Int!
+  triggerEvents: Int!
+}
+
+type CreditRecord {
+  id: ID!
+  workspaceId: ID!
+  amount: Float!
+  reason: String!
+  executionId: ID
+  createdAt: DateTime!
+}
+
+type Billing {
+  workspaceId: ID!
+  plan: Plan!
+  creditsPerDay: Int!
+  creditsRemaining: Int!
+  nextBillingDate: DateTime
+  paymentMethod: String
+}
+
+type Plan {
+  id: ID!
+  name: String!
+  tier: PlanTierEnum!
+  creditsPerDay: Int!
+  priceMonthlyUsd: Float
+  features: [String!]!
+  eventHistoryDays: Int!
+}
+
+# ---------------------------------------------------------------------------
+# Audit
+# ---------------------------------------------------------------------------
+
+type Audit {
+  workspaceId: ID!
+  events: [AuditEvent!]!
+  from: DateTime!
+  to: DateTime!
+  count: Int!
+}
+
+type AuditEvent {
+  id: ID!
+  type: AuditEventTypeEnum!
+  actor: User
+  resourceType: String!
+  resourceId: ID!
+  description: String!
+  metadata: JSON
+  occurredAt: DateTime!
+}
+
+type AuditConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [AuditEdge!]!
+  nodes: [AuditEvent!]!
+}
+
+type AuditEdge {
+  cursor: String!
+  node: AuditEvent!
+}
+
+type ProjectConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [ProjectEdge!]!
+  nodes: [Project!]!
+}
+
+type ProjectEdge {
+  cursor: String!
+  node: Project!
+}
+
+# ---------------------------------------------------------------------------
+# Root Query
+# ---------------------------------------------------------------------------
+
+type Query {
+  # Current authenticated user
+  me: User!
+
+  # Workspace
+  workspace(id: ID!): Workspace
+  workspaces(first: Int, after: String): WorkspaceConnection!
+
+  # Workflows
+  workflow(id: ID!): Workflow
+  workflows(first: Int, after: String, active: Boolean): WorkflowConnection!
+
+  # Executions
+  execution(id: ID!): Execution
+  executions(workflowId: ID!, first: Int, after: String, from: DateTime, to: DateTime, status: ExecutionStatusEnum): ExecutionConnection!
+
+  # Sources
+  source(id: ID!): Source
+  sources(first: Int, after: String, appSlug: String): SourceConnection!
+
+  # Events
+  event(sourceId: ID!, eventId: ID!): Event
+  events(sourceId: ID!, first: Int, after: String): EventConnection!
+
+  # Apps
+  app(slug: String!): App
+  apps(first: Int, after: String, q: String, categorySlug: String): AppConnection!
+  appCategories(first: Int, after: String): AppCategoryConnection!
+
+  # Accounts
+  account(id: ID!): Account
+  accounts(first: Int, after: String, appSlug: String): AccountConnection!
+
+  # Components
+  component(key: String!, version: String): Component
+  components(first: Int, after: String, appSlug: String, type: ComponentTypeEnum, q: String): ComponentConnection!
+
+  # Deployed components
+  deployedComponent(id: ID!): DeployedComponent
+  deployedComponents(projectId: ID!, environment: EnvironmentEnum, externalUserId: String, first: Int, after: String): DeployedComponentConnection!
+
+  # Deployed triggers
+  deployedTrigger(id: ID!): DeployedTrigger
+  deployedTriggers(projectId: ID!, environment: EnvironmentEnum, externalUserId: String, first: Int, after: String): DeployedTriggerConnection!
+
+  # Connect
+  project(id: ID!): Project
+  projects(first: Int, after: String): ProjectConnection!
+  externalUser(projectId: ID!, externalUserId: String!): ExternalUser
+  externalUsers(projectId: ID!, first: Int, after: String): ExternalUserConnection!
+  connectToken(token: String!): ConnectToken
+  connectUsage(projectId: ID!, environment: EnvironmentEnum, from: DateTime!, to: DateTime!): ConnectUsage!
+
+  # Secrets and keys
+  secret(id: ID!): Secret
+  secrets(workspaceId: ID!, environment: EnvironmentEnum): [Secret!]!
+  key(id: ID!): Key
+  keys(projectId: ID!, environment: EnvironmentEnum): [Key!]!
+
+  # Webhooks
+  webhookEndpoint(id: ID!): WebhookEndpoint
+  webhookEndpoints(first: Int, after: String): WebhookEndpointConnection!
+
+  # Usage and billing
+  usage(workspaceId: ID!, period: String): Usage!
+  billing(workspaceId: ID!): Billing!
+
+  # Audit
+  auditLog(workspaceId: ID!, from: DateTime!, to: DateTime!, first: Int, after: String): AuditConnection!
+
+  # Registry
+  registry: Registry!
+}
+
+# ---------------------------------------------------------------------------
+# Root Mutation
+# ---------------------------------------------------------------------------
+
+type Mutation {
+  # Workflows
+  createWorkflow(input: CreateWorkflowInput!): Workflow!
+  updateWorkflow(id: ID!, input: UpdateWorkflowInput!): Workflow!
+  deleteWorkflow(id: ID!): DeleteResult!
+  activateWorkflow(id: ID!): Workflow!
+  deactivateWorkflow(id: ID!): Workflow!
+
+  # Steps
+  addStep(workflowId: ID!, input: AddStepInput!): Step!
+  updateStep(id: ID!, input: UpdateStepInput!): Step!
+  deleteStep(id: ID!): DeleteResult!
+
+  # Sources
+  deploySource(input: DeploySourceInput!): Source!
+  pauseSource(id: ID!): Source!
+  resumeSource(id: ID!): Source!
+  deleteSource(id: ID!): DeleteResult!
+
+  # Deployed triggers
+  deployTrigger(input: DeployTriggerInput!): DeployedTrigger!
+  pauseDeployedTrigger(id: ID!): DeployedTrigger!
+  resumeDeployedTrigger(id: ID!): DeployedTrigger!
+  updateDeployedTrigger(id: ID!, input: UpdateDeployedTriggerInput!): DeployedTrigger!
+  deleteDeployedTrigger(id: ID!): DeleteResult!
+
+  # Webhook endpoints
+  setTriggerWebhooks(deployedTriggerId: ID!, webhookUrls: [URL!]!): [TriggerWebhook!]!
+  setTriggerWorkflows(deployedTriggerId: ID!, workflowIds: [ID!]!): [WorkflowBinding!]!
+  rotateTriggerWebhookKey(webhookId: ID!): TriggerWebhook!
+
+  # Accounts
+  deleteAccount(id: ID!): DeleteResult!
+  deleteAccountsByApp(appSlug: String!): BatchDeleteResult!
+
+  # Connect tokens
+  createConnectToken(input: CreateConnectTokenInput!): ConnectToken!
+  revokeConnectToken(token: String!): DeleteResult!
+
+  # External users
+  deleteExternalUser(projectId: ID!, externalUserId: String!): DeleteResult!
+
+  # Projects
+  createProject(input: CreateProjectInput!): Project!
+  updateProject(id: ID!, input: UpdateProjectInput!): Project!
+  setProjectWebhookUrl(projectId: ID!, environment: EnvironmentEnum!, url: URL!): Environment!
+
+  # Secrets and keys
+  createSecret(input: CreateSecretInput!): Secret!
+  deleteSecret(id: ID!): DeleteResult!
+  createKey(input: CreateKeyInput!): Key!
+  deleteKey(id: ID!): DeleteResult!
+
+  # API credentials
+  createApiCredential(name: String!, scopes: [String!]): ApiCredential!
+  deleteApiCredential(id: ID!): DeleteResult!
+
+  # Actions
+  runAction(input: RunActionInput!): ActionResult!
+
+  # Connect proxy
+  proxyRequest(input: ProxyRequestInput!): ConnectProxy!
+}
+
+# ---------------------------------------------------------------------------
+# Root Subscription
+# ---------------------------------------------------------------------------
+
+type Subscription {
+  liveEvents(sourceId: ID!): LiveEvent!
+  executionStatus(executionId: ID!): ExecutionStatus!
+  auditEvents(workspaceId: ID!): AuditEvent!
+}
+
+# ---------------------------------------------------------------------------
+# Input Types
+# ---------------------------------------------------------------------------
+
+input CreateWorkflowInput {
+  name: String!
+  description: String
+  triggerId: ID
+  triggerType: TriggerTypeEnum
+  triggerProps: JSON
+}
+
+input UpdateWorkflowInput {
+  name: String
+  description: String
+  active: Boolean
+}
+
+input AddStepInput {
+  type: StepTypeEnum!
+  name: String!
+  componentKey: String
+  componentVersion: String
+  code: String
+  props: JSON
+  position: Int
+}
+
+input UpdateStepInput {
+  name: String
+  props: JSON
+  code: String
+  position: Int
+}
+
+input DeploySourceInput {
+  componentKey: String!
+  componentVersion: String
+  projectId: ID!
+  environment: EnvironmentEnum!
+  externalUserId: String
+  config: JSON
+}
+
+input DeployTriggerInput {
+  componentKey: String!
+  componentVersion: String
+  projectId: ID!
+  environment: EnvironmentEnum!
+  externalUserId: String!
+  accountId: ID
+  config: JSON
+}
+
+input UpdateDeployedTriggerInput {
+  active: Boolean
+  config: JSON
+}
+
+input CreateConnectTokenInput {
+  projectId: ID!
+  externalUserId: String!
+  appSlugs: [String!]
+  usageLimit: Int
+  expiresInSeconds: Int
+}
+
+input CreateProjectInput {
+  name: String!
+  workspaceId: ID!
+}
+
+input UpdateProjectInput {
+  name: String
+  webhookUrl: URL
+}
+
+input CreateSecretInput {
+  workspaceId: ID!
+  name: String!
+  value: String!
+  environment: EnvironmentEnum!
+}
+
+input CreateKeyInput {
+  projectId: ID!
+  name: String!
+  value: String!
+  environment: EnvironmentEnum!
+}
+
+input RunActionInput {
+  componentKey: String!
+  componentVersion: String
+  projectId: ID!
+  environment: EnvironmentEnum!
+  externalUserId: String!
+  accountId: ID
+  props: JSON!
+}
+
+input ProxyRequestInput {
+  projectId: ID!
+  environment: EnvironmentEnum!
+  externalUserId: String!
+  accountId: ID!
+  method: String!
+  url: URL!
+  headers: JSON
+  body: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Result / Payload Types
+# ---------------------------------------------------------------------------
+
+type DeleteResult {
+  id: ID!
+  success: Boolean!
+}
+
+type BatchDeleteResult {
+  deletedCount: Int!
+  success: Boolean!
+}
+
+type ActionResult {
+  componentKey: String!
+  exports: JSON
+  logs: [LogEntry!]!
+  error: StepError
+  durationMs: Int!
+  creditsUsed: Float
+}
+
+# ---------------------------------------------------------------------------
+# Additional Connection Types
+# ---------------------------------------------------------------------------
+
+type WorkspaceConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [WorkspaceEdge!]!
+  nodes: [Workspace!]!
+}
+
+type WorkspaceEdge {
+  cursor: String!
+  node: Workspace!
+}
+
+type WorkflowConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [WorkflowEdge!]!
+  nodes: [Workflow!]!
+}
+
+type WorkflowEdge {
+  cursor: String!
+  node: Workflow!
+}
+
+type SourceConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [SourceEdge!]!
+  nodes: [Source!]!
+}
+
+type SourceEdge {
+  cursor: String!
+  node: Source!
+}
+
+type AccountConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [AccountEdge!]!
+  nodes: [Account!]!
+}
+
+type AccountEdge {
+  cursor: String!
+  node: Account!
+}
+
+type AppCategoryConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [AppCategoryEdge!]!
+  nodes: [AppCategory!]!
+}
+
+type AppCategoryEdge {
+  cursor: String!
+  node: AppCategory!
+}
+
+type DeployedComponentConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [DeployedComponentEdge!]!
+  nodes: [DeployedComponent!]!
+}
+
+type DeployedComponentEdge {
+  cursor: String!
+  node: DeployedComponent!
+}
+
+type DeployedTriggerConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [DeployedTriggerEdge!]!
+  nodes: [DeployedTrigger!]!
+}
+
+type DeployedTriggerEdge {
+  cursor: String!
+  node: DeployedTrigger!
+}
+
+type WebhookEndpointConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [WebhookEndpointEdge!]!
+  nodes: [WebhookEndpoint!]!
+}
+
+type WebhookEndpointEdge {
+  cursor: String!
+  node: WebhookEndpoint!
+}
