@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MCP",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke MCP Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://remote.mcp.pipedream.net/v3/",
+            "headers": [
+              {
+                "name": "x-pd-project-id",
+                "value": ""
+              },
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              },
+              {
+                "name": "x-pd-external-user-id",
+                "value": ""
+              },
+              {
+                "name": "x-pd-app-slug",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generic JSON-RPC 2.0 entry point that handles MCP methods such as `initialize`, `tools/list`, `tools/call`, and `notifications/*`. The transport (SSE or streamable HTTP) is negotiated automatically based on the `Accept` request header."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
