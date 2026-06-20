@@ -14,7 +14,7 @@ description: 'Pipedream is a developer-centric integration platform providing th
 type: Index
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - ProCode_API_Composition
 - Workflows
