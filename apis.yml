@@ -80,19 +80,19 @@ apis:
     url: json-schema/pipedream-connectusage-schema.json
   - type: JSONStructure
     url: json-structure/pipedream-app-structure.json
-  - type: Example
+  - type: Examples
     url: examples/pipedream-list-apps-example.json
-  - type: Example
+  - type: Examples
     url: examples/pipedream-create-connect-token-example.json
-  - type: Example
+  - type: Examples
     url: examples/pipedream-list-accounts-example.json
-  - type: Example
+  - type: Examples
     url: examples/pipedream-run-action-example.json
-  - type: Example
+  - type: Examples
     url: examples/pipedream-deploy-trigger-example.json
-  - type: Example
+  - type: Examples
     url: examples/pipedream-oauth-token-example.json
-  - type: Example
+  - type: Examples
     url: examples/pipedream-proxy-request-example.json
   - url: graphql/pipedream-graphql.md
     type: GraphQL
@@ -123,13 +123,13 @@ apis:
     url: https://pipedream.com/docs/connect/api-reference/sdks
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/openapi/pipedream-openapi.yml
-  - type: SDK
+  - type: SDKs
     name: Pipedream TypeScript SDK
     url: https://github.com/PipedreamHQ/pipedream-sdk-typescript
-  - type: SDK
+  - type: SDKs
     name: Pipedream Python SDK
     url: https://github.com/PipedreamHQ/pipedream-sdk-python
-  - type: SDK
+  - type: SDKs
     name: Pipedream Java SDK
     url: https://github.com/PipedreamHQ/pipedream-sdk-java
   - type: SamplesRepo
@@ -169,81 +169,65 @@ apis:
   - type: SamplesRepo
     name: mcp-chat
     url: https://github.com/PipedreamHQ/mcp-chat
-  - type: Example
+  - type: Examples
     url: examples/pipedream-mcp-tools-list-example.json
-  - type: Example
+  - type: Examples
     url: examples/pipedream-mcp-tools-call-example.json
 common:
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/pipedream-account-audit-cleanup-workflow.yml
-    name: Pipedream Audit and Clean Up Accounts by App
-    summary: List a user's accounts for an app, inspect one, and remove all accounts
-      for that app.
-  - url: arazzo/pipedream-app-discovery-workflow.yml
-    name: Pipedream App Discovery
-    summary: Browse app categories, search apps in a category, and retrieve one app's
-      metadata.
-  - url: arazzo/pipedream-configure-component-prop-workflow.yml
-    name: Pipedream Configure a Component Prop
-    summary: Retrieve a component, then fetch the remote options for one of its props.
-  - url: arazzo/pipedream-connect-account-onboarding-workflow.yml
-    name: Pipedream Connect Account Onboarding
-    summary: Mint a Connect token for an end user, connect their account, and confirm
-      it landed.
-  - url: arazzo/pipedream-deploy-trigger-workflow.yml
-    name: Pipedream Deploy a Trigger
-    summary: Find a trigger for an app, deploy it for an external user, and confirm
-      deployment.
-  - url: arazzo/pipedream-pause-deployed-trigger-workflow.yml
-    name: Pipedream Pause a Deployed Trigger
-    summary: Retrieve a deployed trigger, then deactivate it via an update.
-  - url: arazzo/pipedream-project-environment-webhook-workflow.yml
-    name: Pipedream Configure Project Environment Webhook
-    summary: Set the project environment webhook URL, then read it back to confirm.
-  - url: arazzo/pipedream-provision-project-workflow.yml
-    name: Pipedream Provision a Connect Project
-    summary: Create a Connect project, confirm it, and read its app configuration
-      info.
-  - url: arazzo/pipedream-reload-component-props-workflow.yml
-    name: Pipedream Reload Dynamic Component Props
-    summary: Retrieve a component, then reload its dynamic props from the current
-      configuration.
-  - url: arazzo/pipedream-rotate-trigger-webhook-key-workflow.yml
-    name: Pipedream Rotate a Trigger Webhook Signing Key
-    summary: Retrieve a trigger webhook, then regenerate its signing key and confirm
-      the new key.
-  - url: arazzo/pipedream-run-action-for-app-workflow.yml
-    name: Pipedream Discover and Run an Action
-    summary: Find an action for an app, inspect its props, and run it for an external
-      user.
-  - url: arazzo/pipedream-set-trigger-webhooks-workflow.yml
-    name: Pipedream Route Trigger Events to Webhooks
-    summary: Confirm a deployed trigger, set its webhook listeners, then read them
-      back.
-  - url: arazzo/pipedream-set-trigger-workflows-workflow.yml
-    name: Pipedream Route Trigger Events to Workflows
-    summary: Confirm a deployed trigger, bind it to Pipedream workflows, then read
-      them back.
-  - url: arazzo/pipedream-token-validation-workflow.yml
-    name: Pipedream Connect Token Mint and Validate
-    summary: Create a Connect token for a user and validate it against a target app.
-  - url: arazzo/pipedream-trigger-events-poll-workflow.yml
-    name: Pipedream Inspect Deployed Trigger Events
-    summary: Retrieve a deployed trigger, then poll its most recent emitted events.
-  - url: arazzo/pipedream-update-project-settings-workflow.yml
-    name: Pipedream Update Connect Project Settings
-    summary: Read a project's current settings, apply updates, and confirm the new
-      values.
-  - url: arazzo/pipedream-usage-and-users-report-workflow.yml
-    name: Pipedream Connect Usage and Users Report
-    summary: List external users for a project, then pull Connect usage records for
-      a window.
-  - url: arazzo/pipedream-user-offboarding-workflow.yml
-    name: Pipedream Offboard an External User
-    summary: List a user's accounts and deployed triggers, then delete the user and
-      all their resources.
+- type: Arazzo
+  url: arazzo/pipedream-account-audit-cleanup-workflow.yml
+  name: Pipedream Audit and Clean Up Accounts by App
+- type: Arazzo
+  url: arazzo/pipedream-app-discovery-workflow.yml
+  name: Pipedream App Discovery
+- type: Arazzo
+  url: arazzo/pipedream-configure-component-prop-workflow.yml
+  name: Pipedream Configure a Component Prop
+- type: Arazzo
+  url: arazzo/pipedream-connect-account-onboarding-workflow.yml
+  name: Pipedream Connect Account Onboarding
+- type: Arazzo
+  url: arazzo/pipedream-deploy-trigger-workflow.yml
+  name: Pipedream Deploy a Trigger
+- type: Arazzo
+  url: arazzo/pipedream-pause-deployed-trigger-workflow.yml
+  name: Pipedream Pause a Deployed Trigger
+- type: Arazzo
+  url: arazzo/pipedream-project-environment-webhook-workflow.yml
+  name: Pipedream Configure Project Environment Webhook
+- type: Arazzo
+  url: arazzo/pipedream-provision-project-workflow.yml
+  name: Pipedream Provision a Connect Project
+- type: Arazzo
+  url: arazzo/pipedream-reload-component-props-workflow.yml
+  name: Pipedream Reload Dynamic Component Props
+- type: Arazzo
+  url: arazzo/pipedream-rotate-trigger-webhook-key-workflow.yml
+  name: Pipedream Rotate a Trigger Webhook Signing Key
+- type: Arazzo
+  url: arazzo/pipedream-run-action-for-app-workflow.yml
+  name: Pipedream Discover and Run an Action
+- type: Arazzo
+  url: arazzo/pipedream-set-trigger-webhooks-workflow.yml
+  name: Pipedream Route Trigger Events to Webhooks
+- type: Arazzo
+  url: arazzo/pipedream-set-trigger-workflows-workflow.yml
+  name: Pipedream Route Trigger Events to Workflows
+- type: Arazzo
+  url: arazzo/pipedream-token-validation-workflow.yml
+  name: Pipedream Connect Token Mint and Validate
+- type: Arazzo
+  url: arazzo/pipedream-trigger-events-poll-workflow.yml
+  name: Pipedream Inspect Deployed Trigger Events
+- type: Arazzo
+  url: arazzo/pipedream-update-project-settings-workflow.yml
+  name: Pipedream Update Connect Project Settings
+- type: Arazzo
+  url: arazzo/pipedream-usage-and-users-report-workflow.yml
+  name: Pipedream Connect Usage and Users Report
+- type: Arazzo
+  url: arazzo/pipedream-user-offboarding-workflow.yml
+  name: Pipedream Offboard an External User
 - type: Portal
   url: https://pipedream.com/
   name: Pipedream Platform
@@ -274,13 +258,13 @@ common:
 - type: Support
   url: https://pipedream.com/support
   name: Pipedream Support
-- type: Forum
+- type: Forums
   url: https://pipedream.com/community/
   name: Pipedream Community Forum
 - type: Pricing
   url: https://pipedream.com/pricing/
   name: Pipedream Pricing
-- type: SignUp
+- type: Signup
   url: https://pipedream.com/auth/signup
   name: Sign Up
 - type: Login
@@ -304,16 +288,16 @@ common:
 - type: SourceRepo
   url: https://github.com/PipedreamHQ/pipedream
   name: Pipedream Components Monorepo (11,400+ stars)
-- type: SDK
+- type: SDKs
   url: https://github.com/PipedreamHQ/pipedream-sdk-typescript
   name: '@pipedream/sdk (TypeScript)'
-- type: SDK
+- type: SDKs
   url: https://github.com/PipedreamHQ/pipedream-sdk-python
   name: pipedream (Python)
-- type: SDK
+- type: SDKs
   url: https://github.com/PipedreamHQ/pipedream-sdk-java
   name: pipedream-java
-- type: SDK
+- type: SDKs
   url: https://github.com/PipedreamHQ/pipedream-go
   name: pipedream-go (community)
 - type: CLI
@@ -372,7 +356,7 @@ common:
   - https://pipedream.com/docs/connect/mcp
   - https://pipedream.com/docs/changelog
   updated: '2026-05-22'
-- type: LLMsTxt
+- type: LlmsText
   url: https://pipedream.com/llms.txt
 maintainers:
 - FN: Kin Lane
