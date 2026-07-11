@@ -1,0 +1,109 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pipedream-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/pipedream-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.pipedream.com/v1/oauth/token
+  description: A short-lived OAuth access token for server-side requests. Generate one via the
+    Generate OAuth Token flow or automatically when initializing the SDK client.
+scopes:
+- scope: '*'
+  description: Full access to every OAuth-protected endpoint.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:*
+  description: Full access to all Connect API endpoints (components, projects, triggers, accounts,
+    etc.).
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:accounts:read
+  description: List and fetch Connect accounts for an external user.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:accounts:write
+  description: Create or remove Connect accounts.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:actions:*
+  description: Full access to Connect actions.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:deployed_triggers:read
+  description: Read deployed triggers and related data like events, pipelines and webhooks.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:deployed_triggers:write
+  description: Modify or delete deployed triggers.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:projects:read
+  description: List and fetch projects owned by the workspace.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:projects:write
+  description: Create, update, or delete projects owned by the workspace.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:proxy
+  description: Invoke the Connect proxy.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:tokens:create
+  description: Create Connect session tokens.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:triggers:*
+  description: Full access to Connect triggers.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:usage:read
+  description: List Connect usage records for a time window.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:users:read
+  description: List and fetch external users
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:users:write
+  description: Delete external users.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
+- scope: connect:workflow:invoke
+  description: Invoke Connect workflows on behalf of a user.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/pipedream-openapi.yml
