@@ -174,6 +174,8 @@ apis:
   - type: Examples
     url: examples/pipedream-mcp-tools-call-example.json
 common:
+- type: DomainSecurity
+  url: security/pipedream-domain-security.yml
 - type: Authentication
   url: authentication/pipedream-authentication.yml
 - type: OAuthScopes

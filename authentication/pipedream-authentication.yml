@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pipedream-mcp-openapi.yml, openapi/pipedream-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: OAuth access token
+  sources:
+  - openapi/pipedream-mcp-openapi.yml
+  - openapi/pipedream-openapi.yml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.pipedream.com/v1/oauth/token
+    scopes: 16
+  description: A short-lived OAuth access token for server-side requests. Generate one via the
+    Generate OAuth Token flow or automatically when initializing the SDK client.
+  sources:
+  - openapi/pipedream-openapi.yml
