@@ -1,0 +1,113 @@
+openapi: 3.0.3
+info:
+  title: Pipedream MCP Server Accounts App Categories API
+  version: v3
+  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  contact:
+    name: Pipedream
+    url: https://pipedream.com/docs/connect/mcp
+  license:
+    name: Proprietary
+    url: https://pipedream.com/terms
+servers:
+- url: https://remote.mcp.pipedream.net/v3
+  description: Hosted Pipedream MCP server
+security:
+- bearerAuth: []
+tags:
+- name: App Categories
+paths:
+  /v1/connect/app_categories:
+    get:
+      summary: List App Categories
+      description: Retrieve all available categories for integrated apps
+      operationId: listAppCategories
+      x-fern-sdk-group-name: appCategories
+      x-fern-sdk-method-name: list
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: apps listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAppCategoriesResponse'
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .build();\n\n  client.appCategories().list();\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.appCategories.list();\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.app_categories.list()\n"
+      tags:
+      - App Categories
+  /v1/connect/app_categories/{id}:
+    get:
+      summary: Retrieve App Category
+      description: Get details of a specific app category by its ID
+      operationId: retrieveAppCategory
+      x-fern-sdk-group-name: appCategories
+      x-fern-sdk-method-name: retrieve
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the app category to retrieve
+        schema:
+          pattern: ^appcar_[0-9a-zA-Z]+$
+          type: string
+      responses:
+        '200':
+          description: app retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAppCategoryResponse'
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .build();\n\n  client.appCategories().retrieve(\"id\");\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.appCategories.retrieve(\"id\");\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.app_categories.retrieve(\n  id=\"id\",\n)\n"
+      tags:
+      - App Categories
+components:
+  schemas:
+    GetAppCategoryResponse:
+      $ref: '#/components/schemas/AppCategory'
+    AppCategory:
+      type: object
+      description: Response object for a Pipedream app category
+      properties:
+        id:
+          type: string
+          description: ID of the app category
+        name:
+          type: string
+          description: The human-readable name of the app category
+        description:
+          type: string
+          description: A short description of the app category
+          nullable: true
+    ListAppCategoriesResponse:
+      type: array
+      description: Response received when listing app categories
+      items:
+        $ref: '#/components/schemas/AppCategory'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth access token

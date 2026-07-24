@@ -1,0 +1,336 @@
+openapi: 3.0.3
+info:
+  title: Pipedream MCP Server Accounts Tokens API
+  version: v3
+  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  contact:
+    name: Pipedream
+    url: https://pipedream.com/docs/connect/mcp
+  license:
+    name: Proprietary
+    url: https://pipedream.com/terms
+servers:
+- url: https://remote.mcp.pipedream.net/v3
+  description: Hosted Pipedream MCP server
+security:
+- bearerAuth: []
+tags:
+- name: Tokens
+paths:
+  /v1/connect/{project_id}/tokens:
+    parameters:
+    - name: project_id
+      in: path
+      required: true
+      description: The project ID, which starts with `proj_`.
+      schema:
+        type: string
+        pattern: ^proj_[a-zA-Z0-9]+$
+      x-fern-sdk-variable: project_id
+    post:
+      summary: Create Connect Token
+      description: Generate a Connect token to use for client-side authentication
+      operationId: createToken
+      x-fern-sdk-group-name: tokens
+      x-fern-sdk-method-name: create
+      security:
+      - OAuth2: []
+      parameters:
+      - name: x-pd-environment
+        in: header
+        required: true
+        description: The environment in which the server client is running
+        schema:
+          $ref: '#/components/schemas/ProjectEnvironment'
+      responses:
+        '200':
+          description: connect token created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTokenResponse'
+        '429':
+          description: too many requests
+          headers:
+            Retry-After:
+              description: Number of seconds until the rate limit resets
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: The rate limit threshold
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Number of requests remaining (always 0 when throttled)
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              description: Unix timestamp when the rate limit resets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Throttled
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenOpts'
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.tokens.requests.CreateTokenOpts;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .projectId(\"YOUR_PROJECT_ID\")\n    .build();\n\n  client.tokens().create(\n    CreateTokenOpts\n    .builder()\n    .externalUserId(\"external_user_id\")\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.tokens.create({\n  externalUserId: \"external_user_id\"\n});\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.tokens.create(\n  external_user_id=\"external_user_id\",\n)\n"
+      tags:
+      - Tokens
+  /v1/connect/tokens/{ctok}/validate:
+    get:
+      summary: Validate Connect Token
+      description: Confirm the validity of a Connect token
+      operationId: validateToken
+      x-fern-sdk-group-name: tokens
+      x-fern-sdk-method-name: validate
+      parameters:
+      - name: ctok
+        in: path
+        schema:
+          $ref: '#/components/schemas/ConnectToken'
+        required: true
+      - name: app_id
+        in: query
+        required: true
+        description: The app ID to validate against
+        schema:
+          type: string
+      - name: account_id
+        in: query
+        required: false
+        description: An existing account ID to reconnect. Must belong to the app identified by app_id.
+        schema:
+          type: string
+      - name: oauth_app_id
+        in: query
+        required: false
+        description: The OAuth app ID to validate against (if the token is for an OAuth app)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: connect token validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponse'
+        '429':
+          description: too many requests
+          headers:
+            Retry-After:
+              description: Number of seconds until the rate limit resets
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: The rate limit threshold
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Number of requests remaining (always 0 when throttled)
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              description: Unix timestamp when the rate limit resets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Throttled
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.tokens.requests.TokensValidateRequest;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .build();\n\n  client.tokens().validate(\n    \"ctok\",\n    TokensValidateRequest\n    .builder()\n    .appId(\"app_id\")\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.tokens.validate(\"ctok\", {\n  appId: \"app_id\",\n  accountId: \"account_id\",\n  oauthAppId: \"oauth_app_id\"\n});\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.tokens.validate(\n  ctok=\"ctok\",\n  app_id=\"app_id\",\n  account_id=\"account_id\",\n  oauth_app_id=\"oauth_app_id\",\n)\n"
+      tags:
+      - Tokens
+components:
+  schemas:
+    CreateTokenOpts:
+      type: object
+      description: Request object for creating a connect token
+      required:
+      - external_user_id
+      - project_id
+      properties:
+        allowed_origins:
+          type: array
+          items:
+            type: string
+          description: List of allowed origins for CORS
+        error_redirect_uri:
+          type: string
+          description: URI to redirect to on error
+        expires_in:
+          type: integer
+          description: Token TTL in seconds (max 14400 = 4 hours). Defaults to 4 hours if not specified.
+        external_user_id:
+          type: string
+          description: Your end user ID, for whom you're creating the token
+        scope:
+          type: string
+          description: Space-separated scopes to restrict token permissions. Defaults to 'connect:*' if not specified. See https://pipedream.com/docs/connect/api-reference/authentication#connect-token-scopes for more information.
+        success_redirect_uri:
+          type: string
+          description: URI to redirect to on success
+        webhook_uri:
+          type: string
+          description: Webhook URI for notifications
+        allow_progressive_scopes:
+          type: boolean
+          default: false
+          description: When true, end users may authorize a subset of the app's OAuth scopes; only the app's functional scopes (needed for the post-OAuth test request) are enforced. Defaults to false.
+    AppAuthType:
+      type: string
+      enum:
+      - keys
+      - oauth
+      - none
+      description: The authentication type used by the app
+      nullable: true
+    ValidateTokenResponse:
+      type: object
+      description: Response received when validating a connect token
+      required:
+      - error
+      - success
+      properties:
+        app:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/App'
+        error:
+          type: string
+          description: Error message if validation failed
+          nullable: true
+        error_redirect_uri:
+          type: string
+          description: URI to redirect to on error
+          nullable: true
+        oauth_app_id:
+          type: string
+          description: OAuth app ID if applicable
+          nullable: true
+        project_app_name:
+          type: string
+          description: Name of the project app
+          nullable: true
+        project_environment:
+          type: string
+          description: Environment of the project
+          nullable: true
+        project_id:
+          type: string
+          description: ID of the project
+          nullable: true
+        project_support_email:
+          type: string
+          description: Support email for the project
+          nullable: true
+        success:
+          type: boolean
+          description: Whether the token validation was successful
+        success_redirect_uri:
+          type: string
+          description: URI to redirect to on success
+          nullable: true
+    CreateTokenResponse:
+      type: object
+      description: Response received after creating a connect token
+      required:
+      - connect_link_url
+      - expires_at
+      - token
+      properties:
+        connect_link_url:
+          type: string
+          description: The Connect Link URL
+        expires_at:
+          type: string
+          format: date-time
+          description: The expiration time of the token in ISO 8601 format
+        token:
+          $ref: '#/components/schemas/ConnectToken'
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
+    App:
+      type: object
+      description: Response object for a Pipedream app's metadata
+      required:
+      - name_slug
+      - name
+      - img_src
+      - custom_fields_json
+      - categories
+      - featured_weight
+      properties:
+        id:
+          type: string
+          description: ID of the app. Only applies for OAuth apps.
+          nullable: true
+        name_slug:
+          type: string
+          description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
+        name:
+          type: string
+          description: The human-readable name of the app
+        auth_type:
+          $ref: '#/components/schemas/AppAuthType'
+        description:
+          type: string
+          description: A short description of the app
+          nullable: true
+        img_src:
+          type: string
+          description: The URL to the app's logo
+        custom_fields_json:
+          type: string
+          description: A JSON string representing the custom fields for the app
+          nullable: true
+        categories:
+          type: array
+          items:
+            type: string
+          description: Categories associated with the app
+        featured_weight:
+          type: number
+          description: A rough directional ordering of app popularity, subject to changes by Pipedream
+    ConnectToken:
+      type: string
+      pattern: ^ctok_[0-9a-f]{32}$
+      description: An authentication token with a limited lifespan
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth access token

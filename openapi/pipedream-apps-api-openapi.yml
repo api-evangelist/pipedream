@@ -1,0 +1,457 @@
+openapi: 3.0.3
+info:
+  title: Pipedream MCP Server Accounts Apps API
+  version: v3
+  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  contact:
+    name: Pipedream
+    url: https://pipedream.com/docs/connect/mcp
+  license:
+    name: Proprietary
+    url: https://pipedream.com/terms
+servers:
+- url: https://remote.mcp.pipedream.net/v3
+  description: Hosted Pipedream MCP server
+security:
+- bearerAuth: []
+tags:
+- name: Apps
+paths:
+  /v1/app_categories:
+    get:
+      summary: List App Categories
+      description: Retrieve all available categories for integrated apps
+      x-fern-ignore: true
+      operationId: listAppCategoriesBase
+      x-fern-sdk-group-name: appCategories
+      x-fern-sdk-method-name: list
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: apps listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAppCategoriesResponse'
+      tags:
+      - Apps
+  /v1/app_categories/{id}:
+    get:
+      summary: Retrieve App Category
+      description: Get details of a specific app category by its ID
+      x-fern-ignore: true
+      operationId: retrieveAppCategoryBase
+      x-fern-sdk-group-name: appCategories
+      x-fern-sdk-method-name: retrieve
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the app category to retrieve
+        schema:
+          pattern: ^appcar_[0-9a-zA-Z]+$
+          type: string
+      responses:
+        '200':
+          description: app retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAppCategoryResponse'
+      tags:
+      - Apps
+  /v1/apps:
+    get:
+      summary: List Apps
+      description: Retrieve all available apps with optional filtering and sorting
+      x-fern-ignore: true
+      operationId: listAppsBase
+      x-fern-sdk-group-name: apps
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.after
+        next_cursor: $response.page_info.end_cursor
+        results: $response.data
+      parameters:
+      - name: after
+        in: query
+        required: false
+        description: The cursor to start from for pagination
+        schema:
+          type: string
+      - name: before
+        in: query
+        required: false
+        description: The cursor to end before for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of results to return
+        schema:
+          type: integer
+      - name: q
+        in: query
+        required: false
+        description: A search query to filter the apps
+        schema:
+          type: string
+      - name: sort_key
+        in: query
+        required: false
+        description: The key to sort the apps by
+        schema:
+          type: string
+          enum:
+          - name
+          - name_slug
+          - featured_weight
+      - name: sort_direction
+        in: query
+        required: false
+        description: The direction to sort the apps
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: category_ids
+        in: query
+        required: false
+        description: Only return apps in these categories
+        schema:
+          type: array
+          items:
+            type: string
+            description: The ID of an app category
+            pattern: ^appcat_[a-zA-Z0-9]+$
+      - name: has_components
+        in: query
+        required: false
+        description: Only return apps that have components (actions or triggers)
+        schema:
+          type: boolean
+      - name: has_actions
+        in: query
+        required: false
+        description: Only return apps that have actions
+        schema:
+          type: boolean
+      - name: has_triggers
+        in: query
+        required: false
+        description: Only return apps that have triggers
+        schema:
+          type: boolean
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: apps listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAppsResponse'
+      x-codeSamples:
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"pipedream\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  pdEnvironment: \"YOUR_PD_ENVIRONMENT\"\n});\nconst response = await client.apps.listApps();\nfor await (const item of response) {\n  console.log(item);\n}\n\n// Or you can manually iterate page-by-page\nconst page = await client.apps.listApps();\nwhile (page.hasNextPage()) {\n  page = page.getNextPage();\n}\n"
+      tags:
+      - Apps
+  /v1/connect/apps:
+    get:
+      summary: List Apps
+      description: Retrieve all available apps with optional filtering and sorting
+      operationId: listApps
+      x-fern-sdk-group-name: apps
+      x-fern-sdk-method-name: list
+      x-fern-pagination:
+        cursor: $request.after
+        next_cursor: $response.page_info.end_cursor
+        results: $response.data
+      parameters:
+      - name: after
+        in: query
+        required: false
+        description: The cursor to start from for pagination
+        schema:
+          type: string
+      - name: before
+        in: query
+        required: false
+        description: The cursor to end before for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of results to return
+        schema:
+          type: integer
+      - name: q
+        in: query
+        required: false
+        description: A search query to filter the apps
+        schema:
+          type: string
+      - name: sort_key
+        in: query
+        required: false
+        description: The key to sort the apps by
+        schema:
+          type: string
+          enum:
+          - name
+          - name_slug
+          - featured_weight
+      - name: sort_direction
+        in: query
+        required: false
+        description: The direction to sort the apps
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: category_ids
+        in: query
+        required: false
+        description: Only return apps in these categories
+        schema:
+          type: array
+          items:
+            type: string
+            description: The ID of an app category
+            pattern: ^appcat_[a-zA-Z0-9]+$
+      - name: has_components
+        in: query
+        required: false
+        description: Only return apps that have components (actions or triggers)
+        schema:
+          type: boolean
+      - name: has_actions
+        in: query
+        required: false
+        description: Only return apps that have actions
+        schema:
+          type: boolean
+      - name: has_triggers
+        in: query
+        required: false
+        description: Only return apps that have triggers
+        schema:
+          type: boolean
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: apps listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAppsResponse'
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.apps.requests.AppsListRequest;\nimport com.pipedream.api.resources.apps.types.AppsListRequestSortDirection;\nimport com.pipedream.api.resources.apps.types.AppsListRequestSortKey;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .build();\n\n  client.apps().list(\n    AppsListRequest\n    .builder()\n    .after(\"after\")\n    .before(\"before\")\n    .limit(1)\n    .q(\"q\")\n    .sortKey(AppsListRequestSortKey.NAME)\n    .sortDirection(AppsListRequestSortDirection.ASC)\n    .hasComponents(true)\n    .hasActions(true)\n    .hasTriggers(true)\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nconst response = await client.apps.list({\n  after: \"after\",\n  before: \"before\",\n  limit: 1,\n  q: \"q\",\n  sortKey: \"name\",\n  sortDirection: \"asc\",\n  hasComponents: true,\n  hasActions: true,\n  hasTriggers: true\n});\nfor await (const item of response) {\n  console.log(item);\n}\n\n// Or you can manually iterate page-by-page\nlet page = await client.apps.list({\n  after: \"after\",\n  before: \"before\",\n  limit: 1,\n  q: \"q\",\n  sortKey: \"name\",\n  sortDirection: \"asc\",\n  hasComponents: true,\n  hasActions: true,\n  hasTriggers: true\n});\nwhile (page.hasNextPage()) {\n  page = page.getNextPage();\n}\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nresponse = client.apps.list(\n  after=\"after\",\n  before=\"before\",\n  limit=1,\n  q=\"q\",\n  sort_key=\"name\",\n  sort_direction=\"asc\",\n  has_components=True,\n  has_actions=True,\n  has_triggers=True,\n)\nfor item in response:\n  yield item\n# alternatively, you can paginate page-by-page\nfor page in response.iter_pages():\n  yield page\n"
+      tags:
+      - Apps
+  /v1/apps/{app_id}:
+    get:
+      summary: Retrieve App
+      description: Get detailed information about a specific app by ID or name slug
+      x-fern-ignore: true
+      operationId: retrieveAppBase
+      x-fern-sdk-group-name: apps
+      x-fern-sdk-method-name: retrieve
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      parameters:
+      - name: app_id
+        in: path
+        required: true
+        description: The name slug or ID of the app (e.g., 'slack', 'github')
+        schema:
+          type: string
+      responses:
+        '200':
+          description: app retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAppResponse'
+      x-codeSamples:
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"pipedream\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  pdEnvironment: \"YOUR_PD_ENVIRONMENT\"\n});\nawait client.apps.getApp(\"app_id\");\n"
+      tags:
+      - Apps
+  /v1/connect/apps/{app_id}:
+    get:
+      summary: Retrieve App
+      description: Get detailed information about a specific app by ID or name slug
+      operationId: retrieveApp
+      x-fern-sdk-group-name: apps
+      x-fern-sdk-method-name: retrieve
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      parameters:
+      - name: app_id
+        in: path
+        required: true
+        description: The name slug or ID of the app (e.g., 'slack', 'github')
+        schema:
+          type: string
+      responses:
+        '200':
+          description: app retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAppResponse'
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .build();\n\n  client.apps().retrieve(\"app_id\");\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.apps.retrieve(\"app_id\");\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.apps.retrieve(\n  app_id=\"app_id\",\n)\n"
+      tags:
+      - Apps
+components:
+  schemas:
+    AppAuthType:
+      type: string
+      enum:
+      - keys
+      - oauth
+      - none
+      description: The authentication type used by the app
+      nullable: true
+    AppCategory:
+      type: object
+      description: Response object for a Pipedream app category
+      properties:
+        id:
+          type: string
+          description: ID of the app category
+        name:
+          type: string
+          description: The human-readable name of the app category
+        description:
+          type: string
+          description: A short description of the app category
+          nullable: true
+    ListAppsResponse:
+      type: object
+      description: Response received when listing apps
+      required:
+      - data
+      - page_info
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/App'
+        page_info:
+          $ref: '#/components/schemas/PageInfo'
+    GetAppCategoryResponse:
+      $ref: '#/components/schemas/AppCategory'
+    ListAppCategoriesResponse:
+      type: array
+      description: Response received when listing app categories
+      items:
+        $ref: '#/components/schemas/AppCategory'
+    App:
+      type: object
+      description: Response object for a Pipedream app's metadata
+      required:
+      - name_slug
+      - name
+      - img_src
+      - custom_fields_json
+      - categories
+      - featured_weight
+      properties:
+        id:
+          type: string
+          description: ID of the app. Only applies for OAuth apps.
+          nullable: true
+        name_slug:
+          type: string
+          description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
+        name:
+          type: string
+          description: The human-readable name of the app
+        auth_type:
+          $ref: '#/components/schemas/AppAuthType'
+        description:
+          type: string
+          description: A short description of the app
+          nullable: true
+        img_src:
+          type: string
+          description: The URL to the app's logo
+        custom_fields_json:
+          type: string
+          description: A JSON string representing the custom fields for the app
+          nullable: true
+        categories:
+          type: array
+          items:
+            type: string
+          description: Categories associated with the app
+        featured_weight:
+          type: number
+          description: A rough directional ordering of app popularity, subject to changes by Pipedream
+    PageInfo:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of items returned
+          example: 10
+        total_count:
+          type: integer
+          description: Total number of items
+          example: 120
+        start_cursor:
+          type: string
+          description: Used to fetch the previous page of items
+          nullable: true
+        end_cursor:
+          type: string
+          description: Used to fetch the next page of items
+          nullable: true
+    GetAppResponse:
+      type: object
+      description: Response received when retrieving a single app
+      required:
+      - data
+      properties:
+        data:
+          $ref: '#/components/schemas/App'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth access token

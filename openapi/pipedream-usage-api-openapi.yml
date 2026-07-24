@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: Pipedream MCP Server Accounts Usage API
+  version: v3
+  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  contact:
+    name: Pipedream
+    url: https://pipedream.com/docs/connect/mcp
+  license:
+    name: Proprietary
+    url: https://pipedream.com/terms
+servers:
+- url: https://remote.mcp.pipedream.net/v3
+  description: Hosted Pipedream MCP server
+security:
+- bearerAuth: []
+tags:
+- name: Usage
+paths:
+  /v1/connect/usage:
+    get:
+      summary: List Usage Records
+      description: Retrieve Connect usage records for a time window
+      operationId: listUsages
+      x-fern-sdk-group-name: usage
+      x-fern-sdk-method-name: list
+      security:
+      - OAuth2: []
+      parameters:
+      - name: start_ts
+        in: query
+        required: true
+        description: Usage window start timestamp (seconds)
+        schema:
+          type: integer
+      - name: end_ts
+        in: query
+        required: true
+        description: Usage window end timestamp (seconds)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: usage records listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectUsageResponse'
+        '400':
+          description: invalid timestamps
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: too many requests
+          headers:
+            Retry-After:
+              description: Number of seconds until the rate limit resets
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: The rate limit threshold
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Number of requests remaining (always 0 when throttled)
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              description: Unix timestamp when the rate limit resets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Throttled
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.usage.requests.UsageListRequest;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .build();\n\n  client.usage().list(\n    UsageListRequest\n    .builder()\n    .startTs(1)\n    .endTs(1)\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.usage.list({\n  startTs: 1,\n  endTs: 1\n});\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.usage.list(\n  start_ts=1,\n  end_ts=1,\n)\n"
+      tags:
+      - Usage
+components:
+  schemas:
+    ConnectUsage:
+      type: object
+      description: Connect usage record
+      required:
+      - credits_used
+      - usage_start_ts
+      - usage_end_ts
+      properties:
+        credits_used:
+          type: integer
+          description: Total Connect credits used
+        action_run_credits_used:
+          type: integer
+          description: Credits used when running Connect actions
+          nullable: true
+        proxy_credits_used:
+          type: integer
+          description: Credits used by Connect proxy requests
+          nullable: true
+        source_emit_credits_used:
+          type: integer
+          description: Credits used by Connect source event emissions
+          nullable: true
+        usage_start_ts:
+          type: integer
+          description: Usage window start timestamp (seconds)
+        usage_end_ts:
+          type: integer
+          description: Usage window end timestamp (seconds)
+    ConnectUsageResponse:
+      type: object
+      description: Connect usage records for a time window
+      required:
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectUsage'
+    ErrorResponse:
+      type: object
+      description: Error response returned by the API in case of an error
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          description: The error message
+        code:
+          type: string
+          description: The error code
+        details:
+          type: object
+          description: Additional error details
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth access token

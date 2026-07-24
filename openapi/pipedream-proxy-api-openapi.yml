@@ -1,0 +1,389 @@
+openapi: 3.0.3
+info:
+  title: Pipedream MCP Server Accounts Proxy API
+  version: v3
+  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  contact:
+    name: Pipedream
+    url: https://pipedream.com/docs/connect/mcp
+  license:
+    name: Proprietary
+    url: https://pipedream.com/terms
+servers:
+- url: https://remote.mcp.pipedream.net/v3
+  description: Hosted Pipedream MCP server
+security:
+- bearerAuth: []
+tags:
+- name: Proxy
+paths:
+  /v1/connect/{project_id}/proxy/{url_64}:
+    parameters:
+    - name: project_id
+      in: path
+      required: true
+      description: The project ID, which starts with `proj_`.
+      schema:
+        type: string
+        pattern: ^proj_[a-zA-Z0-9]+$
+      x-fern-sdk-variable: project_id
+    - name: url_64
+      in: path
+      description: Base64-encoded target URL
+      required: true
+      schema:
+        type: string
+    - name: external_user_id
+      in: query
+      required: true
+      description: The external user ID for the proxy request
+      schema:
+        type: string
+    - name: account_id
+      in: query
+      required: true
+      description: The account ID to use for authentication
+      schema:
+        type: string
+    get:
+      summary: Proxy GET Request
+      description: Forward an authenticated GET request to an external API using an external user's account credentials
+      parameters:
+      - name: x-pd-environment
+        in: header
+        required: true
+        description: The environment in which the server client is running
+        schema:
+          $ref: '#/components/schemas/ProjectEnvironment'
+      operationId: retrieveProxy
+      x-fern-sdk-group-name: proxy
+      x-fern-sdk-method-name: get
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: proxy request successful
+          content:
+            '*/*':
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponse'
+            application/octet-stream:
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponseBinary'
+        '429':
+          description: too many requests
+          headers:
+            Retry-After:
+              description: Number of seconds until the rate limit resets
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: The rate limit threshold
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Number of requests remaining (always 0 when throttled)
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              description: Unix timestamp when the rate limit resets
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.proxy.requests.ProxyGetRequest;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .projectId(\"YOUR_PROJECT_ID\")\n    .build();\n\n  client.proxy().get(\n    \"url_64\",\n    ProxyGetRequest\n    .builder()\n    .externalUserId(\"external_user_id\")\n    .accountId(\"account_id\")\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.proxy.get(\"url_64\", {\n  externalUserId: \"external_user_id\",\n  accountId: \"account_id\"\n});\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.proxy.get(\n  url_64=\"url_64\",\n  external_user_id=\"external_user_id\",\n  account_id=\"account_id\",\n)\n"
+      tags:
+      - Proxy
+    post:
+      summary: Proxy POST Request
+      description: Forward an authenticated POST request to an external API using an external user's account credentials
+      parameters:
+      - name: x-pd-environment
+        in: header
+        required: true
+        description: The environment in which the server client is running
+        schema:
+          $ref: '#/components/schemas/ProjectEnvironment'
+      operationId: postProxy
+      x-fern-sdk-group-name: proxy
+      x-fern-sdk-method-name: post
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: proxy request successful
+          content:
+            '*/*':
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponse'
+            application/octet-stream:
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponseBinary'
+        '429':
+          description: too many requests
+          headers:
+            Retry-After:
+              description: Number of seconds until the rate limit resets
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: The rate limit threshold
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Number of requests remaining (always 0 when throttled)
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              description: Unix timestamp when the rate limit resets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Request body to forward to the target API
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.proxy.requests.ProxyPostRequest;\nimport java.util.HashMap;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .projectId(\"YOUR_PROJECT_ID\")\n    .build();\n\n  client.proxy().post(\n    \"url_64\",\n    ProxyPostRequest\n    .builder()\n    .externalUserId(\"external_user_id\")\n    .accountId(\"account_id\")\n    .body(\n        new HashMap<String, Object>() {{\n            put(\"string\", new \n            HashMap<String, Object>() {{put(\"key\", \"value\");\n            }});\n        }}\n    )\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.proxy.post(\"url_64\", {\n      externalUserId: \"external_user_id\",\n  accountId: \"account_id\",\n  body: {\n  \"string\": {\n    \"key\": \"value\"\n  }\n  }\n});\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.proxy.post(\n  url_64=\"url_64\",\n  external_user_id=\"external_user_id\",\n  account_id=\"account_id\",\n  request={\"string\": {\"key\": \"value\"}},\n)\n"
+      tags:
+      - Proxy
+    put:
+      summary: Proxy PUT Request
+      description: Forward an authenticated PUT request to an external API using an external user's account credentials
+      parameters:
+      - name: x-pd-environment
+        in: header
+        required: true
+        description: The environment in which the server client is running
+        schema:
+          $ref: '#/components/schemas/ProjectEnvironment'
+      operationId: putProxy
+      x-fern-sdk-group-name: proxy
+      x-fern-sdk-method-name: put
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: proxy request successful
+          content:
+            '*/*':
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponse'
+            application/octet-stream:
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponseBinary'
+        '429':
+          description: too many requests
+          headers:
+            Retry-After:
+              description: Number of seconds until the rate limit resets
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: The rate limit threshold
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Number of requests remaining (always 0 when throttled)
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              description: Unix timestamp when the rate limit resets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Request body to forward to the target API
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.proxy.requests.ProxyPutRequest;\nimport java.util.HashMap;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .projectId(\"YOUR_PROJECT_ID\")\n    .build();\n\n  client.proxy().put(\n    \"url_64\",\n    ProxyPutRequest\n    .builder()\n    .externalUserId(\"external_user_id\")\n    .accountId(\"account_id\")\n    .body(\n        new HashMap<String, Object>() {{\n            put(\"string\", new \n            HashMap<String, Object>() {{put(\"key\", \"value\");\n            }});\n        }}\n    )\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.proxy.put(\"url_64\", {\n      externalUserId: \"external_user_id\",\n  accountId: \"account_id\",\n  body: {\n  \"string\": {\n    \"key\": \"value\"\n  }\n  }\n});\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.proxy.put(\n  url_64=\"url_64\",\n  external_user_id=\"external_user_id\",\n  account_id=\"account_id\",\n  request={\"string\": {\"key\": \"value\"}},\n)\n"
+      tags:
+      - Proxy
+    delete:
+      summary: Proxy DELETE Request
+      description: Forward an authenticated DELETE request to an external API using an external user's account credentials
+      parameters:
+      - name: x-pd-environment
+        in: header
+        required: true
+        description: The environment in which the server client is running
+        schema:
+          $ref: '#/components/schemas/ProjectEnvironment'
+      operationId: deleteProxy
+      x-fern-sdk-group-name: proxy
+      x-fern-sdk-method-name: delete
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: proxy request successful
+          content:
+            '*/*':
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponse'
+            application/octet-stream:
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponseBinary'
+        '429':
+          description: too many requests
+          headers:
+            Retry-After:
+              description: Number of seconds until the rate limit resets
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: The rate limit threshold
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Number of requests remaining (always 0 when throttled)
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              description: Unix timestamp when the rate limit resets
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.proxy.requests.ProxyDeleteRequest;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .projectId(\"YOUR_PROJECT_ID\")\n    .build();\n\n  client.proxy().delete(\n    \"url_64\",\n    ProxyDeleteRequest\n    .builder()\n    .externalUserId(\"external_user_id\")\n    .accountId(\"account_id\")\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.proxy.delete(\"url_64\", {\n  externalUserId: \"external_user_id\",\n  accountId: \"account_id\"\n});\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.proxy.delete(\n  url_64=\"url_64\",\n  external_user_id=\"external_user_id\",\n  account_id=\"account_id\",\n)\n"
+      tags:
+      - Proxy
+    patch:
+      summary: Proxy PATCH Request
+      description: Forward an authenticated PATCH request to an external API using an external user's account credentials
+      parameters:
+      - name: x-pd-environment
+        in: header
+        required: true
+        description: The environment in which the server client is running
+        schema:
+          $ref: '#/components/schemas/ProjectEnvironment'
+      operationId: patchProxy
+      x-fern-sdk-group-name: proxy
+      x-fern-sdk-method-name: patch
+      security:
+      - ConnectToken: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: proxy request successful
+          content:
+            '*/*':
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponse'
+            application/octet-stream:
+              encoding: {}
+              examples: {}
+              schema:
+                $ref: '#/components/schemas/ProxyResponseBinary'
+        '429':
+          description: too many requests
+          headers:
+            Retry-After:
+              description: Number of seconds until the rate limit resets
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: The rate limit threshold
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Number of requests remaining (always 0 when throttled)
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              description: Unix timestamp when the rate limit resets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Request body to forward to the target API
+      x-codeSamples:
+      - lang: java
+        label: Java SDK
+        source: "package com.example.usage;\n\nimport com.pipedream.api.BaseClient;\nimport com.pipedream.api.resources.proxy.requests.ProxyPatchRequest;\nimport java.util.HashMap;\n\npublic class Example {\n  public static void main(String[] args) {\n  BaseClient client = BaseClient\n    .builder()\n    .clientId(\"<clientId>\")\n    .clientSecret(\"<clientSecret>\")\n    .projectId(\"YOUR_PROJECT_ID\")\n    .build();\n\n  client.proxy().patch(\n    \"url_64\",\n    ProxyPatchRequest\n    .builder()\n    .externalUserId(\"external_user_id\")\n    .accountId(\"account_id\")\n    .body(\n        new HashMap<String, Object>() {{\n            put(\"string\", new \n            HashMap<String, Object>() {{put(\"key\", \"value\");\n            }});\n        }}\n    )\n    .build()\n  );\n  }\n}\n"
+      - lang: typescript
+        label: TypeScript SDK
+        source: "import { PipedreamClient } from \"@pipedream/sdk\";\n\nconst client = new PipedreamClient({\n  clientId: \"YOUR_CLIENT_ID\",\n  clientSecret: \"YOUR_CLIENT_SECRET\",\n  projectEnvironment: \"YOUR_PROJECT_ENVIRONMENT\",\n  projectId: \"YOUR_PROJECT_ID\"\n});\nawait client.proxy.patch(\"url_64\", {\n      externalUserId: \"external_user_id\",\n  accountId: \"account_id\",\n  body: {\n  \"string\": {\n    \"key\": \"value\"\n  }\n  }\n});\n"
+      - lang: python
+        label: Python SDK
+        source: "from pipedream import Pipedream\n\nclient = Pipedream(\n  project_id=\"YOUR_PROJECT_ID\",\n  project_environment=\"YOUR_PROJECT_ENVIRONMENT\",\n  client_id=\"YOUR_CLIENT_ID\",\n  client_secret=\"YOUR_CLIENT_SECRET\",\n)\nclient.proxy.patch(\n  url_64=\"url_64\",\n  external_user_id=\"external_user_id\",\n  account_id=\"account_id\",\n  request={\"string\": {\"key\": \"value\"}},\n)\n"
+      tags:
+      - Proxy
+components:
+  schemas:
+    ProxyResponse:
+      description: The parsed response body from a proxied API request
+    ProxyResponseBinary:
+      type: string
+      format: binary
+      description: Binary response from the proxied API
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth access token
