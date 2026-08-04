@@ -1,0 +1,1601 @@
+{
+  "info": {
+    "_postman_id": "ca5b346d-5fac-4e36-a8b0-19e9a4c0927d",
+    "name": "Pipedream MCP Server Accounts Projects API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:11.000Z",
+    "updatedAt": "2026-07-28T02:37:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ca5b346d-5fac-4e36-a8b0-19e9a4c0927d"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "projects",
+              "item": [
+                {
+                  "name": "{project_id}",
+                  "item": [
+                    {
+                      "name": "logo",
+                      "item": [
+                        {
+                          "name": "Update Project Logo",
+                          "id": "61434d59-782e-462c-904a-faf92431efb0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"logo\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/projects/:project_id/logo",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                "projects",
+                                ":project_id",
+                                "logo"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "86ee7088-2c51-4663-aedc-735157936cff",
+                                  "key": "project_id",
+                                  "value": "proj_tljnNmsZ",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                }
+                              ]
+                            },
+                            "description": "Upload or replace the project logo"
+                          },
+                          "response": [
+                            {
+                              "id": "c04d0d87-a8a7-4f65-90d2-9fa20a7e1bb9",
+                              "name": "logo updated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"logo\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/projects/:project_id/logo",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    "projects",
+                                    ":project_id",
+                                    "logo"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:11.000Z",
+                              "updatedAt": "2026-07-28T02:37:11.000Z",
+                              "uid": "35240-c04d0d87-a8a7-4f65-90d2-9fa20a7e1bb9"
+                            },
+                            {
+                              "id": "564ec220-8469-4609-b4e1-f9f63ed19d44",
+                              "name": "invalid logo data",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"logo\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/projects/:project_id/logo",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    "projects",
+                                    ":project_id",
+                                    "logo"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:11.000Z",
+                              "updatedAt": "2026-07-28T02:37:11.000Z",
+                              "uid": "35240-564ec220-8469-4609-b4e1-f9f63ed19d44"
+                            },
+                            {
+                              "id": "7ead8d87-6d6e-4023-b27b-8dbf4a70f97d",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"logo\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/projects/:project_id/logo",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    "projects",
+                                    ":project_id",
+                                    "logo"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:37:11.000Z",
+                              "updatedAt": "2026-07-28T02:37:11.000Z",
+                              "uid": "35240-7ead8d87-6d6e-4023-b27b-8dbf4a70f97d"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:11.000Z",
+                          "updatedAt": "2026-07-28T02:37:11.000Z",
+                          "uid": "35240-61434d59-782e-462c-904a-faf92431efb0"
+                        }
+                      ],
+                      "id": "87599a83-0367-4a3b-bbdd-10cb43bcc425",
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-87599a83-0367-4a3b-bbdd-10cb43bcc425"
+                    },
+                    {
+                      "name": "Retrieve Project",
+                      "id": "28479065-bd52-4389-949b-b8cea94aa0b9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "projects",
+                            ":project_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3598c117-5f07-4b79-80c4-8925b51f487c",
+                              "key": "project_id",
+                              "value": "proj_tljnNmsZ",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Get the project details for a specific project"
+                      },
+                      "response": [
+                        {
+                          "id": "d5d9e22f-4353-4a7d-a7e4-72e9c9db21f9",
+                          "name": "project retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                "projects",
+                                ":project_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"proj_axEylNc\",\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T02:37:11.000Z",
+                          "updatedAt": "2026-07-28T02:37:11.000Z",
+                          "uid": "35240-d5d9e22f-4353-4a7d-a7e4-72e9c9db21f9"
+                        },
+                        {
+                          "id": "2ff12881-7474-432d-a7b0-55ed627b846b",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                "projects",
+                                ":project_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:37:11.000Z",
+                          "updatedAt": "2026-07-28T02:37:11.000Z",
+                          "uid": "35240-2ff12881-7474-432d-a7b0-55ed627b846b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-28479065-bd52-4389-949b-b8cea94aa0b9"
+                    },
+                    {
+                      "name": "Delete Project",
+                      "id": "257722a9-be6e-4b3b-92a5-05d5b27b0d4c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "projects",
+                            ":project_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "22c7801a-24b0-417c-b6a3-ebcff723762b",
+                              "key": "project_id",
+                              "value": "proj_tljnNmsZ",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Delete a project owned by the authenticated workspace"
+                      },
+                      "response": [
+                        {
+                          "id": "0dda3df2-f15b-4ab8-88b6-d8d90edd95ef",
+                          "name": "project deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                "projects",
+                                ":project_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:37:11.000Z",
+                          "updatedAt": "2026-07-28T02:37:11.000Z",
+                          "uid": "35240-0dda3df2-f15b-4ab8-88b6-d8d90edd95ef"
+                        },
+                        {
+                          "id": "dde2f553-72c2-4b2a-b76a-c732df948c0d",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                "projects",
+                                ":project_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:37:11.000Z",
+                          "updatedAt": "2026-07-28T02:37:11.000Z",
+                          "uid": "35240-dde2f553-72c2-4b2a-b76a-c732df948c0d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-257722a9-be6e-4b3b-92a5-05d5b27b0d4c"
+                    },
+                    {
+                      "name": "Update Project",
+                      "id": "1541d7bb-d440-438c-a4fb-1d9e6135d119",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "projects",
+                            ":project_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6c1525af-7703-41d1-809a-a2bbbb3645fd",
+                              "key": "project_id",
+                              "value": "proj_tljnNmsZ",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Update project details or application information"
+                      },
+                      "response": [
+                        {
+                          "id": "cd468920-0325-4969-89d9-6030a7dc439e",
+                          "name": "project updated",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                "projects",
+                                ":project_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"proj_axEylNc\",\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T02:37:11.000Z",
+                          "updatedAt": "2026-07-28T02:37:11.000Z",
+                          "uid": "35240-cd468920-0325-4969-89d9-6030a7dc439e"
+                        },
+                        {
+                          "id": "c4864a93-2550-41de-bb13-708799b4b0ef",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/projects/:project_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                "projects",
+                                ":project_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:37:11.000Z",
+                          "updatedAt": "2026-07-28T02:37:11.000Z",
+                          "uid": "35240-c4864a93-2550-41de-bb13-708799b4b0ef"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-1541d7bb-d440-438c-a4fb-1d9e6135d119"
+                    }
+                  ],
+                  "id": "89d78636-5334-4cd4-8dce-760150cddb3f",
+                  "createdAt": "2026-07-28T02:37:11.000Z",
+                  "updatedAt": "2026-07-28T02:37:11.000Z",
+                  "uid": "35240-89d78636-5334-4cd4-8dce-760150cddb3f"
+                },
+                {
+                  "name": "List Projects",
+                  "id": "32fb2ac2-939e-4ec9-a792-244dbe99c0af",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/connect/projects?after=<string>&before=<string>&limit=<integer>&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "connect",
+                        "projects"
+                      ],
+                      "query": [
+                        {
+                          "description": "The cursor to start from for pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The cursor to end before for pagination",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The maximum number of results to return",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "A search query to filter the projects",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "List the projects that are available to the authenticated Connect client"
+                  },
+                  "response": [
+                    {
+                      "id": "117aa63b-1aa8-477c-ad54-3b235143476d",
+                      "name": "projects listed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/projects?after=<string>&before=<string>&limit=<integer>&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "projects"
+                          ],
+                          "query": [
+                            {
+                              "description": "The cursor to start from for pagination",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The cursor to end before for pagination",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The maximum number of results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "A search query to filter the projects",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"proj_3ekBNU3f8\",\n      \"name\": \"<string>\",\n      \"app_name\": \"<string>\",\n      \"support_email\": \"<email>\",\n      \"connect_require_key_auth_test\": \"<boolean>\"\n    },\n    {\n      \"id\": \"proj_19S\",\n      \"name\": \"<string>\",\n      \"app_name\": \"<string>\",\n      \"support_email\": \"<email>\",\n      \"connect_require_key_auth_test\": \"<boolean>\"\n    }\n  ],\n  \"page_info\": {\n    \"count\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"start_cursor\": \"<string>\",\n    \"end_cursor\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-117aa63b-1aa8-477c-ad54-3b235143476d"
+                    },
+                    {
+                      "id": "e9ea199d-010d-4688-b2eb-dcec48ebb158",
+                      "name": "missing OAuth token",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/projects?after=<string>&before=<string>&limit=<integer>&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "projects"
+                          ],
+                          "query": [
+                            {
+                              "description": "The cursor to start from for pagination",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The cursor to end before for pagination",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The maximum number of results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "A search query to filter the projects",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-e9ea199d-010d-4688-b2eb-dcec48ebb158"
+                    },
+                    {
+                      "id": "3359bbfa-2168-4668-bdb8-78faa1c260bf",
+                      "name": "too many requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/projects?after=<string>&before=<string>&limit=<integer>&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "projects"
+                          ],
+                          "query": [
+                            {
+                              "description": "The cursor to start from for pagination",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The cursor to end before for pagination",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The maximum number of results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "A search query to filter the projects",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of seconds until the rate limit resets",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The rate limit threshold",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of requests remaining (always 0 when throttled)",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Unix timestamp when the rate limit resets",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Reset",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-3359bbfa-2168-4668-bdb8-78faa1c260bf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:37:11.000Z",
+                  "updatedAt": "2026-07-28T02:37:11.000Z",
+                  "uid": "35240-32fb2ac2-939e-4ec9-a792-244dbe99c0af"
+                },
+                {
+                  "name": "Create Project",
+                  "id": "fdbb53cd-a57f-4088-8fc4-ff2d41be4817",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/connect/projects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "connect",
+                        "projects"
+                      ]
+                    },
+                    "description": "Create a new project for the authenticated workspace"
+                  },
+                  "response": [
+                    {
+                      "id": "5a6df777-83d5-4076-be02-d025fe456e21",
+                      "name": "project created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/projects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "projects"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"proj_axEylNc\",\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-5a6df777-83d5-4076-be02-d025fe456e21"
+                    },
+                    {
+                      "id": "4bd9293d-ca5e-4862-95a9-694ec2f05662",
+                      "name": "too many requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"app_name\": \"<string>\",\n  \"support_email\": \"<email>\",\n  \"connect_require_key_auth_test\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/projects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "projects"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of seconds until the rate limit resets",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The rate limit threshold",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of requests remaining (always 0 when throttled)",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Unix timestamp when the rate limit resets",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Reset",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-4bd9293d-ca5e-4862-95a9-694ec2f05662"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:37:11.000Z",
+                  "updatedAt": "2026-07-28T02:37:11.000Z",
+                  "uid": "35240-fdbb53cd-a57f-4088-8fc4-ff2d41be4817"
+                }
+              ],
+              "id": "7d36ed0a-b593-4539-835a-4d1a152ec361",
+              "createdAt": "2026-07-28T02:37:11.000Z",
+              "updatedAt": "2026-07-28T02:37:11.000Z",
+              "uid": "35240-7d36ed0a-b593-4539-835a-4d1a152ec361"
+            },
+            {
+              "name": "{project_id}",
+              "item": [
+                {
+                  "name": "projects",
+                  "item": [
+                    {
+                      "name": "info",
+                      "item": [
+                        {
+                          "name": "Get Project Info",
+                          "id": "eb7fd952-bcc3-42d0-928d-2de482dacd31",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/projects/info",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "projects",
+                                "info"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ea895c25-9302-47a8-99d3-fec49d3b1715",
+                                  "key": "project_id",
+                                  "value": "proj_tljnNmsZ",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                }
+                              ]
+                            },
+                            "description": "Retrieve project configuration and environment details"
+                          },
+                          "response": [
+                            {
+                              "id": "e27da1cb-42ac-4cc4-a245-dc769147d5d9",
+                              "name": "project info retrieved",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/projects/info",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "projects",
+                                    "info"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"apps\": [\n    {\n      \"id\": \"<string>\",\n      \"name_slug\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name_slug\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:37:11.000Z",
+                              "updatedAt": "2026-07-28T02:37:11.000Z",
+                              "uid": "35240-e27da1cb-42ac-4cc4-a245-dc769147d5d9"
+                            },
+                            {
+                              "id": "6912c819-9281-427e-bed3-c8a6f569b458",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/projects/info",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "projects",
+                                    "info"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:37:11.000Z",
+                              "updatedAt": "2026-07-28T02:37:11.000Z",
+                              "uid": "35240-6912c819-9281-427e-bed3-c8a6f569b458"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:11.000Z",
+                          "updatedAt": "2026-07-28T02:37:11.000Z",
+                          "uid": "35240-eb7fd952-bcc3-42d0-928d-2de482dacd31"
+                        }
+                      ],
+                      "id": "a5d3771c-0c6d-4a72-b423-59d5e35a75c0",
+                      "createdAt": "2026-07-28T02:37:11.000Z",
+                      "updatedAt": "2026-07-28T02:37:11.000Z",
+                      "uid": "35240-a5d3771c-0c6d-4a72-b423-59d5e35a75c0"
+                    }
+                  ],
+                  "id": "27925b92-966b-4624-95ea-ab6002743a1f",
+                  "createdAt": "2026-07-28T02:37:11.000Z",
+                  "updatedAt": "2026-07-28T02:37:11.000Z",
+                  "uid": "35240-27925b92-966b-4624-95ea-ab6002743a1f"
+                }
+              ],
+              "id": "ba8b5719-9568-4d2d-a2e0-35ea7ebb9f5f",
+              "createdAt": "2026-07-28T02:37:11.000Z",
+              "updatedAt": "2026-07-28T02:37:11.000Z",
+              "uid": "35240-ba8b5719-9568-4d2d-a2e0-35ea7ebb9f5f"
+            }
+          ],
+          "id": "a70fffe8-f320-4aac-a6b0-e4502f909863",
+          "createdAt": "2026-07-28T02:37:11.000Z",
+          "updatedAt": "2026-07-28T02:37:11.000Z",
+          "uid": "35240-a70fffe8-f320-4aac-a6b0-e4502f909863"
+        }
+      ],
+      "id": "95954f7e-7d9a-48c2-9f9f-eeac7a216ff8",
+      "createdAt": "2026-07-28T02:37:11.000Z",
+      "updatedAt": "2026-07-28T02:37:11.000Z",
+      "uid": "35240-95954f7e-7d9a-48c2-9f9f-eeac7a216ff8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

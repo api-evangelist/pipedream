@@ -1,0 +1,306 @@
+{
+  "info": {
+    "_postman_id": "24330234-9be2-4f9b-863d-b2aad8748152",
+    "name": "Pipedream MCP Server Accounts Usage API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:17.000Z",
+    "updatedAt": "2026-07-28T02:37:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-24330234-9be2-4f9b-863d-b2aad8748152"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "usage",
+              "item": [
+                {
+                  "name": "List Usage Records",
+                  "id": "6b106288-1797-4b09-8e03-2c1c7d238bba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/connect/usage?start_ts=<integer>&end_ts=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "connect",
+                        "usage"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Usage window start timestamp (seconds)",
+                          "key": "start_ts",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) Usage window end timestamp (seconds)",
+                          "key": "end_ts",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve Connect usage records for a time window"
+                  },
+                  "response": [
+                    {
+                      "id": "422432a0-9393-459b-a03f-a34f3d9a2030",
+                      "name": "usage records listed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/usage?start_ts=<integer>&end_ts=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "usage"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Usage window start timestamp (seconds)",
+                              "key": "start_ts",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) Usage window end timestamp (seconds)",
+                              "key": "end_ts",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"credits_used\": \"<integer>\",\n      \"usage_start_ts\": \"<integer>\",\n      \"usage_end_ts\": \"<integer>\",\n      \"action_run_credits_used\": \"<integer>\",\n      \"proxy_credits_used\": \"<integer>\",\n      \"source_emit_credits_used\": \"<integer>\"\n    },\n    {\n      \"credits_used\": \"<integer>\",\n      \"usage_start_ts\": \"<integer>\",\n      \"usage_end_ts\": \"<integer>\",\n      \"action_run_credits_used\": \"<integer>\",\n      \"proxy_credits_used\": \"<integer>\",\n      \"source_emit_credits_used\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:37:18.000Z",
+                      "updatedAt": "2026-07-28T02:37:18.000Z",
+                      "uid": "35240-422432a0-9393-459b-a03f-a34f3d9a2030"
+                    },
+                    {
+                      "id": "33ed7a40-f6e4-4d33-836c-6e491269ae48",
+                      "name": "invalid timestamps",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/usage?start_ts=<integer>&end_ts=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "usage"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Usage window start timestamp (seconds)",
+                              "key": "start_ts",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) Usage window end timestamp (seconds)",
+                              "key": "end_ts",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\",\n  \"details\": {}\n}",
+                      "createdAt": "2026-07-28T02:37:18.000Z",
+                      "updatedAt": "2026-07-28T02:37:18.000Z",
+                      "uid": "35240-33ed7a40-f6e4-4d33-836c-6e491269ae48"
+                    },
+                    {
+                      "id": "44a00388-f01d-418f-b46d-ed44c271a3f3",
+                      "name": "too many requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/usage?start_ts=<integer>&end_ts=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            "usage"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Usage window start timestamp (seconds)",
+                              "key": "start_ts",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) Usage window end timestamp (seconds)",
+                              "key": "end_ts",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of seconds until the rate limit resets",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The rate limit threshold",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of requests remaining (always 0 when throttled)",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining",
+                          "value": "<integer>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Unix timestamp when the rate limit resets",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Reset",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:37:18.000Z",
+                      "updatedAt": "2026-07-28T02:37:18.000Z",
+                      "uid": "35240-44a00388-f01d-418f-b46d-ed44c271a3f3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:37:18.000Z",
+                  "updatedAt": "2026-07-28T02:37:18.000Z",
+                  "uid": "35240-6b106288-1797-4b09-8e03-2c1c7d238bba"
+                }
+              ],
+              "id": "42466f36-4ecf-4e08-a6af-a7d4b3cc4c05",
+              "createdAt": "2026-07-28T02:37:18.000Z",
+              "updatedAt": "2026-07-28T02:37:18.000Z",
+              "uid": "35240-42466f36-4ecf-4e08-a6af-a7d4b3cc4c05"
+            }
+          ],
+          "id": "c2039071-a123-4d15-813d-8308bb41078b",
+          "createdAt": "2026-07-28T02:37:18.000Z",
+          "updatedAt": "2026-07-28T02:37:18.000Z",
+          "uid": "35240-c2039071-a123-4d15-813d-8308bb41078b"
+        }
+      ],
+      "id": "3aef297c-ef80-4862-845a-3018aa7e1d3b",
+      "createdAt": "2026-07-28T02:37:18.000Z",
+      "updatedAt": "2026-07-28T02:37:18.000Z",
+      "uid": "35240-3aef297c-ef80-4862-845a-3018aa7e1d3b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

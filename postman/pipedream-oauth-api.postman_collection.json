@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "7427dbf3-3aa7-459c-8f45-4bb09dabc2b8",
+    "name": "Pipedream MCP Server Accounts OAuth API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:10.000Z",
+    "updatedAt": "2026-07-28T02:37:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7427dbf3-3aa7-459c-8f45-4bb09dabc2b8"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "oauth",
+          "item": [
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "Create OAuth Token",
+                  "id": "59bccc71-c024-4fef-a9ce-2b0187cc13a2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"grant_type\": \"client_credentials\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"scope\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "oauth",
+                        "token"
+                      ]
+                    },
+                    "description": "Exchange OAuth credentials for an access token"
+                  },
+                  "response": [
+                    {
+                      "id": "4d08a62b-70b2-4123-9d1d-52f30b6a5d97",
+                      "name": "token created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"grant_type\": \"client_credentials\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"scope\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/oauth/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "oauth",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:37:10.000Z",
+                      "updatedAt": "2026-07-28T02:37:10.000Z",
+                      "uid": "35240-4d08a62b-70b2-4123-9d1d-52f30b6a5d97"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:37:10.000Z",
+                  "updatedAt": "2026-07-28T02:37:10.000Z",
+                  "uid": "35240-59bccc71-c024-4fef-a9ce-2b0187cc13a2"
+                }
+              ],
+              "id": "a0954e29-ceb5-400a-b51e-16142819c93d",
+              "createdAt": "2026-07-28T02:37:10.000Z",
+              "updatedAt": "2026-07-28T02:37:10.000Z",
+              "uid": "35240-a0954e29-ceb5-400a-b51e-16142819c93d"
+            }
+          ],
+          "id": "da79e338-6ad1-4501-9112-792cd05260c1",
+          "createdAt": "2026-07-28T02:37:10.000Z",
+          "updatedAt": "2026-07-28T02:37:10.000Z",
+          "uid": "35240-da79e338-6ad1-4501-9112-792cd05260c1"
+        }
+      ],
+      "id": "6a7504e7-34d5-4583-a88a-c834a2c72a29",
+      "createdAt": "2026-07-28T02:37:10.000Z",
+      "updatedAt": "2026-07-28T02:37:10.000Z",
+      "uid": "35240-6a7504e7-34d5-4583-a88a-c834a2c72a29"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

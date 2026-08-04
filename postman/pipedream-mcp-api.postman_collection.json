@@ -1,0 +1,314 @@
+{
+  "info": {
+    "_postman_id": "8f51ae48-efed-4688-be8a-13943b51fb4d",
+    "name": "Pipedream Server Accounts MCP API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:02.000Z",
+    "updatedAt": "2026-07-28T02:37:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8f51ae48-efed-4688-be8a-13943b51fb4d"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Invoke MCP Method",
+          "id": "bcc21cd9-42e9-42ac-ae00-a2781cab231a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) Pipedream project ID scoping this MCP session.",
+                "key": "x-pd-project-id",
+                "value": "<string>"
+              },
+              {
+                "description": "(Required) Project environment.",
+                "key": "x-pd-environment",
+                "value": "development"
+              },
+              {
+                "description": "(Required) Stable identifier for the end user in the developer's system.",
+                "key": "x-pd-external-user-id",
+                "value": "<string>"
+              },
+              {
+                "description": "(Required) Slug of the integrated app to scope tools to (e.g. notion, linear, slack).",
+                "key": "x-pd-app-slug",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Generic JSON-RPC 2.0 entry point that handles MCP methods such as `initialize`, `tools/list`, `tools/call`, and `notifications/*`. The transport (SSE or streamable HTTP) is negotiated automatically based on the `Accept` request header."
+          },
+          "response": [
+            {
+              "id": "ee60998c-903b-4432-aba1-debaccab4c92",
+              "name": "JSON-RPC 2.0 response (or SSE stream).",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Pipedream project ID scoping this MCP session.",
+                    "key": "x-pd-project-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Project environment.",
+                    "key": "x-pd-environment",
+                    "value": "development"
+                  },
+                  {
+                    "description": "(Required) Stable identifier for the end user in the developer's system.",
+                    "key": "x-pd-external-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Slug of the integrated app to scope tools to (e.g. notion, linear, slack).",
+                    "key": "x-pd-app-slug",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": \"<string>\",\n  \"result\": {},\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:37:03.000Z",
+              "updatedAt": "2026-07-28T02:37:03.000Z",
+              "uid": "35240-ee60998c-903b-4432-aba1-debaccab4c92"
+            },
+            {
+              "id": "8ee02b80-5d78-4395-b7bf-3c41c441c83a",
+              "name": "Unauthorized - missing or invalid Bearer token.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Pipedream project ID scoping this MCP session.",
+                    "key": "x-pd-project-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Project environment.",
+                    "key": "x-pd-environment",
+                    "value": "development"
+                  },
+                  {
+                    "description": "(Required) Stable identifier for the end user in the developer's system.",
+                    "key": "x-pd-external-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Slug of the integrated app to scope tools to (e.g. notion, linear, slack).",
+                    "key": "x-pd-app-slug",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:37:03.000Z",
+              "updatedAt": "2026-07-28T02:37:03.000Z",
+              "uid": "35240-8ee02b80-5d78-4395-b7bf-3c41c441c83a"
+            },
+            {
+              "id": "6581bcc3-d64a-48d0-9ad9-2da1956c6764",
+              "name": "Forbidden - account not connected for required tool.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Pipedream project ID scoping this MCP session.",
+                    "key": "x-pd-project-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Project environment.",
+                    "key": "x-pd-environment",
+                    "value": "development"
+                  },
+                  {
+                    "description": "(Required) Stable identifier for the end user in the developer's system.",
+                    "key": "x-pd-external-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Slug of the integrated app to scope tools to (e.g. notion, linear, slack).",
+                    "key": "x-pd-app-slug",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<string>\",\n  \"params\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:37:03.000Z",
+              "updatedAt": "2026-07-28T02:37:03.000Z",
+              "uid": "35240-6581bcc3-d64a-48d0-9ad9-2da1956c6764"
+            }
+          ],
+          "createdAt": "2026-07-28T02:37:03.000Z",
+          "updatedAt": "2026-07-28T02:37:03.000Z",
+          "uid": "35240-bcc21cd9-42e9-42ac-ae00-a2781cab231a"
+        }
+      ],
+      "id": "834a3420-442e-493c-a155-bedc985f5c93",
+      "createdAt": "2026-07-28T02:37:03.000Z",
+      "updatedAt": "2026-07-28T02:37:03.000Z",
+      "uid": "35240-834a3420-442e-493c-a155-bedc985f5c93"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

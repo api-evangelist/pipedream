@@ -1,0 +1,2873 @@
+{
+  "info": {
+    "_postman_id": "9f422c00-145b-4254-92d8-7220c39f2777",
+    "name": "Pipedream MCP Server Accounts Deployed Triggers API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:00.000Z",
+    "updatedAt": "2026-07-28T02:37:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9f422c00-145b-4254-92d8-7220c39f2777"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "{project_id}",
+              "item": [
+                {
+                  "name": "deployed-triggers",
+                  "item": [
+                    {
+                      "name": "{trigger_id}",
+                      "item": [
+                        {
+                          "name": "events",
+                          "item": [
+                            {
+                              "name": "List Trigger Events",
+                              "id": "7e7c63a0-1da0-4686-8cce-a93849b7cd5c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/events?external_user_id=<string>&n=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The number of events to retrieve (defaults to 20 if not provided)",
+                                      "key": "n",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7bd7db50-0fbb-4ccb-aef3-206cfeb925b2",
+                                      "key": "project_id",
+                                      "value": "proj_nBT0iN",
+                                      "description": "(Required) The project ID, which starts with `proj_`."
+                                    },
+                                    {
+                                      "id": "a053f0b7-486e-43d7-8ea7-8770442467bf",
+                                      "key": "trigger_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve recent events emitted by a deployed trigger"
+                              },
+                              "response": [
+                                {
+                                  "id": "bacf02f2-affd-4cf1-9f9a-0431c3a45d15",
+                                  "name": "trigger events retrieved",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/events?external_user_id=<string>&n=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "events"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The number of events to retrieve (defaults to 20 if not provided)",
+                                          "key": "n",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"data\": [\n    {\n      \"e\": {},\n      \"k\": \"<string>\",\n      \"ts\": \"<integer>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"e\": {},\n      \"k\": \"<string>\",\n      \"ts\": \"<integer>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-bacf02f2-affd-4cf1-9f9a-0431c3a45d15"
+                                },
+                                {
+                                  "id": "e0ca7bea-cf28-402d-a59c-0567a4ef8b2f",
+                                  "name": "too many requests",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/events?external_user_id=<string>&n=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "events"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The number of events to retrieve (defaults to 20 if not provided)",
+                                          "key": "n",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of seconds until the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Retry-After",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "The rate limit threshold",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of requests remaining (always 0 when throttled)",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Remaining",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Unix timestamp when the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Reset",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-e0ca7bea-cf28-402d-a59c-0567a4ef8b2f"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-7e7c63a0-1da0-4686-8cce-a93849b7cd5c"
+                            }
+                          ],
+                          "id": "ff274198-db21-4153-ba3f-240fb5e00dc6",
+                          "createdAt": "2026-07-28T02:37:00.000Z",
+                          "updatedAt": "2026-07-28T02:37:00.000Z",
+                          "uid": "35240-ff274198-db21-4153-ba3f-240fb5e00dc6"
+                        },
+                        {
+                          "name": "pipelines",
+                          "item": [
+                            {
+                              "name": "List Trigger Workflows",
+                              "id": "fc2352a0-67b0-4c20-b785-7c0233e26915",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/pipelines?external_user_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id",
+                                    "pipelines"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID who owns the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "dede551a-fb22-491b-bc8e-f14f7cf0d4ba",
+                                      "key": "project_id",
+                                      "value": "proj_nBT0iN",
+                                      "description": "(Required) The project ID, which starts with `proj_`."
+                                    },
+                                    {
+                                      "id": "6b11ae53-fb2c-4e39-857b-5eaa82b83894",
+                                      "key": "trigger_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get workflows connected to receive events from this trigger"
+                              },
+                              "response": [
+                                {
+                                  "id": "60cd4dda-c267-46b0-8180-da7e3b806aa7",
+                                  "name": "trigger workflows retrieved",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/pipelines?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "pipelines"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"workflow_ids\": [\n    \"p_dZuMOc5KQQ\",\n    \"p_3vzv\"\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-60cd4dda-c267-46b0-8180-da7e3b806aa7"
+                                },
+                                {
+                                  "id": "e8106f0e-c365-42f7-a0e1-5945bea38ccc",
+                                  "name": "too many requests",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/pipelines?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "pipelines"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of seconds until the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Retry-After",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "The rate limit threshold",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of requests remaining (always 0 when throttled)",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Remaining",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Unix timestamp when the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Reset",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-e8106f0e-c365-42f7-a0e1-5945bea38ccc"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-fc2352a0-67b0-4c20-b785-7c0233e26915"
+                            },
+                            {
+                              "name": "Update Trigger Workflows",
+                              "id": "ee2f1bbb-3bad-4199-b60c-a375df8ca9b2",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"workflow_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/pipelines?external_user_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id",
+                                    "pipelines"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID who owns the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "841217bd-96f3-48c3-b55e-e138bc21be0a",
+                                      "key": "project_id",
+                                      "value": "proj_nBT0iN",
+                                      "description": "(Required) The project ID, which starts with `proj_`."
+                                    },
+                                    {
+                                      "id": "0bb93324-ed8b-4a7d-bae5-a32c85153b0c",
+                                      "key": "trigger_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Connect or disconnect workflows to receive trigger events"
+                              },
+                              "response": [
+                                {
+                                  "id": "6b1de117-4cbe-4ab0-88df-093c2417624b",
+                                  "name": "trigger workflows updated",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"workflow_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/pipelines?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "pipelines"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"workflow_ids\": [\n    \"p_dZuMOc5KQQ\",\n    \"p_3vzv\"\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-6b1de117-4cbe-4ab0-88df-093c2417624b"
+                                },
+                                {
+                                  "id": "09f8c309-f2ac-4e3d-8031-26b2f85b4f3f",
+                                  "name": "too many requests",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"workflow_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/pipelines?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "pipelines"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of seconds until the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Retry-After",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "The rate limit threshold",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of requests remaining (always 0 when throttled)",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Remaining",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Unix timestamp when the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Reset",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-09f8c309-f2ac-4e3d-8031-26b2f85b4f3f"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-ee2f1bbb-3bad-4199-b60c-a375df8ca9b2"
+                            }
+                          ],
+                          "id": "9c600ac2-b305-4e17-b0d1-36b7d184cda1",
+                          "createdAt": "2026-07-28T02:37:00.000Z",
+                          "updatedAt": "2026-07-28T02:37:00.000Z",
+                          "uid": "35240-9c600ac2-b305-4e17-b0d1-36b7d184cda1"
+                        },
+                        {
+                          "name": "webhooks",
+                          "item": [
+                            {
+                              "name": "{webhook_id}",
+                              "item": [
+                                {
+                                  "name": "regenerate_signing_key",
+                                  "item": [
+                                    {
+                                      "name": "Regenerate Trigger Webhook Signing Key",
+                                      "id": "813a37bc-2720-489f-911e-f7fbbe6ddb69",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "(Required) The environment in which the server client is running",
+                                            "key": "x-pd-environment",
+                                            "value": "production"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks/:webhook_id/regenerate_signing_key?external_user_id=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "connect",
+                                            ":project_id",
+                                            "deployed-triggers",
+                                            ":trigger_id",
+                                            "webhooks",
+                                            ":webhook_id",
+                                            "regenerate_signing_key"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) The external user ID who owns the trigger",
+                                              "key": "external_user_id",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "656c2853-1f4d-4005-ac67-3a4fee11afeb",
+                                              "key": "project_id",
+                                              "value": "proj_nBT0iN",
+                                              "description": "(Required) The project ID, which starts with `proj_`."
+                                            },
+                                            {
+                                              "id": "7912b0b4-b13b-4312-90d5-292b87083c7d",
+                                              "key": "trigger_id",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "32b5fdd0-4ba3-47a9-a6a6-f3ef1cbcecc2",
+                                              "key": "webhook_id",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Regenerate the signing key for a specific webhook on a deployed trigger"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "238b8767-bf2f-4943-8ffd-9fe36005869b",
+                                          "name": "signing key regenerated",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "description": "(Required) The environment in which the server client is running",
+                                                "key": "x-pd-environment",
+                                                "value": "production"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks/:webhook_id/regenerate_signing_key?external_user_id=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v1",
+                                                "connect",
+                                                ":project_id",
+                                                "deployed-triggers",
+                                                ":trigger_id",
+                                                "webhooks",
+                                                ":webhook_id",
+                                                "regenerate_signing_key"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) The external user ID who owns the trigger",
+                                                  "key": "external_user_id",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "project_id"
+                                                },
+                                                {
+                                                  "key": "trigger_id"
+                                                },
+                                                {
+                                                  "key": "webhook_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"signing_key\": \"<string>\",\n    \"signing_key_set\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T02:37:01.000Z",
+                                          "updatedAt": "2026-07-28T02:37:01.000Z",
+                                          "uid": "35240-238b8767-bf2f-4943-8ffd-9fe36005869b"
+                                        },
+                                        {
+                                          "id": "ac4773b8-237d-431a-8907-1cbb31e832c0",
+                                          "name": "too many requests",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "description": "(Required) The environment in which the server client is running",
+                                                "key": "x-pd-environment",
+                                                "value": "production"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks/:webhook_id/regenerate_signing_key?external_user_id=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v1",
+                                                "connect",
+                                                ":project_id",
+                                                "deployed-triggers",
+                                                ":trigger_id",
+                                                "webhooks",
+                                                ":webhook_id",
+                                                "regenerate_signing_key"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) The external user ID who owns the trigger",
+                                                  "key": "external_user_id",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "project_id"
+                                                },
+                                                {
+                                                  "key": "trigger_id"
+                                                },
+                                                {
+                                                  "key": "webhook_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            },
+                                            {
+                                              "disabled": false,
+                                              "description": {
+                                                "content": "Number of seconds until the rate limit resets",
+                                                "type": "text/plain"
+                                              },
+                                              "key": "Retry-After",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "disabled": false,
+                                              "description": {
+                                                "content": "The rate limit threshold",
+                                                "type": "text/plain"
+                                              },
+                                              "key": "X-RateLimit-Limit",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "disabled": false,
+                                              "description": {
+                                                "content": "Number of requests remaining (always 0 when throttled)",
+                                                "type": "text/plain"
+                                              },
+                                              "key": "X-RateLimit-Remaining",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "disabled": false,
+                                              "description": {
+                                                "content": "Unix timestamp when the rate limit resets",
+                                                "type": "text/plain"
+                                              },
+                                              "key": "X-RateLimit-Reset",
+                                              "value": "<integer>"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:37:01.000Z",
+                                          "updatedAt": "2026-07-28T02:37:01.000Z",
+                                          "uid": "35240-ac4773b8-237d-431a-8907-1cbb31e832c0"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:37:01.000Z",
+                                      "updatedAt": "2026-07-28T02:37:01.000Z",
+                                      "uid": "35240-813a37bc-2720-489f-911e-f7fbbe6ddb69"
+                                    }
+                                  ],
+                                  "id": "cde84c37-887c-4324-acab-0c5ac0ba52b8",
+                                  "createdAt": "2026-07-28T02:37:00.000Z",
+                                  "updatedAt": "2026-07-28T02:37:00.000Z",
+                                  "uid": "35240-cde84c37-887c-4324-acab-0c5ac0ba52b8"
+                                },
+                                {
+                                  "name": "Get Trigger Webhook",
+                                  "id": "acd86471-db6c-4be7-ba44-a3c941134d5a",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks/:webhook_id?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "webhooks",
+                                        ":webhook_id"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d29304a2-f019-4345-995e-f86a57d48a58",
+                                          "key": "project_id",
+                                          "value": "proj_nBT0iN",
+                                          "description": "(Required) The project ID, which starts with `proj_`."
+                                        },
+                                        {
+                                          "id": "1a045061-e612-4f76-bf55-2009b0b28f08",
+                                          "key": "trigger_id",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "2d59c60d-e942-40a9-ba77-5408efde0f85",
+                                          "key": "webhook_id",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieve a specific webhook for a deployed trigger, including its signing key"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "d8257ced-14c6-4b31-a082-e986c9472f27",
+                                      "name": "trigger webhook retrieved",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "(Required) The environment in which the server client is running",
+                                            "key": "x-pd-environment",
+                                            "value": "production"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks/:webhook_id?external_user_id=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "connect",
+                                            ":project_id",
+                                            "deployed-triggers",
+                                            ":trigger_id",
+                                            "webhooks",
+                                            ":webhook_id"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) The external user ID who owns the trigger",
+                                              "key": "external_user_id",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "project_id"
+                                            },
+                                            {
+                                              "key": "trigger_id"
+                                            },
+                                            {
+                                              "key": "webhook_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"signing_key\": \"<string>\",\n    \"signing_key_set\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:37:01.000Z",
+                                      "updatedAt": "2026-07-28T02:37:01.000Z",
+                                      "uid": "35240-d8257ced-14c6-4b31-a082-e986c9472f27"
+                                    },
+                                    {
+                                      "id": "4850dba9-5ee0-45f1-bf38-d2f480daac31",
+                                      "name": "too many requests",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "(Required) The environment in which the server client is running",
+                                            "key": "x-pd-environment",
+                                            "value": "production"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks/:webhook_id?external_user_id=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "connect",
+                                            ":project_id",
+                                            "deployed-triggers",
+                                            ":trigger_id",
+                                            "webhooks",
+                                            ":webhook_id"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) The external user ID who owns the trigger",
+                                              "key": "external_user_id",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "project_id"
+                                            },
+                                            {
+                                              "key": "trigger_id"
+                                            },
+                                            {
+                                              "key": "webhook_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        },
+                                        {
+                                          "disabled": false,
+                                          "description": {
+                                            "content": "Number of seconds until the rate limit resets",
+                                            "type": "text/plain"
+                                          },
+                                          "key": "Retry-After",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "disabled": false,
+                                          "description": {
+                                            "content": "The rate limit threshold",
+                                            "type": "text/plain"
+                                          },
+                                          "key": "X-RateLimit-Limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "disabled": false,
+                                          "description": {
+                                            "content": "Number of requests remaining (always 0 when throttled)",
+                                            "type": "text/plain"
+                                          },
+                                          "key": "X-RateLimit-Remaining",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "disabled": false,
+                                          "description": {
+                                            "content": "Unix timestamp when the rate limit resets",
+                                            "type": "text/plain"
+                                          },
+                                          "key": "X-RateLimit-Reset",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:37:01.000Z",
+                                      "updatedAt": "2026-07-28T02:37:01.000Z",
+                                      "uid": "35240-4850dba9-5ee0-45f1-bf38-d2f480daac31"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-acd86471-db6c-4be7-ba44-a3c941134d5a"
+                                }
+                              ],
+                              "id": "d466be8a-3250-4797-bdbe-58707dc32460",
+                              "createdAt": "2026-07-28T02:37:00.000Z",
+                              "updatedAt": "2026-07-28T02:37:00.000Z",
+                              "uid": "35240-d466be8a-3250-4797-bdbe-58707dc32460"
+                            },
+                            {
+                              "name": "List Trigger Webhooks",
+                              "id": "0cfbdb10-5930-4449-91fe-4e91de0b304e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks?external_user_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id",
+                                    "webhooks"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID who owns the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "90ef9f6f-beb5-4012-9629-2982c1afad00",
+                                      "key": "project_id",
+                                      "value": "proj_nBT0iN",
+                                      "description": "(Required) The project ID, which starts with `proj_`."
+                                    },
+                                    {
+                                      "id": "630db9eb-b3ba-48cd-b366-a8f6f431f5b1",
+                                      "key": "trigger_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get webhook URLs configured to receive trigger events"
+                              },
+                              "response": [
+                                {
+                                  "id": "339b9a3b-d793-4e30-b2f1-01573b6752b0",
+                                  "name": "trigger webhooks retrieved",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "webhooks"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"webhook_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"webhooks\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"signing_key_set\": \"<boolean>\",\n      \"signing_key\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"signing_key_set\": \"<boolean>\",\n      \"signing_key\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-339b9a3b-d793-4e30-b2f1-01573b6752b0"
+                                },
+                                {
+                                  "id": "788de90e-a77d-4c7b-bc8b-0e3cd5f8abf2",
+                                  "name": "too many requests",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "webhooks"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of seconds until the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Retry-After",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "The rate limit threshold",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of requests remaining (always 0 when throttled)",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Remaining",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Unix timestamp when the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Reset",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-788de90e-a77d-4c7b-bc8b-0e3cd5f8abf2"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-0cfbdb10-5930-4449-91fe-4e91de0b304e"
+                            },
+                            {
+                              "name": "Update Trigger Webhooks",
+                              "id": "f753e0d1-5a29-4dca-bf93-32a6a2ac219d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"webhook_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks?external_user_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id",
+                                    "webhooks"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID who owns the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "008f63fb-0acb-4678-8548-b07859e49c6a",
+                                      "key": "project_id",
+                                      "value": "proj_nBT0iN",
+                                      "description": "(Required) The project ID, which starts with `proj_`."
+                                    },
+                                    {
+                                      "id": "561477dc-ac55-4044-88eb-9c6893308613",
+                                      "key": "trigger_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Configure webhook URLs to receive trigger events. `signing_key` is only returned for OAuth-authenticated requests."
+                              },
+                              "response": [
+                                {
+                                  "id": "664af390-0475-4a44-b7ea-f271e4a1fa49",
+                                  "name": "trigger webhooks updated",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"webhook_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "webhooks"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"webhook_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"webhooks\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"signing_key_set\": \"<boolean>\",\n      \"signing_key\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"signing_key_set\": \"<boolean>\",\n      \"signing_key\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-664af390-0475-4a44-b7ea-f271e4a1fa49"
+                                },
+                                {
+                                  "id": "c2eb8ec2-fb29-4147-b3e3-326ed4801ab9",
+                                  "name": "too many requests",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The environment in which the server client is running",
+                                        "key": "x-pd-environment",
+                                        "value": "production"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"webhook_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks?external_user_id=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "connect",
+                                        ":project_id",
+                                        "deployed-triggers",
+                                        ":trigger_id",
+                                        "webhooks"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The external user ID who owns the trigger",
+                                          "key": "external_user_id",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "project_id"
+                                        },
+                                        {
+                                          "key": "trigger_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of seconds until the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Retry-After",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "The rate limit threshold",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Number of requests remaining (always 0 when throttled)",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Remaining",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "Unix timestamp when the rate limit resets",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "X-RateLimit-Reset",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:37:01.000Z",
+                                  "updatedAt": "2026-07-28T02:37:01.000Z",
+                                  "uid": "35240-c2eb8ec2-fb29-4147-b3e3-326ed4801ab9"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-f753e0d1-5a29-4dca-bf93-32a6a2ac219d"
+                            }
+                          ],
+                          "id": "e6e9a2ca-d1f8-49f4-9156-a8867c6c75d3",
+                          "createdAt": "2026-07-28T02:37:00.000Z",
+                          "updatedAt": "2026-07-28T02:37:00.000Z",
+                          "uid": "35240-e6e9a2ca-d1f8-49f4-9156-a8867c6c75d3"
+                        },
+                        {
+                          "name": "Get Deployed Trigger",
+                          "id": "a5ffa92d-58aa-44c5-b8ee-9c5e34568f1b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "production"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "deployed-triggers",
+                                ":trigger_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "dad01d21-9f5f-4759-8cba-fac807c58153",
+                                  "key": "project_id",
+                                  "value": "proj_nBT0iN",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "1d25f08e-271a-4324-b871-bd68af0ad0fc",
+                                  "key": "trigger_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get details of a specific deployed trigger by its ID"
+                          },
+                          "response": [
+                            {
+                              "id": "0a47b061-f897-4223-8574-e62aa11011ef",
+                              "name": "deployed trigger retrieved",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "trigger_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"id\": \"dc_6oKWTom3\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"active\": \"<boolean>\",\n    \"component_id\": \"<string>\",\n    \"configurable_props\": [\n      {\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"data_store\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"optional\": \"<boolean>\",\n        \"disabled\": \"<boolean>\",\n        \"readOnly\": \"<boolean>\",\n        \"hidden\": \"<boolean>\",\n        \"remoteOptions\": \"<boolean>\",\n        \"useQuery\": \"<boolean>\",\n        \"reloadProps\": \"<boolean>\",\n        \"withLabel\": \"<boolean>\",\n        \"alertType\": \"warning\"\n      },\n      {\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"integer[]\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"optional\": \"<boolean>\",\n        \"disabled\": \"<boolean>\",\n        \"readOnly\": \"<boolean>\",\n        \"hidden\": \"<boolean>\",\n        \"remoteOptions\": \"<boolean>\",\n        \"useQuery\": \"<boolean>\",\n        \"reloadProps\": \"<boolean>\",\n        \"withLabel\": \"<boolean>\",\n        \"alertType\": \"error\"\n      }\n    ],\n    \"configured_props\": {\n      \"sint_cb\": {\n        \"nullable\": false\n      }\n    },\n    \"name\": \"<string>\",\n    \"name_slug\": \"<string>\",\n    \"owner_id\": \"<string>\",\n    \"type\": \"DeployedComponent\",\n    \"component_key\": \"<string>\",\n    \"callback_observations\": {\n      \"description\": \"Callback observations for the deployed component\",\n      \"nullable\": true\n    },\n    \"emit_on_deploy\": \"<boolean>\",\n    \"webhook_signing_key\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-0a47b061-f897-4223-8574-e62aa11011ef"
+                            },
+                            {
+                              "id": "9e43b04a-7a24-4f61-9068-a374a501ec96",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "trigger_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-9e43b04a-7a24-4f61-9068-a374a501ec96"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:01.000Z",
+                          "updatedAt": "2026-07-28T02:37:01.000Z",
+                          "uid": "35240-a5ffa92d-58aa-44c5-b8ee-9c5e34568f1b"
+                        },
+                        {
+                          "name": "Update Deployed Trigger",
+                          "id": "25444e13-efeb-4d14-9273-ffe95fe7a6bd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "production"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"active\": \"<boolean>\",\n  \"configured_props\": {\n    \"voluptate400\": {\n      \"nullable\": false\n    }\n  },\n  \"name\": \"<string>\",\n  \"emit_on_deploy\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "deployed-triggers",
+                                ":trigger_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The external user ID who owns the trigger",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1fb4fd4c-2ba6-4608-9c06-b55be0de1bee",
+                                  "key": "project_id",
+                                  "value": "proj_nBT0iN",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "a6a101d5-6c78-43bd-af0e-f7827677edc3",
+                                  "key": "trigger_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Modify the configuration of a deployed trigger, including active status"
+                          },
+                          "response": [
+                            {
+                              "id": "44e43a88-73d3-4f59-90c3-bf01575a6c52",
+                              "name": "deployed trigger updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"active\": \"<boolean>\",\n  \"configured_props\": {\n    \"voluptate400\": {\n      \"nullable\": false\n    }\n  },\n  \"name\": \"<string>\",\n  \"emit_on_deploy\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID who owns the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "trigger_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"id\": \"dc_6oKWTom3\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"active\": \"<boolean>\",\n    \"component_id\": \"<string>\",\n    \"configurable_props\": [\n      {\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"data_store\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"optional\": \"<boolean>\",\n        \"disabled\": \"<boolean>\",\n        \"readOnly\": \"<boolean>\",\n        \"hidden\": \"<boolean>\",\n        \"remoteOptions\": \"<boolean>\",\n        \"useQuery\": \"<boolean>\",\n        \"reloadProps\": \"<boolean>\",\n        \"withLabel\": \"<boolean>\",\n        \"alertType\": \"warning\"\n      },\n      {\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"integer[]\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"optional\": \"<boolean>\",\n        \"disabled\": \"<boolean>\",\n        \"readOnly\": \"<boolean>\",\n        \"hidden\": \"<boolean>\",\n        \"remoteOptions\": \"<boolean>\",\n        \"useQuery\": \"<boolean>\",\n        \"reloadProps\": \"<boolean>\",\n        \"withLabel\": \"<boolean>\",\n        \"alertType\": \"error\"\n      }\n    ],\n    \"configured_props\": {\n      \"sint_cb\": {\n        \"nullable\": false\n      }\n    },\n    \"name\": \"<string>\",\n    \"name_slug\": \"<string>\",\n    \"owner_id\": \"<string>\",\n    \"type\": \"DeployedComponent\",\n    \"component_key\": \"<string>\",\n    \"callback_observations\": {\n      \"description\": \"Callback observations for the deployed component\",\n      \"nullable\": true\n    },\n    \"emit_on_deploy\": \"<boolean>\",\n    \"webhook_signing_key\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-44e43a88-73d3-4f59-90c3-bf01575a6c52"
+                            },
+                            {
+                              "id": "d7137c05-9ab1-4b4b-9cf1-28abd56969f7",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"active\": \"<boolean>\",\n  \"configured_props\": {\n    \"voluptate400\": {\n      \"nullable\": false\n    }\n  },\n  \"name\": \"<string>\",\n  \"emit_on_deploy\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID who owns the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "trigger_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-d7137c05-9ab1-4b4b-9cf1-28abd56969f7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:01.000Z",
+                          "updatedAt": "2026-07-28T02:37:01.000Z",
+                          "uid": "35240-25444e13-efeb-4d14-9273-ffe95fe7a6bd"
+                        },
+                        {
+                          "name": "Delete Deployed Trigger",
+                          "id": "b41644a0-fd67-4b62-bff8-6efc7e696c93",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "production"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>&ignore_hook_errors=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "deployed-triggers",
+                                ":trigger_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The external user ID who owns the trigger",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Whether to ignore errors during deactivation hook",
+                                  "key": "ignore_hook_errors",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ca603c71-9a71-40b5-bbd2-374bb6600d19",
+                                  "key": "project_id",
+                                  "value": "proj_nBT0iN",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "47064011-90b7-4fd6-ad38-08020140ccbf",
+                                  "key": "trigger_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Remove a deployed trigger and stop receiving events"
+                          },
+                          "response": [
+                            {
+                              "id": "29a8aaaa-b5c0-4d92-9f39-9f0b394bf600",
+                              "name": "deployed trigger deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>&ignore_hook_errors=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID who owns the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether to ignore errors during deactivation hook",
+                                      "key": "ignore_hook_errors",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "trigger_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-29a8aaaa-b5c0-4d92-9f39-9f0b394bf600"
+                            },
+                            {
+                              "id": "f1e04be7-1116-4596-abc9-734fec490037",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "production"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers/:trigger_id?external_user_id=<string>&ignore_hook_errors=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "deployed-triggers",
+                                    ":trigger_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID who owns the trigger",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether to ignore errors during deactivation hook",
+                                      "key": "ignore_hook_errors",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "trigger_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:01.000Z",
+                              "updatedAt": "2026-07-28T02:37:01.000Z",
+                              "uid": "35240-f1e04be7-1116-4596-abc9-734fec490037"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:01.000Z",
+                          "updatedAt": "2026-07-28T02:37:01.000Z",
+                          "uid": "35240-b41644a0-fd67-4b62-bff8-6efc7e696c93"
+                        }
+                      ],
+                      "id": "0f8ed6ec-34a4-4d1f-83f4-6a16791a9d0f",
+                      "createdAt": "2026-07-28T02:37:00.000Z",
+                      "updatedAt": "2026-07-28T02:37:00.000Z",
+                      "uid": "35240-0f8ed6ec-34a4-4d1f-83f4-6a16791a9d0f"
+                    },
+                    {
+                      "name": "List Deployed Triggers",
+                      "id": "8e8d78de-09ca-47b6-9a3e-34e5677a1cc7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The environment in which the server client is running",
+                            "key": "x-pd-environment",
+                            "value": "production"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers?after=<string>&before=<string>&limit=<integer>&external_user_id=<string>&emitter_type=source",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            ":project_id",
+                            "deployed-triggers"
+                          ],
+                          "query": [
+                            {
+                              "description": "The cursor to start from for pagination",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The cursor to end before for pagination",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The maximum number of results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                              "key": "external_user_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter deployed triggers by emitter type (defaults to 'source' if not provided)",
+                              "key": "emitter_type",
+                              "value": "source"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "ec860bc2-96a4-4b95-96af-09f77f9ceee9",
+                              "key": "project_id",
+                              "value": "proj_nBT0iN",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve all deployed triggers for a specific external user"
+                      },
+                      "response": [
+                        {
+                          "id": "a7f5bada-66ab-4a2d-86e5-06ad139d1d4c",
+                          "name": "deployed triggers listed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "production"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers?after=<string>&before=<string>&limit=<integer>&external_user_id=<string>&emitter_type=source",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "deployed-triggers"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The cursor to start from for pagination",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The cursor to end before for pagination",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The maximum number of results to return",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter deployed triggers by emitter type (defaults to 'source' if not provided)",
+                                  "key": "emitter_type",
+                                  "value": "source"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"dc_Ck8Tx8R56S\",\n      \"created_at\": \"<integer>\",\n      \"updated_at\": \"<integer>\",\n      \"active\": \"<boolean>\",\n      \"component_id\": \"<string>\",\n      \"configurable_props\": [\n        {\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"$.airtable.baseId\",\n          \"label\": \"<string>\",\n          \"description\": \"<string>\",\n          \"optional\": \"<boolean>\",\n          \"disabled\": \"<boolean>\",\n          \"readOnly\": \"<boolean>\",\n          \"hidden\": \"<boolean>\",\n          \"remoteOptions\": \"<boolean>\",\n          \"useQuery\": \"<boolean>\",\n          \"reloadProps\": \"<boolean>\",\n          \"withLabel\": \"<boolean>\",\n          \"alertType\": \"warning\"\n        },\n        {\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"$.interface.timer\",\n          \"label\": \"<string>\",\n          \"description\": \"<string>\",\n          \"optional\": \"<boolean>\",\n          \"disabled\": \"<boolean>\",\n          \"readOnly\": \"<boolean>\",\n          \"hidden\": \"<boolean>\",\n          \"remoteOptions\": \"<boolean>\",\n          \"useQuery\": \"<boolean>\",\n          \"reloadProps\": \"<boolean>\",\n          \"withLabel\": \"<boolean>\",\n          \"alertType\": \"warning\"\n        }\n      ],\n      \"configured_props\": {\n        \"esse_0d\": {\n          \"nullable\": false\n        },\n        \"in0\": {\n          \"nullable\": false\n        },\n        \"quise0\": {\n          \"nullable\": false\n        },\n        \"Excepteur50\": {\n          \"nullable\": false\n        }\n      },\n      \"name\": \"<string>\",\n      \"name_slug\": \"<string>\",\n      \"owner_id\": \"<string>\",\n      \"type\": \"DeployedComponent\",\n      \"component_key\": \"<string>\",\n      \"callback_observations\": {\n        \"description\": \"Callback observations for the deployed component\",\n        \"nullable\": true\n      },\n      \"emit_on_deploy\": \"<boolean>\",\n      \"webhook_signing_key\": \"<string>\"\n    },\n    {\n      \"id\": \"dc_KIMBSvrq\",\n      \"created_at\": \"<integer>\",\n      \"updated_at\": \"<integer>\",\n      \"active\": \"<boolean>\",\n      \"component_id\": \"<string>\",\n      \"configurable_props\": [\n        {\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"$.interface.http\",\n          \"label\": \"<string>\",\n          \"description\": \"<string>\",\n          \"optional\": \"<boolean>\",\n          \"disabled\": \"<boolean>\",\n          \"readOnly\": \"<boolean>\",\n          \"hidden\": \"<boolean>\",\n          \"remoteOptions\": \"<boolean>\",\n          \"useQuery\": \"<boolean>\",\n          \"reloadProps\": \"<boolean>\",\n          \"withLabel\": \"<boolean>\",\n          \"alertType\": \"warning\"\n        },\n        {\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"$.airtable.tableId\",\n          \"label\": \"<string>\",\n          \"description\": \"<string>\",\n          \"optional\": \"<boolean>\",\n          \"disabled\": \"<boolean>\",\n          \"readOnly\": \"<boolean>\",\n          \"hidden\": \"<boolean>\",\n          \"remoteOptions\": \"<boolean>\",\n          \"useQuery\": \"<boolean>\",\n          \"reloadProps\": \"<boolean>\",\n          \"withLabel\": \"<boolean>\",\n          \"alertType\": \"warning\"\n        }\n      ],\n      \"configured_props\": {\n        \"laboris_d01\": {\n          \"nullable\": false\n        },\n        \"nisi44\": {\n          \"nullable\": false\n        },\n        \"estb16\": {\n          \"nullable\": false\n        },\n        \"occaecat_2\": {\n          \"nullable\": false\n        }\n      },\n      \"name\": \"<string>\",\n      \"name_slug\": \"<string>\",\n      \"owner_id\": \"<string>\",\n      \"type\": \"DeployedComponent\",\n      \"component_key\": \"<string>\",\n      \"callback_observations\": {\n        \"description\": \"Callback observations for the deployed component\",\n        \"nullable\": true\n      },\n      \"emit_on_deploy\": \"<boolean>\",\n      \"webhook_signing_key\": \"<string>\"\n    }\n  ],\n  \"page_info\": {\n    \"count\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"start_cursor\": \"<string>\",\n    \"end_cursor\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:37:01.000Z",
+                          "updatedAt": "2026-07-28T02:37:01.000Z",
+                          "uid": "35240-a7f5bada-66ab-4a2d-86e5-06ad139d1d4c"
+                        },
+                        {
+                          "id": "836518a0-8747-42c2-8ca4-0fce64b70f49",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "production"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/deployed-triggers?after=<string>&before=<string>&limit=<integer>&external_user_id=<string>&emitter_type=source",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "deployed-triggers"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The cursor to start from for pagination",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The cursor to end before for pagination",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The maximum number of results to return",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) Your end user ID, for whom you deployed the trigger",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter deployed triggers by emitter type (defaults to 'source' if not provided)",
+                                  "key": "emitter_type",
+                                  "value": "source"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:37:01.000Z",
+                          "updatedAt": "2026-07-28T02:37:01.000Z",
+                          "uid": "35240-836518a0-8747-42c2-8ca4-0fce64b70f49"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:37:01.000Z",
+                      "updatedAt": "2026-07-28T02:37:01.000Z",
+                      "uid": "35240-8e8d78de-09ca-47b6-9a3e-34e5677a1cc7"
+                    }
+                  ],
+                  "id": "e0d70843-4c4d-438b-98af-8667059bdd92",
+                  "createdAt": "2026-07-28T02:37:00.000Z",
+                  "updatedAt": "2026-07-28T02:37:00.000Z",
+                  "uid": "35240-e0d70843-4c4d-438b-98af-8667059bdd92"
+                }
+              ],
+              "id": "68b5f937-02e5-4a44-ba5d-a168fa4c86f6",
+              "createdAt": "2026-07-28T02:37:00.000Z",
+              "updatedAt": "2026-07-28T02:37:00.000Z",
+              "uid": "35240-68b5f937-02e5-4a44-ba5d-a168fa4c86f6"
+            }
+          ],
+          "id": "de27de85-282e-4c34-aec9-2ea82a690e63",
+          "createdAt": "2026-07-28T02:37:00.000Z",
+          "updatedAt": "2026-07-28T02:37:00.000Z",
+          "uid": "35240-de27de85-282e-4c34-aec9-2ea82a690e63"
+        }
+      ],
+      "id": "f253af82-c6fb-46ed-9bda-1d3dd2dceb2c",
+      "createdAt": "2026-07-28T02:37:00.000Z",
+      "updatedAt": "2026-07-28T02:37:00.000Z",
+      "uid": "35240-f253af82-c6fb-46ed-9bda-1d3dd2dceb2c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

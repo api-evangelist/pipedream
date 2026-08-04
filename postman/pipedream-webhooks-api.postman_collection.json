@@ -1,0 +1,871 @@
+{
+  "info": {
+    "_postman_id": "f3550d98-3804-43de-bf69-3bb97e3de51d",
+    "name": "Pipedream MCP Server Accounts Webhooks API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:21.000Z",
+    "updatedAt": "2026-07-28T02:37:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f3550d98-3804-43de-bf69-3bb97e3de51d"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "{project_id}",
+              "item": [
+                {
+                  "name": "webhook",
+                  "item": [
+                    {
+                      "name": "regenerate_signing_key",
+                      "item": [
+                        {
+                          "name": "Regenerate Webhook Signing Key",
+                          "id": "4b935d82-f489-437f-9989-d7426be77a53",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/webhook/regenerate_signing_key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "webhook",
+                                "regenerate_signing_key"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7e3799e8-69cc-48b5-a33f-f15825f317c0",
+                                  "key": "project_id",
+                                  "value": "proj_9W",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                }
+                              ]
+                            },
+                            "description": "Regenerate the signing key for the project environment webhook"
+                          },
+                          "response": [
+                            {
+                              "id": "3c430828-8261-4f6f-a259-266294cc4a99",
+                              "name": "signing key regenerated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/webhook/regenerate_signing_key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "webhook",
+                                    "regenerate_signing_key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"signing_key\": \"<string>\",\n    \"signing_key_set\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:37:21.000Z",
+                              "updatedAt": "2026-07-28T02:37:21.000Z",
+                              "uid": "35240-3c430828-8261-4f6f-a259-266294cc4a99"
+                            },
+                            {
+                              "id": "e897ae4e-9240-4605-ba93-4a9ea2be9d49",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/webhook/regenerate_signing_key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "webhook",
+                                    "regenerate_signing_key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:37:21.000Z",
+                              "updatedAt": "2026-07-28T02:37:21.000Z",
+                              "uid": "35240-e897ae4e-9240-4605-ba93-4a9ea2be9d49"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:21.000Z",
+                          "updatedAt": "2026-07-28T02:37:21.000Z",
+                          "uid": "35240-4b935d82-f489-437f-9989-d7426be77a53"
+                        }
+                      ],
+                      "id": "ce4961d4-df7d-41c1-8660-4ed404c50997",
+                      "createdAt": "2026-07-28T02:37:21.000Z",
+                      "updatedAt": "2026-07-28T02:37:21.000Z",
+                      "uid": "35240-ce4961d4-df7d-41c1-8660-4ed404c50997"
+                    },
+                    {
+                      "name": "Get Project Environment Webhook",
+                      "id": "7b9fedbf-2355-4e60-87a9-85a3567916de",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The environment in which the server client is running",
+                            "key": "x-pd-environment",
+                            "value": "development"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            ":project_id",
+                            "webhook"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b7ffb0d5-7822-4320-aa99-500ee7d580f1",
+                              "key": "project_id",
+                              "value": "proj_9W",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve the webhook configured for a project environment"
+                      },
+                      "response": [
+                        {
+                          "id": "bd4e60a1-be1e-4841-9b60-9658a3df302f",
+                          "name": "webhook retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "webhook"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"signing_key_set\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:37:21.000Z",
+                          "updatedAt": "2026-07-28T02:37:21.000Z",
+                          "uid": "35240-bd4e60a1-be1e-4841-9b60-9658a3df302f"
+                        },
+                        {
+                          "id": "f902306e-ba5a-48ce-ba42-787aff14b24e",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "webhook"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:37:21.000Z",
+                          "updatedAt": "2026-07-28T02:37:21.000Z",
+                          "uid": "35240-f902306e-ba5a-48ce-ba42-787aff14b24e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:37:21.000Z",
+                      "updatedAt": "2026-07-28T02:37:21.000Z",
+                      "uid": "35240-7b9fedbf-2355-4e60-87a9-85a3567916de"
+                    },
+                    {
+                      "name": "Set Project Environment Webhook",
+                      "id": "81435402-b155-41c9-9d2c-007208c63fa9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The environment in which the server client is running",
+                            "key": "x-pd-environment",
+                            "value": "development"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            ":project_id",
+                            "webhook"
+                          ],
+                          "variable": [
+                            {
+                              "id": "274678c8-5e2d-4a33-944d-bd706f0c24cb",
+                              "key": "project_id",
+                              "value": "proj_9W",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Create or update the webhook URL for a project environment. Creating a webhook returns `signing_key`; updating an existing webhook does not."
+                      },
+                      "response": [
+                        {
+                          "id": "a050286a-853a-4c64-b7e8-b47bf4567c4d",
+                          "name": "webhook updated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"url\": \"<uri>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "webhook"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"signing_key_set\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"signing_key\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:37:21.000Z",
+                          "updatedAt": "2026-07-28T02:37:21.000Z",
+                          "uid": "35240-a050286a-853a-4c64-b7e8-b47bf4567c4d"
+                        },
+                        {
+                          "id": "3fa61d71-be98-4103-804f-cf6a387b57cd",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"url\": \"<uri>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "webhook"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:37:21.000Z",
+                          "updatedAt": "2026-07-28T02:37:21.000Z",
+                          "uid": "35240-3fa61d71-be98-4103-804f-cf6a387b57cd"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:37:21.000Z",
+                      "updatedAt": "2026-07-28T02:37:21.000Z",
+                      "uid": "35240-81435402-b155-41c9-9d2c-007208c63fa9"
+                    },
+                    {
+                      "name": "Delete Project Environment Webhook",
+                      "id": "45fcf0f3-5911-4bd0-9c32-fd693b841cf7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) The environment in which the server client is running",
+                            "key": "x-pd-environment",
+                            "value": "development"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            ":project_id",
+                            "webhook"
+                          ],
+                          "variable": [
+                            {
+                              "id": "393acd2b-c9d3-4a28-8d47-667adc18c105",
+                              "key": "project_id",
+                              "value": "proj_9W",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Remove the webhook configured for a project environment"
+                      },
+                      "response": [
+                        {
+                          "id": "75765919-506e-4053-a5c4-d8dacbb2ec1f",
+                          "name": "webhook deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "webhook"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:37:21.000Z",
+                          "updatedAt": "2026-07-28T02:37:21.000Z",
+                          "uid": "35240-75765919-506e-4053-a5c4-d8dacbb2ec1f"
+                        },
+                        {
+                          "id": "06ec8025-7962-41b0-8eb5-1f6c4c292e87",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/webhook",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "webhook"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:37:21.000Z",
+                          "updatedAt": "2026-07-28T02:37:21.000Z",
+                          "uid": "35240-06ec8025-7962-41b0-8eb5-1f6c4c292e87"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:37:21.000Z",
+                      "updatedAt": "2026-07-28T02:37:21.000Z",
+                      "uid": "35240-45fcf0f3-5911-4bd0-9c32-fd693b841cf7"
+                    }
+                  ],
+                  "id": "d0bc5c1b-711e-4ca8-8ba0-83cfdeaa6ea3",
+                  "createdAt": "2026-07-28T02:37:21.000Z",
+                  "updatedAt": "2026-07-28T02:37:21.000Z",
+                  "uid": "35240-d0bc5c1b-711e-4ca8-8ba0-83cfdeaa6ea3"
+                }
+              ],
+              "id": "e28b2a99-15b8-420b-acb3-efefdbddfd87",
+              "createdAt": "2026-07-28T02:37:21.000Z",
+              "updatedAt": "2026-07-28T02:37:21.000Z",
+              "uid": "35240-e28b2a99-15b8-420b-acb3-efefdbddfd87"
+            }
+          ],
+          "id": "40147458-d4e7-4613-97c4-dd16e2e25d9b",
+          "createdAt": "2026-07-28T02:37:21.000Z",
+          "updatedAt": "2026-07-28T02:37:21.000Z",
+          "uid": "35240-40147458-d4e7-4613-97c4-dd16e2e25d9b"
+        }
+      ],
+      "id": "4d236ace-010d-4e98-a0fa-3e0f9249c06f",
+      "createdAt": "2026-07-28T02:37:21.000Z",
+      "updatedAt": "2026-07-28T02:37:21.000Z",
+      "uid": "35240-4d236ace-010d-4e98-a0fa-3e0f9249c06f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

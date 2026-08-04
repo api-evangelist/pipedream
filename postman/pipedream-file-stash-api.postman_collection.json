@@ -1,0 +1,336 @@
+{
+  "info": {
+    "_postman_id": "061858b7-ff2e-488c-842f-22a2dfa573bd",
+    "name": "Pipedream MCP Server Accounts File Stash API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:01.000Z",
+    "updatedAt": "2026-07-28T02:37:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-061858b7-ff2e-488c-842f-22a2dfa573bd"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "{project_id}",
+              "item": [
+                {
+                  "name": "file_stash",
+                  "item": [
+                    {
+                      "name": "download",
+                      "item": [
+                        {
+                          "name": "Download File",
+                          "id": "40b322f0-07a2-4ec8-b21f-f4d6593b0d33",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/file_stash/download?s3_key=1day/jDV<,=/nH{~>k4ttw/lga(^WR/u//2",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "file_stash",
+                                "download"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "s3_key",
+                                  "value": "1day/jDV<,=/nH{~>k4ttw/lga(^WR/u//2"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "dc7575c1-1d8b-4741-a0fb-520443ad0a65",
+                                  "key": "project_id",
+                                  "value": "proj_I9MgkQ",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                }
+                              ]
+                            },
+                            "description": "Download a file from File Stash"
+                          },
+                          "response": [
+                            {
+                              "id": "4c5f9343-cc06-44ae-9c75-2492509d97ee",
+                              "name": "file contents",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/octet-stream"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/file_stash/download?s3_key=1day/jDV<,=/nH{~>k4ttw/lga(^WR/u//2",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "file_stash",
+                                    "download"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "s3_key",
+                                      "value": "1day/jDV<,=/nH{~>k4ttw/lga(^WR/u//2"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/octet-stream"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T02:37:02.000Z",
+                              "updatedAt": "2026-07-28T02:37:02.000Z",
+                              "uid": "35240-4c5f9343-cc06-44ae-9c75-2492509d97ee"
+                            },
+                            {
+                              "id": "de9b2118-6ca6-42e2-b419-4cc5e9ccd168",
+                              "name": "redirected to presigned URL",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/file_stash/download?s3_key=1day/jDV<,=/nH{~>k4ttw/lga(^WR/u//2",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "file_stash",
+                                    "download"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "s3_key",
+                                      "value": "1day/jDV<,=/nH{~>k4ttw/lga(^WR/u//2"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Found",
+                              "code": 302,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The presigned URL",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Location",
+                                  "value": "<uri>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:02.000Z",
+                              "updatedAt": "2026-07-28T02:37:02.000Z",
+                              "uid": "35240-de9b2118-6ca6-42e2-b419-4cc5e9ccd168"
+                            },
+                            {
+                              "id": "106296b1-c17a-4a72-84d6-bf7a809bf948",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/octet-stream"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/file_stash/download?s3_key=1day/jDV<,=/nH{~>k4ttw/lga(^WR/u//2",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "file_stash",
+                                    "download"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "s3_key",
+                                      "value": "1day/jDV<,=/nH{~>k4ttw/lga(^WR/u//2"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/octet-stream"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:37:02.000Z",
+                              "updatedAt": "2026-07-28T02:37:02.000Z",
+                              "uid": "35240-106296b1-c17a-4a72-84d6-bf7a809bf948"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:02.000Z",
+                          "updatedAt": "2026-07-28T02:37:02.000Z",
+                          "uid": "35240-40b322f0-07a2-4ec8-b21f-f4d6593b0d33"
+                        }
+                      ],
+                      "id": "5e6018b2-aead-4937-ba24-77a8e6b4400e",
+                      "createdAt": "2026-07-28T02:37:02.000Z",
+                      "updatedAt": "2026-07-28T02:37:02.000Z",
+                      "uid": "35240-5e6018b2-aead-4937-ba24-77a8e6b4400e"
+                    }
+                  ],
+                  "id": "0fc149d3-b6ed-45b9-b06b-d4f4c40e6c2b",
+                  "createdAt": "2026-07-28T02:37:02.000Z",
+                  "updatedAt": "2026-07-28T02:37:02.000Z",
+                  "uid": "35240-0fc149d3-b6ed-45b9-b06b-d4f4c40e6c2b"
+                }
+              ],
+              "id": "8db3b4f6-b3b7-445f-9bb5-2c2338e89543",
+              "createdAt": "2026-07-28T02:37:02.000Z",
+              "updatedAt": "2026-07-28T02:37:02.000Z",
+              "uid": "35240-8db3b4f6-b3b7-445f-9bb5-2c2338e89543"
+            }
+          ],
+          "id": "4e5db06c-7230-4845-a613-eb8ed584fdec",
+          "createdAt": "2026-07-28T02:37:02.000Z",
+          "updatedAt": "2026-07-28T02:37:02.000Z",
+          "uid": "35240-4e5db06c-7230-4845-a613-eb8ed584fdec"
+        }
+      ],
+      "id": "6dd470cf-0963-4f87-b739-ee9eb66688fd",
+      "createdAt": "2026-07-28T02:37:02.000Z",
+      "updatedAt": "2026-07-28T02:37:02.000Z",
+      "uid": "35240-6dd470cf-0963-4f87-b739-ee9eb66688fd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

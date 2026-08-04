@@ -1,0 +1,1604 @@
+{
+  "info": {
+    "_postman_id": "37e9c43e-0c11-4fab-8449-f0bd7a6584ce",
+    "name": "Pipedream MCP Server Accounts Actions API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:36:37.000Z",
+    "updatedAt": "2026-07-28T02:36:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-37e9c43e-0c11-4fab-8449-f0bd7a6584ce"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "{project_id}",
+              "item": [
+                {
+                  "name": "actions",
+                  "item": [
+                    {
+                      "name": "{component_id}",
+                      "item": [
+                        {
+                          "name": "Retrieve Action",
+                          "id": "f3986058-c987-4972-b670-9c9732b42089",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/actions/:component_id?version=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "actions",
+                                ":component_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional semantic version of the component to retrieve (for example '1.0.0')",
+                                  "key": "version",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a7a181ad-9fdb-49e4-9ef4-5d8b1d4dff8f",
+                                  "key": "project_id",
+                                  "value": "proj_GQc74zc",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "9bf1d270-b4ea-45c3-a3cb-34ab280b15da",
+                                  "key": "component_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The key that uniquely identifies the component (e.g., 'slack-send-message')"
+                                }
+                              ]
+                            },
+                            "description": "Get detailed configuration for a specific action by its key"
+                          },
+                          "response": [
+                            {
+                              "id": "665b2c2a-29b7-4746-9c8e-2f89ae697167",
+                              "name": "action retrieved",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/:component_id?version=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    ":component_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional semantic version of the component to retrieve (for example '1.0.0')",
+                                      "key": "version",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "component_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"version\": \"32T16n518145171\",\n    \"configurable_props\": [\n      {\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"sql\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"optional\": \"<boolean>\",\n        \"disabled\": \"<boolean>\",\n        \"readOnly\": \"<boolean>\",\n        \"hidden\": \"<boolean>\",\n        \"remoteOptions\": \"<boolean>\",\n        \"useQuery\": \"<boolean>\",\n        \"reloadProps\": \"<boolean>\",\n        \"withLabel\": \"<boolean>\",\n        \"alertType\": \"neutral\"\n      },\n      {\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"object\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"optional\": \"<boolean>\",\n        \"disabled\": \"<boolean>\",\n        \"readOnly\": \"<boolean>\",\n        \"hidden\": \"<boolean>\",\n        \"remoteOptions\": \"<boolean>\",\n        \"useQuery\": \"<boolean>\",\n        \"reloadProps\": \"<boolean>\",\n        \"withLabel\": \"<boolean>\",\n        \"alertType\": \"warning\"\n      }\n    ],\n    \"description\": \"<string>\",\n    \"component_type\": \"<string>\",\n    \"stash\": \"optional\",\n    \"annotations\": {\n      \"destructiveHint\": \"<boolean>\",\n      \"idempotentHint\": \"<boolean>\",\n      \"openWorldHint\": \"<boolean>\",\n      \"readOnlyHint\": \"<boolean>\",\n      \"title\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-665b2c2a-29b7-4746-9c8e-2f89ae697167"
+                            },
+                            {
+                              "id": "af68e758-6b30-4a5e-87b7-8739ad5e3373",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/:component_id?version=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    ":component_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional semantic version of the component to retrieve (for example '1.0.0')",
+                                      "key": "version",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "component_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-af68e758-6b30-4a5e-87b7-8739ad5e3373"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:36:38.000Z",
+                          "updatedAt": "2026-07-28T02:36:38.000Z",
+                          "uid": "35240-f3986058-c987-4972-b670-9c9732b42089"
+                        }
+                      ],
+                      "id": "de1c8eb3-5a95-44d7-811b-f16bfdac7173",
+                      "createdAt": "2026-07-28T02:36:38.000Z",
+                      "updatedAt": "2026-07-28T02:36:38.000Z",
+                      "uid": "35240-de1c8eb3-5a95-44d7-811b-f16bfdac7173"
+                    },
+                    {
+                      "name": "configure",
+                      "item": [
+                        {
+                          "name": "Configure Action Prop",
+                          "id": "9f2049bf-09b9-4dfd-9254-4f8601536ac0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"prop_name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"in_1_\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"page\": \"<number>\",\n  \"prev_context\": {},\n  \"query\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/actions/configure",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "actions",
+                                "configure"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a2cfda2d-2b6e-4512-8730-81ebfa76bacf",
+                                  "key": "project_id",
+                                  "value": "proj_GQc74zc",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                }
+                              ]
+                            },
+                            "description": "Retrieve remote options for a given prop for a action"
+                          },
+                          "response": [
+                            {
+                              "id": "a00f42b7-113c-4f9b-a221-5bbafdeedf0b",
+                              "name": "action configuration started",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"prop_name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"in_1_\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"page\": \"<number>\",\n  \"prev_context\": {},\n  \"query\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/configure",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "configure"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"options\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"stringOptions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"observations\": [\n    {\n      \"k\": \"<string>\",\n      \"ts\": \"<number>\",\n      \"err\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"stack\": \"<string>\"\n      },\n      \"msg\": \"<string>\"\n    },\n    {\n      \"k\": \"<string>\",\n      \"ts\": \"<number>\",\n      \"err\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"stack\": \"<string>\"\n      },\n      \"msg\": \"<string>\"\n    }\n  ],\n  \"context\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-a00f42b7-113c-4f9b-a221-5bbafdeedf0b"
+                            },
+                            {
+                              "id": "95a2b121-cd52-44c2-b960-442969dd194b",
+                              "name": "Async operation started",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"prop_name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"in_1_\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"page\": \"<number>\",\n  \"prev_context\": {},\n  \"query\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/configure",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "configure"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-95a2b121-cd52-44c2-b960-442969dd194b"
+                            },
+                            {
+                              "id": "63683a1f-4bf9-4dba-8af1-3e00f6d72509",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"prop_name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"in_1_\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"page\": \"<number>\",\n  \"prev_context\": {},\n  \"query\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/configure",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "configure"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-63683a1f-4bf9-4dba-8af1-3e00f6d72509"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:36:38.000Z",
+                          "updatedAt": "2026-07-28T02:36:38.000Z",
+                          "uid": "35240-9f2049bf-09b9-4dfd-9254-4f8601536ac0"
+                        }
+                      ],
+                      "id": "37946720-b23c-4afb-a3b9-6ddc1309d556",
+                      "createdAt": "2026-07-28T02:36:38.000Z",
+                      "updatedAt": "2026-07-28T02:36:38.000Z",
+                      "uid": "35240-37946720-b23c-4afb-a3b9-6ddc1309d556"
+                    },
+                    {
+                      "name": "props",
+                      "item": [
+                        {
+                          "name": "Reload Action Props",
+                          "id": "764f7dc8-47b8-4fde-99db-807a6dfaf83b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"Duis_f0\": {\n      \"nullable\": false\n    },\n    \"eac3f\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/actions/props",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "actions",
+                                "props"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "87054720-7968-4ee6-b39e-964ab1222f56",
+                                  "key": "project_id",
+                                  "value": "proj_GQc74zc",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                }
+                              ]
+                            },
+                            "description": "Reload the prop definition based on the currently configured props"
+                          },
+                          "response": [
+                            {
+                              "id": "51b79367-302f-4951-949a-c1a0f1e30c7a",
+                              "name": "action props reloaded",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"Duis_f0\": {\n      \"nullable\": false\n    },\n    \"eac3f\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/props",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "props"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"observations\": [\n    {\n      \"k\": \"<string>\",\n      \"ts\": \"<number>\",\n      \"err\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"stack\": \"<string>\"\n      },\n      \"msg\": \"<string>\"\n    },\n    {\n      \"k\": \"<string>\",\n      \"ts\": \"<number>\",\n      \"err\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"stack\": \"<string>\"\n      },\n      \"msg\": \"<string>\"\n    }\n  ],\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamicProps\": {\n    \"id\": \"<string>\",\n    \"configurableProps\": [\n      {\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"$.discord.channel\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"optional\": \"<boolean>\",\n        \"disabled\": \"<boolean>\",\n        \"readOnly\": \"<boolean>\",\n        \"hidden\": \"<boolean>\",\n        \"remoteOptions\": \"<boolean>\",\n        \"useQuery\": \"<boolean>\",\n        \"reloadProps\": \"<boolean>\",\n        \"withLabel\": \"<boolean>\",\n        \"alertType\": \"error\"\n      },\n      {\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"$.airtable.baseId\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"optional\": \"<boolean>\",\n        \"disabled\": \"<boolean>\",\n        \"readOnly\": \"<boolean>\",\n        \"hidden\": \"<boolean>\",\n        \"remoteOptions\": \"<boolean>\",\n        \"useQuery\": \"<boolean>\",\n        \"reloadProps\": \"<boolean>\",\n        \"withLabel\": \"<boolean>\",\n        \"alertType\": \"error\"\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-51b79367-302f-4951-949a-c1a0f1e30c7a"
+                            },
+                            {
+                              "id": "24bab868-7c6e-49c9-97d4-eb85e10c8b96",
+                              "name": "Async operation started",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"Duis_f0\": {\n      \"nullable\": false\n    },\n    \"eac3f\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/props",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "props"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-24bab868-7c6e-49c9-97d4-eb85e10c8b96"
+                            },
+                            {
+                              "id": "d68123c1-511a-40fb-9d70-29558c8e5ad4",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"Duis_f0\": {\n      \"nullable\": false\n    },\n    \"eac3f\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/props",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "props"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-d68123c1-511a-40fb-9d70-29558c8e5ad4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:36:38.000Z",
+                          "updatedAt": "2026-07-28T02:36:38.000Z",
+                          "uid": "35240-764f7dc8-47b8-4fde-99db-807a6dfaf83b"
+                        }
+                      ],
+                      "id": "07ccff0f-efa9-44e8-b943-0b54e0433d51",
+                      "createdAt": "2026-07-28T02:36:38.000Z",
+                      "updatedAt": "2026-07-28T02:36:38.000Z",
+                      "uid": "35240-07ccff0f-efa9-44e8-b943-0b54e0433d51"
+                    },
+                    {
+                      "name": "run",
+                      "item": [
+                        {
+                          "name": "Run Action",
+                          "id": "451a01f8-40ea-48f1-a848-b4cb0e468eff",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"configured_props\": {\n    \"Lorem147\": {\n      \"nullable\": false\n    },\n    \"Excepteur_63b\": {\n      \"nullable\": false\n    },\n    \"consecteturca\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"stash_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/actions/run",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "actions",
+                                "run"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e853848d-8539-4df1-91aa-34fb09dc5547",
+                                  "key": "project_id",
+                                  "value": "proj_GQc74zc",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                }
+                              ]
+                            },
+                            "description": "Execute an action with the provided configuration and return results"
+                          },
+                          "response": [
+                            {
+                              "id": "349989d7-3e88-4ef4-8162-23f4e2afdb35",
+                              "name": "action ran",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"configured_props\": {\n    \"Lorem147\": {\n      \"nullable\": false\n    },\n    \"Excepteur_63b\": {\n      \"nullable\": false\n    },\n    \"consecteturca\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"stash_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/run",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "run"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"exports\": {\n    \"dolore1eb\": false,\n    \"sit_8c\": -90618324.82624954,\n    \"minim871\": -3497775.3493514657\n  },\n  \"os\": [\n    {\n      \"k\": \"<string>\",\n      \"ts\": \"<number>\",\n      \"err\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"stack\": \"<string>\"\n      },\n      \"msg\": \"<string>\"\n    },\n    {\n      \"k\": \"<string>\",\n      \"ts\": \"<number>\",\n      \"err\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"stack\": \"<string>\"\n      },\n      \"msg\": \"<string>\"\n    }\n  ],\n  \"ret\": {\n    \"description\": \"The value returned by the action\",\n    \"nullable\": true\n  },\n  \"stash_id\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-349989d7-3e88-4ef4-8162-23f4e2afdb35"
+                            },
+                            {
+                              "id": "bdd066be-55e6-4238-b197-283a4ad34388",
+                              "name": "Async operation started",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"configured_props\": {\n    \"Lorem147\": {\n      \"nullable\": false\n    },\n    \"Excepteur_63b\": {\n      \"nullable\": false\n    },\n    \"consecteturca\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"stash_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/run",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "run"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-bdd066be-55e6-4238-b197-283a4ad34388"
+                            },
+                            {
+                              "id": "6013733c-d404-45a3-8ea2-1183849c8e5a",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"configured_props\": {\n    \"Lorem147\": {\n      \"nullable\": false\n    },\n    \"Excepteur_63b\": {\n      \"nullable\": false\n    },\n    \"consecteturca\": {\n      \"nullable\": false\n    }\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"stash_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/actions/run",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "actions",
+                                    "run"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:36:38.000Z",
+                              "updatedAt": "2026-07-28T02:36:38.000Z",
+                              "uid": "35240-6013733c-d404-45a3-8ea2-1183849c8e5a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:36:38.000Z",
+                          "updatedAt": "2026-07-28T02:36:38.000Z",
+                          "uid": "35240-451a01f8-40ea-48f1-a848-b4cb0e468eff"
+                        }
+                      ],
+                      "id": "71ae849d-9259-40a9-aa8f-356caf42e13e",
+                      "createdAt": "2026-07-28T02:36:38.000Z",
+                      "updatedAt": "2026-07-28T02:36:38.000Z",
+                      "uid": "35240-71ae849d-9259-40a9-aa8f-356caf42e13e"
+                    },
+                    {
+                      "name": "List Actions",
+                      "id": "d85923fe-e96f-4386-9bcd-ac03addfa4f3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The environment in which the server client is running",
+                            "key": "x-pd-environment",
+                            "value": "development"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/:project_id/actions?after=<string>&before=<string>&limit=<integer>&q=<string>&app=<string>&registry=public",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            ":project_id",
+                            "actions"
+                          ],
+                          "query": [
+                            {
+                              "description": "The cursor to start from for pagination",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The cursor to end before for pagination",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The maximum number of results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "A search query to filter the actions",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID or name slug of the app to filter the actions",
+                              "key": "app",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The registry to retrieve actions from. Defaults to 'all' ('public', 'private', or 'all')",
+                              "key": "registry",
+                              "value": "public"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "aa7c04d3-7df3-4ad2-95bd-4c38ad3e0a6a",
+                              "key": "project_id",
+                              "value": "proj_GQc74zc",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve available actions with optional search and app filtering"
+                      },
+                      "response": [
+                        {
+                          "id": "5544fe91-10dc-4c30-b926-311905fc6894",
+                          "name": "returns public + private without permission",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/actions?after=<string>&before=<string>&limit=<integer>&q=<string>&app=<string>&registry=public",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "actions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The cursor to start from for pagination",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The cursor to end before for pagination",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The maximum number of results to return",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "A search query to filter the actions",
+                                  "key": "q",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID or name slug of the app to filter the actions",
+                                  "key": "app",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The registry to retrieve actions from. Defaults to 'all' ('public', 'private', or 'all')",
+                                  "key": "registry",
+                                  "value": "public"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"version\": \"91102380o7737124747852773925072\",\n      \"configurable_props\": [\n        {\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"$.discord.channel[]\",\n          \"label\": \"<string>\",\n          \"description\": \"<string>\",\n          \"optional\": \"<boolean>\",\n          \"disabled\": \"<boolean>\",\n          \"readOnly\": \"<boolean>\",\n          \"hidden\": \"<boolean>\",\n          \"remoteOptions\": \"<boolean>\",\n          \"useQuery\": \"<boolean>\",\n          \"reloadProps\": \"<boolean>\",\n          \"withLabel\": \"<boolean>\",\n          \"alertType\": \"error\"\n        },\n        {\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"any\",\n          \"label\": \"<string>\",\n          \"description\": \"<string>\",\n          \"optional\": \"<boolean>\",\n          \"disabled\": \"<boolean>\",\n          \"readOnly\": \"<boolean>\",\n          \"hidden\": \"<boolean>\",\n          \"remoteOptions\": \"<boolean>\",\n          \"useQuery\": \"<boolean>\",\n          \"reloadProps\": \"<boolean>\",\n          \"withLabel\": \"<boolean>\",\n          \"alertType\": \"info\"\n        }\n      ],\n      \"description\": \"<string>\",\n      \"component_type\": \"<string>\",\n      \"stash\": \"required\",\n      \"annotations\": {\n        \"destructiveHint\": \"<boolean>\",\n        \"idempotentHint\": \"<boolean>\",\n        \"openWorldHint\": \"<boolean>\",\n        \"readOnlyHint\": \"<boolean>\",\n        \"title\": \"<string>\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"version\": \"7959413M713963627\",\n      \"configurable_props\": [\n        {\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"alert\",\n          \"label\": \"<string>\",\n          \"description\": \"<string>\",\n          \"optional\": \"<boolean>\",\n          \"disabled\": \"<boolean>\",\n          \"readOnly\": \"<boolean>\",\n          \"hidden\": \"<boolean>\",\n          \"remoteOptions\": \"<boolean>\",\n          \"useQuery\": \"<boolean>\",\n          \"reloadProps\": \"<boolean>\",\n          \"withLabel\": \"<boolean>\",\n          \"alertType\": \"warning\"\n        },\n        {\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"any\",\n          \"label\": \"<string>\",\n          \"description\": \"<string>\",\n          \"optional\": \"<boolean>\",\n          \"disabled\": \"<boolean>\",\n          \"readOnly\": \"<boolean>\",\n          \"hidden\": \"<boolean>\",\n          \"remoteOptions\": \"<boolean>\",\n          \"useQuery\": \"<boolean>\",\n          \"reloadProps\": \"<boolean>\",\n          \"withLabel\": \"<boolean>\",\n          \"alertType\": \"error\"\n        }\n      ],\n      \"description\": \"<string>\",\n      \"component_type\": \"<string>\",\n      \"stash\": \"required\",\n      \"annotations\": {\n        \"destructiveHint\": \"<boolean>\",\n        \"idempotentHint\": \"<boolean>\",\n        \"openWorldHint\": \"<boolean>\",\n        \"readOnlyHint\": \"<boolean>\",\n        \"title\": \"<string>\"\n      }\n    }\n  ],\n  \"page_info\": {\n    \"count\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"start_cursor\": \"<string>\",\n    \"end_cursor\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:36:38.000Z",
+                          "updatedAt": "2026-07-28T02:36:38.000Z",
+                          "uid": "35240-5544fe91-10dc-4c30-b926-311905fc6894"
+                        },
+                        {
+                          "id": "bb6899d3-35a1-4fe9-9fdc-2cf826faa37b",
+                          "name": "rejects invalid registry value",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/actions?after=<string>&before=<string>&limit=<integer>&q=<string>&app=<string>&registry=public",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "actions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The cursor to start from for pagination",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The cursor to end before for pagination",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The maximum number of results to return",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "A search query to filter the actions",
+                                  "key": "q",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID or name slug of the app to filter the actions",
+                                  "key": "app",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The registry to retrieve actions from. Defaults to 'all' ('public', 'private', or 'all')",
+                                  "key": "registry",
+                                  "value": "public"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\",\n  \"details\": {}\n}",
+                          "createdAt": "2026-07-28T02:36:38.000Z",
+                          "updatedAt": "2026-07-28T02:36:38.000Z",
+                          "uid": "35240-bb6899d3-35a1-4fe9-9fdc-2cf826faa37b"
+                        },
+                        {
+                          "id": "c9bcba1c-9e73-44d7-a6af-06ce3a44e975",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/actions?after=<string>&before=<string>&limit=<integer>&q=<string>&app=<string>&registry=public",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "actions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The cursor to start from for pagination",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The cursor to end before for pagination",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The maximum number of results to return",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "A search query to filter the actions",
+                                  "key": "q",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID or name slug of the app to filter the actions",
+                                  "key": "app",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The registry to retrieve actions from. Defaults to 'all' ('public', 'private', or 'all')",
+                                  "key": "registry",
+                                  "value": "public"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:36:38.000Z",
+                          "updatedAt": "2026-07-28T02:36:38.000Z",
+                          "uid": "35240-c9bcba1c-9e73-44d7-a6af-06ce3a44e975"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:36:38.000Z",
+                      "updatedAt": "2026-07-28T02:36:38.000Z",
+                      "uid": "35240-d85923fe-e96f-4386-9bcd-ac03addfa4f3"
+                    }
+                  ],
+                  "id": "24f1917d-0876-47b4-a9c0-8cb48a929e23",
+                  "createdAt": "2026-07-28T02:36:38.000Z",
+                  "updatedAt": "2026-07-28T02:36:38.000Z",
+                  "uid": "35240-24f1917d-0876-47b4-a9c0-8cb48a929e23"
+                }
+              ],
+              "id": "12959222-847a-4364-9d04-f6fb9ba6a8c6",
+              "createdAt": "2026-07-28T02:36:38.000Z",
+              "updatedAt": "2026-07-28T02:36:38.000Z",
+              "uid": "35240-12959222-847a-4364-9d04-f6fb9ba6a8c6"
+            }
+          ],
+          "id": "7840e25e-a3cc-41df-be54-5928edc54e8c",
+          "createdAt": "2026-07-28T02:36:38.000Z",
+          "updatedAt": "2026-07-28T02:36:38.000Z",
+          "uid": "35240-7840e25e-a3cc-41df-be54-5928edc54e8c"
+        }
+      ],
+      "id": "3189bd2f-9ce1-4294-9d73-6e8d6ccb8654",
+      "createdAt": "2026-07-28T02:36:38.000Z",
+      "updatedAt": "2026-07-28T02:36:38.000Z",
+      "uid": "35240-3189bd2f-9ce1-4294-9d73-6e8d6ccb8654"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

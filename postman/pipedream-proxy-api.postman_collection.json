@@ -1,0 +1,1381 @@
+{
+  "info": {
+    "_postman_id": "111a743c-6922-424a-989f-d398168cda43",
+    "name": "Pipedream MCP Server Accounts Proxy API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:12.000Z",
+    "updatedAt": "2026-07-28T02:37:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-111a743c-6922-424a-989f-d398168cda43"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "{project_id}",
+              "item": [
+                {
+                  "name": "proxy",
+                  "item": [
+                    {
+                      "name": "{url_64}",
+                      "item": [
+                        {
+                          "name": "Proxy GET Request",
+                          "id": "0bfc7280-0c5a-452c-881f-dcc1cd29c106",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "proxy",
+                                ":url_64"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The external user ID for the proxy request",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) The account ID to use for authentication",
+                                  "key": "account_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3db2d7d2-8506-490c-b382-31c2e6d40a32",
+                                  "key": "project_id",
+                                  "value": "proj_y",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "3352a7b0-5c85-4ed1-9c03-a1d454dfdfda",
+                                  "key": "url_64",
+                                  "value": "<string>",
+                                  "description": "(Required) Base64-encoded target URL"
+                                }
+                              ]
+                            },
+                            "description": "Forward an authenticated GET request to an external API using an external user's account credentials"
+                          },
+                          "response": [
+                            {
+                              "id": "4c8b7458-e421-44db-93a2-203b1b0f661d",
+                              "name": "proxy request successful",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "*/*"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"description\": \"The parsed response body from a proxied API request\"\n}",
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-4c8b7458-e421-44db-93a2-203b1b0f661d"
+                            },
+                            {
+                              "id": "3b6afc7b-a654-47b6-84b4-cadab2cf1f15",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-3b6afc7b-a654-47b6-84b4-cadab2cf1f15"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:13.000Z",
+                          "updatedAt": "2026-07-28T02:37:13.000Z",
+                          "uid": "35240-0bfc7280-0c5a-452c-881f-dcc1cd29c106"
+                        },
+                        {
+                          "name": "Proxy POST Request",
+                          "id": "27a00c9a-928e-4eb2-8a71-54c3e2a71a6c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "proxy",
+                                ":url_64"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The external user ID for the proxy request",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) The account ID to use for authentication",
+                                  "key": "account_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "123523a4-1517-46be-a718-56e323c86217",
+                                  "key": "project_id",
+                                  "value": "proj_y",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "6d4c9177-a5de-434d-bb62-086d6111694c",
+                                  "key": "url_64",
+                                  "value": "<string>",
+                                  "description": "(Required) Base64-encoded target URL"
+                                }
+                              ]
+                            },
+                            "description": "Forward an authenticated POST request to an external API using an external user's account credentials"
+                          },
+                          "response": [
+                            {
+                              "id": "7a7387a9-bff2-45e3-8d69-5b464d9aceea",
+                              "name": "proxy request successful",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "*/*"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"description\": \"The parsed response body from a proxied API request\"\n}",
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-7a7387a9-bff2-45e3-8d69-5b464d9aceea"
+                            },
+                            {
+                              "id": "28c79221-c8d0-4366-bec3-8dfafe853ff9",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-28c79221-c8d0-4366-bec3-8dfafe853ff9"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:13.000Z",
+                          "updatedAt": "2026-07-28T02:37:13.000Z",
+                          "uid": "35240-27a00c9a-928e-4eb2-8a71-54c3e2a71a6c"
+                        },
+                        {
+                          "name": "Proxy PUT Request",
+                          "id": "1d1f8df8-2032-4b0e-b513-c9c54648845a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "proxy",
+                                ":url_64"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The external user ID for the proxy request",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) The account ID to use for authentication",
+                                  "key": "account_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "da035f51-5ddb-4b64-bf72-02e35532b4dd",
+                                  "key": "project_id",
+                                  "value": "proj_y",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "cb837fec-409d-4788-b9f8-3ab0f8482072",
+                                  "key": "url_64",
+                                  "value": "<string>",
+                                  "description": "(Required) Base64-encoded target URL"
+                                }
+                              ]
+                            },
+                            "description": "Forward an authenticated PUT request to an external API using an external user's account credentials"
+                          },
+                          "response": [
+                            {
+                              "id": "554de82a-7b15-43dd-a08f-c2d9298a5d86",
+                              "name": "proxy request successful",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "*/*"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"description\": \"The parsed response body from a proxied API request\"\n}",
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-554de82a-7b15-43dd-a08f-c2d9298a5d86"
+                            },
+                            {
+                              "id": "493fc59b-bfa9-4c40-a9c2-b4026b5ea8ef",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-493fc59b-bfa9-4c40-a9c2-b4026b5ea8ef"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:13.000Z",
+                          "updatedAt": "2026-07-28T02:37:13.000Z",
+                          "uid": "35240-1d1f8df8-2032-4b0e-b513-c9c54648845a"
+                        },
+                        {
+                          "name": "Proxy DELETE Request",
+                          "id": "3c5f9539-354a-4c74-8e50-f7a227bdccdc",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "proxy",
+                                ":url_64"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The external user ID for the proxy request",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) The account ID to use for authentication",
+                                  "key": "account_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1a7fd63b-7e22-4241-b4b5-3b6159524925",
+                                  "key": "project_id",
+                                  "value": "proj_y",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "59640ff2-6272-466f-9b90-d243cb2634ce",
+                                  "key": "url_64",
+                                  "value": "<string>",
+                                  "description": "(Required) Base64-encoded target URL"
+                                }
+                              ]
+                            },
+                            "description": "Forward an authenticated DELETE request to an external API using an external user's account credentials"
+                          },
+                          "response": [
+                            {
+                              "id": "9634fbeb-bc5b-4a0c-9d6d-9b34d05cf55f",
+                              "name": "proxy request successful",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "*/*"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"description\": \"The parsed response body from a proxied API request\"\n}",
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-9634fbeb-bc5b-4a0c-9d6d-9b34d05cf55f"
+                            },
+                            {
+                              "id": "212b76e8-270b-4887-a1cf-de898047cdec",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-212b76e8-270b-4887-a1cf-de898047cdec"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:13.000Z",
+                          "updatedAt": "2026-07-28T02:37:13.000Z",
+                          "uid": "35240-3c5f9539-354a-4c74-8e50-f7a227bdccdc"
+                        },
+                        {
+                          "name": "Proxy PATCH Request",
+                          "id": "6d8605f2-8e35-47c5-a28d-3b6ec1d802bb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "proxy",
+                                ":url_64"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The external user ID for the proxy request",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) The account ID to use for authentication",
+                                  "key": "account_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "86b63827-71fa-4ec7-a1ba-9bbcf2d7bb9c",
+                                  "key": "project_id",
+                                  "value": "proj_y",
+                                  "description": "(Required) The project ID, which starts with `proj_`."
+                                },
+                                {
+                                  "id": "1d618fb9-e15f-48c1-a4d2-c1862f20cc3c",
+                                  "key": "url_64",
+                                  "value": "<string>",
+                                  "description": "(Required) Base64-encoded target URL"
+                                }
+                              ]
+                            },
+                            "description": "Forward an authenticated PATCH request to an external API using an external user's account credentials"
+                          },
+                          "response": [
+                            {
+                              "id": "078f3d90-c2e3-4ac5-a10e-981be4119b48",
+                              "name": "proxy request successful",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "*/*"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"description\": \"The parsed response body from a proxied API request\"\n}",
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-078f3d90-c2e3-4ac5-a10e-981be4119b48"
+                            },
+                            {
+                              "id": "0701ad9a-a867-47e2-bc8c-062f78b92b3f",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "description": "(Required) The environment in which the server client is running",
+                                    "key": "x-pd-environment",
+                                    "value": "development"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/:project_id/proxy/:url_64?external_user_id=<string>&account_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    ":project_id",
+                                    "proxy",
+                                    ":url_64"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The external user ID for the proxy request",
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The account ID to use for authentication",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "url_64"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:37:13.000Z",
+                              "updatedAt": "2026-07-28T02:37:13.000Z",
+                              "uid": "35240-0701ad9a-a867-47e2-bc8c-062f78b92b3f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:13.000Z",
+                          "updatedAt": "2026-07-28T02:37:13.000Z",
+                          "uid": "35240-6d8605f2-8e35-47c5-a28d-3b6ec1d802bb"
+                        }
+                      ],
+                      "id": "6a2b9cc8-6c55-4604-a159-2792d63ae68b",
+                      "createdAt": "2026-07-28T02:37:13.000Z",
+                      "updatedAt": "2026-07-28T02:37:13.000Z",
+                      "uid": "35240-6a2b9cc8-6c55-4604-a159-2792d63ae68b"
+                    }
+                  ],
+                  "id": "55afd2e5-6536-426b-ade3-32dcad29972e",
+                  "createdAt": "2026-07-28T02:37:13.000Z",
+                  "updatedAt": "2026-07-28T02:37:13.000Z",
+                  "uid": "35240-55afd2e5-6536-426b-ade3-32dcad29972e"
+                }
+              ],
+              "id": "fa76166f-5e35-4294-87aa-1d2368673c70",
+              "createdAt": "2026-07-28T02:37:13.000Z",
+              "updatedAt": "2026-07-28T02:37:13.000Z",
+              "uid": "35240-fa76166f-5e35-4294-87aa-1d2368673c70"
+            }
+          ],
+          "id": "0fba07b4-9cfe-4a9e-bfad-4a6ca973985e",
+          "createdAt": "2026-07-28T02:37:13.000Z",
+          "updatedAt": "2026-07-28T02:37:13.000Z",
+          "uid": "35240-0fba07b4-9cfe-4a9e-bfad-4a6ca973985e"
+        }
+      ],
+      "id": "0f790a5b-de2a-4dd7-bc89-6752eaea4ff4",
+      "createdAt": "2026-07-28T02:37:13.000Z",
+      "updatedAt": "2026-07-28T02:37:13.000Z",
+      "uid": "35240-0f790a5b-de2a-4dd7-bc89-6752eaea4ff4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}

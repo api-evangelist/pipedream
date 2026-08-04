@@ -1,0 +1,560 @@
+{
+  "info": {
+    "_postman_id": "08a8d4f9-3d10-4bc9-be15-fa267fba6ef2",
+    "name": "Pipedream MCP Server Accounts Tokens API",
+    "description": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:37:13.000Z",
+    "updatedAt": "2026-07-28T02:37:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-08a8d4f9-3d10-4bc9-be15-fa267fba6ef2"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "{project_id}",
+              "item": [
+                {
+                  "name": "tokens",
+                  "item": [
+                    {
+                      "name": "Create Connect Token",
+                      "id": "69fde840-8b35-47ad-995c-8ee58e4d1872",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The environment in which the server client is running",
+                            "key": "x-pd-environment",
+                            "value": "production"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"external_user_id\": \"<string>\",\n  \"allowed_origins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"error_redirect_uri\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\",\n  \"success_redirect_uri\": \"<string>\",\n  \"webhook_uri\": \"<string>\",\n  \"allow_progressive_scopes\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/connect/:project_id/tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "connect",
+                            ":project_id",
+                            "tokens"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ef40df21-c3dd-4299-868c-2424d6bb94ca",
+                              "key": "project_id",
+                              "value": "proj_fPWkcG",
+                              "description": "(Required) The project ID, which starts with `proj_`."
+                            }
+                          ]
+                        },
+                        "description": "Generate a Connect token to use for client-side authentication"
+                      },
+                      "response": [
+                        {
+                          "id": "5dca4329-3e7c-4a51-9e94-1e416a866ef3",
+                          "name": "connect token created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "production"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"external_user_id\": \"<string>\",\n  \"allowed_origins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"error_redirect_uri\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\",\n  \"success_redirect_uri\": \"<string>\",\n  \"webhook_uri\": \"<string>\",\n  \"allow_progressive_scopes\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "tokens"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"connect_link_url\": \"<string>\",\n  \"expires_at\": \"<dateTime>\",\n  \"token\": \"ctok_09a3f227cce414ef41143217998bb04b\"\n}",
+                          "createdAt": "2026-07-28T02:37:14.000Z",
+                          "updatedAt": "2026-07-28T02:37:14.000Z",
+                          "uid": "35240-5dca4329-3e7c-4a51-9e94-1e416a866ef3"
+                        },
+                        {
+                          "id": "4b03f3e4-b33d-4b7a-b228-525a186dd3f4",
+                          "name": "too many requests",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The environment in which the server client is running",
+                                "key": "x-pd-environment",
+                                "value": "production"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"external_user_id\": \"<string>\",\n  \"allowed_origins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"error_redirect_uri\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\",\n  \"success_redirect_uri\": \"<string>\",\n  \"webhook_uri\": \"<string>\",\n  \"allow_progressive_scopes\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/:project_id/tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                ":project_id",
+                                "tokens"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of seconds until the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The rate limit threshold",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of requests remaining (always 0 when throttled)",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Unix timestamp when the rate limit resets",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Reset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:37:14.000Z",
+                          "updatedAt": "2026-07-28T02:37:14.000Z",
+                          "uid": "35240-4b03f3e4-b33d-4b7a-b228-525a186dd3f4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:37:14.000Z",
+                      "updatedAt": "2026-07-28T02:37:14.000Z",
+                      "uid": "35240-69fde840-8b35-47ad-995c-8ee58e4d1872"
+                    }
+                  ],
+                  "id": "5745aa3d-dae1-40cd-ab12-5d0a677e0686",
+                  "createdAt": "2026-07-28T02:37:14.000Z",
+                  "updatedAt": "2026-07-28T02:37:14.000Z",
+                  "uid": "35240-5745aa3d-dae1-40cd-ab12-5d0a677e0686"
+                }
+              ],
+              "id": "a47d2ff4-3309-48a7-be16-27588567069e",
+              "createdAt": "2026-07-28T02:37:14.000Z",
+              "updatedAt": "2026-07-28T02:37:14.000Z",
+              "uid": "35240-a47d2ff4-3309-48a7-be16-27588567069e"
+            },
+            {
+              "name": "tokens",
+              "item": [
+                {
+                  "name": "{ctok}",
+                  "item": [
+                    {
+                      "name": "validate",
+                      "item": [
+                        {
+                          "name": "Validate Connect Token",
+                          "id": "a5aa14f4-1e65-4f52-ba45-6c5f14dde53b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/connect/tokens/:ctok/validate?app_id=<string>&account_id=<string>&oauth_app_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "connect",
+                                "tokens",
+                                ":ctok",
+                                "validate"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The app ID to validate against",
+                                  "key": "app_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An existing account ID to reconnect. Must belong to the app identified by app_id.",
+                                  "key": "account_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The OAuth app ID to validate against (if the token is for an OAuth app)",
+                                  "key": "oauth_app_id",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "35b7154b-0916-4359-84a1-16b0c840c1d7",
+                                  "key": "ctok",
+                                  "value": "ctok_78818d7170c6d76177f2001fa529ae2d",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Confirm the validity of a Connect token"
+                          },
+                          "response": [
+                            {
+                              "id": "a9be56c7-5a07-4adb-8f74-da35f96dab71",
+                              "name": "connect token validated",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/tokens/:ctok/validate?app_id=<string>&account_id=<string>&oauth_app_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    "tokens",
+                                    ":ctok",
+                                    "validate"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The app ID to validate against",
+                                      "key": "app_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "An existing account ID to reconnect. Must belong to the app identified by app_id.",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The OAuth app ID to validate against (if the token is for an OAuth app)",
+                                      "key": "oauth_app_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ctok"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"success\": \"<boolean>\",\n  \"app\": {\n    \"name_slug\": \"<string>\",\n    \"name\": \"<string>\",\n    \"img_src\": \"<string>\",\n    \"custom_fields_json\": \"<string>\",\n    \"categories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"featured_weight\": \"<number>\",\n    \"id\": \"<string>\",\n    \"auth_type\": \"none\",\n    \"description\": \"<string>\"\n  },\n  \"error_redirect_uri\": \"<string>\",\n  \"oauth_app_id\": \"<string>\",\n  \"project_app_name\": \"<string>\",\n  \"project_environment\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"project_support_email\": \"<string>\",\n  \"success_redirect_uri\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:37:14.000Z",
+                              "updatedAt": "2026-07-28T02:37:14.000Z",
+                              "uid": "35240-a9be56c7-5a07-4adb-8f74-da35f96dab71"
+                            },
+                            {
+                              "id": "2a5adfc2-5116-4eb4-9633-cfdfca7fdea4",
+                              "name": "too many requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/connect/tokens/:ctok/validate?app_id=<string>&account_id=<string>&oauth_app_id=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "connect",
+                                    "tokens",
+                                    ":ctok",
+                                    "validate"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The app ID to validate against",
+                                      "key": "app_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "An existing account ID to reconnect. Must belong to the app identified by app_id.",
+                                      "key": "account_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The OAuth app ID to validate against (if the token is for an OAuth app)",
+                                      "key": "oauth_app_id",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ctok"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of seconds until the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "The rate limit threshold",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Number of requests remaining (always 0 when throttled)",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Remaining",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "Unix timestamp when the rate limit resets",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "X-RateLimit-Reset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:37:14.000Z",
+                              "updatedAt": "2026-07-28T02:37:14.000Z",
+                              "uid": "35240-2a5adfc2-5116-4eb4-9633-cfdfca7fdea4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:37:14.000Z",
+                          "updatedAt": "2026-07-28T02:37:14.000Z",
+                          "uid": "35240-a5aa14f4-1e65-4f52-ba45-6c5f14dde53b"
+                        }
+                      ],
+                      "id": "20e3fb08-d773-468f-99e2-f49a98681afa",
+                      "createdAt": "2026-07-28T02:37:14.000Z",
+                      "updatedAt": "2026-07-28T02:37:14.000Z",
+                      "uid": "35240-20e3fb08-d773-468f-99e2-f49a98681afa"
+                    }
+                  ],
+                  "id": "cd03653c-e6eb-424b-8b82-1e8378679df8",
+                  "createdAt": "2026-07-28T02:37:14.000Z",
+                  "updatedAt": "2026-07-28T02:37:14.000Z",
+                  "uid": "35240-cd03653c-e6eb-424b-8b82-1e8378679df8"
+                }
+              ],
+              "id": "b8896bc0-5c79-40bd-b69a-5063be77aeae",
+              "createdAt": "2026-07-28T02:37:14.000Z",
+              "updatedAt": "2026-07-28T02:37:14.000Z",
+              "uid": "35240-b8896bc0-5c79-40bd-b69a-5063be77aeae"
+            }
+          ],
+          "id": "ed3e0f6f-d552-4339-bafe-c0b24278941e",
+          "createdAt": "2026-07-28T02:37:14.000Z",
+          "updatedAt": "2026-07-28T02:37:14.000Z",
+          "uid": "35240-ed3e0f6f-d552-4339-bafe-c0b24278941e"
+        }
+      ],
+      "id": "5f6375fc-8e7d-44d4-9413-750fbe6a0473",
+      "createdAt": "2026-07-28T02:37:14.000Z",
+      "updatedAt": "2026-07-28T02:37:14.000Z",
+      "uid": "35240-5f6375fc-8e7d-44d4-9413-750fbe6a0473"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://remote.mcp.pipedream.net/v3"
+    }
+  ]
+}
