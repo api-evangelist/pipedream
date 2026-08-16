@@ -6,16 +6,18 @@
       "feed_url": "https://pipedream.com/blog/feed/",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "feed",
+      "error": "parse_failed"
     },
     {
       "source": "https://pipedream.com/docs/pipedream_openapi_swagger.json",
       "feed_url": "https://pipedream.com/docs/pipedream_openapi_swagger.json",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     }
   ],
   "post_count": 20,
-  "fetched": "2026-08-06T14:08:46Z"
+  "fetched": "2026-08-15T12:11:08Z"
 }
