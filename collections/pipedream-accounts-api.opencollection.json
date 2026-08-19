@@ -1,0 +1,256 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/accounts",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "oauth_app_id",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth app ID to filter by, if applicable"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to start from for pagination"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to end before for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return"
+              },
+              {
+                "name": "app",
+                "value": "",
+                "type": "query",
+                "description": "The app slug or ID to filter accounts by."
+              },
+              {
+                "name": "include_credentials",
+                "value": "",
+                "type": "query",
+                "description": "Whether to retrieve the account's credentials or not"
+              }
+            ]
+          },
+          "docs": "Retrieve all connected accounts for the project with optional filtering"
+        },
+        {
+          "info": {
+            "name": "Create Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/accounts",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "oauth_app_id",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth app ID to filter by, if applicable"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect a new account for an external user in the project"
+        },
+        {
+          "info": {
+            "name": "Retrieve Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/accounts/:account_id",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include_credentials",
+                "value": "",
+                "type": "query",
+                "description": "Whether to retrieve the account's credentials or not"
+              }
+            ]
+          },
+          "docs": "Get the details for a specific connected account"
+        },
+        {
+          "info": {
+            "name": "Delete Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/accounts/:account_id",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a connected account and its associated credentials"
+        },
+        {
+          "info": {
+            "name": "Delete Accounts by App",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/apps/:app_id/accounts",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove all connected accounts for a specific app"
+        },
+        {
+          "info": {
+            "name": "Delete External User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/users/:external_user_id",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove an external user and all their associated accounts and resources"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

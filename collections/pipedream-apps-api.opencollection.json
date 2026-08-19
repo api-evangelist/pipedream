@@ -1,0 +1,238 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts Apps API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List App Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/app_categories"
+          },
+          "docs": "Retrieve all available categories for integrated apps"
+        },
+        {
+          "info": {
+            "name": "Retrieve App Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/app_categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the app category to retrieve"
+              }
+            ]
+          },
+          "docs": "Get details of a specific app category by its ID"
+        },
+        {
+          "info": {
+            "name": "List Apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/apps",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to start from for pagination"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to end before for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "A search query to filter the apps"
+              },
+              {
+                "name": "sort_key",
+                "value": "",
+                "type": "query",
+                "description": "The key to sort the apps by"
+              },
+              {
+                "name": "sort_direction",
+                "value": "",
+                "type": "query",
+                "description": "The direction to sort the apps"
+              },
+              {
+                "name": "category_ids",
+                "value": "",
+                "type": "query",
+                "description": "Only return apps in these categories"
+              },
+              {
+                "name": "has_components",
+                "value": "",
+                "type": "query",
+                "description": "Only return apps that have components (actions or triggers)"
+              },
+              {
+                "name": "has_actions",
+                "value": "",
+                "type": "query",
+                "description": "Only return apps that have actions"
+              },
+              {
+                "name": "has_triggers",
+                "value": "",
+                "type": "query",
+                "description": "Only return apps that have triggers"
+              }
+            ]
+          },
+          "docs": "Retrieve all available apps with optional filtering and sorting"
+        },
+        {
+          "info": {
+            "name": "List Apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/apps",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to start from for pagination"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to end before for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "A search query to filter the apps"
+              },
+              {
+                "name": "sort_key",
+                "value": "",
+                "type": "query",
+                "description": "The key to sort the apps by"
+              },
+              {
+                "name": "sort_direction",
+                "value": "",
+                "type": "query",
+                "description": "The direction to sort the apps"
+              },
+              {
+                "name": "category_ids",
+                "value": "",
+                "type": "query",
+                "description": "Only return apps in these categories"
+              },
+              {
+                "name": "has_components",
+                "value": "",
+                "type": "query",
+                "description": "Only return apps that have components (actions or triggers)"
+              },
+              {
+                "name": "has_actions",
+                "value": "",
+                "type": "query",
+                "description": "Only return apps that have actions"
+              },
+              {
+                "name": "has_triggers",
+                "value": "",
+                "type": "query",
+                "description": "Only return apps that have triggers"
+              }
+            ]
+          },
+          "docs": "Retrieve all available apps with optional filtering and sorting"
+        },
+        {
+          "info": {
+            "name": "Retrieve App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/apps/:app_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The name slug or ID of the app (e.g., 'slack', 'github')"
+              }
+            ]
+          },
+          "docs": "Get detailed information about a specific app by ID or name slug"
+        },
+        {
+          "info": {
+            "name": "Retrieve App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/apps/:app_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The name slug or ID of the app (e.g., 'slack', 'github')"
+              }
+            ]
+          },
+          "docs": "Get detailed information about a specific app by ID or name slug"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

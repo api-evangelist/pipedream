@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts Usage API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Usage Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/usage",
+            "params": [
+              {
+                "name": "start_ts",
+                "value": "",
+                "type": "query",
+                "description": "Usage window start timestamp (seconds)"
+              },
+              {
+                "name": "end_ts",
+                "value": "",
+                "type": "query",
+                "description": "Usage window end timestamp (seconds)"
+              }
+            ]
+          },
+          "docs": "Retrieve Connect usage records for a time window"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

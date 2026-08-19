@@ -1,0 +1,209 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts Triggers API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/triggers",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to start from for pagination"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to end before for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "A search query to filter the triggers"
+              },
+              {
+                "name": "app",
+                "value": "",
+                "type": "query",
+                "description": "The ID or name slug of the app to filter the triggers"
+              },
+              {
+                "name": "registry",
+                "value": "",
+                "type": "query",
+                "description": "The registry to retrieve triggers from. Defaults to 'all' ('public', 'private', or 'all')"
+              }
+            ]
+          },
+          "docs": "Retrieve available triggers with optional search and app filtering"
+        },
+        {
+          "info": {
+            "name": "Retrieve Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/triggers/:component_id",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "The key that uniquely identifies the component (e.g., 'slack-send-message')"
+              },
+              {
+                "name": "version",
+                "value": "1.2.3",
+                "type": "query",
+                "description": "Optional semantic version of the component to retrieve (for example '1.0.0')"
+              }
+            ]
+          },
+          "docs": "Get detailed configuration for a specific trigger by its key"
+        },
+        {
+          "info": {
+            "name": "Configure Trigger Prop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/triggers/configure",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve remote options for a given prop for a trigger"
+        },
+        {
+          "info": {
+            "name": "Reload Trigger Props",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/triggers/props",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reload the prop definition based on the currently configured props"
+        },
+        {
+          "info": {
+            "name": "Deploy Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/triggers/deploy",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploy a trigger to listen for and emit events"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

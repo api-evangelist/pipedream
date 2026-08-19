@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts File Stash API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "File Stash",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/file_stash/download",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "s3_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Download a file from File Stash"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

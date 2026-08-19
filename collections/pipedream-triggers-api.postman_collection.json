@@ -1,0 +1,1455 @@
+{
+  "item": [
+    {
+      "id": "ca780290-b430-4843-9d9c-aa24012372ea",
+      "name": "Triggers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa1e5da7-9a09-4fe2-a676-74edd4c79199",
+          "name": "List Triggers",
+          "request": {
+            "name": "List Triggers",
+            "description": {
+              "content": "Retrieve available triggers with optional search and app filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "triggers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "The cursor to start from for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "The cursor to end before for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "A search query to filter the triggers"
+                },
+                {
+                  "disabled": false,
+                  "key": "app",
+                  "value": "<string>",
+                  "description": "The ID or name slug of the app to filter the triggers"
+                },
+                {
+                  "disabled": false,
+                  "key": "registry",
+                  "value": "<string>",
+                  "description": "The registry to retrieve triggers from. Defaults to 'all' ('public', 'private', or 'all')"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3f44d42d-1ea7-49c7-a93f-b4468a12fe4f",
+              "name": "returns public + private without permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "registry",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"version\": \"49$95Z11673578858\",\n      \"configurable_props\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alertType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alertType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"description\": \"string\",\n      \"component_type\": \"string\",\n      \"stash\": \"optional\",\n      \"annotations\": {\n        \"destructiveHint\": true,\n        \"idempotentHint\": false,\n        \"openWorldHint\": false,\n        \"readOnlyHint\": false,\n        \"title\": \"string\"\n      }\n    },\n    {\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"version\": \"9304229361_8375<94354597425\",\n      \"configurable_props\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alertType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alertType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"description\": \"string\",\n      \"component_type\": \"string\",\n      \"stash\": \"optional\",\n      \"annotations\": {\n        \"destructiveHint\": true,\n        \"idempotentHint\": false,\n        \"openWorldHint\": false,\n        \"readOnlyHint\": true,\n        \"title\": \"string\"\n      }\n    }\n  ],\n  \"page_info\": {\n    \"count\": 10,\n    \"total_count\": 120,\n    \"start_cursor\": \"string\",\n    \"end_cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "334d987d-d2c3-493b-8207-6cb0aca074a1",
+              "name": "rejects invalid registry value",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "registry",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23758542-f9fa-4a5c-b314-7298717e0ebd",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "registry",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1149"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Throttled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f509174-b670-4d74-8ac2-9782b8807325",
+          "name": "Retrieve Trigger",
+          "request": {
+            "name": "Retrieve Trigger",
+            "description": {
+              "content": "Get detailed configuration for a specific trigger by its key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "triggers",
+                ":component_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Optional semantic version of the component to retrieve (for example '1.0.0')"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "component_id",
+                  "description": "(Required) The key that uniquely identifies the component (e.g., 'slack-send-message')"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "156c965d-6f28-43f3-9176-f60fed321274",
+              "name": "trigger retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "1.2.3"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The key that uniquely identifies the component (e.g., 'slack-send-message')"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"version\": \"975t662W503125\",\n    \"configurable_props\": [\n      {\n        \"content\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": \"alert\",\n        \"label\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"optional\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"disabled\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"readOnly\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hidden\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"remoteOptions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"useQuery\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reloadProps\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"withLabel\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"alertType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"content\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": \"alert\",\n        \"label\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"optional\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"disabled\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"readOnly\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hidden\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"remoteOptions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"useQuery\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reloadProps\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"withLabel\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"alertType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"description\": \"string\",\n    \"component_type\": \"string\",\n    \"stash\": \"required\",\n    \"annotations\": {\n      \"destructiveHint\": true,\n      \"idempotentHint\": true,\n      \"openWorldHint\": false,\n      \"readOnlyHint\": true,\n      \"title\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3681e502-6d91-49ec-9a2c-dc57d2273cf4",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "1.2.3"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The key that uniquely identifies the component (e.g., 'slack-send-message')"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1149"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Throttled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "390b8c1d-bd37-4b58-bcde-3c061ce7ec75",
+          "name": "Configure Trigger Prop",
+          "request": {
+            "name": "Configure Trigger Prop",
+            "description": {
+              "content": "Retrieve remote options for a given prop for a trigger",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "triggers",
+                "configure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"prop_name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"page\": \"<number>\",\n  \"prev_context\": \"<object>\",\n  \"query\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c355154-09b7-4fba-bd59-978d31004a8d",
+              "name": "trigger configuration started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"prop_name\": \"<string>\",\n  \"version\": \"1.2.3\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"page\": \"<number>\",\n  \"prev_context\": \"<object>\",\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"options\": [\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"label\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"stringOptions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"observations\": [\n    {\n      \"k\": \"string\",\n      \"ts\": 4879.459290398376,\n      \"err\": {\n        \"name\": \"string\",\n        \"message\": \"string\",\n        \"stack\": \"string\"\n      },\n      \"msg\": \"string\"\n    },\n    {\n      \"k\": \"string\",\n      \"ts\": 3138.9939955028876,\n      \"err\": {\n        \"name\": \"string\",\n        \"message\": \"string\",\n        \"stack\": \"string\"\n      },\n      \"msg\": \"string\"\n    }\n  ],\n  \"context\": {},\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72676e6b-bb84-40e8-a67b-5645acf9404d",
+              "name": "Async operation started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"prop_name\": \"<string>\",\n  \"version\": \"1.2.3\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"page\": \"<number>\",\n  \"prev_context\": \"<object>\",\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb03395f-c31d-467d-8330-b970faba1b5f",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"prop_name\": \"<string>\",\n  \"version\": \"1.2.3\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"page\": \"<number>\",\n  \"prev_context\": \"<object>\",\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1149"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Throttled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79151e15-b2ea-4fa7-bb14-c177a6032a47",
+          "name": "Reload Trigger Props",
+          "request": {
+            "name": "Reload Trigger Props",
+            "description": {
+              "content": "Reload the prop definition based on the currently configured props",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "triggers",
+                "props"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"dynamic_props_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6baf9ef1-8e01-4e49-8d16-c0cc3083a5a9",
+              "name": "trigger props reloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"1.2.3\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"dynamic_props_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"observations\": [\n    {\n      \"k\": \"string\",\n      \"ts\": 9573.393034766825,\n      \"err\": {\n        \"name\": \"string\",\n        \"message\": \"string\",\n        \"stack\": \"string\"\n      },\n      \"msg\": \"string\"\n    },\n    {\n      \"k\": \"string\",\n      \"ts\": 1391.679549269208,\n      \"err\": {\n        \"name\": \"string\",\n        \"message\": \"string\",\n        \"stack\": \"string\"\n      },\n      \"msg\": \"string\"\n    }\n  ],\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"dynamicProps\": {\n    \"id\": \"string\",\n    \"configurableProps\": [\n      {\n        \"content\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": \"alert\",\n        \"label\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"optional\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"disabled\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"readOnly\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hidden\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"remoteOptions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"useQuery\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reloadProps\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"withLabel\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"alertType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"content\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": \"alert\",\n        \"label\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"optional\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"disabled\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"readOnly\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hidden\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"remoteOptions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"useQuery\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reloadProps\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"withLabel\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"alertType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa2b0649-770a-4d95-84d5-f30eb52dde26",
+              "name": "Async operation started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"1.2.3\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"dynamic_props_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3dd98d88-dcc3-410d-ae67-718ba86633c6",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"1.2.3\",\n  \"blocking\": \"<boolean>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"dynamic_props_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1149"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Throttled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c75c465-1100-485d-aad0-7bb5c0be92ee",
+          "name": "Deploy Trigger",
+          "request": {
+            "name": "Deploy Trigger",
+            "description": {
+              "content": "Deploy a trigger to listen for and emit events",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "triggers",
+                "deploy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"workflow_id\": \"<string>\",\n  \"webhook_url\": \"<string>\",\n  \"emit_on_deploy\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d4dd1e9-30d5-40b6-bb65-146ac3d6d262",
+              "name": "trigger deployed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"1.2.3\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"workflow_id\": \"<string>\",\n  \"webhook_url\": \"<string>\",\n  \"emit_on_deploy\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"dc_1vRv6e\",\n    \"created_at\": 7331,\n    \"updated_at\": 1637,\n    \"active\": false,\n    \"component_id\": \"string\",\n    \"configurable_props\": [\n      {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    ],\n    \"configured_props\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"name\": \"string\",\n    \"name_slug\": \"string\",\n    \"owner_id\": \"string\",\n    \"type\": \"DeployedComponent\",\n    \"component_key\": \"string\",\n    \"callback_observations\": {},\n    \"emit_on_deploy\": true,\n    \"webhook_signing_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27f90116-69c7-4dc7-a315-257589c8f5e7",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "triggers",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"external_user_id\": \"<string>\",\n  \"version\": \"1.2.3\",\n  \"configured_props\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"dynamic_props_id\": \"<string>\",\n  \"workflow_id\": \"<string>\",\n  \"webhook_url\": \"<string>\",\n  \"emit_on_deploy\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1149"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1149"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Throttled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://remote.mcp.pipedream.net/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "56268355-5629-489c-8628-07f58ae2e505",
+    "name": "Pipedream MCP Server Accounts Triggers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+      "type": "text/plain"
+    }
+  }
+}

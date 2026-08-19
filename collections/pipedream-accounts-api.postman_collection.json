@@ -1,0 +1,1450 @@
+{
+  "item": [
+    {
+      "id": "9bd164d2-7009-4ce1-bdb5-8d574f9c269f",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3a422c1-6375-48e8-a1f0-cd9fa0105e88",
+          "name": "List Accounts",
+          "request": {
+            "name": "List Accounts",
+            "description": {
+              "content": "Retrieve all connected accounts for the project with optional filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "The cursor to start from for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "The cursor to end before for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "app",
+                  "value": "<string>",
+                  "description": "The app slug or ID to filter accounts by."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_credentials",
+                  "value": "<boolean>",
+                  "description": "Whether to retrieve the account's credentials or not"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "oauth_app_id",
+                  "value": "<string>",
+                  "description": "The OAuth app ID to filter by, if applicable"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "031b4608-08d6-46ec-b8ef-8668db8bd61f",
+              "name": "accounts listed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "app",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_credentials",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "external_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "oauth_app_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"apn_VYjLW\",\n      \"name\": \"string\",\n      \"external_id\": \"string\",\n      \"healthy\": false,\n      \"dead\": false,\n      \"app\": {\n        \"name_slug\": \"string\",\n        \"name\": \"string\",\n        \"img_src\": \"string\",\n        \"custom_fields_json\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"featured_weight\": 6667.868472021012,\n        \"id\": \"string\",\n        \"auth_type\": \"keys\",\n        \"description\": \"string\"\n      },\n      \"created_at\": \"1958-09-17T03:51:26.085Z\",\n      \"updated_at\": \"1985-07-31T20:43:36.046Z\",\n      \"authorized_scopes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"credentials\": {\n        \"oauth_client_id\": \"string\",\n        \"oauth_access_token\": \"string\",\n        \"oauth_refresh_token\": \"string\",\n        \"oauth_uid\": \"string\",\n        \"oauth_signer_uri\": \"string\"\n      },\n      \"expires_at\": \"1964-06-11T02:59:40.198Z\",\n      \"error\": \"string\",\n      \"last_refreshed_at\": \"1966-10-23T13:46:21.301Z\",\n      \"next_refresh_at\": \"1975-11-08T07:52:43.976Z\"\n    },\n    {\n      \"id\": \"apn_dZeeOWzrF\",\n      \"name\": \"string\",\n      \"external_id\": \"string\",\n      \"healthy\": false,\n      \"dead\": false,\n      \"app\": {\n        \"name_slug\": \"string\",\n        \"name\": \"string\",\n        \"img_src\": \"string\",\n        \"custom_fields_json\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"featured_weight\": 2763.8707945808706,\n        \"id\": \"string\",\n        \"auth_type\": \"keys\",\n        \"description\": \"string\"\n      },\n      \"created_at\": \"2002-10-06T15:04:39.589Z\",\n      \"updated_at\": \"1967-01-30T12:38:18.540Z\",\n      \"authorized_scopes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"credentials\": {\n        \"oauth_client_id\": \"string\",\n        \"oauth_access_token\": \"string\",\n        \"oauth_refresh_token\": \"string\",\n        \"oauth_uid\": \"string\",\n        \"oauth_signer_uri\": \"string\"\n      },\n      \"expires_at\": \"2016-12-11T08:00:07.985Z\",\n      \"error\": \"string\",\n      \"last_refreshed_at\": \"2024-05-23T11:15:35.694Z\",\n      \"next_refresh_at\": \"1952-06-11T18:24:28.191Z\"\n    }\n  ],\n  \"page_info\": {\n    \"count\": 10,\n    \"total_count\": 120,\n    \"start_cursor\": \"string\",\n    \"end_cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2dae307-19f0-4db1-bc41-bdb36ca386a8",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "app",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_credentials",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "external_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "oauth_app_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "6503"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Throttled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fcd046b-384f-49f8-8124-9b332f10382d",
+          "name": "Create Account",
+          "request": {
+            "name": "Create Account",
+            "description": {
+              "content": "Connect a new account for an external user in the project",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "external_user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "oauth_app_id",
+                  "value": "<string>",
+                  "description": "The OAuth app ID to filter by, if applicable"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"app_slug\": \"<string>\",\n  \"cfmap_json\": \"<string>\",\n  \"connect_token\": \"<string>\",\n  \"name\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4129384-6925-4c86-9c02-111b3617959a",
+              "name": "account created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "external_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "oauth_app_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_slug\": \"<string>\",\n  \"cfmap_json\": \"<string>\",\n  \"connect_token\": \"<string>\",\n  \"name\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"apn_tuy6ORPNJ4R\",\n  \"name\": \"string\",\n  \"external_id\": \"string\",\n  \"healthy\": true,\n  \"dead\": true,\n  \"app\": {\n    \"name_slug\": \"string\",\n    \"name\": \"string\",\n    \"img_src\": \"string\",\n    \"custom_fields_json\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"featured_weight\": 1513.970504661638,\n    \"id\": \"string\",\n    \"auth_type\": \"none\",\n    \"description\": \"string\"\n  },\n  \"created_at\": \"1989-04-12T05:47:06.126Z\",\n  \"updated_at\": \"1956-02-25T22:43:57.920Z\",\n  \"authorized_scopes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"credentials\": {\n    \"oauth_client_id\": \"string\",\n    \"oauth_access_token\": \"string\",\n    \"oauth_refresh_token\": \"string\",\n    \"oauth_uid\": \"string\",\n    \"oauth_signer_uri\": \"string\",\n    \"key_0\": 4382,\n    \"key_1\": 7247.012126982939\n  },\n  \"expires_at\": \"2005-07-28T08:34:51.910Z\",\n  \"error\": \"string\",\n  \"last_refreshed_at\": \"1948-11-07T03:25:29.239Z\",\n  \"next_refresh_at\": \"1994-11-02T20:49:39.367Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e68b2b79-285c-4fac-9fd5-4b67463cc76e",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "external_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "oauth_app_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_slug\": \"<string>\",\n  \"cfmap_json\": \"<string>\",\n  \"connect_token\": \"<string>\",\n  \"name\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "6503"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Throttled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "794e7555-5134-4f23-833a-bc2fbede7262",
+          "name": "Retrieve Account",
+          "request": {
+            "name": "Retrieve Account",
+            "description": {
+              "content": "Get the details for a specific connected account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_credentials",
+                  "value": "<boolean>",
+                  "description": "Whether to retrieve the account's credentials or not"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ffb8ee40-424e-4956-96a8-80432a2a35a6",
+              "name": "account retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_credentials",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"apn_tuy6ORPNJ4R\",\n  \"name\": \"string\",\n  \"external_id\": \"string\",\n  \"healthy\": true,\n  \"dead\": true,\n  \"app\": {\n    \"name_slug\": \"string\",\n    \"name\": \"string\",\n    \"img_src\": \"string\",\n    \"custom_fields_json\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"featured_weight\": 1513.970504661638,\n    \"id\": \"string\",\n    \"auth_type\": \"none\",\n    \"description\": \"string\"\n  },\n  \"created_at\": \"1989-04-12T05:47:06.126Z\",\n  \"updated_at\": \"1956-02-25T22:43:57.920Z\",\n  \"authorized_scopes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"credentials\": {\n    \"oauth_client_id\": \"string\",\n    \"oauth_access_token\": \"string\",\n    \"oauth_refresh_token\": \"string\",\n    \"oauth_uid\": \"string\",\n    \"oauth_signer_uri\": \"string\",\n    \"key_0\": 4382,\n    \"key_1\": 7247.012126982939\n  },\n  \"expires_at\": \"2005-07-28T08:34:51.910Z\",\n  \"error\": \"string\",\n  \"last_refreshed_at\": \"1948-11-07T03:25:29.239Z\",\n  \"next_refresh_at\": \"1994-11-02T20:49:39.367Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24fae8c0-ed11-42fd-b178-8efa9566f28a",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_credentials",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "6503"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Throttled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b9bf973-4e88-4ac9-9147-c4fafed9eaee",
+          "name": "Delete Account",
+          "request": {
+            "name": "Delete Account",
+            "description": {
+              "content": "Remove a connected account and its associated credentials",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "ac4a123b-0ec1-4e82-b22a-35ee4db7c054",
+              "name": "account deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9841740b-eb2b-4014-806e-74f7063ffc76",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "6503"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72338c0c-18dc-46f0-b4ab-b2916a1273aa",
+          "name": "Delete Accounts by App",
+          "request": {
+            "name": "Delete Accounts by App",
+            "description": {
+              "content": "Remove all connected accounts for a specific app",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "apps",
+                ":app_id",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "af16e685-034b-4f87-9200-a9637583b7f0",
+              "name": "accounts deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "apps",
+                    ":app_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1292f0e-3393-46f6-93b8-fd72e47a7b47",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "apps",
+                    ":app_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "6503"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97c55a84-345a-4d88-b231-4cbe40aa1bb3",
+          "name": "Delete External User",
+          "request": {
+            "name": "Delete External User",
+            "description": {
+              "content": "Remove an external user and all their associated accounts and resources",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                ":project_id",
+                "users",
+                ":external_user_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) The project ID, which starts with `proj_`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_user_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The environment in which the server client is running",
+                "key": "x-pd-environment",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "1219ad8b-e793-44ec-a4dc-b969a1a7ee62",
+              "name": "external user deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "users",
+                    ":external_user_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_user_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b658b47b-252e-48f4-a3db-22e5d5565f7f",
+              "name": "too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    ":project_id",
+                    "users",
+                    ":external_user_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) The project ID, which starts with `proj_`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_user_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The environment in which the server client is running",
+                    "key": "x-pd-environment",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds until the rate limit resets",
+                  "key": "Retry-After",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "The rate limit threshold",
+                  "key": "X-RateLimit-Limit",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of requests remaining (always 0 when throttled)",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6503"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when the rate limit resets",
+                  "key": "X-RateLimit-Reset",
+                  "value": "6503"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://remote.mcp.pipedream.net/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8366ca62-0be2-4c30-bfa9-64b37608a07d",
+    "name": "Pipedream MCP Server Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts App Categories API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "App Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List App Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/app_categories"
+          },
+          "docs": "Retrieve all available categories for integrated apps"
+        },
+        {
+          "info": {
+            "name": "Retrieve App Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/app_categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the app category to retrieve"
+              }
+            ]
+          },
+          "docs": "Get details of a specific app category by its ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

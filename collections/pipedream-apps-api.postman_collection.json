@@ -1,0 +1,797 @@
+{
+  "item": [
+    {
+      "id": "731bbbc0-c798-49d6-bef4-4ee71ff8ec16",
+      "name": "Apps",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "360f6365-71c5-4e4a-8438-aa68cbac85f5",
+          "name": "List App Categories",
+          "request": {
+            "name": "List App Categories",
+            "description": {
+              "content": "Retrieve all available categories for integrated apps",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "app_categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e6c5a4e8-ec64-4cbb-8112-1b46277ef063",
+              "name": "apps listed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "app_categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d22022d0-1838-4614-abe8-0f5ba29cc00e",
+          "name": "Retrieve App Category",
+          "request": {
+            "name": "Retrieve App Category",
+            "description": {
+              "content": "Get details of a specific app category by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "app_categories",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the app category to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2ce73a80-76b7-4b43-b261-d46ab9869e4b",
+              "name": "app retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "app_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the app category to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26cd43c7-bd71-48a1-9c7b-a94791eb1491",
+          "name": "List Apps",
+          "request": {
+            "name": "List Apps",
+            "description": {
+              "content": "Retrieve all available apps with optional filtering and sorting",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "The cursor to start from for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "The cursor to end before for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "A search query to filter the apps"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_key",
+                  "value": "<string>",
+                  "description": "The key to sort the apps by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_direction",
+                  "value": "<string>",
+                  "description": "The direction to sort the apps"
+                },
+                {
+                  "disabled": false,
+                  "key": "category_ids",
+                  "value": "<string>",
+                  "description": "Only return apps in these categories"
+                },
+                {
+                  "disabled": false,
+                  "key": "category_ids",
+                  "value": "<string>",
+                  "description": "Only return apps in these categories"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_components",
+                  "value": "<boolean>",
+                  "description": "Only return apps that have components (actions or triggers)"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_actions",
+                  "value": "<boolean>",
+                  "description": "Only return apps that have actions"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_triggers",
+                  "value": "<boolean>",
+                  "description": "Only return apps that have triggers"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "812bdedc-0965-4204-8433-b8503ac28b5f",
+              "name": "apps listed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_components",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_actions",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_triggers",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name_slug\": \"string\",\n      \"name\": \"string\",\n      \"img_src\": \"string\",\n      \"custom_fields_json\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"featured_weight\": 9181.32049213284,\n      \"id\": \"string\",\n      \"auth_type\": \"none\",\n      \"description\": \"string\"\n    },\n    {\n      \"name_slug\": \"string\",\n      \"name\": \"string\",\n      \"img_src\": \"string\",\n      \"custom_fields_json\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"featured_weight\": 6291.1937791965875,\n      \"id\": \"string\",\n      \"auth_type\": \"keys\",\n      \"description\": \"string\"\n    }\n  ],\n  \"page_info\": {\n    \"count\": 10,\n    \"total_count\": 120,\n    \"start_cursor\": \"string\",\n    \"end_cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78007a69-88ff-42af-aba5-06940aed444d",
+          "name": "List Apps",
+          "request": {
+            "name": "List Apps",
+            "description": {
+              "content": "Retrieve all available apps with optional filtering and sorting",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "The cursor to start from for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "The cursor to end before for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "A search query to filter the apps"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_key",
+                  "value": "<string>",
+                  "description": "The key to sort the apps by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_direction",
+                  "value": "<string>",
+                  "description": "The direction to sort the apps"
+                },
+                {
+                  "disabled": false,
+                  "key": "category_ids",
+                  "value": "<string>",
+                  "description": "Only return apps in these categories"
+                },
+                {
+                  "disabled": false,
+                  "key": "category_ids",
+                  "value": "<string>",
+                  "description": "Only return apps in these categories"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_components",
+                  "value": "<boolean>",
+                  "description": "Only return apps that have components (actions or triggers)"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_actions",
+                  "value": "<boolean>",
+                  "description": "Only return apps that have actions"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_triggers",
+                  "value": "<boolean>",
+                  "description": "Only return apps that have triggers"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "11495674-503b-4225-8448-c21da1b7cf36",
+              "name": "apps listed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_components",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_actions",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_triggers",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name_slug\": \"string\",\n      \"name\": \"string\",\n      \"img_src\": \"string\",\n      \"custom_fields_json\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"featured_weight\": 2957.35867320982,\n      \"id\": \"string\",\n      \"auth_type\": \"oauth\",\n      \"description\": \"string\"\n    },\n    {\n      \"name_slug\": \"string\",\n      \"name\": \"string\",\n      \"img_src\": \"string\",\n      \"custom_fields_json\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"featured_weight\": 2456.917769122611,\n      \"id\": \"string\",\n      \"auth_type\": \"none\",\n      \"description\": \"string\"\n    }\n  ],\n  \"page_info\": {\n    \"count\": 10,\n    \"total_count\": 120,\n    \"start_cursor\": \"string\",\n    \"end_cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a395f13-c69e-4720-8a29-19c958631788",
+          "name": "Retrieve App",
+          "request": {
+            "name": "Retrieve App",
+            "description": {
+              "content": "Get detailed information about a specific app by ID or name slug",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) The name slug or ID of the app (e.g., 'slack', 'github')"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2cdab87e-9851-4d99-9b94-099310de1986",
+              "name": "app retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) The name slug or ID of the app (e.g., 'slack', 'github')"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"name_slug\": \"string\",\n    \"name\": \"string\",\n    \"img_src\": \"string\",\n    \"custom_fields_json\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"featured_weight\": 2517.969412516897,\n    \"id\": \"string\",\n    \"auth_type\": \"oauth\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90c4cb7c-ed4f-451a-a763-91dc89227991",
+          "name": "Retrieve App",
+          "request": {
+            "name": "Retrieve App",
+            "description": {
+              "content": "Get detailed information about a specific app by ID or name slug",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connect",
+                "apps",
+                ":app_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) The name slug or ID of the app (e.g., 'slack', 'github')"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "989f96cf-c340-429a-8a04-3708e778ec12",
+              "name": "app retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connect",
+                    "apps",
+                    ":app_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) The name slug or ID of the app (e.g., 'slack', 'github')"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"name_slug\": \"string\",\n    \"name\": \"string\",\n    \"img_src\": \"string\",\n    \"custom_fields_json\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"featured_weight\": 2517.969412516897,\n    \"id\": \"string\",\n    \"auth_type\": \"oauth\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://remote.mcp.pipedream.net/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b995d0cf-7548-48ab-abb0-1dcf308381a9",
+    "name": "Pipedream MCP Server Accounts Apps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pipedream's Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers\n\nContact Support:\n Name: Pipedream",
+      "type": "text/plain"
+    }
+  }
+}

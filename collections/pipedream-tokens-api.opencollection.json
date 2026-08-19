@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts Tokens API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Connect Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/tokens",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a Connect token to use for client-side authentication"
+        },
+        {
+          "info": {
+            "name": "Validate Connect Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/tokens/:ctok/validate",
+            "params": [
+              {
+                "name": "ctok",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "The app ID to validate against"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "An existing account ID to reconnect. Must belong to the app identified by app_id."
+              },
+              {
+                "name": "oauth_app_id",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth app ID to validate against (if the token is for an OAuth app)"
+              }
+            ]
+          },
+          "docs": "Confirm the validity of a Connect token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

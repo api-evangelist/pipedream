@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts Webhooks API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Project Environment Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/webhook",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              }
+            ]
+          },
+          "docs": "Retrieve the webhook configured for a project environment"
+        },
+        {
+          "info": {
+            "name": "Set Project Environment Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/webhook",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update the webhook URL for a project environment. Creating a webhook returns `signing_key`; updating an existing webhook does not."
+        },
+        {
+          "info": {
+            "name": "Delete Project Environment Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/webhook",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              }
+            ]
+          },
+          "docs": "Remove the webhook configured for a project environment"
+        },
+        {
+          "info": {
+            "name": "Regenerate Webhook Signing Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/webhook/regenerate_signing_key",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              }
+            ]
+          },
+          "docs": "Regenerate the signing key for the project environment webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

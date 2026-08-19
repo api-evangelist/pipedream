@@ -1,0 +1,473 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pipedream MCP Server Accounts Deployed Triggers API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployed Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Deployed Triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to start from for pagination"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to end before for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Your end user ID, for whom you deployed the trigger"
+              },
+              {
+                "name": "emitter_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter deployed triggers by emitter type (defaults to 'source' if not provided)"
+              }
+            ]
+          },
+          "docs": "Retrieve all deployed triggers for a specific external user"
+        },
+        {
+          "info": {
+            "name": "Get Deployed Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Your end user ID, for whom you deployed the trigger"
+              }
+            ]
+          },
+          "docs": "Get details of a specific deployed trigger by its ID"
+        },
+        {
+          "info": {
+            "name": "Update Deployed Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "The external user ID who owns the trigger"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify the configuration of a deployed trigger, including active status"
+        },
+        {
+          "info": {
+            "name": "Delete Deployed Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "The external user ID who owns the trigger"
+              },
+              {
+                "name": "ignore_hook_errors",
+                "value": "",
+                "type": "query",
+                "description": "Whether to ignore errors during deactivation hook"
+              }
+            ]
+          },
+          "docs": "Remove a deployed trigger and stop receiving events"
+        },
+        {
+          "info": {
+            "name": "List Trigger Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id/events",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Your end user ID, for whom you deployed the trigger"
+              },
+              {
+                "name": "n",
+                "value": "",
+                "type": "query",
+                "description": "The number of events to retrieve (defaults to 20 if not provided)"
+              }
+            ]
+          },
+          "docs": "Retrieve recent events emitted by a deployed trigger"
+        },
+        {
+          "info": {
+            "name": "List Trigger Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id/pipelines",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "The external user ID who owns the trigger"
+              }
+            ]
+          },
+          "docs": "Get workflows connected to receive events from this trigger"
+        },
+        {
+          "info": {
+            "name": "Update Trigger Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id/pipelines",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "The external user ID who owns the trigger"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect or disconnect workflows to receive trigger events"
+        },
+        {
+          "info": {
+            "name": "List Trigger Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "The external user ID who owns the trigger"
+              }
+            ]
+          },
+          "docs": "Get webhook URLs configured to receive trigger events"
+        },
+        {
+          "info": {
+            "name": "Update Trigger Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "The external user ID who owns the trigger"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure webhook URLs to receive trigger events. `signing_key` is only returned for OAuth-authenticated requests."
+        },
+        {
+          "info": {
+            "name": "Get Trigger Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks/:webhook_id",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "The external user ID who owns the trigger"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific webhook for a deployed trigger, including its signing key"
+        },
+        {
+          "info": {
+            "name": "Regenerate Trigger Webhook Signing Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://remote.mcp.pipedream.net/v3/v1/connect/:project_id/deployed-triggers/:trigger_id/webhooks/:webhook_id/regenerate_signing_key",
+            "headers": [
+              {
+                "name": "x-pd-environment",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "The project ID, which starts with `proj_`."
+              },
+              {
+                "name": "trigger_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "query",
+                "description": "The external user ID who owns the trigger"
+              }
+            ]
+          },
+          "docs": "Regenerate the signing key for a specific webhook on a deployed trigger"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
