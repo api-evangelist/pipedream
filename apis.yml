@@ -29,6 +29,14 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pipedream.png
 tags:
+- Pro-Code-API-Composition
+- Workflows
+- Connect
+- MCP
+- Embedded Integrations
+- Managed Auth
+- AI Agents
+tags_raw:
 - ProCode_API_Composition
 - Workflows
 - Connect
@@ -47,6 +55,8 @@ apis:
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -281,6 +291,8 @@ apis:
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -671,6 +683,8 @@ apis:
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
@@ -749,6 +763,8 @@ apis:
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -1139,6 +1155,8 @@ apis:
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -1217,6 +1235,8 @@ apis:
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
