@@ -11,8 +11,8 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: pipedreamApi
-  url: ../openapi/pipedream-openapi.yml
+- name: actionsApi
+  url: ../openapi/pipedream-actions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: run-action-for-app

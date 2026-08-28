@@ -10,8 +10,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: pipedreamApi
-  url: ../openapi/pipedream-openapi.yml
+- name: appCategoriesApi
+  url: ../openapi/pipedream-app-categories-api-openapi.yml
+  type: openapi
+- name: appsApi
+  url: ../openapi/pipedream-apps-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: app-discovery

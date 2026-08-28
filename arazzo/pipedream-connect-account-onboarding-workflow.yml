@@ -11,8 +11,11 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: pipedreamApi
-  url: ../openapi/pipedream-openapi.yml
+- name: accountsApi
+  url: ../openapi/pipedream-accounts-api-openapi.yml
+  type: openapi
+- name: tokensApi
+  url: ../openapi/pipedream-tokens-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: connect-account-onboarding

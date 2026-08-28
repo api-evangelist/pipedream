@@ -12,8 +12,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: pipedreamApi
-  url: ../openapi/pipedream-openapi.yml
+- name: accountsApi
+  url: ../openapi/pipedream-accounts-api-openapi.yml
+  type: openapi
+- name: deployedTriggersApi
+  url: ../openapi/pipedream-deployed-triggers-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: user-offboarding
