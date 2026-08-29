@@ -1,24 +1,11 @@
 {
   "provider": "pipedream",
   "sources": [
-    "pipedream-accounts-api-openapi.yml",
-    "pipedream-actions-api-openapi.yml",
-    "pipedream-app-categories-api-openapi.yml",
-    "pipedream-apps-api-openapi.yml",
-    "pipedream-components-api-openapi.yml",
-    "pipedream-deployed-triggers-api-openapi.yml",
-    "pipedream-file-stash-api-openapi.yml",
-    "pipedream-mcp-api-openapi.yml",
-    "pipedream-oauth-api-openapi.yml",
-    "pipedream-projects-api-openapi.yml",
-    "pipedream-proxy-api-openapi.yml",
-    "pipedream-tokens-api-openapi.yml",
-    "pipedream-triggers-api-openapi.yml",
-    "pipedream-usage-api-openapi.yml",
-    "pipedream-users-api-openapi.yml",
-    "pipedream-webhooks-api-openapi.yml"
+    "_original/pipedream-mcp-openapi.yml",
+    "_original/pipedream-openapi.yml"
   ],
   "outputs": [
+    "pipedream-mcp-api-openapi.yml",
     "pipedream-accounts-api-openapi.yml",
     "pipedream-actions-api-openapi.yml",
     "pipedream-app-categories-api-openapi.yml",
@@ -26,7 +13,6 @@
     "pipedream-components-api-openapi.yml",
     "pipedream-deployed-triggers-api-openapi.yml",
     "pipedream-file-stash-api-openapi.yml",
-    "pipedream-mcp-api-openapi.yml",
     "pipedream-oauth-api-openapi.yml",
     "pipedream-projects-api-openapi.yml",
     "pipedream-proxy-api-openapi.yml",
@@ -39,6 +25,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "pipedream-mcp-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "pipedream-openapi.yml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "pipedream-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-app-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-components-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-deployed-triggers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-file-stash-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-mcp-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-proxy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-triggers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-usage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

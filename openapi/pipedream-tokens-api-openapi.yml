@@ -1,19 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pipedream MCP Server Accounts Tokens API
-  version: v3
-  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  version: '2026-05-22'
+  title: Pipedream Tokens API
+  description: 'The Pipedream API is the unified REST surface for Pipedream''s workflow automation, Connect (embedded integrations), MCP, and proxy services. It exposes account, user, component, action, trigger, deployed-trigger, webhook, project, proxy, file_stash, token, usage, and OAuth endpoints. Authentication is via OAuth 2.0 client credentials or a short-lived Connect token. Source: https://pipedream.com/docs/pipedream_openapi_swagger.json'
   contact:
     name: Pipedream
-    url: https://pipedream.com/docs/connect/mcp
+    url: https://pipedream.com/docs/
   license:
     name: Proprietary
     url: https://pipedream.com/terms
 servers:
-- url: https://remote.mcp.pipedream.net/v3
-  description: Hosted Pipedream MCP server
-security:
-- bearerAuth: []
+- url: https://api.pipedream.com
 tags:
 - name: Tokens
 paths:
@@ -172,6 +169,15 @@ paths:
       - Tokens
 components:
   schemas:
+    AppAuthType:
+      type:
+      - string
+      - 'null'
+      enum:
+      - keys
+      - oauth
+      - none
+      description: The authentication type used by the app
     CreateTokenOpts:
       type: object
       description: Request object for creating a connect token
@@ -206,14 +212,10 @@ components:
           type: boolean
           default: false
           description: When true, end users may authorize a subset of the app's OAuth scopes; only the app's functional scopes (needed for the post-OAuth test request) are enforced. Defaults to false.
-    AppAuthType:
+    ConnectToken:
       type: string
-      enum:
-      - keys
-      - oauth
-      - none
-      description: The authentication type used by the app
-      nullable: true
+      pattern: ^ctok_[0-9a-f]{32}$
+      description: An authentication token with a limited lifespan
     ValidateTokenResponse:
       type: object
       description: Response received when validating a connect token
@@ -222,44 +224,96 @@ components:
       - success
       properties:
         app:
-          nullable: true
           allOf:
           - $ref: '#/components/schemas/App'
         error:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Error message if validation failed
-          nullable: true
         error_redirect_uri:
-          type: string
+          type:
+          - string
+          - 'null'
           description: URI to redirect to on error
-          nullable: true
         oauth_app_id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: OAuth app ID if applicable
-          nullable: true
         project_app_name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Name of the project app
-          nullable: true
         project_environment:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Environment of the project
-          nullable: true
         project_id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of the project
-          nullable: true
         project_support_email:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Support email for the project
-          nullable: true
         success:
           type: boolean
           description: Whether the token validation was successful
         success_redirect_uri:
-          type: string
+          type:
+          - string
+          - 'null'
           description: URI to redirect to on success
-          nullable: true
+    App:
+      type: object
+      description: Response object for a Pipedream app's metadata
+      required:
+      - name_slug
+      - name
+      - img_src
+      - custom_fields_json
+      - categories
+      - featured_weight
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the app. Only applies for OAuth apps.
+        name_slug:
+          type: string
+          description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
+        name:
+          type: string
+          description: The human-readable name of the app
+        auth_type:
+          $ref: '#/components/schemas/AppAuthType'
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of the app
+        img_src:
+          type: string
+          description: The URL to the app's logo
+        custom_fields_json:
+          type:
+          - string
+          - 'null'
+          description: A JSON string representing the custom fields for the app
+        categories:
+          type: array
+          items:
+            type: string
+          description: Categories associated with the app
+        featured_weight:
+          type: number
+          description: A rough directional ordering of app popularity, subject to changes by Pipedream
     CreateTokenResponse:
       type: object
       description: Response received after creating a connect token
@@ -283,54 +337,35 @@ components:
       enum:
       - development
       - production
-    App:
-      type: object
-      description: Response object for a Pipedream app's metadata
-      required:
-      - name_slug
-      - name
-      - img_src
-      - custom_fields_json
-      - categories
-      - featured_weight
-      properties:
-        id:
-          type: string
-          description: ID of the app. Only applies for OAuth apps.
-          nullable: true
-        name_slug:
-          type: string
-          description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
-        name:
-          type: string
-          description: The human-readable name of the app
-        auth_type:
-          $ref: '#/components/schemas/AppAuthType'
-        description:
-          type: string
-          description: A short description of the app
-          nullable: true
-        img_src:
-          type: string
-          description: The URL to the app's logo
-        custom_fields_json:
-          type: string
-          description: A JSON string representing the custom fields for the app
-          nullable: true
-        categories:
-          type: array
-          items:
-            type: string
-          description: Categories associated with the app
-        featured_weight:
-          type: number
-          description: A rough directional ordering of app popularity, subject to changes by Pipedream
-    ConnectToken:
-      type: string
-      pattern: ^ctok_[0-9a-f]{32}$
-      description: An authentication token with a limited lifespan
   securitySchemes:
-    bearerAuth:
+    OAuth2:
+      description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.pipedream.com/v1/oauth/token
+          scopes:
+            '*': Full access to every OAuth-protected endpoint.
+            connect:*: Full access to all Connect API endpoints (components, projects, triggers, accounts, etc.).
+            connect:actions:*: Full access to Connect actions.
+            connect:triggers:*: Full access to Connect triggers.
+            connect:accounts:read: List and fetch Connect accounts for an external user.
+            connect:accounts:write: Create or remove Connect accounts.
+            connect:deployed_triggers:read: Read deployed triggers and related data like events, pipelines and webhooks.
+            connect:deployed_triggers:write: Modify or delete deployed triggers.
+            connect:users:read: List and fetch external users
+            connect:users:write: Delete external users.
+            connect:projects:read: List and fetch projects owned by the workspace.
+            connect:projects:write: Create, update, or delete projects owned by the workspace.
+            connect:usage:read: List Connect usage records for a time window.
+            connect:tokens:create: Create Connect session tokens.
+            connect:proxy: Invoke the Connect proxy.
+            connect:workflow:invoke: Invoke Connect workflows on behalf of a user.
+    ConnectToken:
+      description: A short-lived Connect token for client-side requests on behalf of an end user. Generate one via the Create Connect token endpoint.
       type: http
       scheme: bearer
-      bearerFormat: OAuth access token
+      bearerFormat: ^ctok_[0-9a-f]{32}$
+x-fern-sdk-variables:
+  project_id:
+    type: string

@@ -1,19 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pipedream MCP Server Accounts Users API
-  version: v3
-  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  version: '2026-05-22'
+  title: Pipedream Users API
+  description: 'The Pipedream API is the unified REST surface for Pipedream''s workflow automation, Connect (embedded integrations), MCP, and proxy services. It exposes account, user, component, action, trigger, deployed-trigger, webhook, project, proxy, file_stash, token, usage, and OAuth endpoints. Authentication is via OAuth 2.0 client credentials or a short-lived Connect token. Source: https://pipedream.com/docs/pipedream_openapi_swagger.json'
   contact:
     name: Pipedream
-    url: https://pipedream.com/docs/connect/mcp
+    url: https://pipedream.com/docs/
   license:
     name: Proprietary
     url: https://pipedream.com/terms
 servers:
-- url: https://remote.mcp.pipedream.net/v3
-  description: Hosted Pipedream MCP server
-security:
-- bearerAuth: []
+- url: https://api.pipedream.com
 tags:
 - name: Users
 paths:
@@ -119,18 +116,6 @@ paths:
       - Users
 components:
   schemas:
-    GetUsersResponse:
-      type: object
-      required:
-      - data
-      - page_info
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalUser'
-        page_info:
-          $ref: '#/components/schemas/PageInfo'
     ExternalUser:
       type: object
       required:
@@ -162,13 +147,27 @@ components:
           description: Total number of items
           example: 120
         start_cursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Used to fetch the previous page of items
-          nullable: true
         end_cursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Used to fetch the next page of items
-          nullable: true
+    GetUsersResponse:
+      type: object
+      required:
+      - data
+      - page_info
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalUser'
+        page_info:
+          $ref: '#/components/schemas/PageInfo'
     ProjectEnvironment:
       type: string
       description: The environment in which the server client is running
@@ -176,7 +175,34 @@ components:
       - development
       - production
   securitySchemes:
-    bearerAuth:
+    OAuth2:
+      description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.pipedream.com/v1/oauth/token
+          scopes:
+            '*': Full access to every OAuth-protected endpoint.
+            connect:*: Full access to all Connect API endpoints (components, projects, triggers, accounts, etc.).
+            connect:actions:*: Full access to Connect actions.
+            connect:triggers:*: Full access to Connect triggers.
+            connect:accounts:read: List and fetch Connect accounts for an external user.
+            connect:accounts:write: Create or remove Connect accounts.
+            connect:deployed_triggers:read: Read deployed triggers and related data like events, pipelines and webhooks.
+            connect:deployed_triggers:write: Modify or delete deployed triggers.
+            connect:users:read: List and fetch external users
+            connect:users:write: Delete external users.
+            connect:projects:read: List and fetch projects owned by the workspace.
+            connect:projects:write: Create, update, or delete projects owned by the workspace.
+            connect:usage:read: List Connect usage records for a time window.
+            connect:tokens:create: Create Connect session tokens.
+            connect:proxy: Invoke the Connect proxy.
+            connect:workflow:invoke: Invoke Connect workflows on behalf of a user.
+    ConnectToken:
+      description: A short-lived Connect token for client-side requests on behalf of an end user. Generate one via the Create Connect token endpoint.
       type: http
       scheme: bearer
-      bearerFormat: OAuth access token
+      bearerFormat: ^ctok_[0-9a-f]{32}$
+x-fern-sdk-variables:
+  project_id:
+    type: string

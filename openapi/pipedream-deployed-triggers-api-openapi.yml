@@ -1,19 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pipedream MCP Server Accounts Deployed Triggers API
-  version: v3
-  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  version: '2026-05-22'
+  title: Pipedream Deployed Triggers API
+  description: 'The Pipedream API is the unified REST surface for Pipedream''s workflow automation, Connect (embedded integrations), MCP, and proxy services. It exposes account, user, component, action, trigger, deployed-trigger, webhook, project, proxy, file_stash, token, usage, and OAuth endpoints. Authentication is via OAuth 2.0 client credentials or a short-lived Connect token. Source: https://pipedream.com/docs/pipedream_openapi_swagger.json'
   contact:
     name: Pipedream
-    url: https://pipedream.com/docs/connect/mcp
+    url: https://pipedream.com/docs/
   license:
     name: Proprietary
     url: https://pipedream.com/terms
 servers:
-- url: https://remote.mcp.pipedream.net/v3
-  description: Hosted Pipedream MCP server
-security:
-- bearerAuth: []
+- url: https://api.pipedream.com
 tags:
 - name: Deployed Triggers
 paths:
@@ -919,74 +916,57 @@ paths:
       - Deployed Triggers
 components:
   schemas:
-    PropOptionValue:
-      description: The value of a prop option
+    ConfiguredPropValue:
       oneOf:
-      - type: string
-      - type: integer
-      - type: boolean
-      nullable: true
-    PropOption:
+      - $ref: '#/components/schemas/ConfiguredPropValueAny'
+      - $ref: '#/components/schemas/ConfiguredPropValueApp'
+      - $ref: '#/components/schemas/ConfiguredPropValueBoolean'
+      - $ref: '#/components/schemas/ConfiguredPropValueInteger'
+      - $ref: '#/components/schemas/ConfiguredPropValueObject'
+      - $ref: '#/components/schemas/ConfiguredPropValueSql'
+      - $ref: '#/components/schemas/ConfiguredPropValueString'
+      - $ref: '#/components/schemas/ConfiguredPropValueStringArray'
+    UpdateTriggerOpts:
       type: object
-      description: A configuration option for a component's prop
-      required:
-      - label
-      - value
+      description: Request options for updating a trigger
       properties:
-        label:
+        active:
+          type: boolean
+          description: Whether the trigger should be active
+        configured_props:
+          $ref: '#/components/schemas/ConfiguredProps'
+        name:
           type: string
-          description: The human-readable label for the option
-        value:
-          $ref: '#/components/schemas/PropOptionValue'
-    ConfigurablePropApp:
+          description: The name of the trigger
+        emit_on_deploy:
+          type: boolean
+          description: Whether the trigger should emit events during deployment
+    ConfigurablePropStringArray:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
       - type: object
-        description: This prop is used to configure an account for a specific app
-        required:
-        - type
-        - app
-        properties:
-          type:
-            type: string
-            enum:
-            - app
-          app:
-            type: string
-            description: The name slug of the app, e.g. 'github', 'slack', etc. This is used to identify the app for which the account is being configured.
-    ConfiguredPropValueApp:
-      type: object
-      required:
-      - authProvisionId
-      properties:
-        authProvisionId:
-          $ref: '#/components/schemas/AccountId'
-    ConfigurablePropDataStore:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop is used to configure a data store for key-value storage.
+        description: This prop can accept an array of strings.
         required:
         - type
         properties:
           type:
             type: string
             enum:
-            - data_store
-    ConfigurablePropObject:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop can accept a set of key-value pairs.
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - object
+            - string[]
+          secret:
+            type:
+            - boolean
+            - 'null'
+            description: If true, this prop is a secret and should not be displayed in plain text.
+          format:
+            $ref: '#/components/schemas/ConfigurablePropStringFormat'
           default:
-            $ref: '#/components/schemas/ConfiguredPropValueObject'
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ConfiguredPropValueString'
+            description: The default value for this prop
           options:
             type: array
             items:
@@ -994,43 +974,6 @@ components:
               - $ref: '#/components/schemas/PropOption'
               - $ref: '#/components/schemas/PropOptionNested'
               - $ref: '#/components/schemas/PropOptionValue'
-    ConfiguredPropValueBoolean:
-      type: boolean
-    ConfigurablePropInteger:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop can accept an integer value.
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - integer
-          min:
-            type: integer
-            description: The minimum value for this integer prop.
-            nullable: true
-          max:
-            type: integer
-            description: The maximum value for this integer prop.
-            nullable: true
-          default:
-            $ref: '#/components/schemas/ConfiguredPropValueInteger'
-          options:
-            type: array
-            items:
-              anyOf:
-              - $ref: '#/components/schemas/PropOption'
-              - $ref: '#/components/schemas/PropOptionNested'
-              - $ref: '#/components/schemas/PropOptionValue'
-            description: Available integer options
-            nullable: true
-    ConfiguredPropValueAny:
-      nullable: false
-    ConfiguredPropValueString:
-      type: string
     Emitter:
       description: A component/interface that emits events
       anyOf:
@@ -1043,6 +986,13 @@ components:
           DeployedComponent: '#/components/schemas/DeployedComponent'
           HttpInterface: '#/components/schemas/HttpInterface'
           TimerInterface: '#/components/schemas/TimerInterface'
+    ConfiguredPropValueApp:
+      type: object
+      required:
+      - authProvisionId
+      properties:
+        authProvisionId:
+          $ref: '#/components/schemas/AccountId'
     ConfigurablePropAlert:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
@@ -1061,325 +1011,6 @@ components:
           content:
             type: string
             description: The content of the alert, which can include HTML or plain text.
-    GetTriggerWebhooksResponse:
-      type: object
-      description: Response received when retrieving trigger webhooks
-      required:
-      - webhook_urls
-      properties:
-        webhook_urls:
-          type: array
-          items:
-            type: string
-            format: uri
-        webhooks:
-          type: array
-          description: Webhook objects for the configured URLs. `signing_key` is only returned for OAuth-authenticated requests.
-          items:
-            $ref: '#/components/schemas/TriggerWebhook'
-    AccountId:
-      type: string
-      description: The unique ID of the account.
-      pattern: ^apn_[a-zA-Z0-9]+$
-    DeployedComponent:
-      type: object
-      description: A deployed component instance
-      required:
-      - id
-      - created_at
-      - updated_at
-      - active
-      - component_id
-      - configurable_props
-      - configured_props
-      - name
-      - name_slug
-      - owner_id
-      - type
-      properties:
-        id:
-          type: string
-          description: The unique ID of the deployed component
-          pattern: ^dc_[a-zA-Z0-9]+$
-        owner_id:
-          type: string
-          description: The ID of the owner
-        component_id:
-          type: string
-          description: The ID of the component that was deployed
-        component_key:
-          type: string
-          description: The component key (name) that was deployed
-          nullable: true
-        configurable_props:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConfigurableProp'
-          description: The configurable properties of the component
-        configured_props:
-          $ref: '#/components/schemas/ConfiguredProps'
-        active:
-          type: boolean
-          description: Whether the deployed component is active
-        created_at:
-          type: integer
-          description: The timestamp when the component was deployed (epoch milliseconds)
-        updated_at:
-          type: integer
-          description: The timestamp when the component was last updated (epoch milliseconds)
-        name:
-          type: string
-          description: The name of the deployed component
-        name_slug:
-          type: string
-          description: The name slug of the deployed component
-        callback_observations:
-          description: Callback observations for the deployed component
-          nullable: true
-        emit_on_deploy:
-          type: boolean
-          description: Whether the trigger emits events during the deploy hook execution. When false, the $emit function is disabled during deploy hook execution. Defaults to true.
-          nullable: false
-        type:
-          type: string
-          description: The discriminator field
-          enum:
-          - DeployedComponent
-        webhook_signing_key:
-          type: string
-          description: The webhook signing key. Only returned for OAuth-authenticated requests when `webhook_url` is supplied.
-          nullable: true
-    HttpRequestField:
-      type: object
-      description: A name-value field for HTTP request configuration
-      required:
-      - name
-      - value
-      properties:
-        name:
-          type: string
-          description: The field name
-        value:
-          type: string
-          description: The field value
-    ConfigurablePropDirAccessMode:
-      type: string
-      enum:
-      - read
-      - write
-      - read-write
-      x-fern-enum:
-        read-write:
-          name: ReadWrite
-      description: The mode in which the component may access File Stash
-    GetTriggerResponse:
-      type: object
-      description: Response received when retrieving a deployed trigger
-      required:
-      - data
-      properties:
-        data:
-          $ref: '#/components/schemas/Emitter'
-    ConfigurablePropTimer:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop is used to configure a timer interface.
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - $.interface.timer
-          static:
-            $ref: '#/components/schemas/ConfigurablePropTimerStatic'
-          default:
-            $ref: '#/components/schemas/ConfigurablePropTimerDefault'
-          options:
-            type: array
-            nullable: true
-            description: Available timer configuration options
-            items:
-              $ref: '#/components/schemas/ConfigurablePropTimerOption'
-    ConfigurablePropTimerOption:
-      nullable: true
-      description: Timer configuration options
-      oneOf:
-      - $ref: '#/components/schemas/TimerInterval'
-      - $ref: '#/components/schemas/TimerCron'
-    EmittedEvent:
-      type: object
-      description: An event emitted by a trigger
-      required:
-      - e
-      - k
-      - ts
-      - id
-      properties:
-        e:
-          type: object
-          description: The event's payload
-        k:
-          type: string
-          description: The event's type (set to 'emit' currently)
-        ts:
-          type: integer
-          description: The event's timestamp in epoch milliseconds
-        id:
-          type: string
-          description: The event's unique ID
-    ConfigurablePropHttp:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop is used to configure an HTTP interface.
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - $.interface.http
-          customResponse:
-            type: boolean
-            description: Whether this HTTP interface allows custom responses
-            nullable: true
-    ConfigurablePropAirtableViewId:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop is used to select an Airtable view.
-        required:
-        - type
-        - tableIdProp
-        properties:
-          type:
-            type: string
-            enum:
-            - $.airtable.viewId
-          tableIdProp:
-            type: string
-            description: The name of the prop that provides the Airtable table ID
-    ConfigurablePropDiscordChannel:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop is used to select a Discord channel.
-        required:
-        - type
-        - appProp
-        properties:
-          type:
-            type: string
-            enum:
-            - $.discord.channel
-          appProp:
-            type: string
-            description: The name of the app prop that provides Discord authentication
-    ConfigurablePropDiscordChannelArray:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop is used to select multiple Discord channels.
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - $.discord.channel[]
-          appProp:
-            type: string
-            description: The name of the app prop that provides Discord authentication
-    EmitterType:
-      type: string
-      description: The type of the event emitting interface
-      enum:
-      - email
-      - http
-      - source
-      - timer
-    ConfigurablePropIntegerArray:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop can accept an array of integers.
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - integer[]
-          min:
-            type: integer
-            description: The minimum value for integers in this array
-            nullable: true
-          max:
-            type: integer
-            description: The maximum value for integers in this array
-            nullable: true
-          default:
-            type: array
-            items:
-              $ref: '#/components/schemas/ConfiguredPropValueInteger'
-            description: Default array of integers
-            nullable: true
-          options:
-            type: array
-            items:
-              anyOf:
-              - $ref: '#/components/schemas/PropOption'
-              - $ref: '#/components/schemas/PropOptionNested'
-              - $ref: '#/components/schemas/PropOptionValue'
-            description: Available options for the integer array
-            nullable: true
-    ConfiguredPropValueSql:
-      type: object
-      required:
-      - value
-      - query
-      - params
-      - usePreparedStatements
-      properties:
-        value:
-          type: string
-          description: The raw SQL query, as provided by the user
-        query:
-          type: string
-          description: The SQL query to execute
-        params:
-          type: array
-          description: The list of parameters for the prepared statement
-          items:
-            type: string
-        usePreparedStatements:
-          type: boolean
-          description: Whether to use prepared statements for the query or not
-    ConfiguredPropValueObject:
-      type: object
-    HttpRequestAuth:
-      type: object
-      description: Authentication configuration for HTTP request
-      nullable: true
-      properties:
-        type:
-          type: string
-          enum:
-          - basic
-          - bearer
-          - none
-          description: The authentication type
-        username:
-          type: string
-          nullable: true
-        password:
-          type: string
-          nullable: true
-        token:
-          type: string
-          nullable: true
     ConfigurablePropDiscord:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
@@ -1392,42 +1023,22 @@ components:
             type: string
             enum:
             - $.discord.channel
-    ConfigurablePropDb:
+    ConfigurablePropAirtableBaseId:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
       - type: object
-        description: This prop is used to configure a database service.
+        description: This prop is used to select an Airtable base.
         required:
         - type
+        - appProp
         properties:
           type:
             type: string
             enum:
-            - $.service.db
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
-    ConfiguredPropValueStringArray:
-      type: array
-      items:
-        type: string
-    ConfigurablePropTimerStatic:
-      nullable: true
-      description: Static timer configuration
-      oneOf:
-      - $ref: '#/components/schemas/TimerInterval'
-      - $ref: '#/components/schemas/TimerCron'
-    GetWebhookWithSigningKeyResponse:
-      type: object
-      description: Response received when retrieving a webhook with its signing key
-      required:
-      - data
-      properties:
-        data:
-          $ref: '#/components/schemas/WebhookWithSigningKey'
+            - $.airtable.baseId
+          appProp:
+            type: string
+            description: The name of the app prop that provides Airtable authentication
     TriggerWebhook:
       type: object
       description: A trigger webhook object. `signing_key` is only returned for OAuth-authenticated requests.
@@ -1460,173 +1071,18 @@ components:
           items:
             type: string
           description: Array of workflow IDs to set
-    HttpInterface:
+    PropOption:
       type: object
-      description: An HTTP interface instance
+      description: A configuration option for a component's prop
       required:
-      - id
-      - created_at
-      - updated_at
-      - custom_response
-      - endpoint_url
-      - key
-      - type
+      - label
+      - value
       properties:
-        id:
-          type: string
-          description: The unique ID of the HTTP interface
-          pattern: ^hi_[a-zA-Z0-9]+$
-        key:
-          type: string
-        endpoint_url:
-          type: string
-        custom_response:
-          type: boolean
-        created_at:
-          type: integer
-          description: The timestamp when the HTTP interface was created (epoch milliseconds)
-        updated_at:
-          type: integer
-          description: The timestamp when the HTTP interface was last updated (epoch milliseconds)
-        type:
-          type: string
-          description: The discriminator field
-          enum:
-          - HttpInterface
-    PropOptionNested:
-      type: object
-      description: A configuration option for a component's prop (nested under `__lv`)
-      required:
-      - __lv
-      properties:
-        __lv:
-          $ref: '#/components/schemas/PropOption'
-    UpdateTriggerOpts:
-      type: object
-      description: Request options for updating a trigger
-      properties:
-        active:
-          type: boolean
-          description: Whether the trigger should be active
-        configured_props:
-          $ref: '#/components/schemas/ConfiguredProps'
-        name:
-          type: string
-          description: The name of the trigger
-        emit_on_deploy:
-          type: boolean
-          description: Whether the trigger should emit events during deployment
-    HttpRequestConfig:
-      type: object
-      description: Configuration for an HTTP request prop
-      nullable: true
-      properties:
-        auth:
-          $ref: '#/components/schemas/HttpRequestAuth'
-        body:
-          $ref: '#/components/schemas/HttpRequestBody'
-        headers:
-          type: array
-          items:
-            $ref: '#/components/schemas/HttpRequestField'
-          nullable: true
-        params:
-          type: array
-          items:
-            $ref: '#/components/schemas/HttpRequestField'
-          nullable: true
-        tab:
-          type: string
-          nullable: true
-        method:
-          type: string
-          nullable: true
-        url:
-          type: string
-          nullable: true
-    ConfigurablePropBase:
-      type: object
-      description: A configuration or input field for a component.
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-          description: When building `configuredProps`, make sure to use this field as the key when setting the prop value
-        type:
-          type: string
-          enum:
-          - $.airtable.baseId
-          - $.airtable.fieldId
-          - $.airtable.tableId
-          - $.airtable.viewId
-          - $.discord.channel
-          - $.discord.channel[]
-          - $.interface.apphook
-          - $.interface.http
-          - $.interface.timer
-          - $.service.db
-          - alert
-          - any
-          - app
-          - boolean
-          - data_store
-          - dir
-          - http_request
-          - integer
-          - integer[]
-          - object
-          - sql
-          - string
-          - string[]
-          x-fern-enum:
-            $.discord.channel[]:
-              name: DiscordChannelArray
-            integer[]:
-              name: IntegerArray
-            string[]:
-              name: StringArray
         label:
           type: string
-          description: Value to use as an input label. In cases where `type` is "app", should load the app via `getApp`, etc. and show `app.name` instead.
-          nullable: true
-        description:
-          type: string
-          description: A description of the prop, shown to the user when configuring the component.
-          nullable: true
-        optional:
-          type: boolean
-          description: If true, this prop does not need to be specified.
-          nullable: true
-        disabled:
-          type: boolean
-          description: If true, this prop will be ignored.
-          nullable: true
-        readOnly:
-          type: boolean
-          description: If true, this prop is read-only — its value is either fixed by the component author (`static`) or the prop is purely informational (e.g. `alert`, `dir`). Connect clients should render it without treating it as a configurable input.
-          nullable: true
-        hidden:
-          type: boolean
-          description: If true, should not expose this prop to the user
-          nullable: true
-        remoteOptions:
-          type: boolean
-          description: 'If true, call `configureComponent` for this prop to load remote options. It is safe, and preferred, given a returned list of { label: string; value: any } objects to set the prop value to { __lv: { label: string; value: any } }. This way, on load, you can access label for the value without necessarily reloading these options'
-          nullable: true
-        useQuery:
-          type: boolean
-          description: If true, calls to `configureComponent` for this prop support receiving a `query` parameter to filter remote options
-          nullable: true
-        reloadProps:
-          type: boolean
-          description: If true, after setting a value for this prop, a call to `reloadComponentProps` is required as the component has dynamic configurable props dependent on this one
-          nullable: true
-        withLabel:
-          type: boolean
-          description: 'If true, you must save the configured prop value as a "label-value" object which should look like: { __lv: { label: string; value: any } } because the execution needs to access the label'
-          nullable: true
+          description: The human-readable label for the option
+        value:
+          $ref: '#/components/schemas/PropOptionValue'
     ConfigurablePropSql:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
@@ -1650,20 +1106,49 @@ components:
               - $ref: '#/components/schemas/PropOption'
               - $ref: '#/components/schemas/PropOptionNested'
               - $ref: '#/components/schemas/PropOptionValue'
-    ConfigurablePropBoolean:
+    ConfigurablePropDiscordChannelArray:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
       - type: object
-        description: This prop can accept a boolean value.
+        description: This prop is used to select multiple Discord channels.
         required:
         - type
         properties:
           type:
             type: string
             enum:
-            - boolean
+            - $.discord.channel[]
+          appProp:
+            type: string
+            description: The name of the app prop that provides Discord authentication
+    ConfigurablePropHttpRequest:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop is used to configure an HTTP request with URL, method, headers, params, body, and authentication.
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - http_request
           default:
-            $ref: '#/components/schemas/ConfiguredPropValueBoolean'
+            $ref: '#/components/schemas/HttpRequestConfig'
+    ConfigurablePropObject:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop can accept a set of key-value pairs.
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - object
+          default:
+            $ref: '#/components/schemas/ConfiguredPropValueObject'
           options:
             type: array
             items:
@@ -1671,80 +1156,162 @@ components:
               - $ref: '#/components/schemas/PropOption'
               - $ref: '#/components/schemas/PropOptionNested'
               - $ref: '#/components/schemas/PropOptionValue'
-    TimerCron:
+    ConfigurablePropApp:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop is used to configure an account for a specific app
+        required:
+        - type
+        - app
+        properties:
+          type:
+            type: string
+            enum:
+            - app
+          app:
+            type: string
+            description: The name slug of the app, e.g. 'github', 'slack', etc. This is used to identify the app for which the account is being configured.
+    ConfiguredProps:
       type: object
-      description: Timer configuration using cron expression
+      description: The configured properties of the component
+      additionalProperties:
+        $ref: '#/components/schemas/ConfiguredPropValue'
+    GetTriggerWorkflowsResponse:
+      type: object
+      description: Response received when retrieving trigger workflows
       required:
-      - cron
+      - workflow_ids
       properties:
-        cron:
-          type: string
-          description: Cron expression for timer execution
-    TimerInterface:
+        workflow_ids:
+          type: array
+          items:
+            type: string
+            pattern: ^p_[a-zA-Z0-9]+
+    ConfigurablePropDb:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop is used to configure a database service.
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - $.service.db
+    GetWebhookWithSigningKeyResponse:
       type: object
-      description: A timer interface instance
-      required:
-      - id
-      - created_at
-      - updated_at
-      - schedule_changed_at
-      - timezone
-      - type
-      properties:
-        id:
-          type: string
-          description: The unique ID of the timer interface
-          pattern: ^ti_[a-zA-Z0-9]+$
-        interval_seconds:
-          type: number
-        cron:
-          type: string
-        timezone:
-          type: string
-        schedule_changed_at:
-          type: integer
-        created_at:
-          type: integer
-          description: The timestamp when the timer interface was created (epoch milliseconds)
-        updated_at:
-          type: integer
-          description: The timestamp when the timer interface was last updated (epoch milliseconds)
-        type:
-          type: string
-          description: The discriminator field
-          enum:
-          - TimerInterface
-    GetTriggerEventsResponse:
-      type: object
-      description: Response received when retrieving trigger events
+      description: Response received when retrieving a webhook with its signing key
       required:
       - data
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmittedEvent'
-    ConfigurablePropAny:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop can accept any value.
-        required:
-        - type
-        properties:
+          $ref: '#/components/schemas/WebhookWithSigningKey'
+    HttpRequestConfig:
+      type:
+      - object
+      - 'null'
+      description: Configuration for an HTTP request prop
+      properties:
+        auth:
+          $ref: '#/components/schemas/HttpRequestAuth'
+        body:
+          $ref: '#/components/schemas/HttpRequestBody'
+        headers:
           type:
-            type: string
-            enum:
-            - any
-          default:
-            $ref: '#/components/schemas/ConfiguredPropValueAny'
-          options:
-            type: array
-            items:
-              anyOf:
-              - $ref: '#/components/schemas/PropOption'
-              - $ref: '#/components/schemas/PropOptionNested'
-              - $ref: '#/components/schemas/PropOptionValue'
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HttpRequestField'
+        params:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HttpRequestField'
+        tab:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+    PropOptionValue:
+      description: The value of a prop option
+      oneOf:
+      - type: string
+      - type: integer
+      - type: boolean
+    ConfigurablePropDirAccessMode:
+      type: string
+      enum:
+      - read
+      - write
+      - read-write
+      x-fern-enum:
+        read-write:
+          name: ReadWrite
+      description: The mode in which the component may access File Stash
+    ConfiguredPropValueAny: {}
+    TimerInterval:
+      type: object
+      description: Timer configuration using interval in seconds
+      required:
+      - intervalSeconds
+      properties:
+        intervalSeconds:
+          type: integer
+          description: Interval in seconds for timer execution
+    WebhookWithSigningKey:
+      type: object
+      description: A webhook object including the signing key
+      required:
+      - id
+      - url
+      - signing_key
+      - signing_key_set
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          description: The unique ID of the webhook
+        url:
+          type: string
+          format: uri
+          description: The webhook URL
+        signing_key:
+          type: string
+          description: The webhook signing key
+        signing_key_set:
+          type: boolean
+          description: Whether a signing key has been set for this webhook
+        created_at:
+          type: integer
+          description: The time the webhook was created, in epoch seconds
+        updated_at:
+          type: integer
+          description: The time the webhook was last updated, in epoch seconds
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
+    ConfigurablePropAlertType:
+      type: string
+      enum:
+      - info
+      - neutral
+      - warning
+      - error
+      description: The severity level of the alert.
     ConfigurableProp:
       description: A configuration or input field for a component. This is a discriminated union based on the type field.
       oneOf:
@@ -1798,36 +1365,153 @@ components:
           object: '#/components/schemas/ConfigurablePropObject'
           string: '#/components/schemas/ConfigurablePropString'
           string[]: '#/components/schemas/ConfigurablePropStringArray'
-    TimerInterval:
+    ConfigurablePropHttp:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop is used to configure an HTTP interface.
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - $.interface.http
+          customResponse:
+            type:
+            - boolean
+            - 'null'
+            description: Whether this HTTP interface allows custom responses
+    ConfigurablePropTimerDefault:
+      description: Default timer configuration
+      oneOf:
+      - $ref: '#/components/schemas/TimerInterval'
+      - $ref: '#/components/schemas/TimerCron'
+    UpdateTriggerWebhooksOpts:
       type: object
-      description: Timer configuration using interval in seconds
+      description: Request options for updating webhooks that listen to trigger events
       required:
-      - intervalSeconds
+      - webhook_urls
       properties:
-        intervalSeconds:
-          type: integer
-          description: Interval in seconds for timer execution
-    PageInfo:
+        webhook_urls:
+          type: array
+          items:
+            type: string
+          description: Array of webhook URLs to set
+    ConfigurablePropTimerStatic:
+      description: Static timer configuration
+      oneOf:
+      - $ref: '#/components/schemas/TimerInterval'
+      - $ref: '#/components/schemas/TimerCron'
+    ConfigurablePropAirtableViewId:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop is used to select an Airtable view.
+        required:
+        - type
+        - tableIdProp
+        properties:
+          type:
+            type: string
+            enum:
+            - $.airtable.viewId
+          tableIdProp:
+            type: string
+            description: The name of the prop that provides the Airtable table ID
+    ConfigurablePropDiscordChannel:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop is used to select a Discord channel.
+        required:
+        - type
+        - appProp
+        properties:
+          type:
+            type: string
+            enum:
+            - $.discord.channel
+          appProp:
+            type: string
+            description: The name of the app prop that provides Discord authentication
+    GetTriggerEventsResponse:
       type: object
+      description: Response received when retrieving trigger events
+      required:
+      - data
       properties:
-        count:
-          type: integer
-          description: Number of items returned
-          example: 10
-        total_count:
-          type: integer
-          description: Total number of items
-          example: 120
-        start_cursor:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmittedEvent'
+    HttpRequestField:
+      type: object
+      description: A name-value field for HTTP request configuration
+      required:
+      - name
+      - value
+      properties:
+        name:
           type: string
-          description: Used to fetch the previous page of items
-          nullable: true
-        end_cursor:
+          description: The field name
+        value:
           type: string
-          description: Used to fetch the next page of items
-          nullable: true
-    ConfiguredPropValueInteger:
-      type: number
+          description: The field value
+    HttpInterface:
+      type: object
+      description: An HTTP interface instance
+      required:
+      - id
+      - created_at
+      - updated_at
+      - custom_response
+      - endpoint_url
+      - key
+      - type
+      properties:
+        id:
+          type: string
+          description: The unique ID of the HTTP interface
+          pattern: ^hi_[a-zA-Z0-9]+$
+        key:
+          type: string
+        endpoint_url:
+          type: string
+        custom_response:
+          type: boolean
+        created_at:
+          type: integer
+          description: The timestamp when the HTTP interface was created (epoch milliseconds)
+        updated_at:
+          type: integer
+          description: The timestamp when the HTTP interface was last updated (epoch milliseconds)
+        type:
+          type: string
+          description: The discriminator field
+          enum:
+          - HttpInterface
+    ConfigurablePropAny:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop can accept any value.
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - any
+          default:
+            $ref: '#/components/schemas/ConfiguredPropValueAny'
+          options:
+            type: array
+            items:
+              anyOf:
+              - $ref: '#/components/schemas/PropOption'
+              - $ref: '#/components/schemas/PropOptionNested'
+              - $ref: '#/components/schemas/PropOptionValue'
     ConfigurablePropAirtableFieldId:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
@@ -1844,51 +1528,237 @@ components:
           tableIdProp:
             type: string
             description: The name of the prop that provides the Airtable table ID
-    ConfigurablePropHttpRequest:
+    GetTriggerWebhooksResponse:
+      type: object
+      description: Response received when retrieving trigger webhooks
+      required:
+      - webhook_urls
+      properties:
+        webhook_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+        webhooks:
+          type: array
+          description: Webhook objects for the configured URLs. `signing_key` is only returned for OAuth-authenticated requests.
+          items:
+            $ref: '#/components/schemas/TriggerWebhook'
+    ConfigurablePropTimer:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
       - type: object
-        description: This prop is used to configure an HTTP request with URL, method, headers, params, body, and authentication.
+        description: This prop is used to configure a timer interface.
         required:
         - type
         properties:
           type:
             type: string
             enum:
-            - http_request
-          default:
-            $ref: '#/components/schemas/HttpRequestConfig'
-    ConfigurablePropApphook:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop is used to configure an app webhook interface.
-        required:
-        - type
-        - appProp
-        properties:
-          type:
-            type: string
-            enum:
-            - $.interface.apphook
-          appProp:
-            type: string
-            description: The name of the app prop that this apphook depends on
-          eventNames:
-            type: array
-            items:
-              type: string
-            description: List of event names to listen for
-            nullable: true
-          remote:
-            type: boolean
-            description: Whether this apphook is remote
-            nullable: true
+            - $.interface.timer
           static:
-            type: array
-            items: {}
-            description: Static configuration for the apphook
-            nullable: true
+            $ref: '#/components/schemas/ConfigurablePropTimerStatic'
+          default:
+            $ref: '#/components/schemas/ConfigurablePropTimerDefault'
+          options:
+            type:
+            - array
+            - 'null'
+            description: Available timer configuration options
+            items:
+              $ref: '#/components/schemas/ConfigurablePropTimerOption'
+    ConfigurablePropBase:
+      type: object
+      description: A configuration or input field for a component.
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: When building `configuredProps`, make sure to use this field as the key when setting the prop value
+        type:
+          type: string
+          enum:
+          - $.airtable.baseId
+          - $.airtable.fieldId
+          - $.airtable.tableId
+          - $.airtable.viewId
+          - $.discord.channel
+          - $.discord.channel[]
+          - $.interface.apphook
+          - $.interface.http
+          - $.interface.timer
+          - $.service.db
+          - alert
+          - any
+          - app
+          - boolean
+          - data_store
+          - dir
+          - http_request
+          - integer
+          - integer[]
+          - object
+          - sql
+          - string
+          - string[]
+          x-fern-enum:
+            $.discord.channel[]:
+              name: DiscordChannelArray
+            integer[]:
+              name: IntegerArray
+            string[]:
+              name: StringArray
+        label:
+          type:
+          - string
+          - 'null'
+          description: Value to use as an input label. In cases where `type` is "app", should load the app via `getApp`, etc. and show `app.name` instead.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of the prop, shown to the user when configuring the component.
+        optional:
+          type:
+          - boolean
+          - 'null'
+          description: If true, this prop does not need to be specified.
+        disabled:
+          type:
+          - boolean
+          - 'null'
+          description: If true, this prop will be ignored.
+        readOnly:
+          type:
+          - boolean
+          - 'null'
+          description: If true, this prop is read-only — its value is either fixed by the component author (`static`) or the prop is purely informational (e.g. `alert`, `dir`). Connect clients should render it without treating it as a configurable input.
+        hidden:
+          type:
+          - boolean
+          - 'null'
+          description: If true, should not expose this prop to the user
+        remoteOptions:
+          type:
+          - boolean
+          - 'null'
+          description: 'If true, call `configureComponent` for this prop to load remote options. It is safe, and preferred, given a returned list of { label: string; value: any } objects to set the prop value to { __lv: { label: string; value: any } }. This way, on load, you can access label for the value without necessarily reloading these options'
+        useQuery:
+          type:
+          - boolean
+          - 'null'
+          description: If true, calls to `configureComponent` for this prop support receiving a `query` parameter to filter remote options
+        reloadProps:
+          type:
+          - boolean
+          - 'null'
+          description: If true, after setting a value for this prop, a call to `reloadComponentProps` is required as the component has dynamic configurable props dependent on this one
+        withLabel:
+          type:
+          - boolean
+          - 'null'
+          description: 'If true, you must save the configured prop value as a "label-value" object which should look like: { __lv: { label: string; value: any } } because the execution needs to access the label'
+    PropOptionNested:
+      type: object
+      description: A configuration option for a component's prop (nested under `__lv`)
+      required:
+      - __lv
+      properties:
+        __lv:
+          $ref: '#/components/schemas/PropOption'
+    ConfigurablePropStringFormat:
+      type:
+      - string
+      - 'null'
+      enum:
+      - file-ref
+      x-fern-enum:
+        file-ref:
+          name: FileRef
+      description: The format of the string value. `file-ref` indicates a URL of a file or path to a file in the component's /tmp directory.
+    GetTriggersResponse:
+      type: object
+      description: Response received when listing deployed triggers
+      required:
+      - data
+      - page_info
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Emitter'
+        page_info:
+          $ref: '#/components/schemas/PageInfo'
+    DeployedComponent:
+      type: object
+      description: A deployed component instance
+      required:
+      - id
+      - created_at
+      - updated_at
+      - active
+      - component_id
+      - configurable_props
+      - configured_props
+      - name
+      - name_slug
+      - owner_id
+      - type
+      properties:
+        id:
+          type: string
+          description: The unique ID of the deployed component
+          pattern: ^dc_[a-zA-Z0-9]+$
+        owner_id:
+          type: string
+          description: The ID of the owner
+        component_id:
+          type: string
+          description: The ID of the component that was deployed
+        component_key:
+          type:
+          - string
+          - 'null'
+          description: The component key (name) that was deployed
+        configurable_props:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfigurableProp'
+          description: The configurable properties of the component
+        configured_props:
+          $ref: '#/components/schemas/ConfiguredProps'
+        active:
+          type: boolean
+          description: Whether the deployed component is active
+        created_at:
+          type: integer
+          description: The timestamp when the component was deployed (epoch milliseconds)
+        updated_at:
+          type: integer
+          description: The timestamp when the component was last updated (epoch milliseconds)
+        name:
+          type: string
+          description: The name of the deployed component
+        name_slug:
+          type: string
+          description: The name slug of the deployed component
+        callback_observations:
+          description: Callback observations for the deployed component
+        emit_on_deploy:
+          type: boolean
+          description: Whether the trigger emits events during the deploy hook execution. When false, the $emit function is disabled during deploy hook execution. Defaults to true.
+        type:
+          type: string
+          description: The discriminator field
+          enum:
+          - DeployedComponent
+        webhook_signing_key:
+          type:
+          - string
+          - 'null'
+          description: The webhook signing key. Only returned for OAuth-authenticated requests when `webhook_url` is supplied.
     ConfigurablePropAirtableTableId:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
@@ -1905,41 +1775,59 @@ components:
           baseIdProp:
             type: string
             description: The name of the prop that provides the Airtable base ID
-    ConfiguredPropValue:
-      nullable: false
+    ConfigurablePropTimerOption:
+      description: Timer configuration options
       oneOf:
-      - $ref: '#/components/schemas/ConfiguredPropValueAny'
-      - $ref: '#/components/schemas/ConfiguredPropValueApp'
-      - $ref: '#/components/schemas/ConfiguredPropValueBoolean'
-      - $ref: '#/components/schemas/ConfiguredPropValueInteger'
-      - $ref: '#/components/schemas/ConfiguredPropValueObject'
-      - $ref: '#/components/schemas/ConfiguredPropValueSql'
-      - $ref: '#/components/schemas/ConfiguredPropValueString'
-      - $ref: '#/components/schemas/ConfiguredPropValueStringArray'
-    ConfigurablePropStringArray:
+      - $ref: '#/components/schemas/TimerInterval'
+      - $ref: '#/components/schemas/TimerCron'
+    HttpRequestBody:
+      type:
+      - object
+      - 'null'
+      description: Body configuration for HTTP request
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          enum:
+          - fields
+          - raw
+        contentType:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HttpRequestField'
+        mode:
+          type:
+          - string
+          - 'null'
+          enum:
+          - fields
+          - raw
+        raw:
+          type:
+          - string
+          - 'null'
+    ConfigurablePropBoolean:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
       - type: object
-        description: This prop can accept an array of strings.
+        description: This prop can accept a boolean value.
         required:
         - type
         properties:
           type:
             type: string
             enum:
-            - string[]
-          secret:
-            type: boolean
-            description: If true, this prop is a secret and should not be displayed in plain text.
-            nullable: true
-          format:
-            $ref: '#/components/schemas/ConfigurablePropStringFormat'
+            - boolean
           default:
-            type: array
-            items:
-              $ref: '#/components/schemas/ConfiguredPropValueString'
-            description: The default value for this prop
-            nullable: true
+            $ref: '#/components/schemas/ConfiguredPropValueBoolean'
           options:
             type: array
             items:
@@ -1947,91 +1835,6 @@ components:
               - $ref: '#/components/schemas/PropOption'
               - $ref: '#/components/schemas/PropOptionNested'
               - $ref: '#/components/schemas/PropOptionValue'
-    GetTriggerWorkflowsResponse:
-      type: object
-      description: Response received when retrieving trigger workflows
-      required:
-      - workflow_ids
-      properties:
-        workflow_ids:
-          type: array
-          items:
-            type: string
-            pattern: ^p_[a-zA-Z0-9]+
-    WebhookWithSigningKey:
-      type: object
-      description: A webhook object including the signing key
-      required:
-      - id
-      - url
-      - signing_key
-      - signing_key_set
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: string
-          description: The unique ID of the webhook
-        url:
-          type: string
-          format: uri
-          description: The webhook URL
-        signing_key:
-          type: string
-          description: The webhook signing key
-        signing_key_set:
-          type: boolean
-          description: Whether a signing key has been set for this webhook
-        created_at:
-          type: integer
-          description: The time the webhook was created, in epoch seconds
-        updated_at:
-          type: integer
-          description: The time the webhook was last updated, in epoch seconds
-    ConfigurablePropAlertType:
-      type: string
-      enum:
-      - info
-      - neutral
-      - warning
-      - error
-      description: The severity level of the alert.
-    ConfigurablePropAirtableBaseId:
-      allOf:
-      - $ref: '#/components/schemas/ConfigurablePropBase'
-      - type: object
-        description: This prop is used to select an Airtable base.
-        required:
-        - type
-        - appProp
-        properties:
-          type:
-            type: string
-            enum:
-            - $.airtable.baseId
-          appProp:
-            type: string
-            description: The name of the app prop that provides Airtable authentication
-    UpdateTriggerWebhooksOpts:
-      type: object
-      description: Request options for updating webhooks that listen to trigger events
-      required:
-      - webhook_urls
-      properties:
-        webhook_urls:
-          type: array
-          items:
-            type: string
-          description: Array of webhook URLs to set
-    ConfigurablePropStringFormat:
-      type: string
-      enum:
-      - file-ref
-      x-fern-enum:
-        file-ref:
-          name: FileRef
-      description: The format of the string value. `file-ref` indicates a URL of a file or path to a file in the component's /tmp directory.
-      nullable: true
     ConfigurablePropString:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
@@ -2045,9 +1848,10 @@ components:
             enum:
             - string
           secret:
-            type: boolean
+            type:
+            - boolean
+            - 'null'
             description: If true, this prop is a secret and should not be displayed in plain text.
-            nullable: true
           format:
             $ref: '#/components/schemas/ConfigurablePropStringFormat'
           default:
@@ -2059,12 +1863,6 @@ components:
               - $ref: '#/components/schemas/PropOption'
               - $ref: '#/components/schemas/PropOptionNested'
               - $ref: '#/components/schemas/PropOptionValue'
-    ConfigurablePropTimerDefault:
-      nullable: true
-      description: Default timer configuration
-      oneOf:
-      - $ref: '#/components/schemas/TimerInterval'
-      - $ref: '#/components/schemas/TimerCron'
     ConfigurablePropDir:
       allOf:
       - $ref: '#/components/schemas/ConfigurablePropBase'
@@ -2082,61 +1880,326 @@ components:
           sync:
             type: boolean
             description: If true, the component's /tmp directory is synchronized with File Stash
-    ConfigurablePropSqlAuth:
+    GetTriggerResponse:
+      type: object
+      description: Response received when retrieving a deployed trigger
+      required:
+      - data
+      properties:
+        data:
+          $ref: '#/components/schemas/Emitter'
+    EmittedEvent:
+      type: object
+      description: An event emitted by a trigger
+      required:
+      - e
+      - k
+      - ts
+      - id
+      properties:
+        e:
+          type: object
+          description: The event's payload
+        k:
+          type: string
+          description: The event's type (set to 'emit' currently)
+        ts:
+          type: integer
+          description: The event's timestamp in epoch milliseconds
+        id:
+          type: string
+          description: The event's unique ID
+    ConfigurablePropInteger:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop can accept an integer value.
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - integer
+          min:
+            type:
+            - integer
+            - 'null'
+            description: The minimum value for this integer prop.
+          max:
+            type:
+            - integer
+            - 'null'
+            description: The maximum value for this integer prop.
+          default:
+            $ref: '#/components/schemas/ConfiguredPropValueInteger'
+          options:
+            type:
+            - array
+            - 'null'
+            items:
+              anyOf:
+              - $ref: '#/components/schemas/PropOption'
+              - $ref: '#/components/schemas/PropOptionNested'
+              - $ref: '#/components/schemas/PropOptionValue'
+            description: Available integer options
+    ConfigurablePropIntegerArray:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop can accept an array of integers.
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - integer[]
+          min:
+            type:
+            - integer
+            - 'null'
+            description: The minimum value for integers in this array
+          max:
+            type:
+            - integer
+            - 'null'
+            description: The maximum value for integers in this array
+          default:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ConfiguredPropValueInteger'
+            description: Default array of integers
+          options:
+            type:
+            - array
+            - 'null'
+            items:
+              anyOf:
+              - $ref: '#/components/schemas/PropOption'
+              - $ref: '#/components/schemas/PropOptionNested'
+              - $ref: '#/components/schemas/PropOptionValue'
+            description: Available options for the integer array
+    PageInfo:
       type: object
       properties:
-        app:
-          type: string
-          description: The app that provides SQL authentication
-      nullable: true
-    HttpRequestBody:
-      type: object
-      description: Body configuration for HTTP request
-      nullable: true
+        count:
+          type: integer
+          description: Number of items returned
+          example: 10
+        total_count:
+          type: integer
+          description: Total number of items
+          example: 120
+        start_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the previous page of items
+        end_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the next page of items
+    ConfiguredPropValueInteger:
+      type: number
+    AccountId:
+      type: string
+      description: The unique ID of the account.
+      pattern: ^apn_[a-zA-Z0-9]+$
+    HttpRequestAuth:
+      type:
+      - object
+      - 'null'
+      description: Authentication configuration for HTTP request
       properties:
         type:
           type: string
           enum:
-          - fields
-          - raw
-          nullable: true
-        contentType:
-          type: string
-          nullable: true
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/HttpRequestField'
-          nullable: true
-        mode:
-          type: string
-          enum:
-          - fields
-          - raw
-          nullable: true
-        raw:
-          type: string
-          nullable: true
-    GetTriggersResponse:
-      type: object
-      description: Response received when listing deployed triggers
-      required:
-      - data
-      - page_info
+          - basic
+          - bearer
+          - none
+          description: The authentication type
+        username:
+          type:
+          - string
+          - 'null'
+        password:
+          type:
+          - string
+          - 'null'
+        token:
+          type:
+          - string
+          - 'null'
+    ConfigurablePropSqlAuth:
+      type:
+      - object
+      - 'null'
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Emitter'
-        page_info:
-          $ref: '#/components/schemas/PageInfo'
-    ConfiguredProps:
+        app:
+          type: string
+          description: The app that provides SQL authentication
+    ConfiguredPropValueString:
+      type: string
+    EmitterType:
+      type: string
+      description: The type of the event emitting interface
+      enum:
+      - email
+      - http
+      - source
+      - timer
+    ConfigurablePropDataStore:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop is used to configure a data store for key-value storage.
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - data_store
+    ConfiguredPropValueObject:
       type: object
-      description: The configured properties of the component
-      additionalProperties:
-        $ref: '#/components/schemas/ConfiguredPropValue'
+    ConfiguredPropValueSql:
+      type: object
+      required:
+      - value
+      - query
+      - params
+      - usePreparedStatements
+      properties:
+        value:
+          type: string
+          description: The raw SQL query, as provided by the user
+        query:
+          type: string
+          description: The SQL query to execute
+        params:
+          type: array
+          description: The list of parameters for the prepared statement
+          items:
+            type: string
+        usePreparedStatements:
+          type: boolean
+          description: Whether to use prepared statements for the query or not
+    TimerInterface:
+      type: object
+      description: A timer interface instance
+      required:
+      - id
+      - created_at
+      - updated_at
+      - schedule_changed_at
+      - timezone
+      - type
+      properties:
+        id:
+          type: string
+          description: The unique ID of the timer interface
+          pattern: ^ti_[a-zA-Z0-9]+$
+        interval_seconds:
+          type: number
+        cron:
+          type: string
+        timezone:
+          type: string
+        schedule_changed_at:
+          type: integer
+        created_at:
+          type: integer
+          description: The timestamp when the timer interface was created (epoch milliseconds)
+        updated_at:
+          type: integer
+          description: The timestamp when the timer interface was last updated (epoch milliseconds)
+        type:
+          type: string
+          description: The discriminator field
+          enum:
+          - TimerInterface
+    ConfiguredPropValueBoolean:
+      type: boolean
+    TimerCron:
+      type: object
+      description: Timer configuration using cron expression
+      required:
+      - cron
+      properties:
+        cron:
+          type: string
+          description: Cron expression for timer execution
+    ConfiguredPropValueStringArray:
+      type: array
+      items:
+        type: string
+    ConfigurablePropApphook:
+      allOf:
+      - $ref: '#/components/schemas/ConfigurablePropBase'
+      - type: object
+        description: This prop is used to configure an app webhook interface.
+        required:
+        - type
+        - appProp
+        properties:
+          type:
+            type: string
+            enum:
+            - $.interface.apphook
+          appProp:
+            type: string
+            description: The name of the app prop that this apphook depends on
+          eventNames:
+            type:
+            - array
+            - 'null'
+            items:
+              type: string
+            description: List of event names to listen for
+          remote:
+            type:
+            - boolean
+            - 'null'
+            description: Whether this apphook is remote
+          static:
+            type:
+            - array
+            - 'null'
+            items: {}
+            description: Static configuration for the apphook
   securitySchemes:
-    bearerAuth:
+    OAuth2:
+      description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.pipedream.com/v1/oauth/token
+          scopes:
+            '*': Full access to every OAuth-protected endpoint.
+            connect:*: Full access to all Connect API endpoints (components, projects, triggers, accounts, etc.).
+            connect:actions:*: Full access to Connect actions.
+            connect:triggers:*: Full access to Connect triggers.
+            connect:accounts:read: List and fetch Connect accounts for an external user.
+            connect:accounts:write: Create or remove Connect accounts.
+            connect:deployed_triggers:read: Read deployed triggers and related data like events, pipelines and webhooks.
+            connect:deployed_triggers:write: Modify or delete deployed triggers.
+            connect:users:read: List and fetch external users
+            connect:users:write: Delete external users.
+            connect:projects:read: List and fetch projects owned by the workspace.
+            connect:projects:write: Create, update, or delete projects owned by the workspace.
+            connect:usage:read: List Connect usage records for a time window.
+            connect:tokens:create: Create Connect session tokens.
+            connect:proxy: Invoke the Connect proxy.
+            connect:workflow:invoke: Invoke Connect workflows on behalf of a user.
+    ConnectToken:
+      description: A short-lived Connect token for client-side requests on behalf of an end user. Generate one via the Create Connect token endpoint.
       type: http
       scheme: bearer
-      bearerFormat: OAuth access token
+      bearerFormat: ^ctok_[0-9a-f]{32}$
+x-fern-sdk-variables:
+  project_id:
+    type: string

@@ -1,19 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pipedream MCP Server Accounts API
-  version: v3
-  description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
+  version: '2026-05-22'
+  title: Pipedream Accounts API
+  description: 'The Pipedream API is the unified REST surface for Pipedream''s workflow automation, Connect (embedded integrations), MCP, and proxy services. It exposes account, user, component, action, trigger, deployed-trigger, webhook, project, proxy, file_stash, token, usage, and OAuth endpoints. Authentication is via OAuth 2.0 client credentials or a short-lived Connect token. Source: https://pipedream.com/docs/pipedream_openapi_swagger.json'
   contact:
     name: Pipedream
-    url: https://pipedream.com/docs/connect/mcp
+    url: https://pipedream.com/docs/
   license:
     name: Proprietary
     url: https://pipedream.com/terms
 servers:
-- url: https://remote.mcp.pipedream.net/v3
-  description: Hosted Pipedream MCP server
-security:
-- bearerAuth: []
+- url: https://api.pipedream.com
 tags:
 - name: Accounts
 paths:
@@ -465,42 +462,117 @@ paths:
 components:
   schemas:
     AppAuthType:
-      type: string
+      type:
+      - string
+      - 'null'
       enum:
       - keys
       - oauth
       - none
       description: The authentication type used by the app
-      nullable: true
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
-    CreateAccountOpts:
+    Account:
       type: object
-      description: Request object for creating an account
+      description: End user account data, returned from the API.
       required:
-      - app_slug
-      - cfmap_json
-      - connect_token
+      - id
       properties:
-        app_slug:
-          type: string
-          description: The app slug for the account
-        cfmap_json:
-          type: string
-          description: JSON string containing the custom fields mapping
-        connect_token:
-          type: string
-          description: The connect token for authentication
+        id:
+          $ref: '#/components/schemas/AccountId'
         name:
+          type:
+          - string
+          - 'null'
+          description: The custom name of the account if set.
+        external_id:
           type: string
-          description: Optional name for the account
-        account_id:
+          description: The external ID associated with the account.
+        healthy:
+          type: boolean
+          description: Indicates if the account is healthy. Pipedream will periodically retry token refresh and test requests for unhealthy accounts
+        dead:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if the account is no longer active
+        app:
+          $ref: '#/components/schemas/App'
+        created_at:
           type: string
-          description: An existing account ID to reconnect. When provided, the account's credentials are updated instead of creating a new account. Must belong to the same external user and project environment as the connect token, and match the app identified by app_slug.
+          description: The date and time the account was created, an ISO 8601 formatted string
+          format: date-time
+        updated_at:
+          type: string
+          description: The date and time the account was last updated, an ISO 8601 formatted string
+          format: date-time
+        authorized_scopes:
+          type: array
+          items:
+            type: string
+          description: The OAuth scopes effectively granted to this account. Empty for non-OAuth apps.
+        credentials:
+          type:
+          - object
+          - 'null'
+          description: The credentials associated with the account, if the `include_credentials` parameter was set to true in the request (only applicable for BYOA apps). In addition to the well-known OAuth fields listed below, this object may contain app-specific custom fields (e.g. `base_url`).
+          additionalProperties: true
+          properties:
+            oauth_client_id:
+              type: string
+              description: The OAuth client ID for the app, if applicable
+            oauth_access_token:
+              type: string
+              description: The OAuth access token
+            oauth_refresh_token:
+              type: string
+              description: The OAuth refresh token
+            oauth_uid:
+              type: string
+              description: The unique OAuth user identifier
+            oauth_signer_uri:
+              type: string
+              description: The OAuth signer URI, if the app uses a custom OAuth signer
+        expires_at:
+          type: string
+          description: The date and time the account's credentials expiration, an ISO 8601 formatted string
+          format: date-time
+        error:
+          type:
+          - string
+          - 'null'
+          description: The error message if the account is unhealthy or dead, null otherwise
+        last_refreshed_at:
+          type:
+          - string
+          - 'null'
+          description: The date and time the account was last refreshed, an ISO 8601 formatted string
+          format: date-time
+        next_refresh_at:
+          type:
+          - string
+          - 'null'
+          description: The date and time the account will next be refreshed, an ISO 8601 formatted string
+          format: date-time
+    PageInfo:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of items returned
+          example: 10
+        total_count:
+          type: integer
+          description: Total number of items
+          example: 120
+        start_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the previous page of items
+        end_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the next page of items
     ListAccountsResponse:
       type: object
       description: Response received when listing accounts
@@ -530,9 +602,10 @@ components:
       - featured_weight
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of the app. Only applies for OAuth apps.
-          nullable: true
         name_slug:
           type: string
           description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
@@ -542,16 +615,18 @@ components:
         auth_type:
           $ref: '#/components/schemas/AppAuthType'
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: A short description of the app
-          nullable: true
         img_src:
           type: string
           description: The URL to the app's logo
         custom_fields_json:
-          type: string
+          type:
+          - string
+          - 'null'
           description: A JSON string representing the custom fields for the app
-          nullable: true
         categories:
           type: array
           items:
@@ -560,103 +635,64 @@ components:
         featured_weight:
           type: number
           description: A rough directional ordering of app popularity, subject to changes by Pipedream
-    PageInfo:
+    CreateAccountOpts:
       type: object
-      properties:
-        count:
-          type: integer
-          description: Number of items returned
-          example: 10
-        total_count:
-          type: integer
-          description: Total number of items
-          example: 120
-        start_cursor:
-          type: string
-          description: Used to fetch the previous page of items
-          nullable: true
-        end_cursor:
-          type: string
-          description: Used to fetch the next page of items
-          nullable: true
-    Account:
-      type: object
-      description: End user account data, returned from the API.
+      description: Request object for creating an account
       required:
-      - id
+      - app_slug
+      - cfmap_json
+      - connect_token
       properties:
-        id:
-          $ref: '#/components/schemas/AccountId'
+        app_slug:
+          type: string
+          description: The app slug for the account
+        cfmap_json:
+          type: string
+          description: JSON string containing the custom fields mapping
+        connect_token:
+          type: string
+          description: The connect token for authentication
         name:
           type: string
-          description: The custom name of the account if set.
-          nullable: true
-        external_id:
+          description: Optional name for the account
+        account_id:
           type: string
-          description: The external ID associated with the account.
-        healthy:
-          type: boolean
-          description: Indicates if the account is healthy. Pipedream will periodically retry token refresh and test requests for unhealthy accounts
-        dead:
-          type: boolean
-          nullable: true
-          description: Indicates if the account is no longer active
-        app:
-          $ref: '#/components/schemas/App'
-        created_at:
-          type: string
-          description: The date and time the account was created, an ISO 8601 formatted string
-          format: date-time
-        updated_at:
-          type: string
-          description: The date and time the account was last updated, an ISO 8601 formatted string
-          format: date-time
-        authorized_scopes:
-          type: array
-          items:
-            type: string
-          description: The OAuth scopes effectively granted to this account. Empty for non-OAuth apps.
-        credentials:
-          type: object
-          description: The credentials associated with the account, if the `include_credentials` parameter was set to true in the request (only applicable for BYOA apps). In addition to the well-known OAuth fields listed below, this object may contain app-specific custom fields (e.g. `base_url`).
-          nullable: true
-          additionalProperties: true
-          properties:
-            oauth_client_id:
-              type: string
-              description: The OAuth client ID for the app, if applicable
-            oauth_access_token:
-              type: string
-              description: The OAuth access token
-            oauth_refresh_token:
-              type: string
-              description: The OAuth refresh token
-            oauth_uid:
-              type: string
-              description: The unique OAuth user identifier
-            oauth_signer_uri:
-              type: string
-              description: The OAuth signer URI, if the app uses a custom OAuth signer
-        expires_at:
-          type: string
-          description: The date and time the account's credentials expiration, an ISO 8601 formatted string
-          format: date-time
-        error:
-          type: string
-          description: The error message if the account is unhealthy or dead, null otherwise
-          nullable: true
-        last_refreshed_at:
-          type: string
-          description: The date and time the account was last refreshed, an ISO 8601 formatted string
-          format: date-time
-          nullable: true
-        next_refresh_at:
-          type: string
-          description: The date and time the account will next be refreshed, an ISO 8601 formatted string
-          format: date-time
-          nullable: true
+          description: An existing account ID to reconnect. When provided, the account's credentials are updated instead of creating a new account. Must belong to the same external user and project environment as the connect token, and match the app identified by app_slug.
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
   securitySchemes:
-    bearerAuth:
+    OAuth2:
+      description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.pipedream.com/v1/oauth/token
+          scopes:
+            '*': Full access to every OAuth-protected endpoint.
+            connect:*: Full access to all Connect API endpoints (components, projects, triggers, accounts, etc.).
+            connect:actions:*: Full access to Connect actions.
+            connect:triggers:*: Full access to Connect triggers.
+            connect:accounts:read: List and fetch Connect accounts for an external user.
+            connect:accounts:write: Create or remove Connect accounts.
+            connect:deployed_triggers:read: Read deployed triggers and related data like events, pipelines and webhooks.
+            connect:deployed_triggers:write: Modify or delete deployed triggers.
+            connect:users:read: List and fetch external users
+            connect:users:write: Delete external users.
+            connect:projects:read: List and fetch projects owned by the workspace.
+            connect:projects:write: Create, update, or delete projects owned by the workspace.
+            connect:usage:read: List Connect usage records for a time window.
+            connect:tokens:create: Create Connect session tokens.
+            connect:proxy: Invoke the Connect proxy.
+            connect:workflow:invoke: Invoke Connect workflows on behalf of a user.
+    ConnectToken:
+      description: A short-lived Connect token for client-side requests on behalf of an end user. Generate one via the Create Connect token endpoint.
       type: http
       scheme: bearer
-      bearerFormat: OAuth access token
+      bearerFormat: ^ctok_[0-9a-f]{32}$
+x-fern-sdk-variables:
+  project_id:
+    type: string

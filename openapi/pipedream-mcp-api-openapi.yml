@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Pipedream Server Accounts MCP API
+  title: Pipedream Server MCP API
   version: v3
   description: 'Pipedream''s Model Context Protocol (MCP) server exposes 2,800+ integrated apps and 10,000+ tools as a hosted MCP endpoint. The server supports both SSE and streamable HTTP transports dynamically with no client configuration required. Authentication uses OAuth 2.0 client credentials; per-request context is supplied via x-pd-project-id, x-pd-environment, x-pd-external-user-id, and x-pd-app-slug headers. Source: https://pipedream.com/docs/connect/mcp/developers'
   contact:
@@ -60,39 +60,6 @@ paths:
         '403':
           description: Forbidden - account not connected for required tool.
 components:
-  parameters:
-    ProjectId:
-      in: header
-      name: x-pd-project-id
-      required: true
-      schema:
-        type: string
-      description: Pipedream project ID scoping this MCP session.
-    ExternalUserId:
-      in: header
-      name: x-pd-external-user-id
-      required: true
-      schema:
-        type: string
-        maxLength: 250
-      description: Stable identifier for the end user in the developer's system.
-    Environment:
-      in: header
-      name: x-pd-environment
-      required: true
-      schema:
-        type: string
-        enum:
-        - development
-        - production
-      description: Project environment.
-    AppSlug:
-      in: header
-      name: x-pd-app-slug
-      required: true
-      schema:
-        type: string
-      description: Slug of the integrated app to scope tools to (e.g. notion, linear, slack).
   schemas:
     JsonRpcResponse:
       type: object
@@ -139,6 +106,39 @@ components:
           - tools/call
         params:
           type: object
+  parameters:
+    ProjectId:
+      in: header
+      name: x-pd-project-id
+      required: true
+      schema:
+        type: string
+      description: Pipedream project ID scoping this MCP session.
+    ExternalUserId:
+      in: header
+      name: x-pd-external-user-id
+      required: true
+      schema:
+        type: string
+        maxLength: 250
+      description: Stable identifier for the end user in the developer's system.
+    Environment:
+      in: header
+      name: x-pd-environment
+      required: true
+      schema:
+        type: string
+        enum:
+        - development
+        - production
+      description: Project environment.
+    AppSlug:
+      in: header
+      name: x-pd-app-slug
+      required: true
+      schema:
+        type: string
+      description: Slug of the integrated app to scope tools to (e.g. notion, linear, slack).
   securitySchemes:
     bearerAuth:
       type: http
