@@ -41,7 +41,7 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pipedream.png
 tags:
-- Pro-Code-API-Composition
+- ProCode_API_Composition
 - Workflows
 - Connect
 - MCP
