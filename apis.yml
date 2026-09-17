@@ -689,86 +689,6 @@ apis:
     url: examples/pipedream-mcp-tools-list-example.json
   - type: Examples
     url: examples/pipedream-mcp-tools-call-example.json
-- aid: pipedream:pipedream-oauth-api
-  name: Pipedream OAuth API
-  description: The OAuth API from Pipedream — 1 operation(s) for oauth.
-  humanURL: https://pipedream.com/docs/rest-api/
-  baseURL: https://api.pipedream.com/v1
-  tags:
-  - Authentication
-  tags_raw:
-  - OAuth
-  properties:
-  - type: OpenAPI
-    url: openapi/pipedream-oauth-api-openapi.yml
-  - type: Documentation
-    url: https://pipedream.com/docs/rest-api/
-  - type: Authentication
-    url: https://pipedream.com/docs/rest-api/auth
-  - type: OpenAPIUpstream
-    url: https://pipedream.com/docs/pipedream_openapi_swagger.json
-  - type: SpectralRules
-    url: rules/pipedream-rules.yml
-  - type: JSONSchema
-    url: json-schema/pipedream-app-schema.json
-  - type: JSONSchema
-    url: json-schema/pipedream-account-schema.json
-  - type: JSONSchema
-    url: json-schema/pipedream-component-schema.json
-  - type: JSONSchema
-    url: json-schema/pipedream-project-schema.json
-  - type: JSONSchema
-    url: json-schema/pipedream-connecttoken-schema.json
-  - type: JSONSchema
-    url: json-schema/pipedream-connectusage-schema.json
-  - type: JSONStructure
-    url: json-structure/pipedream-app-structure.json
-  - type: Examples
-    url: examples/pipedream-list-apps-example.json
-  - type: Examples
-    url: examples/pipedream-create-connect-token-example.json
-  - type: Examples
-    url: examples/pipedream-list-accounts-example.json
-  - type: Examples
-    url: examples/pipedream-run-action-example.json
-  - type: Examples
-    url: examples/pipedream-deploy-trigger-example.json
-  - type: Examples
-    url: examples/pipedream-oauth-token-example.json
-  - type: Examples
-    url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
-  - type: Documentation
-    url: https://pipedream.com/docs/connect
-  - type: GettingStarted
-    url: https://pipedream.com/docs/connect/quickstart
-  - type: SDKs
-    url: https://pipedream.com/docs/connect/api-reference/sdks
-  - type: SDKs
-    url: https://github.com/PipedreamHQ/pipedream-sdk-typescript
-  - type: SDKs
-    url: https://github.com/PipedreamHQ/pipedream-sdk-python
-  - type: SDKs
-    url: https://github.com/PipedreamHQ/pipedream-sdk-java
-  - type: SamplesRepo
-    url: https://github.com/PipedreamHQ/pipedream-connect-examples
-  - type: Documentation
-    url: https://pipedream.com/docs/connect/mcp
-  - type: Documentation
-    url: https://pipedream.com/docs/connect/mcp/developers
-  - type: Documentation
-    url: https://pipedream.com/docs/connect/mcp/openai
-  - type: ServerDirectory
-    url: https://mcp.pipedream.com/
-  - type: ChatClient
-    url: https://chat.pipedream.com/
-  - type: SamplesRepo
-    url: https://github.com/PipedreamHQ/mcp-chat
-  - type: Examples
-    url: examples/pipedream-mcp-tools-list-example.json
-  - type: Examples
-    url: examples/pipedream-mcp-tools-call-example.json
 - aid: pipedream:pipedream-projects-api
   name: Pipedream Projects API
   description: The Projects API from Pipedream — 4 operation(s) for projects.
@@ -1253,6 +1173,84 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/pipedream-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://pipedream.com/docs/rest-api/
+  - type: Authentication
+    url: https://pipedream.com/docs/rest-api/auth
+  - type: OpenAPIUpstream
+    url: https://pipedream.com/docs/pipedream_openapi_swagger.json
+  - type: SpectralRules
+    url: rules/pipedream-rules.yml
+  - type: JSONSchema
+    url: json-schema/pipedream-app-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-account-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-component-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-project-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-connecttoken-schema.json
+  - type: JSONSchema
+    url: json-schema/pipedream-connectusage-schema.json
+  - type: JSONStructure
+    url: json-structure/pipedream-app-structure.json
+  - type: Examples
+    url: examples/pipedream-list-apps-example.json
+  - type: Examples
+    url: examples/pipedream-create-connect-token-example.json
+  - type: Examples
+    url: examples/pipedream-list-accounts-example.json
+  - type: Examples
+    url: examples/pipedream-run-action-example.json
+  - type: Examples
+    url: examples/pipedream-deploy-trigger-example.json
+  - type: Examples
+    url: examples/pipedream-oauth-token-example.json
+  - type: Examples
+    url: examples/pipedream-proxy-request-example.json
+  - type: GraphQL
+    url: graphql/pipedream-graphql.md
+  - type: Documentation
+    url: https://pipedream.com/docs/connect
+  - type: GettingStarted
+    url: https://pipedream.com/docs/connect/quickstart
+  - type: SDKs
+    url: https://pipedream.com/docs/connect/api-reference/sdks
+  - type: SDKs
+    url: https://github.com/PipedreamHQ/pipedream-sdk-typescript
+  - type: SDKs
+    url: https://github.com/PipedreamHQ/pipedream-sdk-python
+  - type: SDKs
+    url: https://github.com/PipedreamHQ/pipedream-sdk-java
+  - type: SamplesRepo
+    url: https://github.com/PipedreamHQ/pipedream-connect-examples
+  - type: Documentation
+    url: https://pipedream.com/docs/connect/mcp
+  - type: Documentation
+    url: https://pipedream.com/docs/connect/mcp/developers
+  - type: Documentation
+    url: https://pipedream.com/docs/connect/mcp/openai
+  - type: ServerDirectory
+    url: https://mcp.pipedream.com/
+  - type: ChatClient
+    url: https://chat.pipedream.com/
+  - type: SamplesRepo
+    url: https://github.com/PipedreamHQ/mcp-chat
+  - type: Examples
+    url: examples/pipedream-mcp-tools-list-example.json
+  - type: Examples
+    url: examples/pipedream-mcp-tools-call-example.json
+- aid: pipedream:pipedream-oauth-api
+  name: Pipedream O Auth API
+  description: The OAuth API from Pipedream — 1 operation(s) for oauth.
+  humanURL: https://pipedream.com/docs/rest-api/
+  baseURL: https://api.pipedream.com/v1
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/pipedream-oauth-api-openapi.yml
   - type: Documentation
     url: https://pipedream.com/docs/rest-api/
   - type: Authentication
