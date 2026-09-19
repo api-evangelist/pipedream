@@ -48,8 +48,8 @@ tags:
 - Embedded Integrations
 - Managed Auth
 - AI Agents
-- Pipedream
 tags_raw:
+- Pipedream
 - ProCode_API_Composition
 - Workflows
 - Connect
@@ -1248,6 +1248,8 @@ apis:
   humanURL: https://pipedream.com/docs/rest-api/
   baseURL: https://api.pipedream.com/v1
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
