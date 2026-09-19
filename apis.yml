@@ -41,6 +41,7 @@ position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pipedream.png
 tags:
+- Pipedream
 - Pro-Code-API-Composition
 - Workflows
 - Connect
