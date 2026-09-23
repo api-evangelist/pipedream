@@ -169,15 +169,51 @@ paths:
       - Tokens
 components:
   schemas:
-    AppAuthType:
-      type:
-      - string
-      - 'null'
-      enum:
-      - keys
-      - oauth
-      - none
-      description: The authentication type used by the app
+    App:
+      type: object
+      description: Response object for a Pipedream app's metadata
+      required:
+      - name_slug
+      - name
+      - img_src
+      - custom_fields_json
+      - categories
+      - featured_weight
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the app. Only applies for OAuth apps.
+        name_slug:
+          type: string
+          description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
+        name:
+          type: string
+          description: The human-readable name of the app
+        auth_type:
+          $ref: '#/components/schemas/AppAuthType'
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of the app
+        img_src:
+          type: string
+          description: The URL to the app's logo
+        custom_fields_json:
+          type:
+          - string
+          - 'null'
+          description: A JSON string representing the custom fields for the app
+        categories:
+          type: array
+          items:
+            type: string
+          description: Categories associated with the app
+        featured_weight:
+          type: number
+          description: A rough directional ordering of app popularity, subject to changes by Pipedream
     CreateTokenOpts:
       type: object
       description: Request object for creating a connect token
@@ -212,10 +248,12 @@ components:
           type: boolean
           default: false
           description: When true, end users may authorize a subset of the app's OAuth scopes; only the app's functional scopes (needed for the post-OAuth test request) are enforced. Defaults to false.
-    ConnectToken:
+    ProjectEnvironment:
       type: string
-      pattern: ^ctok_[0-9a-f]{32}$
-      description: An authentication token with a limited lifespan
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
     ValidateTokenResponse:
       type: object
       description: Response received when validating a connect token
@@ -269,51 +307,6 @@ components:
           - string
           - 'null'
           description: URI to redirect to on success
-    App:
-      type: object
-      description: Response object for a Pipedream app's metadata
-      required:
-      - name_slug
-      - name
-      - img_src
-      - custom_fields_json
-      - categories
-      - featured_weight
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID of the app. Only applies for OAuth apps.
-        name_slug:
-          type: string
-          description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
-        name:
-          type: string
-          description: The human-readable name of the app
-        auth_type:
-          $ref: '#/components/schemas/AppAuthType'
-        description:
-          type:
-          - string
-          - 'null'
-          description: A short description of the app
-        img_src:
-          type: string
-          description: The URL to the app's logo
-        custom_fields_json:
-          type:
-          - string
-          - 'null'
-          description: A JSON string representing the custom fields for the app
-        categories:
-          type: array
-          items:
-            type: string
-          description: Categories associated with the app
-        featured_weight:
-          type: number
-          description: A rough directional ordering of app popularity, subject to changes by Pipedream
     CreateTokenResponse:
       type: object
       description: Response received after creating a connect token
@@ -331,12 +324,19 @@ components:
           description: The expiration time of the token in ISO 8601 format
         token:
           $ref: '#/components/schemas/ConnectToken'
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
+    AppAuthType:
+      type:
+      - string
+      - 'null'
       enum:
-      - development
-      - production
+      - keys
+      - oauth
+      - none
+      description: The authentication type used by the app
+    ConnectToken:
+      type: string
+      pattern: ^ctok_[0-9a-f]{32}$
+      description: An authentication token with a limited lifespan
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

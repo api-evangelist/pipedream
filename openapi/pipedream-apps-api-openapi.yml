@@ -336,79 +336,6 @@ paths:
       - Apps
 components:
   schemas:
-    ListAppsResponse:
-      type: object
-      description: Response received when listing apps
-      required:
-      - data
-      - page_info
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/App'
-        page_info:
-          $ref: '#/components/schemas/PageInfo'
-    AppAuthType:
-      type:
-      - string
-      - 'null'
-      enum:
-      - keys
-      - oauth
-      - none
-      description: The authentication type used by the app
-    PageInfo:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of items returned
-          example: 10
-        total_count:
-          type: integer
-          description: Total number of items
-          example: 120
-        start_cursor:
-          type:
-          - string
-          - 'null'
-          description: Used to fetch the previous page of items
-        end_cursor:
-          type:
-          - string
-          - 'null'
-          description: Used to fetch the next page of items
-    AppCategory:
-      type: object
-      description: Response object for a Pipedream app category
-      properties:
-        id:
-          type: string
-          description: ID of the app category
-        name:
-          type: string
-          description: The human-readable name of the app category
-        description:
-          type:
-          - string
-          - 'null'
-          description: A short description of the app category
-    GetAppCategoryResponse:
-      $ref: '#/components/schemas/AppCategory'
-    ListAppCategoriesResponse:
-      type: array
-      description: Response received when listing app categories
-      items:
-        $ref: '#/components/schemas/AppCategory'
-    GetAppResponse:
-      type: object
-      description: Response received when retrieving a single app
-      required:
-      - data
-      properties:
-        data:
-          $ref: '#/components/schemas/App'
     App:
       type: object
       description: Response object for a Pipedream app's metadata
@@ -454,6 +381,79 @@ components:
         featured_weight:
           type: number
           description: A rough directional ordering of app popularity, subject to changes by Pipedream
+    GetAppCategoryResponse:
+      $ref: '#/components/schemas/AppCategory'
+    GetAppResponse:
+      type: object
+      description: Response received when retrieving a single app
+      required:
+      - data
+      properties:
+        data:
+          $ref: '#/components/schemas/App'
+    AppAuthType:
+      type:
+      - string
+      - 'null'
+      enum:
+      - keys
+      - oauth
+      - none
+      description: The authentication type used by the app
+    ListAppsResponse:
+      type: object
+      description: Response received when listing apps
+      required:
+      - data
+      - page_info
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/App'
+        page_info:
+          $ref: '#/components/schemas/PageInfo'
+    ListAppCategoriesResponse:
+      type: array
+      description: Response received when listing app categories
+      items:
+        $ref: '#/components/schemas/AppCategory'
+    AppCategory:
+      type: object
+      description: Response object for a Pipedream app category
+      properties:
+        id:
+          type: string
+          description: ID of the app category
+        name:
+          type: string
+          description: The human-readable name of the app category
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of the app category
+    PageInfo:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of items returned
+          example: 10
+        total_count:
+          type: integer
+          description: Total number of items
+          example: 120
+        start_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the previous page of items
+        end_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the next page of items
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

@@ -116,6 +116,12 @@ paths:
       - Users
 components:
   schemas:
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
     ExternalUser:
       type: object
       required:
@@ -168,12 +174,6 @@ components:
             $ref: '#/components/schemas/ExternalUser'
         page_info:
           $ref: '#/components/schemas/PageInfo'
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

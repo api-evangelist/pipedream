@@ -22,13 +22,17 @@
     "pipedream-users-api-openapi.yml",
     "pipedream-webhooks-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "pipedream-mcp-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "pipedream-openapi.yml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0"
+    "pipedream-openapi.yml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
+    "superseded outputs removed: pipedream-o-auth-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 16 total)"
   ],
   "skipped": [
     "pipedream-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -39,7 +43,7 @@
     "pipedream-deployed-triggers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "pipedream-file-stash-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "pipedream-mcp-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "pipedream-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pipedream-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "pipedream-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "pipedream-proxy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "pipedream-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",

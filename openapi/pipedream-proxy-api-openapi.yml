@@ -367,8 +367,6 @@ paths:
       - Proxy
 components:
   schemas:
-    ProxyResponse:
-      description: The parsed response body from a proxied API request
     ProjectEnvironment:
       type: string
       description: The environment in which the server client is running
@@ -379,6 +377,8 @@ components:
       type: string
       format: binary
       description: Binary response from the proxied API
+    ProxyResponse:
+      description: The parsed response body from a proxied API request
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

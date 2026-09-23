@@ -461,6 +461,93 @@ paths:
       - Accounts
 components:
   schemas:
+    App:
+      type: object
+      description: Response object for a Pipedream app's metadata
+      required:
+      - name_slug
+      - name
+      - img_src
+      - custom_fields_json
+      - categories
+      - featured_weight
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the app. Only applies for OAuth apps.
+        name_slug:
+          type: string
+          description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
+        name:
+          type: string
+          description: The human-readable name of the app
+        auth_type:
+          $ref: '#/components/schemas/AppAuthType'
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of the app
+        img_src:
+          type: string
+          description: The URL to the app's logo
+        custom_fields_json:
+          type:
+          - string
+          - 'null'
+          description: A JSON string representing the custom fields for the app
+        categories:
+          type: array
+          items:
+            type: string
+          description: Categories associated with the app
+        featured_weight:
+          type: number
+          description: A rough directional ordering of app popularity, subject to changes by Pipedream
+    ListAccountsResponse:
+      type: object
+      description: Response received when listing accounts
+      required:
+      - data
+      - page_info
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        page_info:
+          $ref: '#/components/schemas/PageInfo'
+    CreateAccountOpts:
+      type: object
+      description: Request object for creating an account
+      required:
+      - app_slug
+      - cfmap_json
+      - connect_token
+      properties:
+        app_slug:
+          type: string
+          description: The app slug for the account
+        cfmap_json:
+          type: string
+          description: JSON string containing the custom fields mapping
+        connect_token:
+          type: string
+          description: The connect token for authentication
+        name:
+          type: string
+          description: Optional name for the account
+        account_id:
+          type: string
+          description: An existing account ID to reconnect. When provided, the account's credentials are updated instead of creating a new account. Must belong to the same external user and project environment as the connect token, and match the app identified by app_slug.
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
     AppAuthType:
       type:
       - string
@@ -552,6 +639,10 @@ components:
           - 'null'
           description: The date and time the account will next be refreshed, an ISO 8601 formatted string
           format: date-time
+    AccountId:
+      type: string
+      description: The unique ID of the account.
+      pattern: ^apn_[a-zA-Z0-9]+$
     PageInfo:
       type: object
       properties:
@@ -573,97 +664,6 @@ components:
           - string
           - 'null'
           description: Used to fetch the next page of items
-    ListAccountsResponse:
-      type: object
-      description: Response received when listing accounts
-      required:
-      - data
-      - page_info
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-        page_info:
-          $ref: '#/components/schemas/PageInfo'
-    AccountId:
-      type: string
-      description: The unique ID of the account.
-      pattern: ^apn_[a-zA-Z0-9]+$
-    App:
-      type: object
-      description: Response object for a Pipedream app's metadata
-      required:
-      - name_slug
-      - name
-      - img_src
-      - custom_fields_json
-      - categories
-      - featured_weight
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID of the app. Only applies for OAuth apps.
-        name_slug:
-          type: string
-          description: The name slug of the target app (see https://pipedream.com/docs/connect/quickstart#find-your-apps-name-slug)
-        name:
-          type: string
-          description: The human-readable name of the app
-        auth_type:
-          $ref: '#/components/schemas/AppAuthType'
-        description:
-          type:
-          - string
-          - 'null'
-          description: A short description of the app
-        img_src:
-          type: string
-          description: The URL to the app's logo
-        custom_fields_json:
-          type:
-          - string
-          - 'null'
-          description: A JSON string representing the custom fields for the app
-        categories:
-          type: array
-          items:
-            type: string
-          description: Categories associated with the app
-        featured_weight:
-          type: number
-          description: A rough directional ordering of app popularity, subject to changes by Pipedream
-    CreateAccountOpts:
-      type: object
-      description: Request object for creating an account
-      required:
-      - app_slug
-      - cfmap_json
-      - connect_token
-      properties:
-        app_slug:
-          type: string
-          description: The app slug for the account
-        cfmap_json:
-          type: string
-          description: JSON string containing the custom fields mapping
-        connect_token:
-          type: string
-          description: The connect token for authentication
-        name:
-          type: string
-          description: Optional name for the account
-        account_id:
-          type: string
-          description: An existing account ID to reconnect. When provided, the account's credentials are updated instead of creating a new account. Must belong to the same external user and project environment as the connect token, and match the app identified by app_slug.
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

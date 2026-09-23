@@ -48,20 +48,6 @@ paths:
       - OAuth
 components:
   schemas:
-    CreateOAuthTokenResponse:
-      type: object
-      description: Response object for creating an OAuth token
-      required:
-      - access_token
-      - token_type
-      - expires_in
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-        expires_in:
-          type: integer
     CreateOAuthTokenOpts:
       type: object
       description: Request object for creating an OAuth token
@@ -81,6 +67,20 @@ components:
         scope:
           type: string
           description: Optional space-separated scopes for the access token. Defaults to `*`.
+    CreateOAuthTokenResponse:
+      type: object
+      description: Response object for creating an OAuth token
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

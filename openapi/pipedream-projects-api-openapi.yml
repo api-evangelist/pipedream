@@ -467,6 +467,25 @@ paths:
       - Projects
 components:
   schemas:
+    ListProjectsResponse:
+      type: object
+      description: Response received when listing Connect projects
+      required:
+      - data
+      - page_info
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        page_info:
+          $ref: '#/components/schemas/PageInfo'
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
     ProjectInfoResponse:
       type: object
       description: Response received when retrieving project info
@@ -479,8 +498,10 @@ components:
             $ref: '#/components/schemas/ProjectInfoResponseApp'
           required:
           - name_slug
-    UpdateProjectOpts:
+    CreateProjectOpts:
       type: object
+      required:
+      - name
       properties:
         name:
           type: string
@@ -495,27 +516,6 @@ components:
         connect_require_key_auth_test:
           type: boolean
           description: Send a test request to the upstream API when adding Connect accounts for key-based apps
-    PageInfo:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of items returned
-          example: 10
-        total_count:
-          type: integer
-          description: Total number of items
-          example: 120
-        start_cursor:
-          type:
-          - string
-          - 'null'
-          description: Used to fetch the previous page of items
-        end_cursor:
-          type:
-          - string
-          - 'null'
-          description: Used to fetch the next page of items
     Project:
       type: object
       description: Project that can be accessed via the Connect API
@@ -544,10 +544,19 @@ components:
         connect_require_key_auth_test:
           type: boolean
           description: Send a test request to the upstream API when adding Connect accounts for key-based apps
-    CreateProjectOpts:
+    UpdateProjectLogoOpts:
       type: object
+      description: Payload to update a project's logo.
       required:
-      - name
+      - logo
+      properties:
+        logo:
+          type: string
+          format: byte
+          description: Data URI containing the new Base64 encoded image
+          example: data:image/png;base64,AAAAAA...
+    UpdateProjectOpts:
+      type: object
       properties:
         name:
           type: string
@@ -573,36 +582,27 @@ components:
         name_slug:
           type: string
           description: The name slug of the target app
-    UpdateProjectLogoOpts:
+    PageInfo:
       type: object
-      description: Payload to update a project's logo.
-      required:
-      - logo
       properties:
-        logo:
-          type: string
-          format: byte
-          description: Data URI containing the new Base64 encoded image
-          example: data:image/png;base64,AAAAAA...
-    ListProjectsResponse:
-      type: object
-      description: Response received when listing Connect projects
-      required:
-      - data
-      - page_info
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        page_info:
-          $ref: '#/components/schemas/PageInfo'
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
+        count:
+          type: integer
+          description: Number of items returned
+          example: 10
+        total_count:
+          type: integer
+          description: Total number of items
+          example: 120
+        start_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the previous page of items
+        end_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the next page of items
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.
