@@ -49,6 +49,7 @@ tags:
 - Embedded Integrations
 - Managed Auth
 - AI Agents
+- Workflow Automation
 tags_raw:
 - Pipedream
 - ProCode_API_Composition
@@ -58,6 +59,7 @@ tags_raw:
 - Embedded Integrations
 - Managed Auth
 - AI Agents
+- Workflow-Automation
 created: '2026-03-03'
 modified: '2026-05-22'
 url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/apis.yml
@@ -111,8 +113,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -189,8 +189,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -267,8 +265,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -347,8 +343,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -425,8 +419,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -503,8 +495,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -581,8 +571,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -659,8 +647,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -739,8 +725,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -817,8 +801,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -895,8 +877,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -973,8 +953,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -1051,8 +1029,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -1131,8 +1107,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -1211,8 +1185,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
@@ -1291,8 +1263,6 @@ apis:
     url: examples/pipedream-oauth-token-example.json
   - type: Examples
     url: examples/pipedream-proxy-request-example.json
-  - type: GraphQL
-    url: graphql/pipedream-graphql.md
   - type: Documentation
     url: https://pipedream.com/docs/connect
   - type: GettingStarted
