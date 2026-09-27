@@ -273,6 +273,32 @@ paths:
       - Webhooks
 components:
   schemas:
+    Webhook:
+      type: object
+      description: A webhook object
+      required:
+      - id
+      - url
+      - signing_key_set
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          description: The unique ID of the webhook
+        url:
+          type: string
+          format: uri
+          description: The webhook URL
+        signing_key_set:
+          type: boolean
+          description: Whether a signing key has been set for this webhook
+        created_at:
+          type: integer
+          description: The time the webhook was created, in epoch seconds
+        updated_at:
+          type: integer
+          description: The time the webhook was last updated, in epoch seconds
     WebhookWithOptionalSigningKey:
       type: object
       description: A webhook object that may include the signing key. The signing key is returned when a webhook is created, but omitted when an existing webhook is updated.
@@ -302,21 +328,6 @@ components:
         updated_at:
           type: integer
           description: The time the webhook was last updated, in epoch seconds
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
-    GetWebhookResponse:
-      type: object
-      description: Response received when retrieving a webhook
-      required:
-      - data
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Webhook'
     WebhookWithSigningKey:
       type: object
       description: A webhook object including the signing key
@@ -347,14 +358,15 @@ components:
         updated_at:
           type: integer
           description: The time the webhook was last updated, in epoch seconds
-    SetWebhookResponse:
+    GetWebhookResponse:
       type: object
-      description: Response received when creating or updating a webhook
+      description: Response received when retrieving a webhook
       required:
       - data
       properties:
         data:
-          $ref: '#/components/schemas/WebhookWithOptionalSigningKey'
+          allOf:
+          - $ref: '#/components/schemas/Webhook'
     GetWebhookWithSigningKeyResponse:
       type: object
       description: Response received when retrieving a webhook with its signing key
@@ -363,32 +375,14 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/WebhookWithSigningKey'
-    Webhook:
+    SetWebhookResponse:
       type: object
-      description: A webhook object
+      description: Response received when creating or updating a webhook
       required:
-      - id
-      - url
-      - signing_key_set
-      - created_at
-      - updated_at
+      - data
       properties:
-        id:
-          type: string
-          description: The unique ID of the webhook
-        url:
-          type: string
-          format: uri
-          description: The webhook URL
-        signing_key_set:
-          type: boolean
-          description: Whether a signing key has been set for this webhook
-        created_at:
-          type: integer
-          description: The time the webhook was created, in epoch seconds
-        updated_at:
-          type: integer
-          description: The time the webhook was last updated, in epoch seconds
+        data:
+          $ref: '#/components/schemas/WebhookWithOptionalSigningKey'
     SetWebhookOpts:
       type: object
       description: Request options for setting a webhook URL
@@ -399,6 +393,12 @@ components:
           type: string
           format: uri
           description: The webhook URL to set
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

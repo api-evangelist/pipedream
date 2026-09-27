@@ -50,6 +50,7 @@ tags:
 - Managed Auth
 - AI Agents
 - Workflow Automation
+- Integration
 tags_raw:
 - Pipedream
 - ProCode_API_Composition
@@ -60,6 +61,7 @@ tags_raw:
 - Managed Auth
 - AI Agents
 - Workflow-Automation
+- Integration
 created: '2026-03-03'
 modified: '2026-05-22'
 url: https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/apis.yml

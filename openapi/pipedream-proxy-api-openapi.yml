@@ -367,18 +367,18 @@ paths:
       - Proxy
 components:
   schemas:
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
     ProxyResponseBinary:
       type: string
       format: binary
       description: Binary response from the proxied API
     ProxyResponse:
       description: The parsed response body from a proxied API request
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

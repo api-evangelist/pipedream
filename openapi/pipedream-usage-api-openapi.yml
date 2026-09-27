@@ -90,21 +90,6 @@ paths:
       - Usage
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response returned by the API in case of an error
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          description: The error message
-        code:
-          type: string
-          description: The error code
-        details:
-          type: object
-          description: Additional error details
     ConnectUsage:
       type: object
       description: Connect usage record
@@ -137,6 +122,21 @@ components:
         usage_end_ts:
           type: integer
           description: Usage window end timestamp (seconds)
+    ErrorResponse:
+      type: object
+      description: Error response returned by the API in case of an error
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          description: The error message
+        code:
+          type: string
+          description: The error code
+        details:
+          type: object
+          description: Additional error details
     ConnectUsageResponse:
       type: object
       description: Connect usage records for a time window

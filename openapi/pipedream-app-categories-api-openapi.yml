@@ -82,6 +82,13 @@ paths:
       - App Categories
 components:
   schemas:
+    ListAppCategoriesResponse:
+      type: array
+      description: Response received when listing app categories
+      items:
+        $ref: '#/components/schemas/AppCategory'
+    GetAppCategoryResponse:
+      $ref: '#/components/schemas/AppCategory'
     AppCategory:
       type: object
       description: Response object for a Pipedream app category
@@ -97,13 +104,6 @@ components:
           - string
           - 'null'
           description: A short description of the app category
-    GetAppCategoryResponse:
-      $ref: '#/components/schemas/AppCategory'
-    ListAppCategoriesResponse:
-      type: array
-      description: Response received when listing app categories
-      items:
-        $ref: '#/components/schemas/AppCategory'
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.
