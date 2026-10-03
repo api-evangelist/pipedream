@@ -60,6 +60,39 @@ paths:
         '403':
           description: Forbidden - account not connected for required tool.
 components:
+  parameters:
+    AppSlug:
+      in: header
+      name: x-pd-app-slug
+      required: true
+      schema:
+        type: string
+      description: Slug of the integrated app to scope tools to (e.g. notion, linear, slack).
+    ProjectId:
+      in: header
+      name: x-pd-project-id
+      required: true
+      schema:
+        type: string
+      description: Pipedream project ID scoping this MCP session.
+    Environment:
+      in: header
+      name: x-pd-environment
+      required: true
+      schema:
+        type: string
+        enum:
+        - development
+        - production
+      description: Project environment.
+    ExternalUserId:
+      in: header
+      name: x-pd-external-user-id
+      required: true
+      schema:
+        type: string
+        maxLength: 250
+      description: Stable identifier for the end user in the developer's system.
   schemas:
     JsonRpcResponse:
       type: object
@@ -106,39 +139,6 @@ components:
           - tools/call
         params:
           type: object
-  parameters:
-    AppSlug:
-      in: header
-      name: x-pd-app-slug
-      required: true
-      schema:
-        type: string
-      description: Slug of the integrated app to scope tools to (e.g. notion, linear, slack).
-    Environment:
-      in: header
-      name: x-pd-environment
-      required: true
-      schema:
-        type: string
-        enum:
-        - development
-        - production
-      description: Project environment.
-    ExternalUserId:
-      in: header
-      name: x-pd-external-user-id
-      required: true
-      schema:
-        type: string
-        maxLength: 250
-      description: Stable identifier for the end user in the developer's system.
-    ProjectId:
-      in: header
-      name: x-pd-project-id
-      required: true
-      schema:
-        type: string
-      description: Pipedream project ID scoping this MCP session.
   securitySchemes:
     bearerAuth:
       type: http

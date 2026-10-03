@@ -467,33 +467,6 @@ paths:
       - Projects
 components:
   schemas:
-    UpdateProjectOpts:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the project
-        app_name:
-          type: string
-          description: Display name for the Connect application
-        support_email:
-          type: string
-          format: email
-          description: Support email displayed to end users
-        connect_require_key_auth_test:
-          type: boolean
-          description: Send a test request to the upstream API when adding Connect accounts for key-based apps
-    ProjectInfoResponseApp:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID of the app. Only applies for OAuth apps.
-        name_slug:
-          type: string
-          description: The name slug of the target app
     UpdateProjectLogoOpts:
       type: object
       description: Payload to update a project's logo.
@@ -505,24 +478,30 @@ components:
           format: byte
           description: Data URI containing the new Base64 encoded image
           example: data:image/png;base64,AAAAAA...
-    CreateProjectOpts:
+    ProjectInfoResponseApp:
       type: object
-      required:
-      - name
       properties:
-        name:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the app. Only applies for OAuth apps.
+        name_slug:
           type: string
-          description: Name of the project
-        app_name:
-          type: string
-          description: Display name for the Connect application
-        support_email:
-          type: string
-          format: email
-          description: Support email displayed to end users
-        connect_require_key_auth_test:
-          type: boolean
-          description: Send a test request to the upstream API when adding Connect accounts for key-based apps
+          description: The name slug of the target app
+    ListProjectsResponse:
+      type: object
+      description: Response received when listing Connect projects
+      required:
+      - data
+      - page_info
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        page_info:
+          $ref: '#/components/schemas/PageInfo'
     PageInfo:
       type: object
       properties:
@@ -544,6 +523,28 @@ components:
           - string
           - 'null'
           description: Used to fetch the next page of items
+    UpdateProjectOpts:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the project
+        app_name:
+          type: string
+          description: Display name for the Connect application
+        support_email:
+          type: string
+          format: email
+          description: Support email displayed to end users
+        connect_require_key_auth_test:
+          type: boolean
+          description: Send a test request to the upstream API when adding Connect accounts for key-based apps
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
     Project:
       type: object
       description: Project that can be accessed via the Connect API
@@ -584,25 +585,24 @@ components:
             $ref: '#/components/schemas/ProjectInfoResponseApp'
           required:
           - name_slug
-    ListProjectsResponse:
+    CreateProjectOpts:
       type: object
-      description: Response received when listing Connect projects
       required:
-      - data
-      - page_info
+      - name
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        page_info:
-          $ref: '#/components/schemas/PageInfo'
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
+        name:
+          type: string
+          description: Name of the project
+        app_name:
+          type: string
+          description: Display name for the Connect application
+        support_email:
+          type: string
+          format: email
+          description: Support email displayed to end users
+        connect_require_key_auth_test:
+          type: boolean
+          description: Send a test request to the upstream API when adding Connect accounts for key-based apps
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

@@ -82,13 +82,13 @@ paths:
       - App Categories
 components:
   schemas:
+    GetAppCategoryResponse:
+      $ref: '#/components/schemas/AppCategory'
     ListAppCategoriesResponse:
       type: array
       description: Response received when listing app categories
       items:
         $ref: '#/components/schemas/AppCategory'
-    GetAppCategoryResponse:
-      $ref: '#/components/schemas/AppCategory'
     AppCategory:
       type: object
       description: Response object for a Pipedream app category

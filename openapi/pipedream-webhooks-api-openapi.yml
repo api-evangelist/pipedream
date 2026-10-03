@@ -273,12 +273,13 @@ paths:
       - Webhooks
 components:
   schemas:
-    Webhook:
+    WebhookWithSigningKey:
       type: object
-      description: A webhook object
+      description: A webhook object including the signing key
       required:
       - id
       - url
+      - signing_key
       - signing_key_set
       - created_at
       - updated_at
@@ -290,6 +291,9 @@ components:
           type: string
           format: uri
           description: The webhook URL
+        signing_key:
+          type: string
+          description: The webhook signing key
         signing_key_set:
           type: boolean
           description: Whether a signing key has been set for this webhook
@@ -328,13 +332,53 @@ components:
         updated_at:
           type: integer
           description: The time the webhook was last updated, in epoch seconds
-    WebhookWithSigningKey:
+    GetWebhookResponse:
       type: object
-      description: A webhook object including the signing key
+      description: Response received when retrieving a webhook
+      required:
+      - data
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Webhook'
+    SetWebhookResponse:
+      type: object
+      description: Response received when creating or updating a webhook
+      required:
+      - data
+      properties:
+        data:
+          $ref: '#/components/schemas/WebhookWithOptionalSigningKey'
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
+    GetWebhookWithSigningKeyResponse:
+      type: object
+      description: Response received when retrieving a webhook with its signing key
+      required:
+      - data
+      properties:
+        data:
+          $ref: '#/components/schemas/WebhookWithSigningKey'
+    SetWebhookOpts:
+      type: object
+      description: Request options for setting a webhook URL
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The webhook URL to set
+    Webhook:
+      type: object
+      description: A webhook object
       required:
       - id
       - url
-      - signing_key
       - signing_key_set
       - created_at
       - updated_at
@@ -346,9 +390,6 @@ components:
           type: string
           format: uri
           description: The webhook URL
-        signing_key:
-          type: string
-          description: The webhook signing key
         signing_key_set:
           type: boolean
           description: Whether a signing key has been set for this webhook
@@ -358,47 +399,6 @@ components:
         updated_at:
           type: integer
           description: The time the webhook was last updated, in epoch seconds
-    GetWebhookResponse:
-      type: object
-      description: Response received when retrieving a webhook
-      required:
-      - data
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Webhook'
-    GetWebhookWithSigningKeyResponse:
-      type: object
-      description: Response received when retrieving a webhook with its signing key
-      required:
-      - data
-      properties:
-        data:
-          $ref: '#/components/schemas/WebhookWithSigningKey'
-    SetWebhookResponse:
-      type: object
-      description: Response received when creating or updating a webhook
-      required:
-      - data
-      properties:
-        data:
-          $ref: '#/components/schemas/WebhookWithOptionalSigningKey'
-    SetWebhookOpts:
-      type: object
-      description: Request options for setting a webhook URL
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          format: uri
-          description: The webhook URL to set
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.
