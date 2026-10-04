@@ -1296,6 +1296,9 @@ apis:
   - type: Examples
     url: examples/pipedream-mcp-tools-call-example.json
 common:
+- type: CapabilityMap
+  url: capabilities/pipedream-capability-edges.yml
+  name: Pipedream Business Capability Map
 - type: VendorFacets
   url: vendor-facets/pipedream-vendor-facets.yml
 - type: Website
