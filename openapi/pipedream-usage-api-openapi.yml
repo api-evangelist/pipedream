@@ -90,6 +90,16 @@ paths:
       - Usage
 components:
   schemas:
+    ConnectUsageResponse:
+      type: object
+      description: Connect usage records for a time window
+      required:
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectUsage'
     ErrorResponse:
       type: object
       description: Error response returned by the API in case of an error
@@ -105,16 +115,6 @@ components:
         details:
           type: object
           description: Additional error details
-    ConnectUsageResponse:
-      type: object
-      description: Connect usage records for a time window
-      required:
-      - data
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConnectUsage'
     ConnectUsage:
       type: object
       description: Connect usage record

@@ -273,6 +273,84 @@ paths:
       - Webhooks
 components:
   schemas:
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
+    Webhook:
+      type: object
+      description: A webhook object
+      required:
+      - id
+      - url
+      - signing_key_set
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          description: The unique ID of the webhook
+        url:
+          type: string
+          format: uri
+          description: The webhook URL
+        signing_key_set:
+          type: boolean
+          description: Whether a signing key has been set for this webhook
+        created_at:
+          type: integer
+          description: The time the webhook was created, in epoch seconds
+        updated_at:
+          type: integer
+          description: The time the webhook was last updated, in epoch seconds
+    GetWebhookWithSigningKeyResponse:
+      type: object
+      description: Response received when retrieving a webhook with its signing key
+      required:
+      - data
+      properties:
+        data:
+          $ref: '#/components/schemas/WebhookWithSigningKey'
+    GetWebhookResponse:
+      type: object
+      description: Response received when retrieving a webhook
+      required:
+      - data
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Webhook'
+    WebhookWithOptionalSigningKey:
+      type: object
+      description: A webhook object that may include the signing key. The signing key is returned when a webhook is created, but omitted when an existing webhook is updated.
+      required:
+      - id
+      - url
+      - signing_key_set
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          description: The unique ID of the webhook
+        url:
+          type: string
+          format: uri
+          description: The webhook URL
+        signing_key:
+          type: string
+          description: The webhook signing key, when returned by the endpoint
+        signing_key_set:
+          type: boolean
+          description: Whether a signing key has been set for this webhook
+        created_at:
+          type: integer
+          description: The time the webhook was created, in epoch seconds
+        updated_at:
+          type: integer
+          description: The time the webhook was last updated, in epoch seconds
     WebhookWithSigningKey:
       type: object
       description: A webhook object including the signing key
@@ -303,44 +381,6 @@ components:
         updated_at:
           type: integer
           description: The time the webhook was last updated, in epoch seconds
-    WebhookWithOptionalSigningKey:
-      type: object
-      description: A webhook object that may include the signing key. The signing key is returned when a webhook is created, but omitted when an existing webhook is updated.
-      required:
-      - id
-      - url
-      - signing_key_set
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: string
-          description: The unique ID of the webhook
-        url:
-          type: string
-          format: uri
-          description: The webhook URL
-        signing_key:
-          type: string
-          description: The webhook signing key, when returned by the endpoint
-        signing_key_set:
-          type: boolean
-          description: Whether a signing key has been set for this webhook
-        created_at:
-          type: integer
-          description: The time the webhook was created, in epoch seconds
-        updated_at:
-          type: integer
-          description: The time the webhook was last updated, in epoch seconds
-    GetWebhookResponse:
-      type: object
-      description: Response received when retrieving a webhook
-      required:
-      - data
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Webhook'
     SetWebhookResponse:
       type: object
       description: Response received when creating or updating a webhook
@@ -349,20 +389,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/WebhookWithOptionalSigningKey'
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
-    GetWebhookWithSigningKeyResponse:
-      type: object
-      description: Response received when retrieving a webhook with its signing key
-      required:
-      - data
-      properties:
-        data:
-          $ref: '#/components/schemas/WebhookWithSigningKey'
     SetWebhookOpts:
       type: object
       description: Request options for setting a webhook URL
@@ -373,32 +399,6 @@ components:
           type: string
           format: uri
           description: The webhook URL to set
-    Webhook:
-      type: object
-      description: A webhook object
-      required:
-      - id
-      - url
-      - signing_key_set
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: string
-          description: The unique ID of the webhook
-        url:
-          type: string
-          format: uri
-          description: The webhook URL
-        signing_key_set:
-          type: boolean
-          description: Whether a signing key has been set for this webhook
-        created_at:
-          type: integer
-          description: The time the webhook was created, in epoch seconds
-        updated_at:
-          type: integer
-          description: The time the webhook was last updated, in epoch seconds
   securitySchemes:
     OAuth2:
       description: A short-lived OAuth access token for server-side requests. Generate one via the Generate OAuth Token flow or automatically when initializing the SDK client.

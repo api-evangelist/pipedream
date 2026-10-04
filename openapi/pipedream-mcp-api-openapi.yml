@@ -60,40 +60,29 @@ paths:
         '403':
           description: Forbidden - account not connected for required tool.
 components:
-  parameters:
-    AppSlug:
-      in: header
-      name: x-pd-app-slug
-      required: true
-      schema:
-        type: string
-      description: Slug of the integrated app to scope tools to (e.g. notion, linear, slack).
-    ProjectId:
-      in: header
-      name: x-pd-project-id
-      required: true
-      schema:
-        type: string
-      description: Pipedream project ID scoping this MCP session.
-    Environment:
-      in: header
-      name: x-pd-environment
-      required: true
-      schema:
-        type: string
-        enum:
-        - development
-        - production
-      description: Project environment.
-    ExternalUserId:
-      in: header
-      name: x-pd-external-user-id
-      required: true
-      schema:
-        type: string
-        maxLength: 250
-      description: Stable identifier for the end user in the developer's system.
   schemas:
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      properties:
+        jsonrpc:
+          type: string
+          enum:
+          - '2.0'
+        id:
+          oneOf:
+          - type: string
+          - type: integer
+        method:
+          type: string
+          examples:
+          - initialize
+          - tools/list
+          - tools/call
+        params:
+          type: object
     JsonRpcResponse:
       type: object
       required:
@@ -117,28 +106,39 @@ components:
             message:
               type: string
             data: {}
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      properties:
-        jsonrpc:
-          type: string
-          enum:
-          - '2.0'
-        id:
-          oneOf:
-          - type: string
-          - type: integer
-        method:
-          type: string
-          examples:
-          - initialize
-          - tools/list
-          - tools/call
-        params:
-          type: object
+  parameters:
+    AppSlug:
+      in: header
+      name: x-pd-app-slug
+      required: true
+      schema:
+        type: string
+      description: Slug of the integrated app to scope tools to (e.g. notion, linear, slack).
+    Environment:
+      in: header
+      name: x-pd-environment
+      required: true
+      schema:
+        type: string
+        enum:
+        - development
+        - production
+      description: Project environment.
+    ProjectId:
+      in: header
+      name: x-pd-project-id
+      required: true
+      schema:
+        type: string
+      description: Pipedream project ID scoping this MCP session.
+    ExternalUserId:
+      in: header
+      name: x-pd-external-user-id
+      required: true
+      schema:
+        type: string
+        maxLength: 250
+      description: Stable identifier for the end user in the developer's system.
   securitySchemes:
     bearerAuth:
       type: http

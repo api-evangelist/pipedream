@@ -122,25 +122,6 @@ components:
       enum:
       - development
       - production
-    ExternalUser:
-      type: object
-      required:
-      - id
-      - external_id
-      properties:
-        id:
-          type: string
-          description: The external user's Pipedream ID
-          example: exu_abc123
-        external_id:
-          type: string
-          description: Your identifier for the external user
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
     PageInfo:
       type: object
       properties:
@@ -162,6 +143,25 @@ components:
           - string
           - 'null'
           description: Used to fetch the next page of items
+    ExternalUser:
+      type: object
+      required:
+      - id
+      - external_id
+      properties:
+        id:
+          type: string
+          description: The external user's Pipedream ID
+          example: exu_abc123
+        external_id:
+          type: string
+          description: Your identifier for the external user
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
     GetUsersResponse:
       type: object
       required:

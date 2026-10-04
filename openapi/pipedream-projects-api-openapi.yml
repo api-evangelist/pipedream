@@ -467,17 +467,46 @@ paths:
       - Projects
 components:
   schemas:
-    UpdateProjectLogoOpts:
+    ProjectEnvironment:
+      type: string
+      description: The environment in which the server client is running
+      enum:
+      - development
+      - production
+    CreateProjectOpts:
       type: object
-      description: Payload to update a project's logo.
       required:
-      - logo
+      - name
       properties:
-        logo:
+        name:
           type: string
-          format: byte
-          description: Data URI containing the new Base64 encoded image
-          example: data:image/png;base64,AAAAAA...
+          description: Name of the project
+        app_name:
+          type: string
+          description: Display name for the Connect application
+        support_email:
+          type: string
+          format: email
+          description: Support email displayed to end users
+        connect_require_key_auth_test:
+          type: boolean
+          description: Send a test request to the upstream API when adding Connect accounts for key-based apps
+    UpdateProjectOpts:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the project
+        app_name:
+          type: string
+          description: Display name for the Connect application
+        support_email:
+          type: string
+          format: email
+          description: Support email displayed to end users
+        connect_require_key_auth_test:
+          type: boolean
+          description: Send a test request to the upstream API when adding Connect accounts for key-based apps
     ProjectInfoResponseApp:
       type: object
       properties:
@@ -502,6 +531,29 @@ components:
             $ref: '#/components/schemas/Project'
         page_info:
           $ref: '#/components/schemas/PageInfo'
+    UpdateProjectLogoOpts:
+      type: object
+      description: Payload to update a project's logo.
+      required:
+      - logo
+      properties:
+        logo:
+          type: string
+          format: byte
+          description: Data URI containing the new Base64 encoded image
+          example: data:image/png;base64,AAAAAA...
+    ProjectInfoResponse:
+      type: object
+      description: Response received when retrieving project info
+      required:
+      - apps
+      properties:
+        apps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectInfoResponseApp'
+          required:
+          - name_slug
     PageInfo:
       type: object
       properties:
@@ -523,28 +575,6 @@ components:
           - string
           - 'null'
           description: Used to fetch the next page of items
-    UpdateProjectOpts:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the project
-        app_name:
-          type: string
-          description: Display name for the Connect application
-        support_email:
-          type: string
-          format: email
-          description: Support email displayed to end users
-        connect_require_key_auth_test:
-          type: boolean
-          description: Send a test request to the upstream API when adding Connect accounts for key-based apps
-    ProjectEnvironment:
-      type: string
-      description: The environment in which the server client is running
-      enum:
-      - development
-      - production
     Project:
       type: object
       description: Project that can be accessed via the Connect API
@@ -570,36 +600,6 @@ components:
           - 'null'
           format: email
           description: Support email configured for the project
-        connect_require_key_auth_test:
-          type: boolean
-          description: Send a test request to the upstream API when adding Connect accounts for key-based apps
-    ProjectInfoResponse:
-      type: object
-      description: Response received when retrieving project info
-      required:
-      - apps
-      properties:
-        apps:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectInfoResponseApp'
-          required:
-          - name_slug
-    CreateProjectOpts:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the project
-        app_name:
-          type: string
-          description: Display name for the Connect application
-        support_email:
-          type: string
-          format: email
-          description: Support email displayed to end users
         connect_require_key_auth_test:
           type: boolean
           description: Send a test request to the upstream API when adding Connect accounts for key-based apps
