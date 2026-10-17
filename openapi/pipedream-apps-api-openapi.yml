@@ -336,6 +336,19 @@ paths:
       - Apps
 components:
   schemas:
+    GetAppResponse:
+      type: object
+      description: Response received when retrieving a single app
+      required:
+      - data
+      properties:
+        data:
+          $ref: '#/components/schemas/App'
+    ListAppCategoriesResponse:
+      type: array
+      description: Response received when listing app categories
+      items:
+        $ref: '#/components/schemas/AppCategory'
     AppCategory:
       type: object
       description: Response object for a Pipedream app category
@@ -351,11 +364,29 @@ components:
           - string
           - 'null'
           description: A short description of the app category
-    ListAppCategoriesResponse:
-      type: array
-      description: Response received when listing app categories
-      items:
-        $ref: '#/components/schemas/AppCategory'
+    PageInfo:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of items returned
+          example: 10
+        total_count:
+          type: integer
+          description: Total number of items
+          example: 120
+        start_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the previous page of items
+        end_cursor:
+          type:
+          - string
+          - 'null'
+          description: Used to fetch the next page of items
+    GetAppCategoryResponse:
+      $ref: '#/components/schemas/AppCategory'
     App:
       type: object
       description: Response object for a Pipedream app's metadata
@@ -410,37 +441,6 @@ components:
       - oauth
       - none
       description: The authentication type used by the app
-    GetAppCategoryResponse:
-      $ref: '#/components/schemas/AppCategory'
-    GetAppResponse:
-      type: object
-      description: Response received when retrieving a single app
-      required:
-      - data
-      properties:
-        data:
-          $ref: '#/components/schemas/App'
-    PageInfo:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of items returned
-          example: 10
-        total_count:
-          type: integer
-          description: Total number of items
-          example: 120
-        start_cursor:
-          type:
-          - string
-          - 'null'
-          description: Used to fetch the previous page of items
-        end_cursor:
-          type:
-          - string
-          - 'null'
-          description: Used to fetch the next page of items
     ListAppsResponse:
       type: object
       description: Response received when listing apps
