@@ -19738,7 +19738,7 @@
     quality:
     - gold
     builder: 'community (Meltano Hub variant maintainers: edgarrmondragon)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: pipedream-slack-own
   label: Slack (own)
