@@ -19711,3 +19711,58 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: pipedream-meltano
+  label: Meltano
+  partner: meltano
+  partner_name: Meltano
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  evidence: https://hub.meltano.com/extractors/tap-pipedream--edgarrmondragon
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Pipedream
+    matched_domain: pipedream.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-pipedream--edgarrmondragon
+    maintenance_status:
+    - active
+    quality:
+    - gold
+    builder: 'community (Meltano Hub variant maintainers: edgarrmondragon)'
+  status: pending-partner-spec
+  arazzo: null
+- slug: pipedream-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A09MA1SN08L-pipedream
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: pipedream-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/jGaV-kRrT3igAYnn-J5v2g
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
