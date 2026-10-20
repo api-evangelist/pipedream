@@ -1,4 +1,29 @@
-generated: '2026-10-15'
+generated: '2026-10-20'
+method: searched
+source:
+- https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://pipedream.com/apps
+checked:
+- gorgias/integrations/gorgias-integration-edges.yml
+- https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
+- https://github.com/meltano/hub
+- slack/integrations/slack-integration-edges.yml
+- zoom/integrations/zoom-integration-edges.yml
+- https://composio.dev/toolkits/pipedream
+- https://monid.ai/tools/pipedream
+- https://n8n.io/integrations/pipedream/
+- https://zapier.com/apps/pipedream/integrations
+summary: null
+marketplace_apps:
+- marketplace: coverage
+  channel: provider-built
+  app: pipedream
+  url: https://pipedream.com/apps
+  app_count: 2136
+  adapter: sweep-workflow-automation.py:pipedream
+  listed: 760
+  note: 'Pipedream components @d5872355ef: 3401 apps (1265 app-only), 760 linked'
 edges:
 - partner_name: Meltano
   partner: meltano
@@ -19839,22 +19864,4 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Zoom app
-marketplace_apps:
-- marketplace: coverage
-  channel: provider-built
-  app: pipedream
-  url: https://pipedream.com/apps
-  app_count: 2136
-  adapter: sweep-workflow-automation.py:pipedream
-  listed: 760
-  note: 'Pipedream components @d5872355ef: 3401 apps (1265 app-only), 760 linked'
-method: searched
-checked:
-- gorgias/integrations/gorgias-integration-edges.yml
-- https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
-- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
-- https://github.com/meltano/hub
-- slack/integrations/slack-integration-edges.yml
-- zoom/integrations/zoom-integration-edges.yml
-source:
-- https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+templates: []
