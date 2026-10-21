@@ -14,6 +14,7 @@ checked:
 - https://monid.ai/tools/pipedream
 - https://n8n.io/integrations/pipedream/
 - https://zapier.com/apps/pipedream/integrations
+- hubspot/integrations/hubspot-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: coverage
@@ -19864,4 +19865,21 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Zoom app
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/pipedream-208642
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - Pipedream
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: CONNECTOR
 templates: []

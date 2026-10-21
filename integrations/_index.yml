@@ -19830,3 +19830,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: pipedream-hubspot-own
+  label: HubSpot (own)
+  partner: hubspot
+  partner_name: HubSpot (own)
+  category: CONNECTOR
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/pipedream-208642
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
