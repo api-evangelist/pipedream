@@ -15,6 +15,7 @@ checked:
 - https://n8n.io/integrations/pipedream/
 - https://zapier.com/apps/pipedream/integrations
 - hubspot/integrations/hubspot-integration-edges.yml
+- pipedrive/integrations/pipedrive-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: coverage
@@ -19882,4 +19883,21 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: CONNECTOR
+- partner_name: Pipedrive (own)
+  partner: pipedrive
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.pipedrive.com/en/marketplace/app/pipedream/5d80274eae050b58
+  mirror_of: pipedrive/integrations/pipedrive-integration-edges.yml
+  apps:
+  - Pipedream
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Qualify my leads
 templates: []
