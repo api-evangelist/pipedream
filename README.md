@@ -1,0 +1,250 @@
+# Pipedream (pipedream)
+
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **Not from the company, and here with a question?** You are welcome here — we would rather be the
+> front line and point you the right way than have a good report go nowhere. What this repository
+> can answer is narrow, though, so it is worth knowing who you are actually looking for:
+>
+> - **A question about how the API works, an account, billing, or a bug in the service** — that is
+>   the company's own support, not us. We profile this API; we do not operate it and cannot see
+>   your account.
+> - **A bug in an open-source project we only catalog** — file it on that project's own repository.
+>   This has happened with a real and correct bug report that reached us instead of the people who
+>   could fix it, which helped nobody.
+> - **Anything about this listing itself** — the description, the tags, the rating, a missing or
+>   wrong artifact — is ours. Open an issue here.
+> - **Not sure, or something general about API Evangelist or APIs.io** — open an issue on the
+>   [APIs.io Inbox](https://github.com/api-search/inbox) and we will route it.
+>
+> **This repository contains no software, and we will never ask you to download anything.** There is
+> no build, release, installer, or binary here — only text and machine-readable API descriptions, so
+> there is nothing here that can be "corrupt" or need "repairing". Any issue, comment, or email
+> claiming otherwise and offering a download link is not from us and is hostile. Do not follow the
+> link; it is a lure. Report it to GitHub and, if you like, tell us at
+> [info@apievangelist.com](mailto:info@apievangelist.com) so we can take it down.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
+Pipedream is a developer-centric integration platform providing three product lines: Workflows (code-level event-driven automation in Node.js/Python/Go/Bash), Connect (an embedded integration toolkit for adding customer-facing integrations and AI agents to applications, with managed OAuth for 3,000+ APIs), and a hosted MCP server exposing 10,000+ tools over JSON-RPC for AI agents. Pipedream announced an acquisition agreement with Workday on 2025-11-19.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- ProCode_API_Composition
+- Workflows
+- Connect
+- MCP
+- Embedded Integrations
+- Managed Auth
+- AI Agents
+
+## Timestamps
+
+- **Created:** 2026-03-03
+- **Modified:** 2026-05-22
+
+## APIs
+
+### Pipedream REST API
+
+The Pipedream REST API at api.pipedream.com is the unified surface for both the legacy workflow / source / subscription resources and the newer /v1/connect/* resources. Authentication is via OAuth 2.0 client credentials or a short-lived Connect token. List endpoints use cursor pagination (limit, after, before). The full OpenAPI 3.0.4 spec is published at pipedream.com/docs/pipedream_openapi_swagger.json (133 schemas, 61 operations as of 2026-05-22).
+
+- **Human URL:** [https://pipedream.com/docs/rest-api/](https://pipedream.com/docs/rest-api/)
+- **Base URL:** `https://api.pipedream.com/v1`
+
+#### Tags
+
+- Apps
+- App Categories
+- OAuth
+- Connect
+- Accounts
+- Components
+- Actions
+- Triggers
+- Deployed Triggers
+- Webhooks
+- Projects
+- Proxy
+- File Stash
+- Tokens
+- Usage
+- Users
+
+#### Properties
+
+- [Documentation](https://pipedream.com/docs/rest-api/)
+- [Authentication](https://pipedream.com/docs/rest-api/auth)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/openapi/pipedream-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Open A P I Upstream](https://pipedream.com/docs/pipedream_openapi_swagger.json)
+- [Spectral Rules](rules/pipedream-rules.yml)
+- [JSON Schema](json-schema/pipedream-app-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/pipedream-account-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/pipedream-component-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/pipedream-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/pipedream-connecttoken-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/pipedream-connectusage-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Structure](json-structure/pipedream-app-structure.json)
+- [Example](examples/pipedream-list-apps-example.json)
+- [Example](examples/pipedream-create-connect-token-example.json)
+- [Example](examples/pipedream-list-accounts-example.json)
+- [Example](examples/pipedream-run-action-example.json)
+- [Example](examples/pipedream-deploy-trigger-example.json)
+- [Example](examples/pipedream-oauth-token-example.json)
+- [Example](examples/pipedream-proxy-request-example.json)
+- [Postman Collection](collections/pipedream-mcp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/pipedream-mcp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/pipedream.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/pipedream.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Pipedream Connect
+
+Pipedream Connect is the end-to-end developer toolkit for embedding customer-facing integrations and AI-agent capabilities into applications. It provides managed OAuth for 3,000+ APIs, pre-built components (actions and triggers), a Connect Proxy that signs custom HTTP requests on behalf of end-users, a File Stash for working with user file uploads, deployed-trigger webhooks, usage metering, and project-scoped resources with development and production environments. Endpoints live under /v1/connect/* on api.pipedream.com.
+
+- **Human URL:** [https://pipedream.com/docs/connect](https://pipedream.com/docs/connect)
+- **Base URL:** `https://api.pipedream.com/v1/connect`
+
+#### Tags
+
+- Connect
+- Embedded Integrations
+- Managed Auth
+- AI Agents
+- Proxy
+- Webhooks
+
+#### Properties
+
+- [Documentation](https://pipedream.com/docs/connect)
+- [Getting Started](https://pipedream.com/docs/connect/quickstart)
+- [S D Ks](https://pipedream.com/docs/connect/api-reference/sdks)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/openapi/pipedream-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [SDK](https://github.com/PipedreamHQ/pipedream-sdk-typescript)
+- [SDK](https://github.com/PipedreamHQ/pipedream-sdk-python)
+- [SDK](https://github.com/PipedreamHQ/pipedream-sdk-java)
+- [Samples Repo](https://github.com/PipedreamHQ/pipedream-connect-examples)
+- [Postman Collection](collections/pipedream-mcp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/pipedream-mcp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/pipedream.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/pipedream.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Pipedream MCP Server
+
+Pipedream's hosted Model Context Protocol server at remote.mcp.pipedream.net exposes 10,000+ tools across 2,800+ integrated apps to AI agents over JSON-RPC. The server supports both SSE and streamable HTTP transports dynamically based on the Accept header, with no client-side configuration required. Authentication is OAuth 2.0 Bearer; per-session context (project, environment, external user, app slug) is supplied via x-pd-* headers. Native integrations exist for OpenAI Responses API, Anthropic Claude, Google Gemini, and Vercel AI SDK.
+
+- **Human URL:** [https://pipedream.com/docs/connect/mcp/developers](https://pipedream.com/docs/connect/mcp/developers)
+- **Base URL:** `https://remote.mcp.pipedream.net/v3`
+
+#### Tags
+
+- MCP
+- AI Agents
+- Tool Calling
+- JSON-RPC
+
+#### Properties
+
+- [Documentation](https://pipedream.com/docs/connect/mcp)
+- [Documentation](https://pipedream.com/docs/connect/mcp/developers)
+- [Documentation](https://pipedream.com/docs/connect/mcp/openai)
+- [Server Directory](https://mcp.pipedream.com/)
+- [Chat Client](https://chat.pipedream.com/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/pipedream/refs/heads/main/openapi/pipedream-mcp-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Samples Repo](https://github.com/PipedreamHQ/mcp-chat)
+- [Example](examples/pipedream-mcp-tools-list-example.json)
+- [Example](examples/pipedream-mcp-tools-call-example.json)
+- [Postman Collection](collections/pipedream-mcp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/pipedream-mcp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/pipedream.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/pipedream.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
+- [Portal](https://pipedream.com/)
+- [Documentation](https://pipedream.com/docs)
+- [Getting Started](https://pipedream.com/docs/quickstart/)
+- [Authentication](https://pipedream.com/docs/rest-api/auth)
+- [OpenAPI](https://pipedream.com/docs/pipedream_openapi_swagger.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Blog](https://pipedream.com/blog/)
+- [Changelog](https://pipedream.com/docs/changelog)
+- [Status Page](https://status.pipedream.com/)
+- [Status Feed](https://status.pipedream.com/history.atom)
+- [Support](https://pipedream.com/support)
+- [Forum](https://pipedream.com/community/)
+- [Pricing](https://pipedream.com/pricing/)
+- [Sign Up](https://pipedream.com/auth/signup)
+- [Login](https://pipedream.com/auth/login)
+- [Terms of Service](https://pipedream.com/terms)
+- [Privacy Policy](https://pipedream.com/privacy)
+- [Security](https://pipedream.com/docs/privacy-and-security)
+- [LinkedIn](https://www.linkedin.com/company/pipedreamhq)
+- [Git Hub Org](https://github.com/PipedreamHQ)
+- [Source Repo](https://github.com/PipedreamHQ/pipedream)
+- [SDK](https://github.com/PipedreamHQ/pipedream-sdk-typescript)
+- [SDK](https://github.com/PipedreamHQ/pipedream-sdk-python)
+- [SDK](https://github.com/PipedreamHQ/pipedream-sdk-java)
+- [SDK](https://github.com/PipedreamHQ/pipedream-go)
+- [C L I](https://github.com/PipedreamHQ/homebrew-pd-cli)
+- [Samples Repo](https://github.com/PipedreamHQ/pipedream-connect-examples)
+- [Samples Repo](https://github.com/PipedreamHQ/mcp-chat)
+- [Plans](plans/pipedream-plans-pricing.yml)
+- [Rate Limits](rate-limits/pipedream-rate-limits.yml)
+- [Fin Ops](finops/pipedream-finops.yml)
+- [J S O N L D Context](json-ld/pipedream-context.jsonld)
+- [Vocabulary](vocabulary/pipedream-vocabulary.yml)
+- [Spectral Rules](rules/pipedream-rules.yml)
+- [Acquisition Announcement](https://pipedream.com/blog/pipedream-to-be-acquired-by-workday/)
+- [Features](undefined)
+- [L L Ms Txt](https://pipedream.com/llms.txt)
+
+## Maintainers
+
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
